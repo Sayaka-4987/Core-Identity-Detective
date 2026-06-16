@@ -279,8 +279,8 @@ const cases = [
         zh: "判断正确。你没有把一个头像 bug 升级成 HR 事件。"
       },
       wrong: {
-        en: "The badge flashed, but only because the backend was on fire.",
-        zh: "工牌确实闪了，但只是因为后端着火了。"
+        en: "The badge fired, but only because the backend was on fire.",
+        zh: "头像确实消失了，但只是因为后端着火了。"
       }
     }
   }
@@ -411,10 +411,10 @@ Optional label:
 Chinese:
 
 ```text
-0-30%：谨慎
-31-70%：合理
-71-90%：自信
-91-100%：名场面预备
+0-30%：大胆猜想
+31-70%：小心推测
+71-90%：自信推断
+91-100%：全部梭哈
 ```
 
 ## Initial Case Ideas
@@ -472,7 +472,7 @@ Actual cause:
 Nobody knows
 ```
 
-### Case 004: Reorg Weather / 组织架构天气
+### Case 004: Reorg Weather / 组织架构调整
 
 Telemetry:
 
@@ -528,29 +528,55 @@ BAD END: 给同事讲了个中国男足笑话
 English flavor:
 
 ```text
-BAD END: Explained a Chinese men's football joke to a coworker
+BAD END: Started a World Cup Conversation
 
-You attempted to explain East Asian geopolitics, World Cup qualification history,
-and Chinese internet humor to an unsuspecting coworker.
+You attempted to ask a coworker
+whether they were supporting their country
+during the World Cup.
 
-They never recovered.
+Unfortunately, your target was Chinese.
+
+The conversation unexpectedly expanded into:
+
+- East Asian geopolitics
+- World Cup qualification history
+- Chinese internet humor
+
+You no longer know which countries are in the World Cup.
+
+You are afraid to ask follow-up questions.
+
+Badge status: Flashing
 ```
 
 Chinese flavor:
 
 ```text
-BAD END：给同事讲了个中国男足笑话
+BAD END：聊起了世界杯
 
-你试图向一位毫无防备的同事解释东亚地缘政治、世界杯出线历史、
-以及中国互联网足球笑话。
+你试图和同事聊聊
+世界杯期间是否支持自己的国家。
 
-对方再也没有恢复。
+遗憾的是，
+对方是一名中国人。
+
+话题随后扩展到了：
+
+- 东亚地缘政治
+- 世界杯出线历史
+- 中国互联网笑话
+
+你已经不知道哪些国家进了世界杯。
+
+你也不敢继续追问了。
+
+工牌状态：一闪一闪的
 ```
 
 ## Achievement Ideas
 
 ```text
-GAL Whisperer
+GAL master
 Global Address List Game
 Not A Layoff
 Actually A Layoff
@@ -568,8 +594,8 @@ Cross-Cultural Critical Hit
 Chinese versions:
 
 ```text
-GAL 低语者
-全球通讯录游戏
+GAL 领域大神
+G(lobal)A(ddress)L(ist)Game
 不是裁员
 真的是裁员
 都是 DNS 的锅
@@ -579,7 +605,7 @@ GAL 低语者
 组织架构考古学家
 过度自信 Any%
 工牌一闪一闪的
-根因：中国男足
+中国男足不行
 跨文化暴击
 ```
 
@@ -606,7 +632,7 @@ Unfortunately, the backend was merely on fire.
 - 但不要太阴阳怪气到攻击真人
 - 也不要引来律师函警告
 - 可以一本正经胡说八道
-- 多用“根因”、“事故”、“工牌闪了”、“同步炸了”
+- 多用“Root Cause”、“事故”、“工牌闪了”、“同步炸了”
 
 Example:
 
@@ -655,7 +681,7 @@ For single-file MVP:
 Expected output:
 
 ```text
-https://<username>.github.io/Core Identity-detective/
+https://<username>.github.io/core-identity-detective/
 ```
 
 ## README Draft
