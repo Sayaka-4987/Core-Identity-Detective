@@ -45,7 +45,7 @@ A programmer-themed detective game where the player reads fake enterprise identi
 - Corporate org charts
 - Outlook / GAL / Core Identity-style signals
 - Incident RCA culture
-- “工牌一闪一闪的”
+- “我的教师资格证一闪一闪的”
 - “GALGame = Global Address List Game”
 
 ## Core Gameplay Loop
@@ -123,6 +123,11 @@ Scoring should punish overconfidence:
 
 ### Nice to Have
 
+> Confirmed non-MVP in the UI Layout notes: **Case library** and **Random
+> case mode**. The Home Screen `[Case Library]` button and any random
+> ordering are deferred; the MVP runs cases in fixed array order. Do not
+> let either block the MVP.
+
 - Case library
 - Random case mode
 - Case difficulty labels
@@ -132,6 +137,12 @@ Scoring should punish overconfidence:
 - Dark mode
 - Tiny animations
 - Shareable result text
+
+> LocalStorage key naming convention (when these features are built): prefix
+> every key with `cid-` so the game's storage is namespaced and easy to
+> clear. Reserved keys: `cid-lang` (UI language), `cid-total` (saved total
+> score), `cid-progress` (case index / run state). The MVP does not write
+> any of these; they are reserved so later features stay consistent.
 
 ### Do Not Build in MVP
 
@@ -208,6 +219,22 @@ Single-file MVP is preferred because it is easy to deploy and vibe-code.
 ## Data Model
 
 Case content should be editable without touching UI logic too much.
+
+Field contract (so the renderer stays simple and deterministic):
+
+- `id`: unique string, kebab-case, e.g. `case-001`.
+- `difficulty`: one of `"easy" | "medium" | "hard"`.
+- All player-visible text is a `{ en, zh }` pair. Never a bare string.
+- `telemetry[].status`: one of exactly
+  `"normal" | "warning" | "alarming" | "unknown"`.
+  These map to colors in the Visual Style section
+  (normal=green, warning=yellow, alarming=red, unknown=gray).
+- `choices[].id`: stable string, unique within the case.
+- `answer`: must equal exactly one `choices[].id` in the same case.
+  The renderer scores a submission as correct iff the selected choice id
+  `=== answer`. (For joke cases whose "real" cause is not a normal option,
+  still make `answer` point at the intended choice id, e.g. the gag option,
+  so scoring has a single deterministic rule. See Initial Case Ideas.)
 
 Suggested JavaScript structure:
 
@@ -289,6 +316,18 @@ const cases = [
 
 ## UI Layout
 
+> Developer notes that apply to every screen below:
+>
+> - **Language toggle**: default language is `en`. Toggling re-renders the
+>   current screen in place (it does not reset the case or score). Persisting
+>   the choice across reloads (LocalStorage) is Nice-to-Have, not MVP.
+> - **`[Case Library]` button**: the Case Library is a Nice-to-Have feature.
+>   For the MVP, either hide this button or wire it to start the normal
+>   sequential run. Do not block the MVP on building a library view.
+> - **Submit gating**: `[Submit Investigation]` stays disabled until the
+>   player has selected one of the choices. Confidence has a default
+>   (`50`) so it is always valid.
+
 ### Home Screen
 
 ```text
@@ -364,7 +403,7 @@ Actual Cause: Identity Sync Failure
 
 Overconfidence Penalty Applied.
 
-Score: -45
+Score: -95
 ```
 
 Chinese:
@@ -377,12 +416,24 @@ Chinese:
 
 已应用过度自信惩罚。
 
-得分：-45
+得分：-95
 ```
+
+> Note: the score shown here (`-95`) is computed from the formula in the
+> Scoring Idea section (`-confidence` with confidence = 95). An earlier
+> draft showed `-45`; ignore that and always derive the number from the
+> formula.
+
+> After the Result Screen, a `[Next Case]` button advances to the next case
+> in order. MVP case order is **fixed sequential** (the array order in
+> `cases`); random mode is a Nice-to-Have. After the last case, show a
+> simple end-of-run summary (final `totalScore` plus a one-line flavor) and
+> a button back to the Home Screen. The 20-case Fiscal Year / performance
+> review loop is post-MVP (see Ending Design Philosophy).
 
 ## Scoring Idea
 
-Simple MVP formula:
+Simple MVP formula (this is the single source of truth; the Result Screen mockups above are illustrative only and must follow these numbers):
 
 ```text
 if correct:
@@ -390,6 +441,18 @@ if correct:
 else:
   score = -confidence
 ```
+
+`score` for a case is an integer. `confidence` is the 0-100 slider value.
+Round with `Math.round` if `confidence` is odd.
+
+Score accumulation:
+
+- Keep a running `totalScore` for the current session (sum of all case scores).
+- Show both the per-case delta (e.g. `+80`) on the Result Screen and the
+  running `totalScore` somewhere visible.
+- `totalScore` resets when the player starts a new investigation run from
+  the Home Screen. Persisting it across reloads is a Nice-to-Have
+  (LocalStorage), not MVP.
 
 Examples:
 
@@ -471,6 +534,13 @@ Actual cause:
 ```text
 Nobody knows
 ```
+
+> Data-model note: `actualCause` can read `Nobody knows`, but `answer`
+> still has to point at a real `choices[].id`. Decide which option counts
+> as "correct" for this case (suggestion: there is no correct answer, so
+> mark every choice wrong by setting `answer` to a sentinel id like
+> `"none"` that is not in `choices`, and special-case it in scoring). Pick
+> one approach and keep it consistent across all joke cases.
 
 ### Case 004: Reorg Weather / 组织架构调整
 
@@ -649,6 +719,11 @@ Corporate dashboard + detective notebook + incident console
 
 ## Ending Design Philosophy
 
+> Scope note for the developer: everything in this section (Fiscal Year,
+> 20-case cycles, performance review, endless loop) is post-MVP narrative
+> design. The MVP only needs the 5-case flow plus a simple end-of-run
+> total score screen. Build the loop below only after the MVP works.
+
 Every 20 cases count as one Fiscal Year.
 
 At the end of a cycle, the player receives a performance review based on their investigation history and overall detective profile.
@@ -759,7 +834,7 @@ For single-file MVP:
 7. Enable GitHub Pages
 8. Source: deploy from branch
 9. Branch: `main`
-10. Folder: `/root`
+10. Folder: `/ (root)`
 11. Visit published URL
 
 Expected output:

@@ -1,0 +1,1072 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Core Identity Detective</title>
+    <style>
+      :root {
+        --bg: #0d1117;
+        --panel: #161b22;
+        --panel-2: #1c2330;
+        --border: #30363d;
+        --text: #c9d1d9;
+        --muted: #8b949e;
+        --accent: #58a6ff;
+        --green: #3fb950;
+        --yellow: #d29922;
+        --red: #f85149;
+        --gray: #6e7681;
+        --mono:
+          ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Microsoft YaHei", sans-serif;
+        line-height: 1.55;
+        min-height: 100vh;
+      }
+      .wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 24px 16px 64px;
+      }
+      header.bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .brand {
+        font-family: var(--mono);
+        font-weight: 600;
+        color: var(--accent);
+      }
+      .lang-toggle button {
+        background: none;
+        border: none;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 14px;
+        padding: 4px 6px;
+      }
+      .lang-toggle button.active {
+        color: var(--text);
+        font-weight: 600;
+        text-decoration: underline;
+      }
+      .lang-toggle span {
+        color: var(--border);
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 24px;
+      }
+      h1 {
+        font-size: 28px;
+        margin: 0 0 6px;
+      }
+      .tagline {
+        color: var(--muted);
+        margin: 0 0 28px;
+      }
+      .meta {
+        color: var(--muted);
+        font-size: 14px;
+        margin: 0 0 18px;
+      }
+
+      button.primary {
+        background: var(--accent);
+        color: #07101f;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 18px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button.primary:disabled {
+        background: var(--border);
+        color: var(--muted);
+        cursor: not-allowed;
+      }
+      button.ghost {
+        background: none;
+        border: 1px solid var(--border);
+        color: var(--text);
+        border-radius: 6px;
+        padding: 10px 18px;
+        font-size: 15px;
+        cursor: pointer;
+      }
+      .btn-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+
+      .section-title {
+        font-family: var(--mono);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin: 22px 0 10px;
+      }
+
+      .telemetry {
+        font-family: var(--mono);
+        font-size: 14px;
+      }
+      .tele-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 7px 10px;
+        border-radius: 5px;
+        background: var(--panel-2);
+        margin-bottom: 6px;
+      }
+      .tele-key {
+        color: var(--muted);
+      }
+      .tele-val {
+        font-weight: 600;
+      }
+      .status-normal {
+        color: var(--green);
+      }
+      .status-warning {
+        color: var(--yellow);
+      }
+      .status-alarming {
+        color: var(--red);
+      }
+      .status-unknown {
+        color: var(--gray);
+      }
+
+      .choices {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .choice {
+        display: block;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 10px 12px;
+        margin-bottom: 8px;
+        cursor: pointer;
+      }
+      .choice:hover {
+        border-color: var(--accent);
+      }
+      .choice input {
+        margin-right: 10px;
+      }
+      .choice.selected {
+        border-color: var(--accent);
+        background: rgba(88, 166, 255, 0.08);
+      }
+
+      .confidence-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 6px 0 4px;
+      }
+      .confidence-row input[type="range"] {
+        flex: 1;
+      }
+      .confidence-val {
+        font-family: var(--mono);
+        min-width: 48px;
+        text-align: right;
+      }
+      .confidence-label {
+        color: var(--muted);
+        font-size: 13px;
+        margin-bottom: 18px;
+      }
+
+      .verdict {
+        font-size: 22px;
+        font-weight: 700;
+        margin: 0 0 8px;
+      }
+      .verdict.correct {
+        color: var(--green);
+      }
+      .verdict.wrong {
+        color: var(--red);
+      }
+      .result-line {
+        margin: 4px 0;
+      }
+      .score-delta {
+        font-family: var(--mono);
+        font-size: 20px;
+        font-weight: 700;
+        margin: 14px 0 4px;
+      }
+      .total-score {
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 14px;
+      }
+      .explanation {
+        background: var(--panel-2);
+        border-radius: 6px;
+        padding: 12px 14px;
+        margin: 14px 0;
+      }
+      .flavor {
+        color: var(--muted);
+        font-style: italic;
+        margin: 8px 0 0;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="bar">
+        <span class="brand">Core Identity Detective</span>
+        <div class="lang-toggle">
+          <span class="meta-lang" data-lang="label"></span>
+          <button id="lang-en">English</button>
+          <span>|</span>
+          <button id="lang-zh">中文</button>
+        </div>
+      </header>
+
+      <!-- HOME -->
+      <section id="screen-home" class="card">
+        <h1 id="home-title"></h1>
+        <p class="tagline" id="home-tagline"></p>
+        <div class="btn-row">
+          <button class="primary" id="btn-start"></button>
+          <button class="ghost hidden" id="btn-continue"></button>
+        </div>
+      </section>
+
+      <!-- CASE -->
+      <section id="screen-case" class="card hidden">
+        <p class="meta" id="case-meta"></p>
+        <h1 id="case-title" style="font-size: 22px"></h1>
+        <p id="case-intro"></p>
+
+        <div class="section-title" id="label-telemetry"></div>
+        <div class="telemetry" id="telemetry"></div>
+
+        <div class="section-title" id="label-question"></div>
+        <ul class="choices" id="choices"></ul>
+
+        <div class="section-title" id="label-confidence"></div>
+        <div class="confidence-row">
+          <input
+            type="range"
+            id="confidence"
+            min="0"
+            max="100"
+            step="5"
+            value="50"
+          />
+          <span class="confidence-val" id="confidence-val">50%</span>
+        </div>
+        <div class="confidence-label" id="confidence-label"></div>
+
+        <div class="btn-row">
+          <button class="primary" id="btn-submit" disabled></button>
+        </div>
+      </section>
+
+      <!-- RESULT -->
+      <section id="screen-result" class="card hidden">
+        <p class="verdict" id="verdict"></p>
+        <div id="result-lines"></div>
+        <div class="explanation" id="explanation"></div>
+        <p class="flavor" id="result-flavor"></p>
+        <div class="score-delta" id="score-delta"></div>
+        <div class="total-score" id="total-score"></div>
+        <div class="btn-row">
+          <button class="primary" id="btn-next"></button>
+        </div>
+      </section>
+
+      <!-- END OF RUN -->
+      <section id="screen-end" class="card hidden">
+        <h1 id="end-title"></h1>
+        <p id="end-flavor" class="tagline"></p>
+        <div class="score-delta" id="end-score"></div>
+        <div class="btn-row">
+          <button class="primary" id="btn-home"></button>
+          <button class="ghost" id="btn-share"></button>
+        </div>
+        <p class="flavor" id="share-feedback"></p>
+      </section>
+    </div>
+
+    <script>
+      /* ----------------------------------------------------------------------
+       * Static UI strings (bilingual). Everything player-visible is { en, zh }.
+       * -------------------------------------------------------------------- */
+      const UI = {
+        langLabel: { en: "Language:", zh: "语言：" },
+        homeTitle: {
+          en: "Core Identity Detective",
+          zh: "Core Identity Detective",
+        },
+        homeTagline: {
+          en: "Follow the telemetry. Find the truth.",
+          zh: "读取 Profile，找出真相。",
+        },
+        start: { en: "Start Investigation", zh: "开始调查" },
+        telemetry: { en: "Identity Telemetry", zh: "身份遥测" },
+        question: { en: "What happened?", zh: "发生了什么？" },
+        confidence: { en: "Confidence", zh: "信心" },
+        submit: { en: "Submit Investigation", zh: "提交调查" },
+        next: { en: "Next Case", zh: "下一案件" },
+        correct: { en: "Correct", zh: "判断正确" },
+        incorrect: { en: "Incorrect", zh: "判断错误" },
+        yourGuess: { en: "Your Guess", zh: "你的判断" },
+        actualCause: { en: "Actual Cause", zh: "真实原因" },
+        penalty: {
+          en: "Overconfidence Penalty Applied.",
+          zh: "已应用过度自信惩罚。",
+        },
+        score: { en: "Score", zh: "得分" },
+        total: { en: "Total", zh: "总分" },
+        caseWord: { en: "Case", zh: "案件" },
+        difficulty: { en: "Difficulty", zh: "难度" },
+        endTitle: { en: "Investigation Complete", zh: "调查完成" },
+        backHome: { en: "Back to Start", zh: "返回主界面" },
+        share: { en: "Share Result", zh: "分享成绩" },
+        shareCopied: { en: "Copied to clipboard.", zh: "已复制到剪贴板。" },
+        shareFailed: {
+          en: "Copy failed. Select and copy manually.",
+          zh: "复制失败，请手动选择复制。",
+        },
+        shareLine: {
+          en: "I followed the telemetry.",
+          zh: "我跟着遥测走了一遍。",
+        },
+        continueWord: { en: "Continue", zh: "继续上一局" },
+        diff: {
+          easy: { en: "Easy", zh: "简单" },
+          medium: { en: "Medium", zh: "中等" },
+          hard: { en: "Hard", zh: "困难" },
+        },
+        // Confidence band labels (display only).
+        band: [
+          { max: 30, text: { en: "Cautious", zh: "大胆猜想" } },
+          { max: 70, text: { en: "Reasonable", zh: "小心推测" } },
+          { max: 90, text: { en: "Confident", zh: "自信推断" } },
+          { max: 100, text: { en: "Famous Last Words", zh: "全部梭哈" } },
+        ],
+        // Final-score title bands (total ranges roughly -500..500 over 5 cases).
+        // Checked high-to-low; the first band whose `min` the score meets wins.
+        scoreTitle: [
+          { min: 350, text: { en: "Master Detective", zh: "业界首席侦探" } },
+          { min: 150, text: { en: "Senior Investigator", zh: "传奇调查员" } },
+          { min: 0, text: { en: "Cautious Analyst", zh: "谨慎的分析师" } },
+          {
+            min: -200,
+            text: { en: "Overconfident Engineer", zh: "过度自信工程师" },
+          },
+          {
+            min: -Infinity,
+            text: { en: "Root Cause: You", zh: "事故根因：你" },
+          },
+        ],
+      };
+
+      /* ----------------------------------------------------------------------
+       * Case data. `answer` must equal a choices[].id, OR the sentinel "none"
+       * which means every choice scores as wrong (used for joke cases).
+       * -------------------------------------------------------------------- */
+      const cases = [
+        {
+          id: "case-001",
+          difficulty: "easy",
+          title: { en: "The Missing Photo", zh: "消失的头像" },
+          intro: {
+            en: "A coworker's profile photo disappeared overnight.",
+            zh: "一位同事的头像一夜之间消失了。",
+          },
+          telemetry: [
+            {
+              key: { en: "Alias", zh: "Alias" },
+              value: { en: "jdoe", zh: "jdoe" },
+              status: "normal",
+            },
+            {
+              key: { en: "Photo", zh: "头像" },
+              value: { en: "Missing", zh: "消失" },
+              status: "warning",
+            },
+            {
+              key: { en: "Manager", zh: "Manager" },
+              value: { en: "Present", zh: "存在" },
+              status: "normal",
+            },
+            {
+              key: { en: "Groups", zh: "Groups" },
+              value: { en: "12", zh: "12" },
+              status: "normal",
+            },
+            {
+              key: { en: "GAL", zh: "GAL" },
+              value: { en: "Visible", zh: "可见" },
+              status: "normal",
+            },
+          ],
+          choices: [
+            { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
+            {
+              id: "transfer",
+              label: { en: "Internal Transfer", zh: "内部转组" },
+            },
+            {
+              id: "sync_failure",
+              label: { en: "Identity Sync Failure", zh: "身份同步炸了" },
+            },
+            { id: "vacation", label: { en: "Vacation", zh: "休假中" } },
+          ],
+          answer: "sync_failure",
+          actualCause: { en: "Identity Sync Failure", zh: "身份同步炸了" },
+          explanation: {
+            en: "Only the photo is missing. The manager, GAL visibility, and groups are still normal. This is more likely a sync issue than an actual disappearance.",
+            zh: "只有头像消失了，Manager、Profile 可见性和 Groups 都还正常。比起真的人没了，这更像是同步服务炸了。",
+          },
+          resultFlavor: {
+            correct: {
+              en: "Good catch. You did not over-escalate a profile photo bug into an HR incident.",
+              zh: "判断正确。你没有把一个头像 bug 升级成 HR 事件。",
+            },
+            wrong: {
+              en: "The badge fired, but only because the backend was on fire.",
+              zh: "头像确实消失了，但只是因为后端着火了。",
+            },
+          },
+        },
+        {
+          id: "case-002",
+          difficulty: "easy",
+          title: { en: "The Quiet Transfer", zh: "平静转组" },
+          intro: {
+            en: "A coworker's record changed, but nobody announced anything.",
+            zh: "一位同事的记录变了，但没人发任何公告。",
+          },
+          telemetry: [
+            {
+              key: { en: "Photo", zh: "头像" },
+              value: { en: "Visible", zh: "可见" },
+              status: "normal",
+            },
+            {
+              key: { en: "Manager", zh: "Manager" },
+              value: { en: "Changed", zh: "已变更" },
+              status: "warning",
+            },
+            {
+              key: { en: "Title", zh: "Title" },
+              value: { en: "Same", zh: "不变" },
+              status: "normal",
+            },
+            {
+              key: { en: "Cost Center", zh: "Cost Center" },
+              value: { en: "Changed", zh: "已变更" },
+              status: "warning",
+            },
+            {
+              key: { en: "GAL", zh: "GAL" },
+              value: { en: "Visible", zh: "可见" },
+              status: "normal",
+            },
+          ],
+          choices: [
+            { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
+            {
+              id: "transfer",
+              label: { en: "Internal Transfer", zh: "内部转组" },
+            },
+            {
+              id: "sync_failure",
+              label: { en: "Identity Sync Failure", zh: "身份同步炸了" },
+            },
+            { id: "promotion", label: { en: "Promotion", zh: "升职了" } },
+          ],
+          answer: "transfer",
+          actualCause: { en: "Internal Transfer", zh: "内部转组" },
+          explanation: {
+            en: "Manager and cost center changed while the title stayed the same and GAL is still visible. That is the signature of a lateral move, not a departure.",
+            zh: "Manager 和 Cost Center 变了，但 Title 没变、GAL 还可见。这是平级转组的特征，不是离职。",
+          },
+          resultFlavor: {
+            correct: {
+              en: "Calmly read as a transfer. No drama generated.",
+              zh: "冷静判断为转组，没有制造戏剧。",
+            },
+            wrong: {
+              en: "You wrote a farewell message for someone who just moved two desks over.",
+              zh: "你给一个只是挪了个工位的人写了深情的离别赠言。",
+            },
+          },
+        },
+        {
+          id: "case-003",
+          difficulty: "hard",
+          title: { en: "The Ghost Account", zh: "幽灵账号" },
+          intro: {
+            en: "An account exists, but every signal points nowhere.",
+            zh: "一个账号存在，但所有信号都指向虚无。",
+          },
+          telemetry: [
+            {
+              key: { en: "Photo", zh: "头像" },
+              value: { en: "NULL", zh: "NULL" },
+              status: "unknown",
+            },
+            {
+              key: { en: "Manager", zh: "Manager" },
+              value: { en: "NULL", zh: "NULL" },
+              status: "unknown",
+            },
+            {
+              key: { en: "Groups", zh: "Groups" },
+              value: { en: "0", zh: "0" },
+              status: "alarming",
+            },
+            {
+              key: { en: "GAL", zh: "GAL" },
+              value: { en: "Visible", zh: "可见" },
+              status: "normal",
+            },
+            {
+              key: { en: "Teams", zh: "Teams" },
+              value: { en: "Unknown", zh: "未知" },
+              status: "unknown",
+            },
+          ],
+          choices: [
+            { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
+            {
+              id: "transfer",
+              label: { en: "Internal Transfer", zh: "内部转组" },
+            },
+            {
+              id: "sync_failure",
+              label: { en: "Identity Sync Failure", zh: "身份同步炸了" },
+            },
+            {
+              id: "contractor",
+              label: { en: "Service Account", zh: "服务账号" },
+            },
+          ],
+          answer: "none",
+          actualCause: { en: "Nobody knows", zh: "没人知道" },
+          explanation: {
+            en: "Half the fields are NULL, groups are zero, but GAL is still visible. The evidence is genuinely insufficient. The honest answer is: nobody knows.",
+            zh: "一半字段是 NULL，Groups 是 0，但 GAL 还可见。证据确实不足。诚实的答案是：没人知道。",
+          },
+          resultFlavor: {
+            correct: {
+              en: "There was no correct answer. The telemetry was insufficient. Whatever you picked, the truth stayed hidden.",
+              zh: "这题没有正确答案。遥测不足。无论你选什么，真相都还藏着。",
+            },
+            wrong: {
+              en: "There was no correct answer. The telemetry was insufficient. Whatever you picked, the truth stayed hidden.",
+              zh: "这题没有正确答案。遥测不足。无论你选什么，真相都还藏着。",
+            },
+          },
+        },
+        {
+          id: "case-004",
+          difficulty: "medium",
+          title: { en: "Reorg Weather", zh: "组织架构调整" },
+          intro: {
+            en: "Two managers up the chain changed on the same day.",
+            zh: "上报链上两级 Manager 在同一天变了。",
+          },
+          telemetry: [
+            {
+              key: { en: "Manager", zh: "Manager" },
+              value: { en: "Changed", zh: "已变更" },
+              status: "warning",
+            },
+            {
+              key: { en: "Skip Manager", zh: "Skip Manager" },
+              value: { en: "Changed", zh: "已变更" },
+              status: "warning",
+            },
+            {
+              key: { en: "Title", zh: "Title" },
+              value: { en: "Same", zh: "不变" },
+              status: "normal",
+            },
+            {
+              key: { en: "Groups", zh: "Groups" },
+              value: { en: "Normal", zh: "正常" },
+              status: "normal",
+            },
+            {
+              key: { en: "GAL", zh: "GAL" },
+              value: { en: "Visible", zh: "可见" },
+              status: "normal",
+            },
+          ],
+          choices: [
+            { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
+            {
+              id: "transfer",
+              label: { en: "Internal Transfer", zh: "内部转组" },
+            },
+            { id: "reorg", label: { en: "Reorg", zh: "组织架构调整" } },
+            { id: "promotion", label: { en: "Promotion", zh: "升职了" } },
+          ],
+          answer: "reorg",
+          actualCause: { en: "Reorg", zh: "组织架构调整" },
+          explanation: {
+            en: "Both the manager and skip-level changed at once while title, groups, and GAL stayed put. When the chain shifts above you but your own record is intact, that is reorg weather.",
+            zh: "Manager 和 Skip Manager 同时变了，而 Title、Groups、GAL 都没动。当你头顶的汇报链变了、但你自己完好无损，这就是幸福。",
+          },
+          resultFlavor: {
+            correct: {
+              en: "You read the weather, not the panic. The org moved; the person did not.",
+              zh: "你读的是天气，不是恐慌。动的是组织，不是人。",
+            },
+            wrong: {
+              en: "You filed an incident for the climate.",
+              zh: "你为组织架构变化提了一个事故单给 HR，大家笑了你一个月。",
+            },
+          },
+        },
+        {
+          id: "case-005",
+          difficulty: "medium",
+          title: {
+            en: "The Three-Day Disappearance",
+            zh: "神秘消失的三天",
+          },
+          intro: {
+            en: "A coworker disappeared from normal activities for three business days.",
+            zh: "某位同事连续三个工作日没有出现在日常活动中。",
+          },
+          telemetry: [
+            {
+              key: { en: "Calendar", zh: "日历" },
+              value: { en: "Busy for 3 days", zh: "连续三天忙碌" },
+              status: "warning",
+            },
+            {
+              key: { en: "Teams Status", zh: "Teams 状态" },
+              value: { en: "Mostly Away", zh: "长期离开" },
+              status: "warning",
+            },
+            {
+              key: { en: "Lunch Presence", zh: "午饭出勤" },
+              value: { en: "Missing", zh: "未出现" },
+              status: "warning",
+            },
+            {
+              key: { en: "Org Chart", zh: "组织架构" },
+              value: { en: "Unchanged", zh: "无变化" },
+              status: "normal",
+            },
+            {
+              key: { en: "GAL", zh: "GAL" },
+              value: { en: "Visible", zh: "可见" },
+              status: "normal",
+            },
+          ],
+          choices: [
+            {
+              id: "job_search",
+              label: {
+                en: "Interviewing Elsewhere",
+                zh: "正在面试",
+              },
+            },
+            {
+              id: "layoff",
+              label: {
+                en: "Layoff Preparation",
+                zh: "即将被裁",
+              },
+            },
+            {
+              id: "startup",
+              label: {
+                en: "Leaving for a Startup",
+                zh: "准备跳槽创业公司",
+              },
+            },
+            {
+              id: "dei_training",
+              label: {
+                en: "DEI Training",
+                zh: "参加 DEI 培训",
+              },
+            },
+          ],
+          answer: "dei_training",
+          actualCause: {
+            en: "DEI Training",
+            zh: "参加 DEI 培训",
+          },
+          explanation: {
+            en: "The employee was attending a three-day training program. The telemetry was accurate. The theory was not.",
+            zh: "该员工连续三天参加培训。数据没有说谎，但你的理论过于丰富。",
+          },
+          resultFlavor: {
+            correct: {
+              en: "Correct. Sometimes a disappearing coworker is simply learning something.",
+              zh: "正确。有时候消失的同事真的只是在上课。",
+            },
+            wrong: {
+              en: "BAD END: Built a complete departure theory around a training course.",
+              zh: "BAD END：围绕一次培训，你为他编造了一整套离职故事。",
+            },
+          },
+        },
+      ];
+
+      /* ----------------------------------------------------------------------
+       * State (session only; only the UI language is persisted via LocalStorage).
+       * -------------------------------------------------------------------- */
+      const LANG_KEY = "cid-lang";
+      function loadLang() {
+        try {
+          const saved = localStorage.getItem(LANG_KEY);
+          return saved === "zh" || saved === "en" ? saved : "en";
+        } catch (e) {
+          return "en";
+        }
+      }
+      function saveLang(value) {
+        try {
+          localStorage.setItem(LANG_KEY, value);
+        } catch (e) {
+          /* storage unavailable; ignore */
+        }
+      }
+
+      let lang = loadLang();
+      let caseIndex = 0;
+      let totalScore = 0;
+      let selectedChoiceId = null;
+
+      /* Progress persistence (cid-total / cid-progress). `progress` is the index
+       * of the next unplayed case; a run is resumable while 0 < progress < length. */
+      const TOTAL_KEY = "cid-total";
+      const PROGRESS_KEY = "cid-progress";
+      function saveProgress(nextIndex, total) {
+        try {
+          localStorage.setItem(PROGRESS_KEY, String(nextIndex));
+          localStorage.setItem(TOTAL_KEY, String(total));
+        } catch (e) {
+          /* storage unavailable; ignore */
+        }
+      }
+      function clearProgress() {
+        try {
+          localStorage.removeItem(PROGRESS_KEY);
+          localStorage.removeItem(TOTAL_KEY);
+        } catch (e) {
+          /* storage unavailable; ignore */
+        }
+      }
+      function loadProgress() {
+        try {
+          const p = parseInt(localStorage.getItem(PROGRESS_KEY), 10);
+          const tt = parseInt(localStorage.getItem(TOTAL_KEY), 10);
+          if (
+            Number.isInteger(p) &&
+            p > 0 &&
+            p < cases.length &&
+            Number.isFinite(tt)
+          ) {
+            return { progress: p, total: tt };
+          }
+        } catch (e) {
+          /* storage unavailable; ignore */
+        }
+        return null;
+      }
+
+      /* Helpers ------------------------------------------------------------- */
+      const $ = (id) => document.getElementById(id);
+      const t = (pair) =>
+        pair && pair[lang] != null ? pair[lang] : pair ? pair.en : "";
+
+      function show(screenId) {
+        ["screen-home", "screen-case", "screen-result", "screen-end"].forEach(
+          (s) => {
+            $(s).classList.toggle("hidden", s !== screenId);
+          },
+        );
+      }
+
+      function bandLabel(value) {
+        const b =
+          UI.band.find((x) => value <= x.max) || UI.band[UI.band.length - 1];
+        return t(b.text);
+      }
+
+      function scoreTitle(total) {
+        const band =
+          UI.scoreTitle.find((x) => total >= x.min) ||
+          UI.scoreTitle[UI.scoreTitle.length - 1];
+        return t(band.text);
+      }
+
+      /* Static text that does not depend on the current screen's dynamic data. */
+      function renderStatic() {
+        document.documentElement.lang = lang;
+        $("home-title").textContent = t(UI.homeTitle);
+        $("home-tagline").textContent = t(UI.homeTagline);
+        $("btn-start").textContent = t(UI.start);
+        $("btn-submit").textContent = t(UI.submit);
+        $("btn-next").textContent = t(UI.next);
+        $("btn-home").textContent = t(UI.backHome);
+        $("label-telemetry").textContent = t(UI.telemetry);
+        $("label-question").textContent = t(UI.question);
+        $("label-confidence").textContent = t(UI.confidence);
+        document.querySelector(".meta-lang").textContent = t(UI.langLabel);
+        $("lang-en").classList.toggle("active", lang === "en");
+        $("lang-zh").classList.toggle("active", lang === "zh");
+
+        // Continue button only appears when a resumable run is saved.
+        const cont = $("btn-continue");
+        cont.textContent = t(UI.continueWord);
+        cont.classList.toggle("hidden", loadProgress() === null);
+      }
+
+      /* Re-render whichever screen is currently visible (for language toggle). */
+      function rerenderCurrent() {
+        renderStatic();
+        if (!$("screen-case").classList.contains("hidden")) renderCase();
+        if (!$("screen-result").classList.contains("hidden")) {
+          /* result re-render */ renderResult(lastResult);
+        }
+        if (!$("screen-end").classList.contains("hidden")) renderEnd();
+      }
+
+      /* Case screen --------------------------------------------------------- */
+      function renderCase() {
+        const c = cases[caseIndex];
+        $("case-meta").textContent =
+          `${t(UI.caseWord)} #${String(caseIndex + 1).padStart(3, "0")}  ·  ${t(UI.difficulty)}: ${t(UI.diff[c.difficulty])}`;
+        $("case-title").textContent = t(c.title);
+        $("case-intro").textContent = t(c.intro);
+
+        const tele = $("telemetry");
+        tele.innerHTML = "";
+        c.telemetry.forEach((row) => {
+          const div = document.createElement("div");
+          div.className = "tele-row";
+          div.innerHTML =
+            `<span class="tele-key">${t(row.key)}</span>` +
+            `<span class="tele-val status-${row.status}">${t(row.value)}</span>`;
+          tele.appendChild(div);
+        });
+
+        const list = $("choices");
+        list.innerHTML = "";
+        c.choices.forEach((ch) => {
+          const li = document.createElement("li");
+          li.className =
+            "choice" + (selectedChoiceId === ch.id ? " selected" : "");
+          li.innerHTML =
+            `<label style="cursor:pointer;display:block;">` +
+            `<input type="radio" name="choice" value="${ch.id}" ${selectedChoiceId === ch.id ? "checked" : ""}/>` +
+            `${t(ch.label)}</label>`;
+          li.querySelector("input").addEventListener("change", () => {
+            selectedChoiceId = ch.id;
+            $("btn-submit").disabled = false;
+            [...list.children].forEach((x) => x.classList.remove("selected"));
+            li.classList.add("selected");
+          });
+          list.appendChild(li);
+        });
+
+        const conf = $("confidence");
+        $("confidence-val").textContent = conf.value + "%";
+        $("confidence-label").textContent = bandLabel(Number(conf.value));
+        $("btn-submit").disabled = selectedChoiceId === null;
+      }
+
+      /* Result screen ------------------------------------------------------- */
+      let lastResult = null;
+
+      function submitCase() {
+        if (selectedChoiceId === null) return;
+        const c = cases[caseIndex];
+        const confidence = Number($("confidence").value);
+        const isCorrect = c.answer !== "none" && selectedChoiceId === c.answer;
+        const delta = isCorrect ? Math.round(50 + confidence / 2) : -confidence;
+        totalScore += delta;
+
+        lastResult = {
+          caseIndex,
+          selectedChoiceId,
+          confidence,
+          isCorrect,
+          delta,
+        };
+        saveProgress(caseIndex + 1, totalScore);
+        renderResult(lastResult);
+        show("screen-result");
+      }
+
+      function renderResult(r) {
+        if (!r) return;
+        const c = cases[r.caseIndex];
+        const guess = c.choices.find((x) => x.id === r.selectedChoiceId);
+
+        const verdict = $("verdict");
+        verdict.textContent = r.isCorrect ? t(UI.correct) : t(UI.incorrect);
+        verdict.className = "verdict " + (r.isCorrect ? "correct" : "wrong");
+
+        const lines = $("result-lines");
+        lines.innerHTML = "";
+        const addLine = (s) => {
+          const p = document.createElement("p");
+          p.className = "result-line";
+          p.textContent = s;
+          lines.appendChild(p);
+        };
+        if (!r.isCorrect) {
+          addLine(`${t(UI.yourGuess)}: ${guess ? t(guess.label) : "-"}`);
+          addLine(`${t(UI.confidence)}: ${r.confidence}%`);
+        }
+        addLine(`${t(UI.actualCause)}: ${t(c.actualCause)}`);
+        if (!r.isCorrect && r.confidence >= 90) addLine(t(UI.penalty));
+
+        $("explanation").textContent = t(c.explanation);
+        $("result-flavor").textContent = r.isCorrect
+          ? t(c.resultFlavor.correct)
+          : t(c.resultFlavor.wrong);
+
+        const sign = r.delta >= 0 ? "+" : "";
+        $("score-delta").textContent = `${t(UI.score)}: ${sign}${r.delta}`;
+        $("total-score").textContent = `${t(UI.total)}: ${totalScore}`;
+      }
+
+      /* End-of-run screen --------------------------------------------------- */
+      function renderEnd() {
+        $("end-title").textContent = t(UI.endTitle);
+        $("end-flavor").textContent = scoreTitle(totalScore);
+        $("end-score").textContent =
+          `${t(UI.total)}: ${totalScore} / ${cases.length * 100}`;
+        $("btn-share").textContent = t(UI.share);
+        $("share-feedback").textContent = "";
+      }
+
+      function shareText() {
+        return [
+          t(UI.homeTitle),
+          `${t(UI.total)}: ${totalScore} / ${cases.length * 100} · ${scoreTitle(totalScore)}`,
+          t(UI.shareLine),
+        ].join("\n");
+      }
+
+      async function shareResult() {
+        const text = shareText();
+        try {
+          await navigator.clipboard.writeText(text);
+          $("share-feedback").textContent = t(UI.shareCopied);
+        } catch (e) {
+          $("share-feedback").textContent = t(UI.shareFailed);
+        }
+      }
+
+      /* Navigation ---------------------------------------------------------- */
+      function startRun() {
+        clearProgress();
+        caseIndex = 0;
+        totalScore = 0;
+        selectedChoiceId = null;
+        $("confidence").value = 50;
+        renderCase();
+        show("screen-case");
+      }
+
+      function resumeRun() {
+        const saved = loadProgress();
+        if (!saved) {
+          startRun();
+          return;
+        }
+        caseIndex = saved.progress;
+        totalScore = saved.total;
+        selectedChoiceId = null;
+        $("confidence").value = 50;
+        renderCase();
+        show("screen-case");
+      }
+
+      function nextCase() {
+        caseIndex += 1;
+        if (caseIndex >= cases.length) {
+          clearProgress();
+          renderEnd();
+          show("screen-end");
+          return;
+        }
+        selectedChoiceId = null;
+        $("confidence").value = 50;
+        renderCase();
+        show("screen-case");
+      }
+
+      /* Wiring -------------------------------------------------------------- */
+      $("lang-en").addEventListener("click", () => {
+        lang = "en";
+        saveLang(lang);
+        rerenderCurrent();
+      });
+      $("lang-zh").addEventListener("click", () => {
+        lang = "zh";
+        saveLang(lang);
+        rerenderCurrent();
+      });
+      $("btn-start").addEventListener("click", startRun);
+      $("btn-continue").addEventListener("click", resumeRun);
+      $("btn-submit").addEventListener("click", submitCase);
+      $("btn-next").addEventListener("click", nextCase);
+      $("btn-home").addEventListener("click", () => {
+        renderStatic();
+        show("screen-home");
+      });
+      $("btn-share").addEventListener("click", shareResult);
+      $("confidence").addEventListener("input", () => {
+        $("confidence-val").textContent = $("confidence").value + "%";
+        $("confidence-label").textContent = bandLabel(
+          Number($("confidence").value),
+        );
+      });
+
+      renderStatic();
+      show("screen-home");
+    </script>
+  </body>
+</html>
