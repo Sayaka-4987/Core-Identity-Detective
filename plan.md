@@ -549,13 +549,13 @@ Chinese flavor:
 ```text
 BAD END：Support Your Country
 
-你问了一个无辜的世界杯问题，你不知道哪些国家进了世界杯。
+你在世界杯期间问了同事一个无辜的问题：“你有没有给你的国家买球队 T 恤”，你其实不知道哪些国家进了世界杯。
 
 得到的回答是：
 
 “我看起来像日本人或者韩国人吗？”
 
-至今仍在思考中。
+你至今仍在反思。
 ```
 
 ## Achievement Ideas
@@ -646,6 +646,105 @@ Suggested vibe:
 ```text
 Corporate dashboard + detective notebook + incident console
 ```
+
+## Ending Design Philosophy
+
+Every 20 cases count as one Fiscal Year.
+
+At the end of a cycle, the player receives a performance review based on their investigation history and overall detective profile.
+
+After the review, a new cycle begins.
+
+There is no permanent ending.
+
+There is always another case.
+
+There is always another signal.
+
+There is always another mystery.
+
+The goal of the game is not merely to accumulate correct answers.
+
+More importantly, it is to learn how to evaluate uncertainty.
+
+The best detectives are not the ones who are always right.
+
+They are the ones who can honestly say:
+
+> "I don't know."
+
+when the evidence is insufficient.
+
+As the player gains experience, they gradually learn a second principle:
+
+> Sometimes, you know too much.
+
+Not every anomaly needs an escalation.
+
+Not every signal deserves a theory.
+
+Not every theory should be spoken aloud.
+
+Knowing when to investigate requires curiosity.
+
+Knowing when to stop requires judgment.
+
+Knowing when to remain silent requires wisdom.
+
+In the beginning, players try to maximize accuracy.
+
+Eventually, they learn that certainty itself is a resource that must be managed carefully.
+
+Reality is messy.
+
+Telemetry is incomplete.
+
+People tell stories to fill the gaps.
+
+Engineers tell stories to fill the gaps and attach confidence percentages.
+
+The purpose of telemetry is not to eliminate uncertainty.
+
+It is to measure it.
+
+And sometimes, the most correct answer is:
+
+> "Insufficient telemetry."
+
+### Detective's Principles
+
+The novice detective says:
+
+> "I know exactly what happened."
+
+The experienced detective says:
+
+> "I don't know what happened."
+
+The master detective says:
+
+> "I know what happened.
+> But perhaps I should not be the one saying it."
+
+### Final Lesson
+
+Every case in the game is ultimately about the same thing:
+
+Humans are meaning-making machines.
+
+Give them a missing profile photo,
+a changed manager,
+or a hidden directory entry,
+
+and they will create a story.
+
+Sometimes the story is correct.
+
+Sometimes the backend was simply on fire.
+
+The player who finishes a cycle with perfect accuracy is impressive.
+
+The player who understands the limits of their knowledge is exceptional.
 
 ## GitHub Pages Deployment Plan
 
