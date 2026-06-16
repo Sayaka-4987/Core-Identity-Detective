@@ -216,6 +216,12 @@ Core Identity-detective/
 
 Single-file MVP is preferred because it is easy to deploy and vibe-code.
 
+> Status (post-MVP): the content has been split out into `cases.js`. The
+> game logic and UI strings still live in `index.html`; `cases.js` declares
+> the global `cases` array and is loaded first via a plain `<script src>`
+> (no build step, no modules). `style.css` stays inline for now. Edit
+> `cases.js` to add or change cases without touching game logic.
+
 ## Data Model
 
 Case content should be editable without touching UI logic too much.
@@ -298,7 +304,7 @@ const cases = [
     },
     explanation: {
       en: "Only the photo is missing. The manager, GAL visibility, and groups are still normal. This is more likely a sync issue than an actual disappearance.",
-      zh: "只有头像消失了，Manager、GAL 可见性和 Groups 都还正常。比起真的人没了，这更像是同步服务炸了。"
+      zh: "只有头像消失了，Manager、个人页面可见性和 Groups 都还正常。比起真的人没了，这更像是同步服务炸了。"
     },
     resultFlavor: {
       correct: {
@@ -479,6 +485,37 @@ Chinese:
 71-90%：自信推断
 91-100%：全部梭哈
 ```
+
+## Content Roadmap
+
+> Scope note: the milestone is **20 cases = one Fiscal Year**, not 100. The
+> Ending Design Philosophy reuses cases by cycling ("there is always another
+> case"), so endless play does not require 100 unique entries. Grow content
+> in small batches so quality stays high and the schema can change cheaply
+> before it is locked in by volume.
+
+Target progression:
+
+- **Done**: 5 cases (MVP), now living in `cases.js`.
+- **Next**: reach 20 cases (1 Fiscal Year) in batches of ~5. After each
+  batch, play the full run in the browser before writing the next batch.
+- **Later**: only after a post-MVP feature that needs new case fields (see
+  below) is chosen, extend the field contract first, then keep authoring.
+
+Why not write 100 (or even 20) cases first:
+
+- Hand-writing bilingual jokes at volume degrades in quality long before
+  the target, and front-loads the most expensive, least-reversible work.
+- Several post-MVP features add per-case fields. Writing the cases first
+  means re-editing every case when a field is added. Examples of fields a
+  feature might introduce:
+  - `tags` (e.g. `it-was-dns`, `actually-a-layoff`) for **Achievements**.
+  - `badEnding` for **Bad Endings** (case-005 currently fakes this through
+    `resultFlavor.wrong`).
+  - `category` / `theme` to let the **Fiscal Year performance review**
+    summarize a player's blind spots ("you over-escalate sync incidents").
+- Keep `id` sequential and kebab-case (`case-006`, `case-007`, ...) and
+  vary `difficulty` so a 20-case run has a sensible curve.
 
 ## Initial Case Ideas
 

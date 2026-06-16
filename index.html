@@ -240,6 +240,77 @@
         margin: 8px 0 0;
       }
 
+      .fy-review {
+        background: var(--panel-2);
+        border-radius: 6px;
+        padding: 14px 16px;
+        margin: 18px 0;
+        text-align: left;
+      }
+      .fy-review h2 {
+        font-family: var(--mono);
+        font-size: 15px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin: 0 0 10px;
+        color: var(--green);
+      }
+      .fy-stat {
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--mono);
+        font-size: 13px;
+        padding: 3px 0;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+      }
+      .fy-stat .fy-key {
+        color: var(--muted);
+      }
+      .fy-verdict {
+        margin: 12px 0 0;
+        font-style: italic;
+        line-height: 1.45;
+      }
+
+      .achievements {
+        text-align: left;
+        margin: 18px 0;
+      }
+      .achievements h2 {
+        font-family: var(--mono);
+        font-size: 15px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin: 0 0 8px;
+        color: var(--yellow);
+      }
+      .ach-sub {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0 0 8px;
+        font-family: var(--mono);
+      }
+      .ach-item {
+        background: var(--panel-2);
+        border-left: 3px solid var(--yellow);
+        border-radius: 4px;
+        padding: 8px 12px;
+        margin: 6px 0;
+      }
+      .ach-item.locked {
+        border-left-color: rgba(255, 255, 255, 0.12);
+        opacity: 0.55;
+      }
+      .ach-name {
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .ach-desc {
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 2px;
+      }
+
       .hidden {
         display: none;
       }
@@ -316,6 +387,13 @@
         <h1 id="end-title"></h1>
         <p id="end-flavor" class="tagline"></p>
         <div class="score-delta" id="end-score"></div>
+
+        <!-- Fiscal Year performance review (computed from this run's log). -->
+        <div id="fy-review" class="fy-review"></div>
+
+        <!-- Achievements unlocked (cumulative across runs). -->
+        <div id="achievements-block" class="achievements"></div>
+
         <div class="btn-row">
           <button class="primary" id="btn-home"></button>
           <button class="ghost" id="btn-share"></button>
@@ -324,6 +402,9 @@
       </section>
     </div>
 
+    <!-- Case content lives in cases.js so it can grow toward 20 cases
+         (one Fiscal Year) without touching game logic. Must load first. -->
+    <script src="cases.js"></script>
     <script>
       /* ----------------------------------------------------------------------
        * Static UI strings (bilingual). Everything player-visible is { en, zh }.
@@ -339,7 +420,7 @@
           zh: "读取 Profile，找出真相。",
         },
         start: { en: "Start Investigation", zh: "开始调查" },
-        telemetry: { en: "Identity Telemetry", zh: "身份遥测" },
+        telemetry: { en: "Identity Telemetry", zh: "身份档案" },
         question: { en: "What happened?", zh: "发生了什么？" },
         confidence: { en: "Confidence", zh: "信心" },
         submit: { en: "Submit Investigation", zh: "提交调查" },
@@ -366,7 +447,7 @@
         },
         shareLine: {
           en: "I followed the telemetry.",
-          zh: "我跟着遥测走了一遍。",
+          zh: "我把他们的个人主页从头读了一遍。",
         },
         continueWord: { en: "Continue", zh: "继续上一局" },
         diff: {
@@ -396,358 +477,174 @@
             text: { en: "Root Cause: You", zh: "事故根因：你" },
           },
         ],
+        // Fiscal Year performance review (end screen).
+        reviewTitle: { en: "Fiscal Year Review", zh: "财年绩效盘点" },
+        statAccuracy: { en: "Accuracy", zh: "判断正确率" },
+        statSolved: { en: "Cases Solved", zh: "正确结案" },
+        statOverconfident: {
+          en: "Overconfident Misses",
+          zh: "过度自信的误判",
+        },
+        statAvgConfidence: { en: "Avg. Confidence", zh: "平均信心" },
+        // Achievements (end screen).
+        achievementsTitle: { en: "Achievements", zh: "成就" },
+        achNew: { en: "Newly unlocked this run", zh: "本局新解锁" },
+        achNone: {
+          en: "No new achievements this run.",
+          zh: "本局没有解锁新成就。",
+        },
+        achProgress: { en: "Unlocked", zh: "已解锁" },
       };
 
       /* ----------------------------------------------------------------------
-       * Case data. `answer` must equal a choices[].id, OR the sentinel "none"
-       * which means every choice scores as wrong (used for joke cases).
+       * Fiscal Year review verdicts. Evaluated high-to-low; first match wins.
+       * `cond(s)` reads the computed run stats object (see fyStats()).
        * -------------------------------------------------------------------- */
-      const cases = [
+      const REVIEW_VERDICTS = [
         {
-          id: "case-001",
-          difficulty: "easy",
-          title: { en: "The Missing Photo", zh: "消失的头像" },
-          intro: {
-            en: "A coworker's profile photo disappeared overnight.",
-            zh: "一位同事的头像一夜之间消失了。",
-          },
-          telemetry: [
-            {
-              key: { en: "Alias", zh: "Alias" },
-              value: { en: "jdoe", zh: "jdoe" },
-              status: "normal",
-            },
-            {
-              key: { en: "Photo", zh: "头像" },
-              value: { en: "Missing", zh: "消失" },
-              status: "warning",
-            },
-            {
-              key: { en: "Manager", zh: "Manager" },
-              value: { en: "Present", zh: "存在" },
-              status: "normal",
-            },
-            {
-              key: { en: "Groups", zh: "Groups" },
-              value: { en: "12", zh: "12" },
-              status: "normal",
-            },
-            {
-              key: { en: "GAL", zh: "GAL" },
-              value: { en: "Visible", zh: "可见" },
-              status: "normal",
-            },
-          ],
-          choices: [
-            { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
-            {
-              id: "transfer",
-              label: { en: "Internal Transfer", zh: "内部转组" },
-            },
-            {
-              id: "sync_failure",
-              label: { en: "Identity Sync Failure", zh: "身份同步炸了" },
-            },
-            { id: "vacation", label: { en: "Vacation", zh: "休假中" } },
-          ],
-          answer: "sync_failure",
-          actualCause: { en: "Identity Sync Failure", zh: "身份同步炸了" },
-          explanation: {
-            en: "Only the photo is missing. The manager, GAL visibility, and groups are still normal. This is more likely a sync issue than an actual disappearance.",
-            zh: "只有头像消失了，Manager、Profile 可见性和 Groups 都还正常。比起真的人没了，这更像是同步服务炸了。",
-          },
-          resultFlavor: {
-            correct: {
-              en: "Good catch. You did not over-escalate a profile photo bug into an HR incident.",
-              zh: "判断正确。你没有把一个头像 bug 升级成 HR 事件。",
-            },
-            wrong: {
-              en: "The badge fired, but only because the backend was on fire.",
-              zh: "头像确实消失了，但只是因为后端着火了。",
-            },
+          cond: (s) => s.scored === 0,
+          text: {
+            en: "No scorable cases this run. The telemetry told you nothing, and you wisely expected nothing.",
+            zh: "本局没有可评分的案件。数据什么也没说，而你也明智地什么都没指望。",
           },
         },
         {
-          id: "case-002",
-          difficulty: "easy",
-          title: { en: "The Quiet Transfer", zh: "平静转组" },
-          intro: {
-            en: "A coworker's record changed, but nobody announced anything.",
-            zh: "一位同事的记录变了，但没人发任何公告。",
-          },
-          telemetry: [
-            {
-              key: { en: "Photo", zh: "头像" },
-              value: { en: "Visible", zh: "可见" },
-              status: "normal",
-            },
-            {
-              key: { en: "Manager", zh: "Manager" },
-              value: { en: "Changed", zh: "已变更" },
-              status: "warning",
-            },
-            {
-              key: { en: "Title", zh: "Title" },
-              value: { en: "Same", zh: "不变" },
-              status: "normal",
-            },
-            {
-              key: { en: "Cost Center", zh: "Cost Center" },
-              value: { en: "Changed", zh: "已变更" },
-              status: "warning",
-            },
-            {
-              key: { en: "GAL", zh: "GAL" },
-              value: { en: "Visible", zh: "可见" },
-              status: "normal",
-            },
-          ],
-          choices: [
-            { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
-            {
-              id: "transfer",
-              label: { en: "Internal Transfer", zh: "内部转组" },
-            },
-            {
-              id: "sync_failure",
-              label: { en: "Identity Sync Failure", zh: "身份同步炸了" },
-            },
-            { id: "promotion", label: { en: "Promotion", zh: "升职了" } },
-          ],
-          answer: "transfer",
-          actualCause: { en: "Internal Transfer", zh: "内部转组" },
-          explanation: {
-            en: "Manager and cost center changed while the title stayed the same and GAL is still visible. That is the signature of a lateral move, not a departure.",
-            zh: "Manager 和 Cost Center 变了，但 Title 没变、GAL 还可见。这是平级转组的特征，不是离职。",
-          },
-          resultFlavor: {
-            correct: {
-              en: "Calmly read as a transfer. No drama generated.",
-              zh: "冷静判断为转组，没有制造戏剧。",
-            },
-            wrong: {
-              en: "You wrote a farewell message for someone who just moved two desks over.",
-              zh: "你给一个只是挪了个工位的人写了深情的离别赠言。",
-            },
+          cond: (s) => s.accuracy >= 0.8 && s.overconfident === 0,
+          text: {
+            en: "Calibrated and correct. You investigated like someone who has been paged at 3am before.",
+            zh: "既准又稳。你查案的样子，像个凌晨三点被 oncall 叫起来过的人。",
           },
         },
         {
-          id: "case-003",
-          difficulty: "hard",
-          title: { en: "The Ghost Account", zh: "幽灵账号" },
-          intro: {
-            en: "An account exists, but every signal points nowhere.",
-            zh: "一个账号存在，但所有信号都指向虚无。",
-          },
-          telemetry: [
-            {
-              key: { en: "Photo", zh: "头像" },
-              value: { en: "NULL", zh: "NULL" },
-              status: "unknown",
-            },
-            {
-              key: { en: "Manager", zh: "Manager" },
-              value: { en: "NULL", zh: "NULL" },
-              status: "unknown",
-            },
-            {
-              key: { en: "Groups", zh: "Groups" },
-              value: { en: "0", zh: "0" },
-              status: "alarming",
-            },
-            {
-              key: { en: "GAL", zh: "GAL" },
-              value: { en: "Visible", zh: "可见" },
-              status: "normal",
-            },
-            {
-              key: { en: "Teams", zh: "Teams" },
-              value: { en: "Unknown", zh: "未知" },
-              status: "unknown",
-            },
-          ],
-          choices: [
-            { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
-            {
-              id: "transfer",
-              label: { en: "Internal Transfer", zh: "内部转组" },
-            },
-            {
-              id: "sync_failure",
-              label: { en: "Identity Sync Failure", zh: "身份同步炸了" },
-            },
-            {
-              id: "contractor",
-              label: { en: "Service Account", zh: "服务账号" },
-            },
-          ],
-          answer: "none",
-          actualCause: { en: "Nobody knows", zh: "没人知道" },
-          explanation: {
-            en: "Half the fields are NULL, groups are zero, but GAL is still visible. The evidence is genuinely insufficient. The honest answer is: nobody knows.",
-            zh: "一半字段是 NULL，Groups 是 0，但 GAL 还可见。证据确实不足。诚实的答案是：没人知道。",
-          },
-          resultFlavor: {
-            correct: {
-              en: "There was no correct answer. The telemetry was insufficient. Whatever you picked, the truth stayed hidden.",
-              zh: "这题没有正确答案。遥测不足。无论你选什么，真相都还藏着。",
-            },
-            wrong: {
-              en: "There was no correct answer. The telemetry was insufficient. Whatever you picked, the truth stayed hidden.",
-              zh: "这题没有正确答案。遥测不足。无论你选什么，真相都还藏着。",
-            },
+          cond: (s) => s.accuracy >= 0.8,
+          text: {
+            en: "Accurate, but your confidence ran ahead of your evidence at least once. Promising. Loud.",
+            zh: "判断很准，但是太自信了。有前途，就是嗓门大。",
           },
         },
         {
-          id: "case-004",
-          difficulty: "medium",
-          title: { en: "Reorg Weather", zh: "组织架构调整" },
-          intro: {
-            en: "Two managers up the chain changed on the same day.",
-            zh: "上报链上两级 Manager 在同一天变了。",
-          },
-          telemetry: [
-            {
-              key: { en: "Manager", zh: "Manager" },
-              value: { en: "Changed", zh: "已变更" },
-              status: "warning",
-            },
-            {
-              key: { en: "Skip Manager", zh: "Skip Manager" },
-              value: { en: "Changed", zh: "已变更" },
-              status: "warning",
-            },
-            {
-              key: { en: "Title", zh: "Title" },
-              value: { en: "Same", zh: "不变" },
-              status: "normal",
-            },
-            {
-              key: { en: "Groups", zh: "Groups" },
-              value: { en: "Normal", zh: "正常" },
-              status: "normal",
-            },
-            {
-              key: { en: "GAL", zh: "GAL" },
-              value: { en: "Visible", zh: "可见" },
-              status: "normal",
-            },
-          ],
-          choices: [
-            { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
-            {
-              id: "transfer",
-              label: { en: "Internal Transfer", zh: "内部转组" },
-            },
-            { id: "reorg", label: { en: "Reorg", zh: "组织架构调整" } },
-            { id: "promotion", label: { en: "Promotion", zh: "升职了" } },
-          ],
-          answer: "reorg",
-          actualCause: { en: "Reorg", zh: "组织架构调整" },
-          explanation: {
-            en: "Both the manager and skip-level changed at once while title, groups, and GAL stayed put. When the chain shifts above you but your own record is intact, that is reorg weather.",
-            zh: "Manager 和 Skip Manager 同时变了，而 Title、Groups、GAL 都没动。当你头顶的汇报链变了、但你自己完好无损，这就是幸福。",
-          },
-          resultFlavor: {
-            correct: {
-              en: "You read the weather, not the panic. The org moved; the person did not.",
-              zh: "你读的是天气，不是恐慌。动的是组织，不是人。",
-            },
-            wrong: {
-              en: "You filed an incident for the climate.",
-              zh: "你为组织架构变化提了一个事故单给 HR，大家笑了你一个月。",
-            },
+          cond: (s) => s.accuracy >= 0.5,
+          text: {
+            en: "Middling. You are right about as often as the org chart is.",
+            zh: "中规中矩。你说对的概率，跟组织架构图差不多。",
           },
         },
         {
-          id: "case-005",
-          difficulty: "medium",
-          title: {
-            en: "The Three-Day Disappearance",
-            zh: "神秘消失的三天",
+          cond: (s) => s.accuracy < 0.5 && s.overconfident > 0,
+          text: {
+            en: "Both wrong and loud. A classic combination. Consider listening to the telemetry next time.",
+            zh: "又菜又爱玩，经典组合。下次考虑动动脑子吧。",
           },
-          intro: {
-            en: "A coworker disappeared from normal activities for three business days.",
-            zh: "某位同事连续三个工作日没有出现在日常活动中。",
-          },
-          telemetry: [
-            {
-              key: { en: "Calendar", zh: "日历" },
-              value: { en: "Busy for 3 days", zh: "连续三天忙碌" },
-              status: "warning",
-            },
-            {
-              key: { en: "Teams Status", zh: "Teams 状态" },
-              value: { en: "Mostly Away", zh: "长期离开" },
-              status: "warning",
-            },
-            {
-              key: { en: "Lunch Presence", zh: "午饭出勤" },
-              value: { en: "Missing", zh: "未出现" },
-              status: "warning",
-            },
-            {
-              key: { en: "Org Chart", zh: "组织架构" },
-              value: { en: "Unchanged", zh: "无变化" },
-              status: "normal",
-            },
-            {
-              key: { en: "GAL", zh: "GAL" },
-              value: { en: "Visible", zh: "可见" },
-              status: "normal",
-            },
-          ],
-          choices: [
-            {
-              id: "job_search",
-              label: {
-                en: "Interviewing Elsewhere",
-                zh: "正在面试",
-              },
-            },
-            {
-              id: "layoff",
-              label: {
-                en: "Layoff Preparation",
-                zh: "即将被裁",
-              },
-            },
-            {
-              id: "startup",
-              label: {
-                en: "Leaving for a Startup",
-                zh: "准备跳槽创业公司",
-              },
-            },
-            {
-              id: "dei_training",
-              label: {
-                en: "DEI Training",
-                zh: "参加 DEI 培训",
-              },
-            },
-          ],
-          answer: "dei_training",
-          actualCause: {
-            en: "DEI Training",
-            zh: "参加 DEI 培训",
-          },
-          explanation: {
-            en: "The employee was attending a three-day training program. The telemetry was accurate. The theory was not.",
-            zh: "该员工连续三天参加培训。数据没有说谎，但你的理论过于丰富。",
-          },
-          resultFlavor: {
-            correct: {
-              en: "Correct. Sometimes a disappearing coworker is simply learning something.",
-              zh: "正确。有时候消失的同事真的只是在上课。",
-            },
-            wrong: {
-              en: "BAD END: Built a complete departure theory around a training course.",
-              zh: "BAD END：围绕一次培训，你为他编造了一整套离职故事。",
-            },
+        },
+        {
+          cond: () => true,
+          text: {
+            en: "More wrong than right. 'Insufficient telemetry' is a perfectly respectable default.",
+            zh: "错的比对的多。其实“数据不足”是个相当体面的默认答案。",
           },
         },
       ];
+
+      /* ----------------------------------------------------------------------
+       * Achievement definitions. Each is unlocked when `cond(ctx)` is true for
+       * a finished run. Unlocks are cumulative and persisted in cid-achievements.
+       * ctx = { stats, log, byId } where log entries are
+       *   { caseId, isCorrect, confidence, none } and byId maps id -> case.
+       * Helpers: solvedTag(tag) = a case carrying `tag` was answered correctly.
+       * -------------------------------------------------------------------- */
+      const ACHIEVEMENTS = [
+        {
+          id: "first-contact",
+          name: { en: "First Contact", zh: "初次接案" },
+          desc: {
+            en: "Close your first case.",
+            zh: "完成你的第一个案件。",
+          },
+          cond: (ctx) => ctx.log.length >= 1,
+        },
+        {
+          id: "fiscal-year-complete",
+          name: { en: "Fiscal Year Complete", zh: "熬过一个财年" },
+          desc: {
+            en: "Reach the end of a full run.",
+            zh: "走完一个财年的调查。",
+          },
+          cond: (ctx) => ctx.log.length >= cases.length,
+        },
+        {
+          id: "flawless-audit",
+          name: { en: "Flawless Audit", zh: "完美审计" },
+          desc: {
+            en: "Solve every scorable case in a run.",
+            zh: "本局每一个案件都判断正确。",
+          },
+          cond: (ctx) => ctx.stats.scored > 0 && ctx.stats.solved === ctx.stats.scored,
+        },
+        {
+          id: "i-dont-know",
+          name: { en: "I Don't Know", zh: "我不知道" },
+          desc: {
+            en: "Stay humble (confidence ≤ 30) on a case with insufficient telemetry.",
+            zh: "在数据不足的案件上保持谦逊（信心 ≤ 30）。",
+          },
+          cond: (ctx) =>
+            ctx.log.some(
+              (e) =>
+                (ctx.byId[e.caseId].tags || []).includes(
+                  "insufficient-telemetry",
+                ) && e.confidence <= 30,
+            ),
+        },
+        {
+          id: "overconfidence-any",
+          name: { en: "Overconfidence Any%", zh: "过度自信 Any%" },
+          desc: {
+            en: "Be wrong at 90%+ confidence at least once.",
+            zh: "至少一次在 90%+ 信心下判断错误。",
+          },
+          cond: (ctx) =>
+            ctx.log.some((e) => !e.isCorrect && e.confidence >= 90),
+        },
+        {
+          id: "not-a-layoff",
+          name: { en: "Not A Layoff", zh: "这不是裁员" },
+          desc: {
+            en: "Correctly call a disappearance that turned out not to be a departure.",
+            zh: "正确识破一次“看似离职、其实没走”的消失。",
+          },
+          cond: (ctx) =>
+            solvedTag(ctx, "not-a-layoff") || solvedTag(ctx, "not-a-departure"),
+        },
+        {
+          id: "it-was-sync-again",
+          name: { en: "It Was Sync Again", zh: "又是同步炸了" },
+          desc: {
+            en: "Correctly blame an identity sync failure.",
+            zh: "正确把锅甩给身份同步故障。",
+          },
+          cond: (ctx) => solvedTag(ctx, "sync"),
+        },
+        {
+          id: "org-chart-archaeologist",
+          name: { en: "Org Chart Archaeologist", zh: "组织架构考古学家" },
+          desc: {
+            en: "Correctly trace a problem back to a reorg.",
+            zh: "正确把问题追溯到一次 reorg。",
+          },
+          cond: (ctx) => solvedTag(ctx, "reorg") || solvedTag(ctx, "org-chart"),
+        },
+      ];
+
+      function solvedTag(ctx, tag) {
+        return ctx.log.some(
+          (e) => e.isCorrect && (ctx.byId[e.caseId].tags || []).includes(tag),
+        );
+      }
+
+      /* ----------------------------------------------------------------------
+       * Case data (`cases`) is loaded from cases.js, which runs before this
+       * script. See that file for the field contract.
+       * -------------------------------------------------------------------- */
 
       /* ----------------------------------------------------------------------
        * State (session only; only the UI language is persisted via LocalStorage).
@@ -773,15 +670,22 @@
       let caseIndex = 0;
       let totalScore = 0;
       let selectedChoiceId = null;
+      /* Per-case log for this run, drives the Fiscal Year review and
+       * achievement checks. Entries: { caseId, isCorrect, confidence, none }. */
+      let runLog = [];
 
-      /* Progress persistence (cid-total / cid-progress). `progress` is the index
-       * of the next unplayed case; a run is resumable while 0 < progress < length. */
+      /* Progress persistence (cid-total / cid-progress / cid-runlog). `progress`
+       * is the index of the next unplayed case; a run is resumable while
+       * 0 < progress < length. The run log is persisted alongside so the
+       * Fiscal Year review stays accurate after a resume. */
       const TOTAL_KEY = "cid-total";
       const PROGRESS_KEY = "cid-progress";
+      const RUNLOG_KEY = "cid-runlog";
       function saveProgress(nextIndex, total) {
         try {
           localStorage.setItem(PROGRESS_KEY, String(nextIndex));
           localStorage.setItem(TOTAL_KEY, String(total));
+          localStorage.setItem(RUNLOG_KEY, JSON.stringify(runLog));
         } catch (e) {
           /* storage unavailable; ignore */
         }
@@ -790,6 +694,7 @@
         try {
           localStorage.removeItem(PROGRESS_KEY);
           localStorage.removeItem(TOTAL_KEY);
+          localStorage.removeItem(RUNLOG_KEY);
         } catch (e) {
           /* storage unavailable; ignore */
         }
@@ -810,6 +715,34 @@
           /* storage unavailable; ignore */
         }
         return null;
+      }
+      function loadRunLog() {
+        try {
+          const raw = localStorage.getItem(RUNLOG_KEY);
+          const arr = raw ? JSON.parse(raw) : null;
+          return Array.isArray(arr) ? arr : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      /* Cumulative achievement unlocks (cid-achievements), persisted across runs. */
+      const ACH_KEY = "cid-achievements";
+      function loadAchievements() {
+        try {
+          const raw = localStorage.getItem(ACH_KEY);
+          const arr = raw ? JSON.parse(raw) : null;
+          return Array.isArray(arr) ? arr : [];
+        } catch (e) {
+          return [];
+        }
+      }
+      function saveAchievements(ids) {
+        try {
+          localStorage.setItem(ACH_KEY, JSON.stringify(ids));
+        } catch (e) {
+          /* storage unavailable; ignore */
+        }
       }
 
       /* Helpers ------------------------------------------------------------- */
@@ -916,6 +849,9 @@
 
       /* Result screen ------------------------------------------------------- */
       let lastResult = null;
+      /* Achievements unlocked for the first time on the run that just ended.
+       * Computed once in nextCase() so language re-renders do not re-commit. */
+      let lastFreshAchievements = [];
 
       function submitCase() {
         if (selectedChoiceId === null) return;
@@ -932,6 +868,12 @@
           isCorrect,
           delta,
         };
+        runLog.push({
+          caseId: c.id,
+          isCorrect,
+          confidence,
+          none: c.answer === "none",
+        });
         saveProgress(caseIndex + 1, totalScore);
         renderResult(lastResult);
         show("screen-result");
@@ -972,6 +914,101 @@
       }
 
       /* End-of-run screen --------------------------------------------------- */
+      /* Compute the run's summary stats from runLog. Ghost / "none" cases are
+       * unscorable and excluded from accuracy. */
+      function fyStats() {
+        const scoredEntries = runLog.filter((e) => !e.none);
+        const scored = scoredEntries.length;
+        const solved = scoredEntries.filter((e) => e.isCorrect).length;
+        const overconfident = runLog.filter(
+          (e) => !e.isCorrect && e.confidence >= 90,
+        ).length;
+        const avgConfidence = runLog.length
+          ? Math.round(
+              runLog.reduce((a, e) => a + e.confidence, 0) / runLog.length,
+            )
+          : 0;
+        return {
+          answered: runLog.length,
+          scored,
+          solved,
+          overconfident,
+          avgConfidence,
+          accuracy: scored ? solved / scored : 0,
+        };
+      }
+
+      function reviewVerdict(stats) {
+        const v =
+          REVIEW_VERDICTS.find((x) => x.cond(stats)) ||
+          REVIEW_VERDICTS[REVIEW_VERDICTS.length - 1];
+        return t(v.text);
+      }
+
+      /* Evaluate achievements for the finished run, merge with stored unlocks,
+       * and return the ids unlocked for the first time this run. */
+      function commitAchievements(stats) {
+        const byId = {};
+        cases.forEach((c) => {
+          byId[c.id] = c;
+        });
+        const ctx = { stats, log: runLog, byId };
+        const earned = ACHIEVEMENTS.filter((a) => {
+          try {
+            return a.cond(ctx);
+          } catch (e) {
+            return false;
+          }
+        }).map((a) => a.id);
+
+        const stored = loadAchievements();
+        const fresh = earned.filter((id) => !stored.includes(id));
+        if (fresh.length) saveAchievements([...stored, ...fresh]);
+        return fresh;
+      }
+
+      function renderFyReview(stats) {
+        const box = $("fy-review");
+        const pct = (n) => `${Math.round(n * 100)}%`;
+        const row = (key, val) =>
+          `<div class="fy-stat"><span class="fy-key">${key}</span>` +
+          `<span class="fy-val">${val}</span></div>`;
+        box.innerHTML =
+          `<h2>${t(UI.reviewTitle)}</h2>` +
+          row(t(UI.statSolved), `${stats.solved} / ${stats.scored}`) +
+          row(t(UI.statAccuracy), pct(stats.accuracy)) +
+          row(t(UI.statOverconfident), String(stats.overconfident)) +
+          row(t(UI.statAvgConfidence), `${stats.avgConfidence}%`) +
+          `<p class="fy-verdict">${reviewVerdict(stats)}</p>`;
+      }
+
+      function renderAchievements(freshIds) {
+        const box = $("achievements-block");
+        const unlocked = loadAchievements();
+        const fresh = new Set(freshIds);
+        // Show newly-unlocked first, then any other already-unlocked ones.
+        const shown = ACHIEVEMENTS.filter((a) => unlocked.includes(a.id)).sort(
+          (a, b) => (fresh.has(b.id) ? 1 : 0) - (fresh.has(a.id) ? 1 : 0),
+        );
+        const items = shown
+          .map((a) => {
+            const isNew = fresh.has(a.id);
+            return (
+              `<div class="ach-item">` +
+              `<div class="ach-name">${isNew ? "\u2728 " : ""}${t(a.name)}</div>` +
+              `<div class="ach-desc">${t(a.desc)}</div></div>`
+            );
+          })
+          .join("");
+        const sub = freshIds.length
+          ? `${t(UI.achNew)}: ${freshIds.length}`
+          : t(UI.achNone);
+        box.innerHTML =
+          `<h2>${t(UI.achievementsTitle)}</h2>` +
+          `<p class="ach-sub">${sub} \u00b7 ${t(UI.achProgress)}: ${unlocked.length} / ${ACHIEVEMENTS.length}</p>` +
+          items;
+      }
+
       function renderEnd() {
         $("end-title").textContent = t(UI.endTitle);
         $("end-flavor").textContent = scoreTitle(totalScore);
@@ -979,6 +1016,10 @@
           `${t(UI.total)}: ${totalScore} / ${cases.length * 100}`;
         $("btn-share").textContent = t(UI.share);
         $("share-feedback").textContent = "";
+
+        const stats = fyStats();
+        renderFyReview(stats);
+        renderAchievements(lastFreshAchievements);
       }
 
       function shareText() {
@@ -986,6 +1027,7 @@
           t(UI.homeTitle),
           `${t(UI.total)}: ${totalScore} / ${cases.length * 100} · ${scoreTitle(totalScore)}`,
           t(UI.shareLine),
+          "https://sayaka-4987.github.io/Core-Identity-Detective/",
         ].join("\n");
       }
 
@@ -1005,6 +1047,7 @@
         caseIndex = 0;
         totalScore = 0;
         selectedChoiceId = null;
+        runLog = [];
         $("confidence").value = 50;
         renderCase();
         show("screen-case");
@@ -1019,6 +1062,7 @@
         caseIndex = saved.progress;
         totalScore = saved.total;
         selectedChoiceId = null;
+        runLog = loadRunLog();
         $("confidence").value = 50;
         renderCase();
         show("screen-case");
@@ -1028,6 +1072,7 @@
         caseIndex += 1;
         if (caseIndex >= cases.length) {
           clearProgress();
+          lastFreshAchievements = commitAchievements(fyStats());
           renderEnd();
           show("screen-end");
           return;

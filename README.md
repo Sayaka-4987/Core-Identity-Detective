@@ -14,7 +14,7 @@ backend, no database, no login, no build step.
 
 ## Play
 
-- Live (GitHub Pages): https://sayaka-4987.github.io/Core-Identity-Detective/ (enable Pages in repo Settings first; see Deploy below)
+- Live (GitHub Pages): https://sayaka-4987.github.io/Core-Identity-Detective/
 - Locally: open `index.html` in any modern browser. That's the whole game.
 
 ## How to play
