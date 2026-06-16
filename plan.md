@@ -7,6 +7,8 @@
 
 **Core Identity Detective** is a tiny bilingual static web game inspired by enterprise identity telemetry, org chart archaeology, and the extremely normal engineer habit of over-interpreting directory signals.
 
+This project is not affiliated with any company. All characters, organizations, and datasets are fictional.
+
 The expected output is a **single-page static web game** that can be deployed to **GitHub Pages**.
 
 MVP target:
