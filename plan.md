@@ -528,49 +528,34 @@ BAD END: 给同事讲了个中国男足笑话
 English flavor:
 
 ```text
-BAD END: Started a World Cup Conversation
+BAD END：Support Your Country
 
 You attempted to ask a coworker
 whether they were supporting their country
 during the World Cup.
 
-Unfortunately, your target was Chinese.
+You just asked an innocent World Cup question.
 
-The conversation unexpectedly expanded into:
+The response was:
 
-- East Asian geopolitics
-- World Cup qualification history
-- Chinese internet humor
+"Do I look Japanese or Korean to you?"
 
-You no longer know which countries are in the World Cup.
+You are still thinking about it.
 
-You are afraid to ask follow-up questions.
-
-Badge status: Flashing
 ```
 
 Chinese flavor:
 
 ```text
-BAD END：聊起了世界杯
+BAD END：Support Your Country
 
-你试图和同事聊聊
-世界杯期间是否支持自己的国家。
+你问了一个无辜的世界杯问题，你不知道哪些国家进了世界杯。
 
-遗憾的是，
-对方是一名中国人。
+得到的回答是：
 
-话题随后扩展到了：
+“我看起来像日本人或者韩国人吗？”
 
-- 东亚地缘政治
-- 世界杯出线历史
-- 中国互联网笑话
-
-你已经不知道哪些国家进了世界杯。
-
-你也不敢继续追问了。
-
-工牌状态：一闪一闪的
+至今仍在思考中。
 ```
 
 ## Achievement Ideas
@@ -587,23 +572,23 @@ Identity Sync Strikes Again
 Org Chart Archaeologist
 Overconfidence Any%
 工牌一闪一闪的
-Root Cause: 中国男足
+Root Cause: Chinese men soccer
 Cross-Cultural Critical Hit
 ```
 
 Chinese versions:
 
 ```text
-GAL 领域大神
 G(lobal)A(ddress)L(ist)Game
+GAL 领域大神
 不是裁员
 真的是裁员
 都是 DNS 的锅
 是 HR
 不是 HR
-身份同步又来了
+身份同步失败
 组织架构考古学家
-过度自信 Any%
+过度自信
 工牌一闪一闪的
 中国男足不行
 跨文化暴击
@@ -632,7 +617,7 @@ Unfortunately, the backend was merely on fire.
 - 但不要太阴阳怪气到攻击真人
 - 也不要引来律师函警告
 - 可以一本正经胡说八道
-- 多用“Root Cause”、“事故”、“工牌闪了”、“同步炸了”
+- 多用“Root Cause”、“事故”、“工牌闪了”、“同步炸了”这类互联网 IT 公司梗
 
 Example:
 
