@@ -11,7 +11,7 @@ data, no backend, no build step.
 
 ## Play
 
-- Live: https://sayaka-4987.github.io/Core-Identity-Detective/
+- Live: <https://sayaka-4987.github.io/Core-Identity-Detective/>
 - Local: open `index.html` in any modern browser.
 
 ## Scoring
@@ -26,19 +26,19 @@ purpose: the honest verdict is "nobody knows".
 
 ## Features
 
-- One full Fiscal Year = 20 cases, including a joke / bad-end case or two
+- One ROUND = One full Fiscal Year = 20 cases, including a joke / bad-end case or two
 - Bilingual UI with a remembered language toggle
 - Confidence slider, end-of-run review, cumulative achievements
 - Single-file game logic + separate `cases.js` content, zero dependencies
 
-## Editing cases
+## Adding cases
 
 Cases live in `cases.js`. Every player-visible string is an `{ en, zh }` pair.
 `telemetry[].status` is one of `normal | warning | alarming | unknown`.
 `answer` must equal a `choices[].id`, or the sentinel `"none"`. LocalStorage
 keys use the `cid-` prefix. Deploy via GitHub Pages from `main`, folder
-`/ (root)`. See `plan.md` for the full design and roadmap.
+`/ (root)`.
 
 ## License
 
-See `LICENSE`.
+GNU/GPL v3.0, see `LICENSE`.

@@ -669,6 +669,37 @@
           },
           cond: (ctx) => solvedTag(ctx, "promotion") || solvedTag(ctx, "title-change"),
         },
+        {
+          id: "gold-watch",
+          name: { en: "Gold Watch", zh: "光荣退休" },
+          desc: {
+            en: "Correctly read a retirement instead of a layoff.",
+            zh: "把退休正确读成退休，而不是裁员。",
+          },
+          cond: (ctx) =>
+            ctx.byId["case-031"] &&
+            ctx.log.some((e) => e.caseId === "case-031" && e.isCorrect),
+        },
+        {
+          id: "mercury-retrograde",
+          name: { en: "Mercury Retrograde", zh: "水逆" },
+          desc: {
+            en: "Blame a planet and somehow be right.",
+            zh: "把锅甩给一颗行星，居然还甩对了。",
+          },
+          cond: (ctx) =>
+            ctx.byId["case-040"] &&
+            ctx.log.some((e) => e.caseId === "case-040" && e.isCorrect),
+        },
+        {
+          id: "saw-it-coming",
+          name: { en: "Saw It Coming", zh: "你看出来了" },
+          desc: {
+            en: "Correctly call a real departure when every signal says gone.",
+            zh: "在所有信号都指向离开时，正确判断出真的走了。",
+          },
+          cond: (ctx) => solvedTag(ctx, "actually-leaving"),
+        },
       ];
 
       function solvedTag(ctx, tag) {
