@@ -2787,7 +2787,7 @@ const cases = [
       },
       wrong: {
         en: "You believed the company was surveilling your side project. They were just billing you.",
-        zh: "你以为公司在监视你的副业项目，其实人家只是服务器繁忙在算账。"
+        zh: "你以为公司在监视你的副业项目，其实人家只是服务器忙着出帐单。"
       },
     },
   },
@@ -2848,11 +2848,11 @@ const cases = [
     answer: "hiring_freeze",
     explanation: {
       en: "The req closed with a 'headcount freeze' reason, the existing team is intact, and there's no layoff memo. They're not cutting people; they just won't add them. The work, of course, stays.",
-      zh: "招聘以“HC 冻结”为由关闭、现有团队完好、也没有裁员备忘。他们不是要裁人，只是不再加人。当然，活还是那些活。",
+      zh: "招聘以“HC 冻结”为由关闭、现有团队完好、也没有裁员备忘。他们不是要裁人，只是不再加人。当然，要干的活没少。",
     },
     resultFlavor: {
       correct: { en: "Correct. They froze the req, not the team.", zh: "正确。冻的是招聘需求，不是团队。" },
-      wrong: { en: "You read a hiring freeze as a team funeral.", zh: "你把招聘冻结解读成了团队葬礼。" },
+      wrong: { en: "You read a hiring freeze as a team funeral.", zh: "你把招聘冻结解读成了团队风光大葬，不要这么焦虑嘛。" },
     },
   },
   {
@@ -2875,10 +2875,10 @@ const cases = [
       { id: "promotion", label: { en: "Big Promotion", zh: "重磅升职" } },
       { id: "parachute", label: { en: "Golden Parachute", zh: "金色降落伞" } },
       { id: "strategic", label: { en: "Truly Strategic Role", zh: "真的战略要职" } },
-      { id: "none", label: { en: "Recruited by Aliens for an Interstellar Special Project", zh: "被外星人请去做星际特别项目了" } },
+      { id: "none", label: { en: "Recruited by Aliens for an Interstellar Special Project", zh: "被外星人请去做太空项目了" } },
     ],
     answer: "none",
-    actualCause: { en: "Glory or the Departure Lounge — Unknowable", zh: "是重用还是离场休息室，无从得知" },
+    actualCause: { en: "Glory or the Departure Lounge — Unknowable", zh: "是重用还是离场休息，无从得知" },
     explanation: {
       en: "'Special Projects reporting to the CEO' with no team and an empty calendar is the most ambiguous status in tech. It's either a kingmaker role or a dignified exit ramp. From here, nobody can tell.",
       zh: "“特别项目、直接向 CEO 汇报”、没有团队、日历空空，这是科技公司里最暧昧的状态。它要么是造王的位置，要么是体面的离场坡道。光看这些，谁也说不准。",
@@ -3041,11 +3041,11 @@ const cases = [
     answer: "vacation_guilt",
     explanation: {
       en: "Approved PTO, an active account, and a manager literally asking them to rest. This isn't a breach; it's someone who doesn't know how to be off. Tragic, common, not your incident.",
-      zh: "已批的休假、在用的账号、一个明确请他们休息的 manager。这不是入侵，是一个不会“下线”的人。可悲、常见，但不是你要查的事故。",
+      zh: "已批的休假、在用的账号、一个明确请他们休息的 manager。这不是入侵，是一个不会下线的人。可悲、常见，但不是你要查的事故。",
     },
     resultFlavor: {
       correct: { en: "Correct. The threat is their inability to relax.", zh: "正确。威胁来自他们无法放松。" },
-      wrong: { en: "You flagged a workaholic's vacation guilt as a breach.", zh: "你把一个工作狂的假期负罪感标成了入侵。" },
+      wrong: { en: "You flagged a workaholic's vacation guilt as a breach.", zh: "你把一个工作狂的假期负罪感标成了安全入侵。" },
     },
   },
   {
@@ -3105,7 +3105,7 @@ const cases = [
     answer: "dl_cleanup",
     explanation: {
       en: "The DL note literally says 'Cleanup: ICs removed', other ICs got removed too, and your role is unchanged. Someone just tidied a mailing list. Your status didn't change; the list did.",
-      zh: "邮件组备注白纸黑字写着“清理：移除 IC”，其他 IC 也被移了，你的角色没变。有人只是整理了一下邮件组。变的是列表，不是你的地位。",
+      zh: "邮件组备注白纸黑字写着“清理移除 IC”，其他 IC 也被踢了，你的角色没变。有人只是整理了一下邮件组。变的是列表，不是你的地位。",
     },
     resultFlavor: {
       correct: { en: "Correct. The list got tidied, not your career.", zh: "正确。被整理的是列表，不是你的职业生涯。" },
@@ -3736,15 +3736,15 @@ const cases = [
     telemetry: [
       { key: { en: "Rumor", zh: "传闻" }, value: { en: "'They're leaving'", zh: "“他们要走”" }, status: "warning" },
       { key: { en: "Their Calendar", zh: "他们的日历" }, value: { en: "Booked Q+1", zh: "排到了下季度" }, status: "normal" },
-      { key: { en: "Meeting Type", zh: "会议类型" }, value: { en: "Handover / KT", zh: "交接 / 知识转移" }, status: "normal" },
+      { key: { en: "Meeting Type", zh: "会议类型" }, value: { en: "Handover / KT", zh: "交接知识转移" }, status: "normal" },
       { key: { en: "Doc Activity", zh: "文档活动" }, value: { en: "Writing runbooks", zh: "在写 runbook" }, status: "normal" },
       { key: { en: "Backfill", zh: "补位" }, value: { en: "Being interviewed", zh: "正在面试" }, status: "warning" },
     ],
     choices: [
-      { id: "rumor_false", label: { en: "Rumor Is False, They're Staying", zh: "传闻是假的，他们要留" } },
-      { id: "planned_handover", label: { en: "A Planned, Known Handover", zh: "有计划、本人知情的交接" } },
       { id: "doing_nothing", label: { en: "Just Killing Time", zh: "在混日子" } },
       { id: "in_denial", label: { en: "They Don't Know They're Out", zh: "他们不知道自己要走" } },
+      { id: "rumor_false", label: { en: "Rumor Is False, They're Staying", zh: "传闻是假的，他们要留" } },
+      { id: "planned_handover", label: { en: "A Planned, Known Handover", zh: "有计划、本人知情的交接" } },
     ],
     answer: "planned_handover",
     explanation: {
