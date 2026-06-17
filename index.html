@@ -134,6 +134,8 @@
       .tele-row {
         display: flex;
         justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
         gap: 12px;
         padding: 7px 10px;
         border-radius: 5px;
@@ -142,9 +144,15 @@
       }
       .tele-key {
         color: var(--muted);
+        flex: 1 1 220px;
+        min-width: 0;
       }
       .tele-val {
         font-weight: 600;
+        flex: 0 1 auto;
+        margin-left: auto;
+        min-width: 0;
+        text-align: right;
       }
       .status-normal {
         color: var(--green);
@@ -341,6 +349,7 @@
         .tele-val {
           flex: 1 1 100%;
           text-align: left;
+          margin-left: 0;
         }
         .telemetry {
           font-size: 13px;
