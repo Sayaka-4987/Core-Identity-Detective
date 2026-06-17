@@ -1142,7 +1142,7 @@ const cases = [
   {
     id: "case-019",
     difficulty: "hard",
-    tags: ["interview", "actually-leaving"],
+    tags: ["interview", "actually-leaving", "counteroffer"],
     title: { en: "The Counteroffer", zh: "挽留 offer" },
     intro: {
       en: "A coworker who was clearly interviewing suddenly stopped, then got a raise. Or did they leave?",
@@ -1200,7 +1200,7 @@ const cases = [
   {
     id: "case-020",
     difficulty: "hard",
-    tags: ["bad-end", "joke", "it-was-the-backend"],
+    tags: ["bad-end", "joke", "it-was-the-backend", "dns"],
     title: { en: "It Was DNS", zh: "是 DNS 的锅" },
     intro: {
       en: "Photos gone, names scrambled, org chart frozen, everyone offline. You have seen every symptom in this game at once.",

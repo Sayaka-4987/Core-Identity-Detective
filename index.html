@@ -746,7 +746,7 @@
             en: "Reach the end of a full run.",
             zh: "完成一个财年的调查。",
           },
-          cond: (ctx) => ctx.log.length >= cases.length,
+          cond: (ctx) => ctx.log.length >= Math.min(RUN_LENGTH, cases.length),
         },
         {
           id: "flawless-audit",
@@ -998,7 +998,7 @@
           name: { en: "Corporate Schrodinger", zh: "企业版薛定谔" },
           desc: {
             en: "Correctly solve 2+ ambiguous cases in one run.",
-            zh: "同一局内正确解读 2 题及以上 ambiguous 案件。",
+            zh: "同一局内正确解读 2 题及以上含糊不清的案件。",
           },
           cond: (ctx) =>
             ctx.log.filter(
@@ -1009,7 +1009,7 @@
         },
         {
           id: "meta-victim",
-          name: { en: "Meta Victim", zh: "元叙事受害者" },
+          name: { en: "Meta Victim", zh: "Meta 受害者" },
           desc: {
             en: "Correctly solve 'The Missing Models'.",
             zh: "正确解读“消失的模型”。",
@@ -1023,7 +1023,7 @@
           name: { en: "Finale Reader", zh: "终章读心术" },
           desc: {
             en: "Correctly solve the finale case ('We're a Family').",
-            zh: "正确解读终章“我们是一家人”。",
+            zh: "正确解读“我们是一家人”。",
           },
           cond: (ctx) =>
             ctx.byId["case-100"] &&
@@ -1034,7 +1034,7 @@
           name: { en: "Politics Degree", zh: "办公室政治学位" },
           desc: {
             en: "Correctly solve 5+ politics-tagged cases in one run.",
-            zh: "同一局内正确解读 5 题及以上 politics 标签案件。",
+            zh: "同一局内正确解读 5 题及以上办公室政治标签案件。",
           },
           cond: (ctx) =>
             ctx.log.filter(
