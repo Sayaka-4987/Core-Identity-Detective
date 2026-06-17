@@ -71,7 +71,7 @@ const cases = [
       },
       {
         id: "sync_failure",
-        label: { en: "Identity Sync Failure", zh: "身份同步炸了" },
+        label: { en: "Identity Sync Failure", zh: "员工系统炸了" },
       },
       { id: "vacation", label: { en: "Vacation", zh: "休假中" } },
     ],
@@ -135,7 +135,7 @@ const cases = [
       },
       {
         id: "sync_failure",
-        label: { en: "Identity Sync Failure", zh: "身份同步炸了" },
+        label: { en: "Identity Sync Failure", zh: "员工系统炸了" },
       },
       { id: "promotion", label: { en: "Promotion", zh: "升职了" } },
     ],
@@ -199,7 +199,7 @@ const cases = [
       },
       {
         id: "sync_failure",
-        label: { en: "Identity Sync Failure", zh: "身份同步炸了" },
+        label: { en: "Identity Sync Failure", zh: "员工系统炸了" },
       },
       {
         id: "contractor",
@@ -409,7 +409,7 @@ const cases = [
       { id: "dentist", label: { en: "Genuinely the Dentist", zh: "真的去看牙" } },
       { id: "interview", label: { en: "Interviewing Elsewhere", zh: "在外面面试" } },
       { id: "training", label: { en: "Offsite Training", zh: "外出培训" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "interview",
     explanation: {
@@ -484,7 +484,7 @@ const cases = [
       },
       wrong: {
         en: "It was never HR. It was one curious click on a link titled 'URGENT: Your Payslip'.",
-        zh: "这从来不是 HR 的事。只是有人好奇地点了一封标题为“【紧急】关于你的工资条”的邮件。",
+        zh: "这不是 HR 的事。只是有人手欠，点了一封标题为“【紧急】5 月工资单和个人所得税申报”的邮件中的超链接。",
       },
     },
   },
@@ -533,7 +533,7 @@ const cases = [
     answer: "startup",
     explanation: {
       en: "Rocket emoji status, a 400% spike in equity talk, and an actual two-week notice on file. This one is not a theory. They are boarding the rocket ship.",
-      zh: "火箭 emoji 状态、聊工资和股权的频率涨了 400%、还有一封实打实的离职通知。这次不是猜测，TA 真的要坐火箭了！",
+      zh: "火箭 emoji 状态、聊工资和股权的频率涨了 400%、还有一封实打实的离职通知。这次不用猜了，TA 真的要坐火箭了！",
     },
     resultFlavor: {
       correct: {
@@ -589,7 +589,7 @@ const cases = [
         id: "ai_startup",
         label: { en: "Joined an AI Lab as MTS", zh: "去 AI lab 当 Member of Technical Staff 了" },
       },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "ai_startup",
     explanation: {
@@ -656,7 +656,7 @@ const cases = [
         id: "cn_men_football",
         label: { en: "Chinese Men's Football", zh: "中国男足" },
       },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "cn_men_football",
     explanation: {
@@ -714,7 +714,7 @@ const cases = [
       { id: "new_hire", label: { en: "A New Hire", zh: "新来的同事" } },
       { id: "impersonation", label: { en: "Account Takeover", zh: "账号被盗" } },
       { id: "name_change", label: { en: "Legal Name Change", zh: "改了法定姓名" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "name_change",
     explanation: {
@@ -886,7 +886,7 @@ const cases = [
     ],
     choices: [
       { id: "transfer", label: { en: "Quiet Transfer", zh: "平静转组" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       { id: "leave", label: { en: "Extended Leave", zh: "长假" } },
     ],
@@ -946,7 +946,7 @@ const cases = [
       { id: "reorg", label: { en: "Reorg", zh: "组织架构调整" } },
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
       { id: "became_manager", label: { en: "Promoted to Manager", zh: "升职 manager" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "became_manager",
     explanation: {
@@ -1184,7 +1184,7 @@ const cases = [
     answer: "counteroffer",
     explanation: {
       en: "Interview signals dropped to zero, comp was adjusted up, manager unchanged, GAL visible, and HR literally noted 'counteroffer accepted'. They were leaving, then they weren't. The company paid to keep them.",
-      zh: "面试信号归零、薪资上调、manager 没变、地址簿可见，HR 备注白纸黑字写着“已接受挽留”。TA 本来要走，后来没走。公司花钱把 TA 留下了。",
+      zh: "面试信号归零、薪资上调、manager 没变、地址簿可见，HR 备注白纸黑字写着“已接受挽留”。TA 本来要跑。公司加了点钱。于是 TA 又留下来了。",
     },
     resultFlavor: {
       correct: {
@@ -1237,7 +1237,7 @@ const cases = [
       { id: "mass_layoff", label: { en: "Apocalyptic Layoff", zh: "世界末日级裁员" } },
       { id: "breach", label: { en: "Total Security Breach", zh: "全面安全入侵" } },
       { id: "dns", label: { en: "It Was DNS", zh: "是 DNS 的问题" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "dns",
     explanation: {
@@ -1307,7 +1307,7 @@ const cases = [
       { id: "layoff", label: { en: "Something's Wrong (Layoff?)", zh: "出事了（裁员？）" } },
       { id: "exif_bug", label: { en: "EXIF Orientation Bug", zh: "EXIF 方向 bug" } },
       { id: "prank", label: { en: "A Prank", zh: "有人恶搞" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "exif_bug",
     explanation: {
@@ -1339,7 +1339,7 @@ const cases = [
       { id: "veteran", label: { en: "A True Veteran", zh: "真·元老" } },
       { id: "epoch_bug", label: { en: "Unix Epoch Null Date", zh: "Unix 纪元空日期" } },
       { id: "rehire", label: { en: "Rehired Employee", zh: "返聘员工" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "epoch_bug",
     explanation: {
@@ -1403,7 +1403,7 @@ const cases = [
       { id: "twin", label: { en: "Secret Twin", zh: "隐藏的双胞胎" } },
       { id: "dedup_bug", label: { en: "Failed Deduplication", zh: "去重失败" } },
       { id: "rehire", label: { en: "Rehired With New Account", zh: "返聘开了新账号" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "dedup_bug",
     explanation: {
@@ -1624,7 +1624,7 @@ const cases = [
       { key: { en: "Org Chart", zh: "组织架构" }, value: { en: "Node removed", zh: "节点移除" }, status: "alarming" },
     ],
     choices: [
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
       { id: "left", label: { en: "Resigned / Left", zh: "已离职" } },
       { id: "leave", label: { en: "On Leave", zh: "休假中" } },
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
@@ -1690,7 +1690,7 @@ const cases = [
     choices: [
       { id: "sabbatical", label: { en: "Sabbatical", zh: "停薪留职" } },
       { id: "left_alumni", label: { en: "Left, Moved to Alumni", zh: "毕业愉快" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
     ],
     answer: "left_alumni",
@@ -1851,7 +1851,7 @@ const cases = [
       { id: "outage", label: { en: "Real Outage", zh: "真的故障" } },
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       { id: "monday", label: { en: "It Is Just Monday", zh: "只是周一而已" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "monday",
     explanation: {
@@ -1915,7 +1915,7 @@ const cases = [
       { id: "outage", label: { en: "Calendar Outage", zh: "日历故障" } },
       { id: "dst", label: { en: "Daylight Saving Time", zh: "夏令时切换" } },
       { id: "hacked", label: { en: "Someone Tampered", zh: "有人动了手脚" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "dst",
     explanation: {
@@ -1947,7 +1947,7 @@ const cases = [
       { id: "attack", label: { en: "Injection Attack", zh: "注入攻击" } },
       { id: "unicode_bug", label: { en: "Unicode Edge Case", zh: "Unicode 边界 case" } },
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "unicode_bug",
     explanation: {
@@ -1979,7 +1979,7 @@ const cases = [
       { id: "intern", label: { en: "It Was The Intern", zh: "就是实习生干的" } },
       { id: "not_intern", label: { en: "Cannot Have Been The Intern", zh: "不可能是实习生" } },
       { id: "ghost", label: { en: "A Ghost Did It", zh: "是幽灵干的" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "not_intern",
     explanation: {
@@ -2076,7 +2076,7 @@ const cases = [
       { id: "leave", label: { en: "Definitely On Leave", zh: "肯定在休假" } },
       { id: "quit", label: { en: "Definitely Quit", zh: "肯定离职了" } },
       { id: "deep_work", label: { en: "Heads-Down on a Secret Project", zh: "在憋一个保密项目" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "none",
     actualCause: { en: "Normal Fields, No Reason, Can't Tell", zh: "字段正常但无原因，判不了" },
@@ -2205,7 +2205,7 @@ const cases = [
       { id: "fired", label: { en: "Fired", zh: "被开了" } },
       { id: "cred_response", label: { en: "Credential Leak Response", zh: "凭据泄露响应" } },
       { id: "quit", label: { en: "Quit", zh: "离职了" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "cred_response",
     explanation: {
@@ -2269,7 +2269,7 @@ const cases = [
       { id: "hacked", label: { en: "Account Takeover", zh: "账号被接管" } },
       { id: "new_phone", label: { en: "Got a New Phone", zh: "换了新手机" } },
       { id: "fired", label: { en: "Being Offboarded", zh: "在走离职流程" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "new_phone",
     explanation: {
@@ -2365,7 +2365,7 @@ const cases = [
       { id: "twin", label: { en: "Hidden Twin", zh: "隐藏双胞胎" } },
       { id: "name_order_bug", label: { en: "Name-Order Parsing Bug", zh: "姓名顺序解析 bug" } },
       { id: "new_hire", label: { en: "A New Hire", zh: "来了新人" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "name_order_bug",
     explanation: {
