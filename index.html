@@ -826,7 +826,7 @@
             en: "Blame DNS, correctly, for once.",
             zh: "难得一次，正确地把锅甩给 DNS。",
           },
-          cond: (ctx) => solvedTag(ctx, "dns") || ctx.byId["case-020"] && ctx.log.some((e) => e.caseId === "case-020" && e.isCorrect),
+          cond: (ctx) => solvedTag(ctx, "dns"),
         },
         {
           id: "the-counteroffer",
