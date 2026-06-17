@@ -2638,7 +2638,7 @@ const cases = [
     id: "case-064",
     difficulty: "easy",
     tags: ["meeting", "politics"],
-    title: { en: "The Skip-Level 'Quick Chat'", zh: "隔级的“随便聊聊”" },
+    title: { en: "The Skip-Level 'Quick Chat'", zh: "Skip 的“随便聊聊”" },
     intro: {
       en: "Your skip-level manager sent a surprise 1:1 invite titled 'quick chat'.",
       zh: "你的 skip manager 突然发来一个 1:1 邀请，标题是“我们随便聊聊”。",
@@ -2659,7 +2659,7 @@ const cases = [
     answer: "routine_skip_level",
     explanation: {
       en: "No HR in the room, your perf is on track, and several peers got the same invite. This is a skip-level box-checking exercise, not an ambush. Breathe.",
-      zh: "房间里没有 HR、你绩效正常、好几个同事也收到了同样的邀请。这是隔级沟通的例行打卡，不是埋伏。深呼吸，放松一点。",
+      zh: "房间里没有 HR、你绩效正常、好几个同事也收到了同样的邀请。这是隔级沟通的例行打卡 1:1，不是鸿门宴。深呼吸，放松一点。",
     },
     resultFlavor: {
       correct: { en: "Correct. No HR, no ambush. Just a calendar checkbox.", zh: "正确。没有 HR 就没有埋伏，只是日历上的一个打勾项。" },
@@ -3122,7 +3122,7 @@ const cases = [
       zh: "你的 manager 突然一夜之间变成了本来高你两级的人。",
     },
     telemetry: [
-      { key: { en: "Manager", zh: "manager" }, value: { en: "Now skip-level", zh: "现在是隔级" }, status: "warning" },
+      { key: { en: "Manager", zh: "manager" }, value: { en: "Now skip-level", zh: "现在是 Skip level 的人" }, status: "warning" },
       { key: { en: "Duration Note", zh: "时长备注" }, value: { en: "'Interim'", zh: "“临时”" }, status: "normal" },
       { key: { en: "Old Manager", zh: "原 manager" }, value: { en: "On medical leave", zh: "在休病假" }, status: "normal" },
       { key: { en: "Your Role", zh: "你的角色" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
