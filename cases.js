@@ -271,7 +271,7 @@ const cases = [
     answer: "reorg",
     explanation: {
       en: "Both the manager and skip-level changed at once while title, groups, and GAL stayed put. When the chain shifts above you but your own record is intact, that is reorg weather.",
-      zh: "Manager 和 Skip manager 同时变了，而 Title、Groups、个人页面都没动。当你头顶的汇报链变了、但你自己完好无损，这就是幸福。",
+      zh: "Manager 和 Skip manager 同时变了，而 Title、Groups、个人页面都没动。当你头顶的汇报链变了、但你自己完好无损，这只是一次重组天气。",
     },
     resultFlavor: {
       correct: {
@@ -279,7 +279,7 @@ const cases = [
         zh: "你读的是天气，不是恐慌。动的是组织，不是人。",
       },
       wrong: {
-        en: "You filed an incident for the climate.",
+        en: "You filed an HR incident over an org-chart weather change.",
         zh: "你为组织架构变化提了一个事故单给 HR，大家笑了你一个月。",
       },
     },
@@ -728,7 +728,7 @@ const cases = [
       },
       wrong: {
         en: "You declared a coworker a stranger. They sit two desks away and remember your birthday.",
-        zh: "你这个冷漠无情的人，居然把一位同事认成了陌生人。TA 就坐在你斜对面，还记得你的生日！",
+        zh: "你把坐在两张桌子外的同事判成了“陌生人”，流程上很完整，人情上很危险。",
       },
     },
   },
@@ -1030,7 +1030,7 @@ const cases = [
     title: { en: "The Whole Tree Moved", zh: "整棵树都挪了" },
     intro: {
       en: "Your coworker's manager changed. So did their manager's manager. So did three levels up.",
-      zh: "你同事的 manager 变了。TA manager 的 manager 也变了。往上三层全变了。",
+      zh: "你同事的 manager 变了。TA 的 manager 的 manager 也变了。往上三层全变了。",
     },
     telemetry: [
       {
@@ -1155,7 +1155,7 @@ const cases = [
         status: "normal",
       },
       {
-        key: { en: "Comp Ration", zh: "薪资比例" },
+        key: { en: "Comp Ratio", zh: "薪资比例" },
         value: { en: "Adjusted up", zh: "上调" },
         status: "warning",
       },
@@ -1603,7 +1603,7 @@ const cases = [
       zh: "三十年工龄、带蛋糕的欢送会、怀旧的邮件、还有一个计划好的账号截止日。这是一次有计划、被庆祝的告别。TA 是退休，不是被裁。",
     },
     resultFlavor: {
-      correct: { en: "Correct. Thirty years earns the cake. Wish them well.", zh: "正确。三十年换来这块蛋糕。祝同事未来一切都好。" },
+      correct: { en: "Correct. Thirty years earns the cake. Wish them well.", zh: "正确。蛋糕是真的，退休也是真的；其余流程交给 HR。" },
       wrong: { en: "You called a retirement party a layoff. Eat some cake and apologize.", zh: "你把退休欢送会说成了裁员。赶紧吃块蛋糕道个歉吧。" },
     },
   },
@@ -1983,7 +1983,7 @@ const cases = [
     ],
     answer: "not_intern",
     explanation: {
-      en: "The intern's account was deactivated and their last day was last week, but the bad commit landed yesterday. A deactivated account cannot push code. The blame was comfortable but the timeline says it was one of you.",
+      en: "The intern's account was deactivated last week. Yesterday's bad commit therefore came from someone still employed. A deactivated account cannot push code. The blame was comfortable but the timeline says it was one of you.",
       zh: "实习生的账号上周就停用了，事故也是上周，可那个坏提交是昨天才进来的，一个停用的账号是推不了代码的，甩锅虽然舒服，但时间线说凶手就在你们中间。",
     },
     resultFlavor: {
@@ -2114,7 +2114,7 @@ const cases = [
     answer: "shared",
     explanation: {
       en: "The account type literally says shared, there is no named owner, and the GAL lists it as a team. Five cities a day is normal when five people share one login. You cannot attribute any single action to a person, and that is by design.",
-      zh: "账号类型明确写着共享、没有实名归属、地址簿里登记的也是团队，五个人共用一个登录，一天五座城市就很正常，你没法把任何一次操作归到某个人头上，is by degisn",
+      zh: "账号类型明确写着共享、没有实名归属、地址簿里登记的也是团队，五个人共用一个登录，一天五座城市就很正常，你没法把任何一次操作归到某个人头上，这是设计使然。",
     },
     resultFlavor: {
       correct: { en: "Correct. Five cities, one login, zero mystery.", zh: "正确，五座城市，一个登录，零悬念。" },
@@ -2740,7 +2740,7 @@ const cases = [
     },
     intro: {
       en: "You're working on your little game project when all your usual AI tools suddenly become unavailable. Only the smallest model remains.",
-      zh: "你正在做你的小游戏项目，你常用的AI工具突然全没了。只剩个最小的模型还活着。"
+      zh: "你正在做你的小游戏，你常用的 AI 工具突然全没了。只剩个最小的模型还活着。"
     },
     telemetry: [
       {
@@ -2771,14 +2771,14 @@ const cases = [
     ],
     choices: [
       { id: "security", label: { en: "Security Investigation", zh: "安全调查" } },
-      { id: "manager", label: { en: "Manager Escalation", zh: "manager层级扩大" } },
+      { id: "manager", label: { en: "Manager Escalation", zh: "Manager 已经知道了" } },
       { id: "quota", label: { en: "Quota Exhausted", zh: "配额用尽" } },
       { id: "layoff", label: { en: "Layoff Signal", zh: "裁员信号" } },
     ],
     answer: "quota",
     explanation: {
       en: "The telemetry was accurate. The theory was not. You built a detective game about reading corporate signals and completely misread your own.",
-      zh: "数据是准确的。理论不是。你做了个关于读懂企业信号的游戏，却完全误读了自己的。"
+      zh: "数据是准确的。理论不是。你做了个关于“读懂企业信号”的游戏，却完全误读了自己的。"
     },
     resultFlavor: {
       correct: {
@@ -2843,7 +2843,7 @@ const cases = [
       { id: "team_being_cut", label: { en: "Team Being Cut", zh: "团队要被砍" } },
       { id: "hiring_freeze", label: { en: "Hiring / Budget Freeze", zh: "招聘 / 预算冻结" } },
       { id: "role_was_fake", label: { en: "Role Was Never Real", zh: "岗位本就是假的" } },
-      { id: "manager_quit", label: { en: "Manager Quit", zh: "manager跑了" } },
+      { id: "manager_quit", label: { en: "Manager Quit", zh: "manager 跑了" } },
     ],
     answer: "hiring_freeze",
     explanation: {
@@ -2932,8 +2932,8 @@ const cases = [
     telemetry: [
       { key: { en: "Peer 1:1", zh: "同事的 1:1" }, value: { en: "New, weekly", zh: "新增，每周" }, status: "warning" },
       { key: { en: "Your 1:1", zh: "你的 1:1" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "Your Manager", zh: "你的manager" }, value: { en: "On leave soon", zh: "即将休假" }, status: "normal" },
-      { key: { en: "Peer Role", zh: "同事角色" }, value: { en: "Covering for manager", zh: "代管manager职责" }, status: "normal" },
+      { key: { en: "Your Manager", zh: "你的 manager" }, value: { en: "On leave soon", zh: "即将休假" }, status: "normal" },
+      { key: { en: "Peer Role", zh: "同事角色" }, value: { en: "Covering for manager", zh: "代管 manager 职责" }, status: "normal" },
       { key: { en: "Perf Gap", zh: "绩效差距" }, value: { en: "None", zh: "无" }, status: "normal" },
     ],
     choices: [
@@ -2945,7 +2945,7 @@ const cases = [
     answer: "interim_coverage",
     explanation: {
       en: "Your manager is about to go on leave and your peer is covering. The new 1:1 is logistics, not favoritism. Your own 1:1 didn't change, and there's no perf gap. Gossip, defeated.",
-      zh: "你的manager即将休假，你的同事在代管。那个新 1:1 是工作交接，不是偏心。你自己的 1:1 没变，绩效也没差距。八卦，败。",
+      zh: "你的 manager 即将休假，你的同事在代管。那个新 1:1 是工作交接，不是偏心。你自己的 1:1 没变，绩效也没差距。八卦，败。",
     },
     resultFlavor: {
       correct: { en: "Correct. It's coverage logistics, not a coronation.", zh: "正确。那是代管安排，不是加冕。" },
@@ -2996,7 +2996,7 @@ const cases = [
     telemetry: [
       { key: { en: "Rating", zh: "评级" }, value: { en: "'Meets Expectations'", zh: "“达到预期”" }, status: "warning" },
       { key: { en: "Bonus", zh: "奖金" }, value: { en: "Paid in full", zh: "全额发放" }, status: "normal" },
-      { key: { en: "Manager Note", zh: "manager评语" }, value: { en: "'Solid year'", zh: "“扎实的一年”" }, status: "normal" },
+      { key: { en: "Manager Note", zh: "manager 评语" }, value: { en: "'Solid year'", zh: "“扎实的一年”" }, status: "normal" },
       { key: { en: "PIP", zh: "PIP" }, value: { en: "None", zh: "无" }, status: "normal" },
       { key: { en: "Calibration", zh: "校准" }, value: { en: "Company-wide deflation", zh: "全公司压分" }, status: "normal" },
     ],
@@ -3041,7 +3041,7 @@ const cases = [
     answer: "vacation_guilt",
     explanation: {
       en: "Approved PTO, an active account, and a manager literally asking them to rest. This isn't a breach; it's someone who doesn't know how to be off. Tragic, common, not your incident.",
-      zh: "已批的休假、在用的账号、一个明确请他们休息的manager。这不是入侵，是一个不会“下线”的人。可悲、常见，但不是你要查的事故。",
+      zh: "已批的休假、在用的账号、一个明确请他们休息的 manager。这不是入侵，是一个不会“下线”的人。可悲、常见，但不是你要查的事故。",
     },
     resultFlavor: {
       correct: { en: "Correct. The threat is their inability to relax.", zh: "正确。威胁来自他们无法放松。" },
@@ -3124,12 +3124,12 @@ const cases = [
     telemetry: [
       { key: { en: "Manager", zh: "Manager" }, value: { en: "Now skip-level", zh: "现在是隔级" }, status: "warning" },
       { key: { en: "Duration Note", zh: "时长备注" }, value: { en: "'Interim'", zh: "“临时”" }, status: "normal" },
-      { key: { en: "Old Manager", zh: "原manager" }, value: { en: "On medical leave", zh: "在休病假" }, status: "normal" },
+      { key: { en: "Old Manager", zh: "原 manager" }, value: { en: "On medical leave", zh: "在休病假" }, status: "normal" },
       { key: { en: "Your Role", zh: "你的角色" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
       { key: { en: "Reorg Memo", zh: "重组备忘" }, value: { en: "None", zh: "无" }, status: "normal" },
     ],
     choices: [
-      { id: "manager_fired", label: { en: "Your Manager Got Fired", zh: "你的manager被开了" } },
+      { id: "manager_fired", label: { en: "Your Manager Got Fired", zh: "你的 manager 被开了" } },
       { id: "interim_leave", label: { en: "Interim Reporting During Leave", zh: "休假期间临时汇报" } },
       { id: "youre_promoted", label: { en: "You're Being Promoted", zh: "你要升职了" } },
       { id: "team_dissolved", label: { en: "Team Dissolved", zh: "团队解散" } },
@@ -3137,11 +3137,11 @@ const cases = [
     answer: "interim_leave",
     explanation: {
       en: "The change is flagged 'interim', your old manager is on medical leave, and there's no reorg memo. You're temporarily reporting up until they're back. Nothing about you changed.",
-      zh: "变更标着“临时”、你原来的manager在休病假、也没有重组备忘。你只是临时往上汇报，等他们回来。关于你的一切都没变。",
+      zh: "变更标着“临时”、你原来的 manager 在休病假、也没有重组备忘。你只是临时往上汇报，等他们回来。关于你的一切都没变。",
     },
     resultFlavor: {
       correct: { en: "Correct. It's interim coverage, not a coup.", zh: "正确。这是临时代管，不是政变。" },
-      wrong: { en: "You assumed your manager was gone. They're just on leave.", zh: "你以为你的manager没了，其实只是请假了。" },
+      wrong: { en: "You assumed your manager was gone. They're just on leave.", zh: "你以为你的 manager 没了，其实只是请假了。" },
     },
   },
   {
@@ -3538,7 +3538,7 @@ const cases = [
     title: { en: "Demoted to Viewer", zh: "被降成 Viewer" },
     intro: {
       en: "Your manager changed your doc access from editor to viewer.",
-      zh: "你的manager把你对某文档的权限从 editor 降成了 viewer。",
+      zh: "你的 manager 把你对某文档的权限从 editor 降成了 viewer。",
     },
     telemetry: [
       { key: { en: "Doc Access", zh: "文档权限" }, value: { en: "Editor -> Viewer", zh: "Editor -> Viewer" }, status: "warning" },
@@ -3640,7 +3640,7 @@ const cases = [
       { key: { en: "Share Count", zh: "股数" }, value: { en: "Lower", zh: "更少" }, status: "warning" },
       { key: { en: "Stock Price", zh: "股价" }, value: { en: "Way up", zh: "涨了不少" }, status: "normal" },
       { key: { en: "Dollar Value", zh: "美元价值" }, value: { en: "Roughly flat", zh: "大致持平" }, status: "unknown" },
-      { key: { en: "Band Position", zh: "薪资带位置" }, value: { en: "Not disclosed", zh: "未披露" }, status: "unknown" },
+      { key: { en: "Band Position", zh: "薪资位置" }, value: { en: "Not disclosed", zh: "未披露" }, status: "unknown" },
       { key: { en: "Budget Memo", zh: "预算备忘" }, value: { en: "'Tighter this year'", zh: "“今年更紧”" }, status: "warning" },
     ],
     choices: [
@@ -3817,8 +3817,8 @@ const cases = [
       zh: "没标题、没议程、HR 在列、又短、当天邀请，这正是大家最怕的格式，确实是个不太好的信号。但同样的包装也可能装着文书手续、一次国际调岗、一份重组通知，或者坏消息。这个格式提高了“有事”的概率，却没告诉你是什么事。光凭这个邀请，你解不出答案。",
     },
     resultFlavor: {
-      correct: { en: "Honest call. The format is ominous, but the contents are unknowable. Breathe, then go find out.", zh: "诚实的判断。格式不祥，但内容无从得知。先深呼吸，冷静下来，然后去弄清楚。" },
-      wrong: { en: "Honest call. The format is ominous, but the contents are unknowable. Breathe, then go find out.", zh: "诚实的判断。格式不祥，但内容无从得知。先深呼吸，冷静下来，然后去弄清楚。" },
+      correct: { en: "Honest call. The format is ominous, but the contents are unknowable. Breathe, then go find out.", zh: "诚实的判断。格式不祥，信息不足；按流程进会，现场取证。" },
+      wrong: { en: "Honest call. The format is ominous, but the contents are unknowable. Breathe, then go find out.", zh: "诚实的判断。格式不祥，信息不足；按流程进会，现场取证。" },
     },
   },
   {
