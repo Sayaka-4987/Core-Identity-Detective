@@ -18,7 +18,8 @@
         --red: #f85149;
         --gray: #6e7681;
         --mono:
-          ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+          Consolas, "Cascadia Mono", "SF Mono", Menlo, Monaco,
+          "Microsoft YaHei UI", "Microsoft YaHei", "Segoe UI", monospace;
       }
       * {
         box-sizing: border-box;
@@ -27,9 +28,7 @@
         margin: 0;
         background: var(--bg);
         color: var(--text);
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Microsoft YaHei", sans-serif;
+        font-family: var(--mono);
         line-height: 1.55;
         min-height: 100vh;
       }
