@@ -53,6 +53,14 @@ Cases live in `cases.js`. Every player-visible string is an `{ en, zh }` pair.
 (`cid-seen` tracks which cases this browser has already played). Deploy via
 GitHub Pages from `main`, folder `/ (root)`.
 
+## Notes
+
+This project was built with vibe coding, and its text (English and 中文) was
+polished and translated with the help of AI. Everything is fictional and meant
+for fun.
+
+本项目由 vibe coding 完成，文案（中英文）经过 AI 润色与翻译。所有内容均为虚构，仅供娱乐。
+
 ## License
 
 GNU/GPL v3.0, see `LICENSE`.

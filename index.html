@@ -314,6 +314,59 @@
       .hidden {
         display: none;
       }
+
+      @media (max-width: 600px) {
+        .wrap {
+          padding: 16px 12px 48px;
+        }
+        .card {
+          padding: 18px 16px;
+        }
+        h1 {
+          font-size: 23px;
+        }
+        .verdict {
+          font-size: 20px;
+        }
+        header.bar {
+          margin-bottom: 18px;
+        }
+        .tele-row {
+          flex-wrap: wrap;
+          gap: 2px 12px;
+        }
+        .tele-key {
+          flex: 1 1 100%;
+        }
+        .tele-val {
+          flex: 1 1 100%;
+          text-align: left;
+        }
+        .telemetry {
+          font-size: 13px;
+        }
+        button.primary,
+        button.ghost {
+          padding: 10px 16px;
+          flex: 1 1 auto;
+        }
+        .btn-row {
+          gap: 8px;
+        }
+      }
+
+      .tele-key,
+      .tele-val,
+      .choice,
+      .explanation,
+      .fy-stat {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .fy-stat {
+        gap: 12px;
+      }
     </style>
   </head>
   <body>
