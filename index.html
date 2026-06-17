@@ -6,17 +6,19 @@
     <title>Core Identity Detective</title>
     <style>
       :root {
-        --bg: #0d1117;
-        --panel: #161b22;
-        --panel-2: #1c2330;
-        --border: #30363d;
-        --text: #c9d1d9;
-        --muted: #8b949e;
-        --accent: #58a6ff;
-        --green: #3fb950;
-        --yellow: #d29922;
-        --red: #f85149;
-        --gray: #6e7681;
+        --bg: #061123;
+        --bg-soft: #0b1a33;
+        --panel: rgba(11, 23, 43, 0.74);
+        --panel-2: rgba(27, 43, 74, 0.5);
+        --border: rgba(146, 182, 255, 0.24);
+        --text: #e6edf7;
+        --muted: #a8bbd7;
+        --accent: #62b0ff;
+        --accent-2: #82e7d3;
+        --green: #46d88a;
+        --yellow: #f2c367;
+        --red: #ff7270;
+        --gray: #96a7bf;
         --mono:
           Consolas, "Cascadia Mono", "SF Mono", Menlo, Monaco,
           "Microsoft YaHei UI", "Microsoft YaHei", "Segoe UI", monospace;
@@ -26,55 +28,111 @@
       }
       body {
         margin: 0;
-        background: var(--bg);
+        background:
+          radial-gradient(
+            1200px 700px at 18% -10%,
+            rgba(98, 176, 255, 0.18),
+            transparent 56%
+          ),
+          radial-gradient(
+            900px 520px at 90% 0%,
+            rgba(130, 231, 211, 0.16),
+            transparent 58%
+          ),
+          linear-gradient(145deg, #050d1c 0%, var(--bg) 52%, #071631 100%);
         color: var(--text);
         font-family: var(--mono);
         line-height: 1.55;
         min-height: 100vh;
+        position: relative;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(128, 164, 224, 0.08) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(128, 164, 224, 0.08) 1px,
+            transparent 1px
+          );
+        background-size: 42px 42px;
+        mask-image: radial-gradient(circle at center, black 32%, transparent 88%);
+        pointer-events: none;
+        opacity: 0.24;
       }
       .wrap {
         max-width: 720px;
         margin: 0 auto;
-        padding: 24px 16px 64px;
+        padding: 30px 16px 64px;
+        position: relative;
+        z-index: 1;
       }
       header.bar {
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 12px;
-        margin-bottom: 24px;
+        margin-bottom: 22px;
       }
       .brand {
         font-family: var(--mono);
-        font-weight: 600;
+        font-weight: 700;
+        letter-spacing: 0.04em;
         color: var(--accent);
+        text-shadow: 0 0 26px rgba(98, 176, 255, 0.32);
       }
       .lang-toggle button {
-        background: none;
-        border: none;
+        background: transparent;
+        border: 1px solid transparent;
         color: var(--muted);
         cursor: pointer;
         font-size: 14px;
-        padding: 4px 6px;
+        padding: 5px 9px;
+        border-radius: 999px;
+        transition: all 150ms ease;
+      }
+      .lang-toggle button:hover {
+        color: var(--text);
+        border-color: rgba(130, 231, 211, 0.4);
+        background: rgba(130, 231, 211, 0.08);
       }
       .lang-toggle button.active {
         color: var(--text);
-        font-weight: 600;
-        text-decoration: underline;
+        font-weight: 700;
+        border-color: rgba(98, 176, 255, 0.55);
+        background: rgba(98, 176, 255, 0.14);
       }
       .lang-toggle span {
-        color: var(--border);
+        color: rgba(168, 187, 215, 0.42);
       }
 
       .card {
-        background: var(--panel);
+        background:
+          linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.03),
+            rgba(255, 255, 255, 0) 32%
+          ),
+          var(--panel);
         border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 24px;
+        border-radius: 18px;
+        padding: 26px;
+        box-shadow:
+          0 12px 36px rgba(2, 8, 20, 0.42),
+          inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(6px);
+        animation: rise-in 280ms ease-out both;
       }
       h1 {
-        font-size: 28px;
-        margin: 0 0 6px;
+        font-size: clamp(27px, 4vw, 34px);
+        margin: 0 0 8px;
+        letter-spacing: 0.03em;
       }
       .tagline {
         color: var(--muted);
@@ -87,28 +145,46 @@
       }
 
       button.primary {
-        background: var(--accent);
-        color: #07101f;
-        border: none;
-        border-radius: 6px;
-        padding: 10px 18px;
+        background: linear-gradient(135deg, #66b7ff 0%, #4ca2f6 100%);
+        color: #031122;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        border-radius: 10px;
+        padding: 11px 18px;
         font-size: 15px;
-        font-weight: 600;
+        font-weight: 700;
         cursor: pointer;
+        box-shadow: 0 8px 22px rgba(56, 145, 236, 0.34);
+        transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+      }
+      button.primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 26px rgba(56, 145, 236, 0.45);
+      }
+      button.primary:active {
+        transform: translateY(0);
       }
       button.primary:disabled {
-        background: var(--border);
+        background: rgba(79, 97, 128, 0.5);
         color: var(--muted);
+        box-shadow: none;
+        border-color: transparent;
         cursor: not-allowed;
       }
       button.ghost {
-        background: none;
+        background: rgba(130, 231, 211, 0.05);
         border: 1px solid var(--border);
         color: var(--text);
-        border-radius: 6px;
-        padding: 10px 18px;
+        border-radius: 10px;
+        padding: 11px 18px;
         font-size: 15px;
         cursor: pointer;
+        transition: border-color 140ms ease, background 140ms ease,
+          transform 120ms ease;
+      }
+      button.ghost:hover {
+        border-color: rgba(130, 231, 211, 0.52);
+        background: rgba(130, 231, 211, 0.1);
+        transform: translateY(-1px);
       }
       .btn-row {
         display: flex;
@@ -121,7 +197,7 @@
         font-family: var(--mono);
         font-size: 13px;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.1em;
         color: var(--muted);
         margin: 22px 0 10px;
       }
@@ -138,8 +214,9 @@
         align-items: center;
         gap: 6px;
         padding: 6px 10px;
-        border-radius: 5px;
+        border-radius: 999px;
         background: var(--panel-2);
+        border: 1px solid rgba(168, 187, 215, 0.16);
         max-width: 100%;
       }
       .tele-key {
@@ -169,20 +246,26 @@
       .choice {
         display: block;
         border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 10px 12px;
+        border-radius: 12px;
+        padding: 11px 13px;
         margin-bottom: 8px;
         cursor: pointer;
+        background: rgba(255, 255, 255, 0.01);
+        transition: border-color 120ms ease, background 120ms ease,
+          transform 120ms ease;
       }
       .choice:hover {
-        border-color: var(--accent);
+        border-color: rgba(130, 231, 211, 0.5);
+        background: rgba(130, 231, 211, 0.07);
+        transform: translateY(-1px);
       }
       .choice input {
         margin-right: 10px;
       }
       .choice.selected {
         border-color: var(--accent);
-        background: rgba(88, 166, 255, 0.08);
+        background: rgba(98, 176, 255, 0.13);
+        box-shadow: inset 0 0 0 1px rgba(98, 176, 255, 0.24);
       }
 
       .confidence-row {
@@ -232,7 +315,8 @@
       }
       .explanation {
         background: var(--panel-2);
-        border-radius: 6px;
+        border-radius: 12px;
+        border: 1px solid rgba(168, 187, 215, 0.14);
         padding: 12px 14px;
         margin: 14px 0;
       }
@@ -244,7 +328,8 @@
 
       .fy-review {
         background: var(--panel-2);
-        border-radius: 6px;
+        border-radius: 12px;
+        border: 1px solid rgba(168, 187, 215, 0.14);
         padding: 14px 16px;
         margin: 18px 0;
         text-align: left;
@@ -295,7 +380,8 @@
       .ach-item {
         background: var(--panel-2);
         border-left: 3px solid var(--yellow);
-        border-radius: 4px;
+        border-radius: 8px;
+        border: 1px solid rgba(168, 187, 215, 0.14);
         padding: 8px 12px;
         margin: 6px 0;
       }
@@ -319,13 +405,14 @@
 
       @media (max-width: 600px) {
         .wrap {
-          padding: 16px 12px 48px;
+          padding: 18px 12px 48px;
         }
         .card {
-          padding: 18px 16px;
+          padding: 19px 16px;
+          border-radius: 15px;
         }
         h1 {
-          font-size: 23px;
+          font-size: 24px;
         }
         .verdict {
           font-size: 20px;
@@ -343,6 +430,27 @@
         }
         .btn-row {
           gap: 8px;
+        }
+      }
+
+      @keyframes rise-in {
+        from {
+          opacity: 0;
+          transform: translateY(8px) scale(0.995);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .card,
+        button.primary,
+        button.ghost,
+        .choice {
+          animation: none;
+          transition: none;
         }
       }
 
@@ -495,7 +603,7 @@
         },
         allClearedTitle: {
           en: "Case Bank Cleared",
-          zh: "案卷已全部查完",
+          zh: "已全部查完",
         },
         contribTitle: {
           en: "Out of Cases",
@@ -503,7 +611,7 @@
         },
         contribBody: {
           en: "You have worked every case on file. Got an identity mystery of your own? Add a case to cases.js and open a pull request, the field contract is in the comment at the top of that file.",
-          zh: "档案库里的案子你都查完了。手上还有别的身份谜案？往 cases.js 里加一个案件、再开个 pull request 就行，字段规则写在那个文件开头的注释里。",
+          zh: "公司里的所有案子你都查完了。什么，你手上还有别的八卦？请往 cases.js 里加一个案件、再开个 pull request 就行，字段规则写在那个文件开头。",
         },
         contribLink: {
           en: "Contribute a case on GitHub",
@@ -515,8 +623,8 @@
           zh: "复制失败，请手动选择复制。",
         },
         shareLine: {
-          en: "I followed the telemetry.",
-          zh: "我把同事们的个人主页从头读了一遍。",
+          en: "\"Telemetry doesn’t lie. People do.\"",
+          zh: "“我沿着身份线索一路追到底。”",
         },
         continueWord: { en: "Continue", zh: "继续上一局" },
         diff: {
@@ -574,7 +682,7 @@
           cond: (s) => s.scored === 0,
           text: {
             en: "No scorable cases this run. The telemetry told you nothing, and you wisely expected nothing.",
-            zh: "本局没有可评分的案件。数据什么也没说，而你也明智地什么都没指望。",
+            zh: "本局没有可评分的案件。数据什么也没说，而你也什么都没期待。",
           },
         },
         {
