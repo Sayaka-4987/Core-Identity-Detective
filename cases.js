@@ -3447,7 +3447,7 @@ const cases = [
       { key: { en: "OKR Listing", zh: "OKR 列项" }, value: { en: "Not found", zh: "找不到" }, status: "alarming" },
       { key: { en: "Umbrella OKR", zh: "总 OKR" }, value: { en: "New, broad", zh: "新增，范围更大" }, status: "warning" },
       { key: { en: "Your Funding", zh: "你的资源" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "Your Headcount", zh: "你的人头" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Your Headcount", zh: "你的 Headcount" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
       { key: { en: "Roadmap", zh: "路线图" }, value: { en: "Still active", zh: "仍在推进" }, status: "normal" },
     ],
     choices: [
@@ -3459,7 +3459,7 @@ const cases = [
     answer: "folded_into_umbrella",
     explanation: {
       en: "Funding, headcount, and roadmap are all unchanged, and a new broad umbrella OKR appeared. Your project didn't die; it got absorbed into a bigger line item for the slide. Same work, less visibility.",
-      zh: "资源、人头、路线图全没变，还冒出来一个范围更大的总 OKR。你的项目没死，是被吸进了一个更大的条目里好放进 PPT。活照旧，只是曝光少了。",
+      zh: "资源、Headcount、路线图全没变，还冒出来一个范围更大的总 OKR。你的项目没死，是被吸进了一个更大的条目里好放进 PPT。活照旧，只是曝光少了。",
     },
     resultFlavor: {
       correct: { en: "Correct. Absorbed, not axed.", zh: "正确。那只是被吸收，不是被砍。" },
