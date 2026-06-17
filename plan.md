@@ -350,7 +350,7 @@ Chinese copy:
 
 ```text
 Core Identity Detective
-读取遥测，找出真相。
+读取档案，找出真相。
 
 [开始调查]
 [案件列表]
@@ -496,9 +496,11 @@ Chinese:
 
 Target progression:
 
-- **Done**: 5 cases (MVP), now living in `cases.js`.
-- **Next**: reach 20 cases (1 Fiscal Year) in batches of ~5. After each
-  batch, play the full run in the browser before writing the next batch.
+- **Done**: 20 cases, living in `cases.js`. Mix of
+  easy/medium/hard, including joke / bad-end cases and `answer: "none"`
+  insufficient-telemetry cases. Achievements cover the major themes.
+- **Next**: balance and polish rather than raw count, e.g. shuffle / random
+  case order, a second Fiscal Year of fresh cases, or per-case art.
 - **Later**: only after a post-MVP feature that needs new case fields (see
   below) is chosen, extend the field contract first, then keep authoring.
 

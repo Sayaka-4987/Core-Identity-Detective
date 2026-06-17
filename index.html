@@ -633,6 +633,42 @@
           },
           cond: (ctx) => solvedTag(ctx, "reorg") || solvedTag(ctx, "org-chart"),
         },
+        {
+          id: "actually-a-layoff",
+          name: { en: "Actually A Layoff", zh: "这次真裁了" },
+          desc: {
+            en: "Call a layoff correctly when every signal really does point that way.",
+            zh: "当所有信号真的都指向裁员时，正确地说出来。",
+          },
+          cond: (ctx) => solvedTag(ctx, "actually-a-layoff"),
+        },
+        {
+          id: "it-was-dns",
+          name: { en: "It Was DNS", zh: "是 DNS 的锅" },
+          desc: {
+            en: "Blame DNS, correctly, for once.",
+            zh: "难得一次，正确地把锅甩给 DNS。",
+          },
+          cond: (ctx) => solvedTag(ctx, "dns") || ctx.byId["case-020"] && ctx.log.some((e) => e.caseId === "case-020" && e.isCorrect),
+        },
+        {
+          id: "the-counteroffer",
+          name: { en: "Retention Specialist", zh: "挽留专家" },
+          desc: {
+            en: "Correctly spot a coworker who was leaving, then stayed.",
+            zh: "识破一个本想走、最后留下的同事。",
+          },
+          cond: (ctx) => solvedTag(ctx, "counteroffer"),
+        },
+        {
+          id: "the-promotion",
+          name: { en: "Reading the Arrow", zh: "读懂那个按钮" },
+          desc: {
+            en: "Correctly identify a promotion or new title instead of a departure.",
+            zh: "把升职或头衔变化正确读成升职，而不是离职。",
+          },
+          cond: (ctx) => solvedTag(ctx, "promotion") || solvedTag(ctx, "title-change"),
+        },
       ];
 
       function solvedTag(ctx, tag) {
