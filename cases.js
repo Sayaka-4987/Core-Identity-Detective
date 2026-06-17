@@ -64,7 +64,6 @@ const cases = [
       },
     ],
     choices: [
-      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       {
         id: "transfer",
         label: { en: "Internal Transfer", zh: "内部转组" },
@@ -74,6 +73,7 @@ const cases = [
         label: { en: "Identity Sync Failure", zh: "员工系统炸了" },
       },
       { id: "vacation", label: { en: "Vacation", zh: "休假中" } },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "sync_failure",
     explanation: {
@@ -128,7 +128,6 @@ const cases = [
       },
     ],
     choices: [
-      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       {
         id: "transfer",
         label: { en: "Internal Transfer", zh: "内部转组" },
@@ -138,6 +137,7 @@ const cases = [
         label: { en: "Identity Sync Failure", zh: "员工系统炸了" },
       },
       { id: "promotion", label: { en: "Promotion", zh: "升职了" } },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "transfer",
     explanation: {
@@ -192,7 +192,6 @@ const cases = [
       },
     ],
     choices: [
-      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       {
         id: "transfer",
         label: { en: "Internal Transfer", zh: "内部转组" },
@@ -205,6 +204,7 @@ const cases = [
         id: "contractor",
         label: { en: "Service Account", zh: "服务账号" },
       },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "none",
     actualCause: { en: "Nobody knows", zh: "没人知道" },
@@ -260,13 +260,13 @@ const cases = [
       },
     ],
     choices: [
-      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       {
         id: "transfer",
         label: { en: "Internal Transfer", zh: "内部转组" },
       },
       { id: "reorg", label: { en: "Reorg", zh: "组织架构调整" } },
       { id: "promotion", label: { en: "Promotion", zh: "升职了" } },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "reorg",
     explanation: {
@@ -332,13 +332,6 @@ const cases = [
         },
       },
       {
-        id: "layoff",
-        label: {
-          en: "Layoff Preparation",
-          zh: "即将被裁",
-        },
-      },
-      {
         id: "startup",
         label: {
           en: "Leaving for a Startup",
@@ -350,6 +343,13 @@ const cases = [
         label: {
           en: "DEI Training",
           zh: "参加 DEI 培训",
+        },
+      },
+      {
+        id: "layoff",
+        label: {
+          en: "Layoff Preparation",
+          zh: "即将被裁",
         },
       },
     ],
@@ -464,13 +464,13 @@ const cases = [
       },
     ],
     choices: [
-      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       { id: "vacation", label: { en: "Vacation", zh: "休假中" } },
       {
         id: "security_training",
         label: { en: "Phishing-Click Security Training", zh: "钓鱼邮件安全培训" },
       },
       { id: "sabbatical", label: { en: "Sabbatical", zh: "停薪留职" } },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "security_training",
     explanation: {
@@ -525,10 +525,10 @@ const cases = [
       },
     ],
     choices: [
-      { id: "reorg", label: { en: "Reorg", zh: "组织架构调整" } },
       { id: "promotion", label: { en: "Promotion", zh: "升职了" } },
       { id: "startup", label: { en: "Leaving for a Startup", zh: "跳槽去创业公司" } },
       { id: "vacation", label: { en: "Vacation", zh: "休假中" } },
+      { id: "reorg", label: { en: "Reorg", zh: "组织架构调整" } },
     ],
     answer: "startup",
     explanation: {
@@ -651,12 +651,12 @@ const cases = [
         id: "miscommunication",
         label: { en: "Cultural Miscommunication", zh: "跨文化误会" },
       },
-      { id: "hr_incident", label: { en: "HR Incident", zh: "HR 事件" } },
       {
         id: "cn_men_football",
         label: { en: "Chinese Men's Football", zh: "中国男足" },
       },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
+      { id: "hr_incident", label: { en: "HR Incident", zh: "HR 事件" } },
     ],
     answer: "cn_men_football",
     explanation: {
@@ -712,9 +712,9 @@ const cases = [
     ],
     choices: [
       { id: "new_hire", label: { en: "A New Hire", zh: "新来的同事" } },
-      { id: "impersonation", label: { en: "Account Takeover", zh: "账号被盗" } },
       { id: "name_change", label: { en: "Legal Name Change", zh: "改了法定姓名" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
+      { id: "impersonation", label: { en: "Account Takeover", zh: "账号被盗" } },
     ],
     answer: "name_change",
     explanation: {
@@ -769,10 +769,10 @@ const cases = [
       },
     ],
     choices: [
-      { id: "mass_layoff", label: { en: "Mass Layoff", zh: "大规模裁员" } },
       { id: "photo_outage", label: { en: "Photo Service Outage", zh: "头像服务挂了" } },
       { id: "reorg", label: { en: "Company-wide Reorg", zh: "全公司重组" } },
       { id: "security_breach", label: { en: "Security Breach", zh: "安全入侵" } },
+      { id: "mass_layoff", label: { en: "Mass Layoff", zh: "大规模裁员" } },
     ],
     answer: "photo_outage",
     explanation: {
@@ -886,9 +886,9 @@ const cases = [
     ],
     choices: [
       { id: "transfer", label: { en: "Quiet Transfer", zh: "平静转组" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       { id: "leave", label: { en: "Extended Leave", zh: "长假" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "layoff",
     explanation: {
@@ -1002,9 +1002,9 @@ const cases = [
     ],
     choices: [
       { id: "new_hire", label: { en: "Misclassified New Hire", zh: "被错分类的新人" } },
-      { id: "bot", label: { en: "A Bot Someone Added", zh: "有人加进来的 Bot" } },
       { id: "breach", label: { en: "Compromised Account", zh: "被攻击的账号" } },
       { id: "contractor", label: { en: "Contractor", zh: "外包" } },
+      { id: "bot", label: { en: "A Bot Someone Added", zh: "有人加进来的 Bot" } },
     ],
     answer: "none",
     actualCause: { en: "Insufficient Telemetry", zh: "数据不足" },
@@ -1061,9 +1061,9 @@ const cases = [
     ],
     choices: [
       { id: "promotion", label: { en: "Promotion", zh: "升职了" } },
-      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       { id: "reorg", label: { en: "Org Reorg", zh: "组织架构调整" } },
       { id: "transfer", label: { en: "Personal Transfer", zh: "个人转组" } },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "reorg",
     explanation: {
@@ -1118,10 +1118,10 @@ const cases = [
       },
     ],
     choices: [
-      { id: "demotion", label: { en: "Secret Demotion", zh: "暗中降级" } },
       { id: "data_bug", label: { en: "Title Field Data Bug", zh: "Title 字段数据 bug" } },
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       { id: "promotion", label: { en: "Promotion In Progress", zh: "升职流程中" } },
+      { id: "demotion", label: { en: "Secret Demotion", zh: "暗中降级" } },
     ],
     answer: "data_bug",
     explanation: {
@@ -1234,10 +1234,10 @@ const cases = [
       },
     ],
     choices: [
-      { id: "mass_layoff", label: { en: "Apocalyptic Layoff", zh: "世界末日级裁员" } },
       { id: "breach", label: { en: "Total Security Breach", zh: "全面安全入侵" } },
       { id: "dns", label: { en: "It Was DNS", zh: "是 DNS 的问题" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
+      { id: "mass_layoff", label: { en: "Apocalyptic Layoff", zh: "世界末日级裁员" } },
     ],
     answer: "dns",
     explanation: {
@@ -1274,8 +1274,8 @@ const cases = [
     choices: [
       { id: "promotion", label: { en: "Dual Role / Promotion", zh: "身兼两职 / 升职" } },
       { id: "merge_bug", label: { en: "Two Records Merged", zh: "两条记录被合并" } },
-      { id: "impersonation", label: { en: "Account Takeover", zh: "账号被盗" } },
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
+      { id: "impersonation", label: { en: "Account Takeover", zh: "账号被盗" } },
     ],
     answer: "merge_bug",
     explanation: {
@@ -1306,8 +1306,8 @@ const cases = [
     choices: [
       { id: "layoff", label: { en: "Something's Wrong (Layoff?)", zh: "出事了（裁员？）" } },
       { id: "exif_bug", label: { en: "EXIF Orientation Bug", zh: "EXIF 方向 bug" } },
-      { id: "prank", label: { en: "A Prank", zh: "有人恶搞" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
+      { id: "prank", label: { en: "A Prank", zh: "有人恶搞" } },
     ],
     answer: "exif_bug",
     explanation: {
@@ -1336,10 +1336,10 @@ const cases = [
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
-      { id: "veteran", label: { en: "A True Veteran", zh: "真·元老" } },
       { id: "epoch_bug", label: { en: "Unix Epoch Null Date", zh: "Unix 纪元空日期" } },
       { id: "rehire", label: { en: "Rehired Employee", zh: "返聘员工" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
+      { id: "veteran", label: { en: "A True Veteran", zh: "真·元老" } },
     ],
     answer: "epoch_bug",
     explanation: {
@@ -1400,10 +1400,10 @@ const cases = [
       { key: { en: "Org Chart", zh: "组织架构" }, value: { en: "Single node", zh: "单个节点" }, status: "normal" },
     ],
     choices: [
-      { id: "twin", label: { en: "Secret Twin", zh: "隐藏的双胞胎" } },
       { id: "dedup_bug", label: { en: "Failed Deduplication", zh: "去重失败" } },
       { id: "rehire", label: { en: "Rehired With New Account", zh: "返聘开了新账号" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
+      { id: "twin", label: { en: "Secret Twin", zh: "隐藏的双胞胎" } },
     ],
     answer: "dedup_bug",
     explanation: {
@@ -1432,10 +1432,10 @@ const cases = [
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
-      { id: "mass_layoff", label: { en: "Team Layoff", zh: "整组裁员" } },
       { id: "offsite", label: { en: "Team Offsite", zh: "团队团建" } },
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
       { id: "training", label: { en: "Training", zh: "培训" } },
+      { id: "mass_layoff", label: { en: "Team Layoff", zh: "整组裁员" } },
     ],
     answer: "offsite",
     explanation: {
@@ -1466,8 +1466,8 @@ const cases = [
     choices: [
       { id: "replaced", label: { en: "Quietly Replaced", zh: "被悄悄换掉了" } },
       { id: "mat_cover", label: { en: "Someone Covering Leave", zh: "有人在休产假" } },
-      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "mat_cover",
     explanation: {
@@ -1498,8 +1498,8 @@ const cases = [
     choices: [
       { id: "busy_leaving", label: { en: "Too Busy, About to Quit", zh: "忙到要离职" } },
       { id: "stuck_status", label: { en: "Stuck Presence Status", zh: "状态卡住了" } },
-      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       { id: "leave", label: { en: "On Leave", zh: "休假中" } },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "stuck_status",
     explanation: {
@@ -1530,8 +1530,8 @@ const cases = [
     choices: [
       { id: "breakdown", label: { en: "Stress, About to Quit", zh: "压力崩溃要离职" } },
       { id: "oncall", label: { en: "On-Call Rotation", zh: "在 On-Call" } },
-      { id: "hacked", label: { en: "Account Hacked", zh: "账号被黑" } },
       { id: "promotion", label: { en: "Promotion", zh: "升职了" } },
+      { id: "hacked", label: { en: "Account Hacked", zh: "账号被黑" } },
     ],
     answer: "oncall",
     explanation: {
@@ -1562,8 +1562,8 @@ const cases = [
     choices: [
       { id: "quit", label: { en: "Quit", zh: "离职了" } },
       { id: "secondment", label: { en: "Secondment / Loan", zh: "借调 / 外派" } },
-      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       { id: "transfer", label: { en: "Permanent Transfer", zh: "永久转组" } },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "secondment",
     explanation: {
@@ -1592,10 +1592,10 @@ const cases = [
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible (ends soon)", zh: "可见（即将结束）" }, status: "warning" },
     ],
     choices: [
-      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       { id: "retirement", label: { en: "Retirement", zh: "退休" } },
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
       { id: "sabbatical", label: { en: "Sabbatical", zh: "停薪留职" } },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "retirement",
     explanation: {
@@ -1624,10 +1624,10 @@ const cases = [
       { key: { en: "Org Chart", zh: "组织架构" }, value: { en: "Node removed", zh: "节点移除" }, status: "alarming" },
     ],
     choices: [
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
       { id: "left", label: { en: "Resigned / Left", zh: "已离职" } },
       { id: "leave", label: { en: "On Leave", zh: "休假中" } },
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "left",
     explanation: {
@@ -1657,9 +1657,9 @@ const cases = [
     ],
     choices: [
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
-      { id: "mass_transfer", label: { en: "Mass Transfer", zh: "集体转组" } },
       { id: "layoff", label: { en: "Department Layoff", zh: "部门裁员" } },
       { id: "offsite", label: { en: "Offsite", zh: "团建" } },
+      { id: "mass_transfer", label: { en: "Mass Transfer", zh: "集体转组" } },
     ],
     answer: "layoff",
     explanation: {
@@ -1690,8 +1690,8 @@ const cases = [
     choices: [
       { id: "sabbatical", label: { en: "Sabbatical", zh: "停薪留职" } },
       { id: "left_alumni", label: { en: "Left, Moved to Alumni", zh: "毕业愉快" } },
-      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
+      { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
     ],
     answer: "left_alumni",
     explanation: {
@@ -1754,8 +1754,8 @@ const cases = [
     choices: [
       { id: "promotion", label: { en: "Full Promotion", zh: "正式升职" } },
       { id: "acting", label: { en: "Acting / Interim Role", zh: "代理 / 临时岗" } },
-      { id: "reorg", label: { en: "Reorg", zh: "重组" } },
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
+      { id: "reorg", label: { en: "Reorg", zh: "重组" } },
     ],
     answer: "acting",
     explanation: {
@@ -1784,10 +1784,10 @@ const cases = [
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
-      { id: "spam", label: { en: "Mailing List Spam Bug", zh: "邮件组错了" } },
       { id: "into_leadership", label: { en: "Moved Into Leadership", zh: "进入管理层" } },
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
+      { id: "spam", label: { en: "Mailing List Spam Bug", zh: "邮件组错了" } },
     ],
     answer: "into_leadership",
     explanation: {
@@ -1816,10 +1816,10 @@ const cases = [
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
-      { id: "data_bug", label: { en: "Level Field Glitch", zh: "职级字段出错" } },
       { id: "inband_promo", label: { en: "In-Band (Silent) Promotion", zh: "静默升级" } },
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
+      { id: "data_bug", label: { en: "Level Field Glitch", zh: "职级字段出错" } },
     ],
     answer: "inband_promo",
     explanation: {
@@ -1849,9 +1849,9 @@ const cases = [
     ],
     choices: [
       { id: "outage", label: { en: "Real Outage", zh: "真的故障" } },
-      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       { id: "monday", label: { en: "It Is Just Monday", zh: "只是周一而已" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "monday",
     explanation: {
@@ -1882,8 +1882,8 @@ const cases = [
     choices: [
       { id: "real_bug", label: { en: "An Actual Bug", zh: "一个真 bug" } },
       { id: "retrograde", label: { en: "Mercury Retrograde", zh: "水星逆行" } },
-      { id: "dns", label: { en: "It Was DNS", zh: "是 DNS 的锅" } },
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
+      { id: "dns", label: { en: "It Was DNS", zh: "是 DNS 的锅" } },
     ],
     answer: "retrograde",
     explanation: {
@@ -1914,8 +1914,8 @@ const cases = [
     choices: [
       { id: "outage", label: { en: "Calendar Outage", zh: "日历故障" } },
       { id: "dst", label: { en: "Daylight Saving Time", zh: "夏令时切换" } },
-      { id: "hacked", label: { en: "Someone Tampered", zh: "有人动了手脚" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
+      { id: "hacked", label: { en: "Someone Tampered", zh: "有人动了手脚" } },
     ],
     answer: "dst",
     explanation: {
@@ -1946,8 +1946,8 @@ const cases = [
     choices: [
       { id: "attack", label: { en: "Injection Attack", zh: "注入攻击" } },
       { id: "unicode_bug", label: { en: "Unicode Edge Case", zh: "Unicode 边界 case" } },
-      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "unicode_bug",
     explanation: {
@@ -1978,8 +1978,8 @@ const cases = [
     choices: [
       { id: "intern", label: { en: "It Was The Intern", zh: "就是实习生干的" } },
       { id: "not_intern", label: { en: "Cannot Have Been The Intern", zh: "不可能是实习生" } },
-      { id: "ghost", label: { en: "A Ghost Did It", zh: "是幽灵干的" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
+      { id: "ghost", label: { en: "A Ghost Did It", zh: "是幽灵干的" } },
     ],
     answer: "not_intern",
     explanation: {
@@ -2009,9 +2009,9 @@ const cases = [
     ],
     choices: [
       { id: "budget_freeze", label: { en: "Budget Freeze", zh: "预算冻结" } },
-      { id: "layoff_prep", label: { en: "Layoff Signal", zh: "裁员信号" } },
       { id: "perm_sponsorship", label: { en: "PERM Sponsorship Hold", zh: "PERM 流程中" } },
       { id: "role_canceled", label: { en: "Role Canceled", zh: "岗位取消" } },
+      { id: "layoff_prep", label: { en: "Layoff Signal", zh: "裁员信号" } },
     ],
     answer: "perm_sponsorship",
     explanation: {
@@ -2042,8 +2042,8 @@ const cases = [
     choices: [
       { id: "burnout", label: { en: "Burning Out", zh: "熬夜燃尽" } },
       { id: "timezone", label: { en: "Just a Different Timezone", zh: "只是时区不同" } },
-      { id: "moonlighting", label: { en: "Secretly Moonlighting", zh: "偷偷在接私活" } },
       { id: "leaving", label: { en: "About to Quit", zh: "要离职了" } },
+      { id: "moonlighting", label: { en: "Secretly Moonlighting", zh: "偷偷在接私活" } },
     ],
     answer: "none",
     actualCause: { en: "Timezone Unknown, Can't Tell", zh: "时区不明，判不了" },
@@ -2109,7 +2109,7 @@ const cases = [
       { id: "hacked", label: { en: "Account Compromised", zh: "账号被盗" } },
       { id: "shared", label: { en: "It's a Shared Account", zh: "这是共享账号" } },
       { id: "person", label: { en: "One Very Busy Person", zh: "一个超忙的人" } },
-      { id: "none", label: { en: "Can't Attribute to a Person", zh: "归不到具体某个人" } },
+      { id: "none", label: { en: "An Office Cat That Learned to Type", zh: "其实是一只学会了打字的办公室猫" } },
     ],
     answer: "shared",
     explanation: {
@@ -2172,8 +2172,8 @@ const cases = [
     choices: [
       { id: "fired_cause", label: { en: "Fired For Cause", zh: "被开除问责" } },
       { id: "legal_hold", label: { en: "Legal / Litigation Hold", zh: "法务 / 诉讼保留" } },
-      { id: "hacked", label: { en: "Account Hacked", zh: "账号被黑" } },
       { id: "quit", label: { en: "Quit", zh: "离职了" } },
+      { id: "hacked", label: { en: "Account Hacked", zh: "账号被黑" } },
     ],
     answer: "legal_hold",
     explanation: {
@@ -2298,10 +2298,10 @@ const cases = [
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
-      { id: "layoff", label: { en: "Regional Layoff", zh: "区域裁员" } },
       { id: "lunar_new_year", label: { en: "Lunar New Year", zh: "农历新年" } },
       { id: "outage", label: { en: "Office Outage", zh: "办公室停摆" } },
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
+      { id: "layoff", label: { en: "Regional Layoff", zh: "区域裁员" } },
     ],
     answer: "lunar_new_year",
     explanation: {
@@ -2330,10 +2330,10 @@ const cases = [
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
-      { id: "layoff", label: { en: "European Layoffs", zh: "欧洲裁员" } },
       { id: "summer_holiday", label: { en: "August Summer Holiday", zh: "八月夏休" } },
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
       { id: "outage", label: { en: "Outage", zh: "故障" } },
+      { id: "layoff", label: { en: "European Layoffs", zh: "欧洲裁员" } },
     ],
     answer: "summer_holiday",
     explanation: {
@@ -2362,10 +2362,10 @@ const cases = [
       { key: { en: "Person Count", zh: "实际人数" }, value: { en: "Actually one", zh: "其实是一个" }, status: "normal" },
     ],
     choices: [
-      { id: "twin", label: { en: "Hidden Twin", zh: "隐藏双胞胎" } },
       { id: "name_order_bug", label: { en: "Name-Order Parsing Bug", zh: "姓名顺序解析 bug" } },
       { id: "new_hire", label: { en: "A New Hire", zh: "来了新人" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
+      { id: "twin", label: { en: "Hidden Twin", zh: "隐藏双胞胎" } },
     ],
     answer: "name_order_bug",
     explanation: {
@@ -2394,10 +2394,10 @@ const cases = [
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
-      { id: "diet", label: { en: "Office Diet Challenge", zh: "办公室减肥比赛" } },
       { id: "ramadan", label: { en: "Ramadan Fasting", zh: "斋月斋戒" } },
       { id: "layoff", label: { en: "Quiet Layoff", zh: "悄悄裁员" } },
       { id: "outage", label: { en: "Cafeteria Closed", zh: "食堂关了" } },
+      { id: "diet", label: { en: "Office Diet Challenge", zh: "办公室减肥比赛" } },
     ],
     answer: "ramadan",
     explanation: {
@@ -2426,10 +2426,10 @@ const cases = [
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
-      { id: "layoff", label: { en: "Site Closure", zh: "站点关闭" } },
       { id: "diwali", label: { en: "Diwali Holiday", zh: "排灯节假期" } },
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
       { id: "outage", label: { en: "Outage", zh: "故障" } },
+      { id: "layoff", label: { en: "Site Closure", zh: "站点关闭" } },
     ],
     answer: "diwali",
     explanation: {
@@ -2460,8 +2460,8 @@ const cases = [
     choices: [
       { id: "fired", label: { en: "Being Locked Out / Fired", zh: "被锁定 / 开除" } },
       { id: "cert_expiry", label: { en: "Auth Certificate Expired", zh: "证书过期" } },
-      { id: "hacked", label: { en: "Account Hacked", zh: "账号被黑" } },
       { id: "quit", label: { en: "Quit", zh: "离职了" } },
+      { id: "hacked", label: { en: "Account Hacked", zh: "账号被黑" } },
     ],
     answer: "cert_expiry",
     explanation: {
@@ -2526,7 +2526,7 @@ const cases = [
       { id: "fired", label: { en: "You Got Fired", zh: "你被开了" } },
       { id: "sync_failure", label: { en: "It's Just Sync (Again)", zh: "又是同步（老样子）" } },
       { id: "ghost", label: { en: "You Are The Ghost Now", zh: "你成了那个幽灵" } },
-      { id: "none", label: { en: "Cannot Investigate Yourself", zh: "查不了你自己" } },
+      { id: "none", label: { en: "You're a Parallel-Universe Version of Yourself", zh: "你其实是从平行宇宙穿越来的另一个你" } },
     ],
     answer: "sync_failure",
     explanation: {
@@ -2589,8 +2589,8 @@ const cases = [
     choices: [
       { id: "real_reorg", label: { en: "A Real Reorg", zh: "真重组" } },
       { id: "rebrand", label: { en: "Just a Rebrand", zh: "只是改名" } },
-      { id: "layoff", label: { en: "Layoff Incoming", zh: "裁员要来" } },
       { id: "budget_cut", label: { en: "Budget Cut", zh: "预算削减" } },
+      { id: "layoff", label: { en: "Layoff Incoming", zh: "裁员要来" } },
     ],
     answer: "rebrand",
     explanation: {
@@ -2653,8 +2653,8 @@ const cases = [
     choices: [
       { id: "getting_fired", label: { en: "Getting Fired", zh: "要被开了" } },
       { id: "routine_skip_level", label: { en: "Routine Skip-Level 1:1", zh: "例行隔级沟通" } },
-      { id: "secret_promotion", label: { en: "Secret Promotion", zh: "秘密升职" } },
       { id: "pip", label: { en: "PIP Warning", zh: "要进 PIP" } },
+      { id: "secret_promotion", label: { en: "Secret Promotion", zh: "秘密升职" } },
     ],
     answer: "routine_skip_level",
     explanation: {
@@ -2683,10 +2683,10 @@ const cases = [
       { key: { en: "Tone", zh: "语气" }, value: { en: "Calm", zh: "平静" }, status: "normal" },
     ],
     choices: [
-      { id: "being_silenced", label: { en: "Being Silenced", zh: "被消音" } },
       { id: "avoiding_audience", label: { en: "Just Avoiding a Big Audience", zh: "只是不想当众细聊" } },
       { id: "bad_news", label: { en: "Secret Bad News", zh: "藏着坏消息" } },
       { id: "project_cancelled", label: { en: "Project Cancelled", zh: "项目被砍" } },
+      { id: "being_silenced", label: { en: "Being Silenced", zh: "被消音" } },
     ],
     answer: "avoiding_audience",
     explanation: {
@@ -2715,10 +2715,10 @@ const cases = [
       { key: { en: "Your 1:1s", zh: "你的 1:1" }, value: { en: "Still happening", zh: "照常" }, status: "normal" },
     ],
     choices: [
-      { id: "planning_layoffs", label: { en: "Planning Layoffs", zh: "在策划裁员" } },
       { id: "interview_slots", label: { en: "Holding Interview & Focus Slots", zh: "占住面试与专注时段" } },
       { id: "job_hunting", label: { en: "Manager Job-Hunting", zh: "老板在找工作" } },
       { id: "burnout_leave", label: { en: "Burnout Leave", zh: "过劳休假" } },
+      { id: "planning_layoffs", label: { en: "Planning Layoffs", zh: "在策划裁员" } },
     ],
     answer: "interview_slots",
     explanation: {
@@ -2808,10 +2808,10 @@ const cases = [
       { key: { en: "Pet Project", zh: "Pet Project" }, value: { en: "'Coming soon'", zh: "“敬请期待”" }, status: "unknown" },
     ],
     choices: [
-      { id: "mass_chaos", label: { en: "Mass Chaos", zh: "全面混乱" } },
       { id: "vp_honeymoon", label: { en: "New VP Honeymoon", zh: "新 VP 蜜月期" } },
       { id: "email_breach", label: { en: "Email Breach", zh: "邮件被入侵" } },
       { id: "layoff", label: { en: "Layoff Announcement", zh: "裁员公告" } },
+      { id: "mass_chaos", label: { en: "Mass Chaos", zh: "全面混乱" } },
     ],
     answer: "vp_honeymoon",
     explanation: {
@@ -2842,8 +2842,8 @@ const cases = [
     choices: [
       { id: "team_being_cut", label: { en: "Team Being Cut", zh: "团队要被砍" } },
       { id: "hiring_freeze", label: { en: "Hiring / Budget Freeze", zh: "招聘 / 预算冻结" } },
-      { id: "role_was_fake", label: { en: "Role Was Never Real", zh: "岗位本就是假的" } },
       { id: "manager_quit", label: { en: "Manager Quit", zh: "manager 跑了" } },
+      { id: "role_was_fake", label: { en: "Role Was Never Real", zh: "岗位本就是假的" } },
     ],
     answer: "hiring_freeze",
     explanation: {
@@ -2875,7 +2875,7 @@ const cases = [
       { id: "promotion", label: { en: "Big Promotion", zh: "重磅升职" } },
       { id: "parachute", label: { en: "Golden Parachute", zh: "金色降落伞" } },
       { id: "strategic", label: { en: "Truly Strategic Role", zh: "真的战略要职" } },
-      { id: "none", label: { en: "Impossible to Tell", zh: "根本判断不了" } },
+      { id: "none", label: { en: "Recruited by Aliens for an Interstellar Special Project", zh: "被外星人请去做星际特别项目了" } },
     ],
     answer: "none",
     actualCause: { en: "Glory or the Departure Lounge — Unknowable", zh: "是重用还是离场休息室，无从得知" },
@@ -2939,8 +2939,8 @@ const cases = [
     choices: [
       { id: "peer_groomed", label: { en: "Peer Being Groomed", zh: "同事在被培养上位" } },
       { id: "interim_coverage", label: { en: "Interim Coverage During Leave", zh: "休假期间临时代管" } },
-      { id: "youre_sidelined", label: { en: "You're Being Sidelined", zh: "你被边缘化了" } },
       { id: "peer_promoted", label: { en: "Peer Got Promoted", zh: "同事升职了" } },
+      { id: "youre_sidelined", label: { en: "You're Being Sidelined", zh: "你被边缘化了" } },
     ],
     answer: "interim_coverage",
     explanation: {
@@ -2971,8 +2971,8 @@ const cases = [
     choices: [
       { id: "promo_path", label: { en: "Secret Promotion Path", zh: "隐藏的升职路径" } },
       { id: "glory_no_pay", label: { en: "Glory Work With No Comp", zh: "只有光环没有报酬的活" } },
-      { id: "set_up_to_fail", label: { en: "Being Set Up to Fail", zh: "被设局背锅" } },
       { id: "demotion", label: { en: "Demotion", zh: "降级" } },
+      { id: "set_up_to_fail", label: { en: "Being Set Up to Fail", zh: "被设局背锅" } },
     ],
     answer: "glory_no_pay",
     explanation: {
@@ -3001,10 +3001,10 @@ const cases = [
       { key: { en: "Calibration", zh: "校准" }, value: { en: "Company-wide deflation", zh: "全公司压分" }, status: "normal" },
     ],
     choices: [
-      { id: "youre_failing", label: { en: "You're Failing", zh: "你不行了" } },
       { id: "rating_is_fine", label: { en: "'Meets' Is Actually Fine", zh: "“达标”其实没问题" } },
       { id: "managed_out", label: { en: "Being Managed Out", zh: "在被劝退" } },
       { id: "no_bonus", label: { en: "No Bonus", zh: "没奖金" } },
+      { id: "youre_failing", label: { en: "You're Failing", zh: "你不行了" } },
     ],
     answer: "rating_is_fine",
     explanation: {
@@ -3033,10 +3033,10 @@ const cases = [
       { key: { en: "Account", zh: "账号" }, value: { en: "Active", zh: "在职" }, status: "normal" },
     ],
     choices: [
-      { id: "secretly_fired", label: { en: "Secretly Fired", zh: "被偷偷开了" } },
       { id: "vacation_guilt", label: { en: "Can't Stop Working on Vacation", zh: "这人度假也放不下工作" } },
       { id: "account_hacked", label: { en: "Account Hacked", zh: "账号被黑" } },
       { id: "quitting", label: { en: "Quitting", zh: "要离职" } },
+      { id: "secretly_fired", label: { en: "Secretly Fired", zh: "被偷偷开了" } },
     ],
     answer: "vacation_guilt",
     explanation: {
@@ -3161,10 +3161,10 @@ const cases = [
       { key: { en: "Market", zh: "市场" }, value: { en: "'Everyone's getting pinged'", zh: "“人人都被私信”" }, status: "normal" },
     ],
     choices: [
-      { id: "mass_exodus", label: { en: "Mass Exodus", zh: "集体出逃" } },
       { id: "market_noise", label: { en: "Normal Recruiter Market Noise", zh: "正常的猎头市场噪音" } },
       { id: "team_poached", label: { en: "Team Being Poached", zh: "团队被挖角" } },
       { id: "layoff_rumor", label: { en: "Layoff Rumor", zh: "裁员传闻" } },
+      { id: "mass_exodus", label: { en: "Mass Exodus", zh: "集体出逃" } },
     ],
     answer: "market_noise",
     explanation: {
@@ -3196,7 +3196,7 @@ const cases = [
       { id: "definitely_layoffs", label: { en: "Definitely Layoffs", zh: "肯定是裁员" } },
       { id: "project_cuts", label: { en: "Project Cuts Only", zh: "只砍项目" } },
       { id: "normal_planning", label: { en: "Just Normal Planning", zh: "只是正常规划" } },
-      { id: "none", label: { en: "Too Vague to Decode", zh: "太含糊，解不了" } },
+      { id: "none", label: { en: "The Email Sent Itself Back From the Future", zh: "这封邮件是从未来自己发回来的" } },
     ],
     answer: "none",
     actualCause: { en: "Project Cuts or People Cuts — Too Vague", zh: "可能砍项目，也可能砍人，太含糊" },
@@ -3325,7 +3325,7 @@ const cases = [
       { id: "genuine_soon", label: { en: "Genuinely Almost There", zh: "真的快了" } },
       { id: "soft_no", label: { en: "A Polite Forever-No", zh: "礼貌的永远拒绝" } },
       { id: "manager_powerless", label: { en: "Manager Has No Pull", zh: "manager 根本没话语权" } },
-      { id: "none", label: { en: "Impossible to Tell", zh: "根本判断不了" } },
+      { id: "none", label: { en: "The Promo Packet Was Swallowed by a Black Hole", zh: "升职材料被一个黑洞吞了" } },
     ],
     answer: "none",
     actualCause: { en: "Sincere Plan or Soft No — Unknowable", zh: "是真心计划还是软性拒绝，无从得知" },
@@ -3357,8 +3357,8 @@ const cases = [
     choices: [
       { id: "people_hate_you", label: { en: "People Are Dodging You", zh: "大家在躲你" } },
       { id: "ownership_gap", label: { en: "Genuine Ownership Gap", zh: "真正的归属空白" } },
-      { id: "sabotage", label: { en: "Deliberate Sabotage", zh: "故意使绊子" } },
       { id: "your_fault", label: { en: "You Filed It Wrong", zh: "你发错了地方" } },
+      { id: "sabotage", label: { en: "Deliberate Sabotage", zh: "故意使绊子" } },
     ],
     answer: "ownership_gap",
     explanation: {
@@ -3387,10 +3387,10 @@ const cases = [
       { key: { en: "Decision Made", zh: "已定的事" }, value: { en: "None yet", zh: "暂无" }, status: "unknown" },
     ],
     choices: [
-      { id: "youre_fired", label: { en: "Your Team Is Done", zh: "你们组要没了" } },
       { id: "land_grab", label: { en: "Planning-Season Scope Land Grab", zh: "规划季的抢地盘" } },
       { id: "already_lost", label: { en: "You Already Lost It", zh: "你已经丢了" } },
       { id: "harmless_typo", label: { en: "Harmless Slide Typo", zh: "无害的 PPT 笔误" } },
+      { id: "youre_fired", label: { en: "Your Team Is Done", zh: "你们组要没了" } },
     ],
     answer: "land_grab",
     explanation: {
@@ -3421,8 +3421,8 @@ const cases = [
     choices: [
       { id: "youre_key", label: { en: "You're a Key Stakeholder", zh: "你是关键干系人" } },
       { id: "diffusion", label: { en: "Responsibility Diffusion, FYI Only", zh: "责任稀释，只是知会" } },
-      { id: "being_watched", label: { en: "Being Watched", zh: "被盯上了" } },
       { id: "promotion_signal", label: { en: "A Promotion Signal", zh: "升职信号" } },
+      { id: "being_watched", label: { en: "Being Watched", zh: "被盯上了" } },
     ],
     answer: "diffusion",
     explanation: {
@@ -3451,10 +3451,10 @@ const cases = [
       { key: { en: "Roadmap", zh: "路线图" }, value: { en: "Still active", zh: "仍在推进" }, status: "normal" },
     ],
     choices: [
-      { id: "project_killed", label: { en: "Project Killed", zh: "项目被砍" } },
       { id: "folded_into_umbrella", label: { en: "Folded Into a Bigger Umbrella OKR", zh: "被并进了更大的总 OKR" } },
       { id: "forgotten", label: { en: "Forgotten / Lost", zh: "被遗忘了" } },
       { id: "defunded", label: { en: "Quietly Defunded", zh: "悄悄撤资" } },
+      { id: "project_killed", label: { en: "Project Killed", zh: "项目被砍" } },
     ],
     answer: "folded_into_umbrella",
     explanation: {
@@ -3483,10 +3483,10 @@ const cases = [
       { key: { en: "Deadlines", zh: "截止日期" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
     ],
     choices: [
-      { id: "huge_strategy_shift", label: { en: "Huge Strategy Shift", zh: "重大战略转向" } },
       { id: "rewording_exercise", label: { en: "A Rewording Exercise", zh: "一次改措辞运动" } },
       { id: "work_cancelled", label: { en: "Your Work Is Cancelled", zh: "你的活被取消" } },
       { id: "layoff_prep", label: { en: "Layoff Prep", zh: "裁员前兆" } },
+      { id: "huge_strategy_shift", label: { en: "Huge Strategy Shift", zh: "重大战略转向" } },
     ],
     answer: "rewording_exercise",
     explanation: {
@@ -3518,7 +3518,7 @@ const cases = [
       { id: "just_sequencing", label: { en: "Just Resource Sequencing", zh: "只是资源排序" } },
       { id: "slow_death", label: { en: "The Start of a Slow Death", zh: "慢性死亡的开始" } },
       { id: "p2_is_fine", label: { en: "P2 Is Totally Fine", zh: "P2 完全没问题" } },
-      { id: "none", label: { en: "Can't Tell Yet", zh: "暂时判断不了" } },
+      { id: "none", label: { en: "Priority Decided by a Hamster on a Wheel", zh: "优先级是由一只跑轮上的仓鼠随机决定的" } },
     ],
     answer: "none",
     actualCause: { en: "Healthy Sequencing or Slow Defunding — Too Early", zh: "是正常排序还是慢性撤资，太早判断" },
@@ -3582,8 +3582,8 @@ const cases = [
     choices: [
       { id: "excluded", label: { en: "Being Excluded", zh: "被排挤了" } },
       { id: "channel_archived", label: { en: "Channel Archived in a Cleanup", zh: "频道清理时被归档" } },
-      { id: "secret_meeting", label: { en: "A Secret Channel Without You", zh: "他们有个不带你的秘密频道" } },
       { id: "demotion", label: { en: "Demotion", zh: "降级" } },
+      { id: "secret_meeting", label: { en: "A Secret Channel Without You", zh: "他们有个不带你的秘密频道" } },
     ],
     answer: "channel_archived",
     explanation: {
@@ -3612,10 +3612,10 @@ const cases = [
       { key: { en: "Blame Signals", zh: "甩锅信号" }, value: { en: "None", zh: "无" }, status: "normal" },
     ],
     choices: [
-      { id: "blame_setup", label: { en: "Being Set Up to Take Blame", zh: "被安排背锅" } },
       { id: "owner_rotation", label: { en: "Routine Owner Rotation", zh: "例行 owner 轮换" } },
       { id: "pushed_out", label: { en: "Being Pushed Off the Project", zh: "被挤出项目" } },
       { id: "demotion", label: { en: "Demotion", zh: "降级" } },
+      { id: "blame_setup", label: { en: "Being Set Up to Take Blame", zh: "被安排背锅" } },
     ],
     answer: "owner_rotation",
     explanation: {
@@ -3647,7 +3647,7 @@ const cases = [
       { id: "youre_devalued", label: { en: "You're Being Devalued", zh: "你在被贬值" } },
       { id: "price_offset", label: { en: "Fewer Shares, Same Dollars", zh: "股数少了，美元一样" } },
       { id: "real_cut", label: { en: "A Real Comp Cut", zh: "真的降薪" } },
-      { id: "none", label: { en: "Can't Tell Without the Dollar Math", zh: "你数学不好算不出来" } },
+      { id: "none", label: { en: "The Shares Were Hidden by a Cabal of Trading Squirrels", zh: "股票被一群会炒股的松鼠藏起来了" } },
     ],
     answer: "none",
     actualCause: { en: "Price-Offset or Real Cut — Depends on Undisclosed Math", zh: "是股价对冲还是真降薪，取决于没披露的数字" },
@@ -3677,10 +3677,10 @@ const cases = [
       { key: { en: "Other Teams", zh: "其他团队" }, value: { en: "Also postponed", zh: "也暂缓了" }, status: "normal" },
     ],
     choices: [
-      { id: "team_dying", label: { en: "The Team Is Dying", zh: "团队要黄了" } },
       { id: "quarter_end_savings", label: { en: "Quarter-End Cost Saving", zh: "财季末省钱" } },
       { id: "punishment", label: { en: "Punishment for the Team", zh: "对团队的惩罚" } },
       { id: "layoff_signal", label: { en: "Layoff Signal", zh: "裁员信号" } },
+      { id: "team_dying", label: { en: "The Team Is Dying", zh: "团队要黄了" } },
     ],
     answer: "quarter_end_savings",
     explanation: {
@@ -3743,8 +3743,8 @@ const cases = [
     choices: [
       { id: "rumor_false", label: { en: "Rumor Is False, They're Staying", zh: "传闻是假的，他们要留" } },
       { id: "planned_handover", label: { en: "A Planned, Known Handover", zh: "有计划、本人知情的交接" } },
-      { id: "in_denial", label: { en: "They Don't Know They're Out", zh: "他们不知道自己要走" } },
       { id: "doing_nothing", label: { en: "Just Killing Time", zh: "在混日子" } },
+      { id: "in_denial", label: { en: "They Don't Know They're Out", zh: "他们不知道自己要走" } },
     ],
     answer: "planned_handover",
     explanation: {
@@ -3775,8 +3775,8 @@ const cases = [
     choices: [
       { id: "mass_resignation", label: { en: "Mass Resignation", zh: "集体辞职" } },
       { id: "company_wellness_day", label: { en: "Company-Wide Wellness Day", zh: "公司级身心健康日" } },
-      { id: "secret_layoff", label: { en: "Secret Layoff Day", zh: "秘密裁员日" } },
       { id: "team_strike", label: { en: "Team Walkout", zh: "团队罢工" } },
+      { id: "secret_layoff", label: { en: "Secret Layoff Day", zh: "秘密裁员日" } },
     ],
     answer: "company_wellness_day",
     explanation: {
@@ -3808,7 +3808,7 @@ const cases = [
       { id: "definitely_fired", label: { en: "Definitely Bad News", zh: "肯定是坏消息" } },
       { id: "could_be_routine", label: { en: "Could Be Routine HR Logistics", zh: "可能只是 HR 例行事务" } },
       { id: "definitely_fine", label: { en: "Definitely Nothing", zh: "肯定没事" } },
-      { id: "none", label: { en: "Cannot Tell — Genuinely", zh: "真的判断不了" } },
+      { id: "none", label: { en: "The Meeting Is Actually a Séance", zh: "这场会议其实是一次降神会" } },
     ],
     answer: "none",
     actualCause: { en: "An Ominous Format — But Outcome Unknowable", zh: "一个不祥的格式，但结果无从得知" },
@@ -3841,7 +3841,7 @@ const cases = [
       { id: "genuine_warmth", label: { en: "Genuine Warmth", zh: "良心发现" } },
       { id: "layoffs_next_week", label: { en: "Layoffs Next Week", zh: "下周裁员" } },
       { id: "nothing_at_all", label: { en: "Means Nothing At All", zh: "什么都不意味着" } },
-      { id: "none", label: { en: "Undecodable By Design", zh: "设计上就无法解码" } },
+      { id: "none", label: { en: "A Love Letter From the Newly Sentient Company AI", zh: "这是公司 AI 觉醒后写的情书" } },
     ],
     answer: "none",
     actualCause: { en: "Maximum Corporate Ambiguity", zh: "企业含糊的最高形态" },
