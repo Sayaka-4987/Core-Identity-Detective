@@ -87,13 +87,21 @@
         color: var(--accent);
         text-shadow: 0 0 26px rgba(98, 176, 255, 0.32);
       }
+      .lang-toggle {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+        font-size: clamp(11px, 2.6vw, 14px);
+        flex: 0 1 auto;
+      }
       .lang-toggle button {
         background: transparent;
         border: 1px solid transparent;
         color: var(--muted);
         cursor: pointer;
-        font-size: 14px;
-        padding: 5px 9px;
+        font-size: 1em;
+        padding: 0.34em 0.58em;
         border-radius: 999px;
         transition: all 150ms ease;
       }
@@ -110,6 +118,7 @@
       }
       .lang-toggle span {
         color: rgba(168, 187, 215, 0.42);
+        font-size: 1em;
       }
 
       .card {
