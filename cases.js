@@ -142,7 +142,7 @@ const cases = [
     answer: "transfer",
     explanation: {
       en: "Manager and cost center changed while the title stayed the same and GAL is still visible. That is the signature of a lateral move, not a departure.",
-      zh: "manager 和 Cost Center 变了，但 Title 没变、地址簿还可见。这是平级换组的样子，不是离职。",
+      zh: "manager 和 Cost Center 变了，但 Title 没变、地址簿还可见。这是换组的样子，不是离职。",
     },
     resultFlavor: {
       correct: {
@@ -480,11 +480,11 @@ const cases = [
     resultFlavor: {
       correct: {
         en: "Correct. The disappearance was a punishment, not a departure. They will be back, humbled.",
-        zh: "正确。这次消失是惩罚，不是离职。TA 会回来的，而且变成了网络安全专家。",
+        zh: "正确。这只是安全合规教育。TA 会回来的，而且变成了网络安全专家。",
       },
       wrong: {
         en: "It was never HR. It was one curious click on a link titled 'URGENT: Your Payslip'.",
-        zh: "这从来不是 HR 的事。只是有人好奇地点了一封标题为“紧急：关于你的工资条”的邮件。",
+        zh: "这从来不是 HR 的事。只是有人好奇地点了一封标题为“【紧急】关于你的工资条”的邮件。",
       },
     },
   },
@@ -1568,7 +1568,7 @@ const cases = [
     answer: "secondment",
     explanation: {
       en: "A six-month redirect, a temporary cost center move, and a set return date. They were lent to another team, not lost. The return date is the tell.",
-      zh: "六个月的转接、临时的 cost center 调动、还有一个已设定的返回日期。TA 是被借调到另一个团队，不是走了。返回日期就是线索。",
+      zh: "六个月的转接、临时的 cost center 调动、还有一个已设定的返回日期。TA 是被借到另一个团队了，不是走了。返回日期就是线索。",
     },
     resultFlavor: {
       correct: { en: "Correct. A return date means they are coming back.", zh: "正确。有返回日期，就说明 TA 会回来。" },
@@ -2711,7 +2711,7 @@ const cases = [
       { key: { en: "Hold Blocks", zh: "HOLD 时段" }, value: { en: "Many", zh: "一大堆" }, status: "warning" },
       { key: { en: "Titles", zh: "标题" }, value: { en: "Generic 'HOLD'", zh: "统一“HOLD”" }, status: "unknown" },
       { key: { en: "Recruiting Tool", zh: "招聘系统" }, value: { en: "Active", zh: "活跃" }, status: "normal" },
-      { key: { en: "Season", zh: "时节" }, value: { en: "Hiring ramp", zh: "加招期" }, status: "normal" },
+      { key: { en: "Season", zh: "时节" }, value: { en: "Hiring ramp", zh: "招聘期" }, status: "normal" },
       { key: { en: "Your 1:1s", zh: "你的 1:1" }, value: { en: "Still happening", zh: "照常" }, status: "normal" },
     ],
     choices: [
