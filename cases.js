@@ -271,7 +271,7 @@ const cases = [
     answer: "reorg",
     explanation: {
       en: "Both the manager and skip-level changed at once while title, groups, and GAL stayed put. When the chain shifts above you but your own record is intact, that is reorg weather.",
-      zh: "manager 和 skip manager 同时变了，而 Title、Groups、地址簿都没动。当你头顶的汇报链变了、但你自己完好无损，这只是一次重组天气。",
+      zh: "manager 和 skip manager 同时变了，而 Title、Groups、地址簿都没动。当你头顶的汇报链变了、但你自己完好无损，这只是一次重组。",
     },
     resultFlavor: {
       correct: {
@@ -1465,7 +1465,7 @@ const cases = [
     ],
     choices: [
       { id: "replaced", label: { en: "Quietly Replaced", zh: "被悄悄换掉了" } },
-      { id: "mat_cover", label: { en: "Someone Covering Leave", zh: "有人在顶替休假" } },
+      { id: "mat_cover", label: { en: "Someone Covering Leave", zh: "有人在休产假" } },
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
     ],
@@ -1764,7 +1764,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. 'Acting' is a hat, not a raise.", zh: "正确。“代理”是顶帽子，不是涨薪。" },
-      wrong: { en: "You promoted someone who is just covering until the boss is back.", zh: "你给一个只是临时顶到老板生完孩子回来的人发了升职。" },
+      wrong: { en: "You promoted someone who is just covering until the boss is back.", zh: "你给一个只是临时顶到老板生完孩子回来的人发了升职恭喜。" },
     },
   },
   {

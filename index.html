@@ -83,6 +83,8 @@
       .brand {
         font-family: var(--mono);
         font-weight: 700;
+        font-size: clamp(28px, 4.8vw, 42px);
+        line-height: 1.1;
         letter-spacing: 0.04em;
         color: var(--accent);
         text-shadow: 0 0 26px rgba(98, 176, 255, 0.32);
@@ -466,6 +468,9 @@
         }
         header.bar {
           margin-bottom: 14px;
+        }
+        .brand {
+          font-size: clamp(24px, 7vw, 32px);
         }
         .telemetry {
           font-size: 13px;
