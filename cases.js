@@ -276,7 +276,7 @@ const cases = [
     resultFlavor: {
       correct: {
         en: "You read the weather, not the panic. The org moved; the person did not.",
-        zh: "你读的是天气，不是恐慌。动的是组织，不是人。",
+        zh: "你解读的是天气，不是恐慌。动的是组织，不是人。",
       },
       wrong: {
         en: "You filed an HR incident over an org-chart weather change.",
@@ -603,7 +603,7 @@ const cases = [
       },
       wrong: {
         en: "You read a flat title as a promotion. The org chart had no floor under it.",
-        zh: "你把一个扁平 Title 读成了升职，但是那张组织架构图底下什么也没有。",
+        zh: "你把一个扁平 Title 解读成了升职，但是那张组织架构图底下什么也没有。",
       },
     },
   },
@@ -786,7 +786,7 @@ const cases = [
       },
       wrong: {
         en: "You read a 503 as a layoff. The only thing that got let go was the image CDN.",
-        zh: "你把一个 HTTP 503 读成了裁员。唯一被“优化”掉的是图片 CDN。",
+        zh: "你把一个 HTTP 503 解读成了裁员。唯一被“优化”掉的是图片 CDN。",
       },
     },
   },
@@ -1135,7 +1135,7 @@ const cases = [
       },
       wrong: {
         en: "You read a null pointer as a career crisis. The only thing undefined was the data.",
-        zh: "你把一个空指针读成了职业危机。唯一 undefined 的是那条数据。",
+        zh: "你把一个空指针解读成了职业危机。唯一 undefined 的是那条数据。",
       },
     },
   },
@@ -1316,7 +1316,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. Tilt your head, not your conclusions.", zh: "正确。该歪的是你的头，不是你的结论。" },
-      wrong: { en: "You read a rotated JPEG as a career event. Turn the photo, not the org chart.", zh: "你把一张旋转的 JPEG 读成了职业事件。该转的是照片，不是组织架构。" },
+      wrong: { en: "You read a rotated JPEG as a career event. Turn the photo, not the org chart.", zh: "你把一张旋转的 JPEG 解读成了职业事件。该转的是照片，不是组织架构。" },
     },
   },
   {
@@ -1444,7 +1444,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The only thing at risk is the icebreaker budget.", zh: "正确。唯一有风险的是 icebreaker 的预算。" },
-      wrong: { en: "You read a team-building trip as a bloodbath. They are doing kayaking.", zh: "你把一次团建读成了大屠杀，其实人家在划皮划艇。" },
+      wrong: { en: "You read a team-building trip as a bloodbath. They are doing kayaking.", zh: "你把一次团建解读成了大屠杀，其实人家在划皮划艇。" },
     },
   },
   {
@@ -1508,7 +1508,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The status lied. The human is fine.", zh: "正确。状态在撒谎，TA 人好得很。" },
-      wrong: { en: "You read a stuck flag as a resignation. They were eating lunch the whole time.", zh: "你把一个卡住的标记读成了辞职。人家这九天一直在坚持吃午饭。" },
+      wrong: { en: "You read a stuck flag as a resignation. They were eating lunch the whole time.", zh: "你把一个卡住的标记解读成了辞职。人家这九天一直在坚持吃午饭。" },
     },
   },
   {
@@ -1668,7 +1668,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct, grimly. The holding code is a waiting room.", zh: "正确，但沉重。" },
-      wrong: { en: "You called a WARN notice an offsite. There is no hotel at the end of this.", zh: "你把一张裁员预告读成了团建，但是这条路的尽头没有酒店。" },
+      wrong: { en: "You called a WARN notice an offsite. There is no hotel at the end of this.", zh: "你把一张裁员预告解读成了团建，但是这条路的尽头没有酒店。" },
     },
   },
   {
@@ -2020,7 +2020,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The req froze, not the job. PERM paperwork moves slowly.", zh: "正确。冻的是招聘需求，不是岗位。PERM 文件走得慢。" },
-      wrong: { en: "You read a frozen req as a layoff signal. Someone's just doing green card paperwork.", zh: "你把一个冻结的招聘需求读成了裁员信号。人家只是在走绿卡手续。" },
+      wrong: { en: "You read a frozen req as a layoff signal. Someone's just doing green card paperwork.", zh: "你把一个冻结的招聘需求解读成了裁员信号。人家只是在走绿卡手续。" },
     },
   },
   {
@@ -2086,7 +2086,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. Normal is not the same as fine. Go check on them.", zh: "正确，“正常”不等于“没事”，赶紧去看看 TA 吧。" },
-      wrong: { en: "You read 'all fields normal' as 'all is well'. Maybe knock on the door first.", zh: "你把“所有字段正常”读成了“一切都好”，也许先去敲敲门。" },
+      wrong: { en: "You read 'all fields normal' as 'all is well'. Maybe knock on the door first.", zh: "你把“所有字段正常”解读成了“一切都好”，也许先去敲敲门。" },
     },
   },
   {
@@ -2150,7 +2150,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The robot revoked it, not the boss. Re-request and move on.", zh: "正确，是机器人收的，不是老板，重新申请就完事了。" },
-      wrong: { en: "You read a compliance sweep as a termination. Hand them the access-request form.", zh: "你把一次合规扫描读成了解雇，快把权限申请表递给 TA 吧。" },
+      wrong: { en: "You read a compliance sweep as a termination. Hand them the access-request form.", zh: "你把一次合规扫描解读成了解雇，快把权限申请表递给 TA 吧。" },
     },
   },
   {
@@ -2214,7 +2214,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. Security slammed the door before the thief got in.", zh: "正确，安全团队在小偷进门前把门锁上了。" },
-      wrong: { en: "You read an emergency lockout as a firing. They just need a new password.", zh: "你把一次紧急锁定读成了开除，人家只是得换个新密码。" },
+      wrong: { en: "You read an emergency lockout as a firing. They just need a new password.", zh: "你把一次紧急锁定解读成了开除，人家只是得换个新密码。" },
     },
   },
   {
@@ -2246,7 +2246,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. Click 'Update Now', not 'Goodbye'.", zh: "正确，点的是“立即更新”，不是“再见”。" },
-      wrong: { en: "You read a missing patch as a pink slip. Reboot solves this one.", zh: "你把一个补丁读成了解雇信，这事真的是重启就能解决。" },
+      wrong: { en: "You read a missing patch as a pink slip. Reboot solves this one.", zh: "你把一个补丁解读成了解雇信，这事真的是重启就能解决。" },
     },
   },
   {
@@ -2310,7 +2310,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. They are home for the New Year. Send red packets, not condolences.", zh: "正确，人家回家过年了，该发的是红包，不是慰问。" },
-      wrong: { en: "You read a national holiday as a layoff. They are setting off fireworks, not resumes.", zh: "你把一个全国性节日读成了裁员，人家在放烟花，不是在投简历。" },
+      wrong: { en: "You read a national holiday as a layoff. They are setting off fireworks, not resumes.", zh: "你把一个全国性节日解读成了裁员，人家在放烟花，不是在投简历。" },
     },
   },
   {
@@ -2342,7 +2342,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. They are at the beach, not the exit. See you in September.", zh: "正确，人家在海边，不在离职通道，九月见。" },
-      wrong: { en: "You read August in Europe as a purge. It is just sunscreen season.", zh: "你把欧洲的八月读成了大清洗，那只是防晒的季节。" },
+      wrong: { en: "You read August in Europe as a purge. It is just sunscreen season.", zh: "你把欧洲的八月解读成了大清洗，那只是防晒的季节。" },
     },
   },
   {
@@ -2406,7 +2406,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. They are fasting, not fading. Iftar is after sunset.", zh: "正确，人家在斋戒，不是在消失，开饭得等日落。" },
-      wrong: { en: "You read a religious observance as a layoff. Wish them Ramadan Mubarak instead.", zh: "你把一项宗教习俗读成了裁员，不如祝他们斋月安康。" },
+      wrong: { en: "You read a religious observance as a layoff. Wish them Ramadan Mubarak instead.", zh: "你把一项宗教习俗解读成了裁员，不如祝他们斋月安康。" },
     },
   },
   {
@@ -2438,7 +2438,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. They are lighting diyas, not packing boxes. Happy Diwali.", zh: "正确，人家在点油灯，不是在收拾箱子，排灯节快乐。" },
-      wrong: { en: "You read a festival of lights as a site shutdown. Send sweets, not severance.", zh: "你把灯火节读成了站点关停，该送的是甜点，不是遣散费。" },
+      wrong: { en: "You read a festival of lights as a site shutdown. Send sweets, not severance.", zh: "你把灯火节解读成了站点关停，该送的是甜点，不是遣散费。" },
     },
   },
   {
@@ -2470,7 +2470,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The cert lapsed, not the job. Renew and resume.", zh: "正确，过期的是证书，不是工作，续期就能继续。" },
-      wrong: { en: "You read an expired cert as a firing. Their badge still opens the door, remember?", zh: "你把一张过期证书读成了开除，可 TA 的门卡还能开门，记得吗？" },
+      wrong: { en: "You read an expired cert as a firing. Their badge still opens the door, remember?", zh: "你把一张过期证书解读成了开除，可 TA 的门卡还能开门，记得吗？" },
     },
   },
   {
@@ -2727,7 +2727,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The holds are for hiring, not firing.", zh: "正确。占的是招人的坑，不是裁人的坑。" },
-      wrong: { en: "You read interview holds as a layoff calendar.", zh: "你把面试占位读成了裁员日历。" },
+      wrong: { en: "You read interview holds as a layoff calendar.", zh: "你把面试占位解读成了裁员日历。" },
     },
   },
   {
@@ -2852,7 +2852,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. They froze the req, not the team.", zh: "正确。冻的是招聘需求，不是团队。" },
-      wrong: { en: "You read a hiring freeze as a team funeral.", zh: "你把招聘冻结读成了团队葬礼。" },
+      wrong: { en: "You read a hiring freeze as a team funeral.", zh: "你把招聘冻结解读成了团队葬礼。" },
     },
   },
   {
@@ -2949,7 +2949,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. It's coverage logistics, not a coronation.", zh: "正确。那是代管安排，不是加冕。" },
-      wrong: { en: "You read a leave-coverage 1:1 as your own sidelining.", zh: "你把一次休假代管的 1:1 读成了自己被边缘化。" },
+      wrong: { en: "You read a leave-coverage 1:1 as your own sidelining.", zh: "你把一次休假代管的 1:1 解读成了自己被边缘化。" },
     },
   },
   {
@@ -3109,7 +3109,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The list got tidied, not your career.", zh: "正确。被整理的是列表，不是你的职业生涯。" },
-      wrong: { en: "You read a mailing-list cleanup as a public demotion.", zh: "你把一次邮件组清理读成了一场公开降级。" },
+      wrong: { en: "You read a mailing-list cleanup as a public demotion.", zh: "你把一次邮件组清理解读成了一场公开降级。" },
     },
   },
   {
@@ -3238,7 +3238,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. It's a documentation gap, not a coronation.", zh: "正确。这是文档缺失，不是加冕。" },
-      wrong: { en: "You read 'no onboarding' as 'fast track'.", zh: "你把“没有 onboarding”读成了“快速通道”。" },
+      wrong: { en: "You read 'no onboarding' as 'fast track'.", zh: "你把“没有 onboarding”解读成了“快速通道”。" },
     },
   },
   {
@@ -3367,7 +3367,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. It fell in a seam, not into a vendetta.", zh: "正确。它掉进了缝里，不是掉进了恩怨里。" },
-      wrong: { en: "You read an ownership gap as a personal snub.", zh: "你把一个归属空白读成了针对你的冷落。" },
+      wrong: { en: "You read an ownership gap as a personal snub.", zh: "你把一个归属空白解读成了针对你的冷落。" },
     },
   },
   {
@@ -3431,7 +3431,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. Big channel, small role. Mute and move on.", zh: "正确。大频道，小角色，静音继续。" },
-      wrong: { en: "You read a CYA add as a seat at the table.", zh: "你把一次“免责拉群”读成了核心席位。" },
+      wrong: { en: "You read a CYA add as a seat at the table.", zh: "你把一次“免责拉群”解读成了核心席位。" },
     },
   },
   {
@@ -3560,7 +3560,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. They locked the doc, not your career.", zh: "正确。锁的是文档，不是你的职业生涯。" },
-      wrong: { en: "You read a doc lock as a vote of no confidence.", zh: "你把一次文档锁定读成了陶片放逐。" },
+      wrong: { en: "You read a doc lock as a vote of no confidence.", zh: "你把一次文档锁定解读成了陶片放逐。" },
     },
   },
   {
@@ -3592,7 +3592,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. Archived, not exiled.", zh: "正确。是归档，不是流放。" },
-      wrong: { en: "You read a channel cleanup as a quiet shunning.", zh: "你把一次频道清理读成了无声的排挤。" },
+      wrong: { en: "You read a channel cleanup as a quiet shunning.", zh: "你把一次频道清理解读成了无声的排挤。" },
     },
   },
   {
@@ -3624,7 +3624,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. You rotated off, you weren't pushed off.", zh: "正确。你是轮岗下场，不是被挤下场。" },
-      wrong: { en: "You read a maintenance rotation as a blame trap.", zh: "你把一次维护轮换读成了背锅陷阱。" },
+      wrong: { en: "You read a maintenance rotation as a blame trap.", zh: "你把一次维护轮换解读成了背锅陷阱。" },
     },
   },
   {
@@ -3689,7 +3689,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The budget got tight, not your team's future.", zh: "正确。吃紧的是预算，不是你的未来。" },
-      wrong: { en: "You read a frozen travel budget as a death sentence.", zh: "你把冻结的差旅预算读成了死刑判决。" },
+      wrong: { en: "You read a frozen travel budget as a death sentence.", zh: "你把冻结的差旅预算解读成了死刑判决。" },
     },
   },
   {
@@ -3785,7 +3785,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. It's a holiday, not a walkout.", zh: "正确。是放假，不是罢工。" },
-      wrong: { en: "You read a wellness day as a mass resignation.", zh: "你把一个身心健康日读成了集体辞职。" },
+      wrong: { en: "You read a wellness day as a mass resignation.", zh: "你把一个身心健康日解读成了集体辞职。" },
     },
   },
   {

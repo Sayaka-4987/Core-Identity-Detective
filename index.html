@@ -716,7 +716,7 @@
           name: { en: "Actually A Layoff", zh: "这次真裁了" },
           desc: {
             en: "Call a layoff correctly when every signal really does point that way.",
-            zh: "当所有信号真的都指向裁员时，正确地说出来。",
+            zh: "当所有信号真的都指向裁员时，大声说出来。",
           },
           cond: (ctx) => solvedTag(ctx, "actually-a-layoff"),
         },
@@ -743,7 +743,7 @@
           name: { en: "Reading the Arrow", zh: "读懂那个按钮" },
           desc: {
             en: "Correctly identify a promotion or new title instead of a departure.",
-            zh: "把升职或头衔变化正确读成升职，而不是离职。",
+            zh: "把升职或头衔变化正确解读成升职，而不是离职。",
           },
           cond: (ctx) => solvedTag(ctx, "promotion") || solvedTag(ctx, "title-change"),
         },
@@ -751,8 +751,8 @@
           id: "gold-watch",
           name: { en: "Gold Watch", zh: "光荣退休" },
           desc: {
-            en: "Correctly read a retirement instead of a layoff.",
-            zh: "把退休正确读成退休，而不是裁员。",
+            en: "Correctly interpret a retirement instead of a layoff.",
+            zh: "把退休正确解读成退休，而不是裁员。",
           },
           cond: (ctx) =>
             ctx.byId["case-031"] &&
@@ -783,7 +783,7 @@
           name: { en: "Security Cleared", zh: "虚惊一场" },
           desc: {
             en: "Correctly read a security or compliance flag instead of a firing.",
-            zh: "把安全或合规标记正确读成规定，而不是开除。",
+            zh: "把安全或合规标记正确解读成规定，而不是开除。",
           },
           cond: (ctx) => solvedTag(ctx, "security"),
         },
@@ -792,9 +792,157 @@
           name: { en: "Happy Holidays", zh: "节日限定" },
           desc: {
             en: "Correctly read a cultural holiday instead of a disappearance.",
-            zh: "把跨文化节日正确读成放假，而不是消失。",
+            zh: "把跨文化节日正确解读成放假，而不是消失。",
           },
           cond: (ctx) => solvedTag(ctx, "cross-cultural"),
+        },
+        {
+          id: "politics-radar",
+          name: { en: "Politics Radar", zh: "政治嗅觉" },
+          desc: {
+            en: "Correctly solve any office-politics case.",
+            zh: "正确解读任意办公室政治案件。",
+          },
+          cond: (ctx) => solvedTag(ctx, "politics"),
+        },
+        {
+          id: "meeting-room-survivor",
+          name: { en: "Meeting Room Survivor", zh: "会议室幸存者" },
+          desc: {
+            en: "In one run, correctly solve at least one meeting case and one calendar case.",
+            zh: "同一局内，至少各正确解读一题 meeting 和 calendar。",
+          },
+          cond: (ctx) => solvedTag(ctx, "meeting") && solvedTag(ctx, "calendar"),
+        },
+        {
+          id: "back-to-office-era",
+          name: { en: "Back to Office Era", zh: "回办公室时代" },
+          desc: {
+            en: "Correctly identify the RTO mandate spike.",
+            zh: "正确识别 RTO 政策引发的刷卡暴增。",
+          },
+          cond: (ctx) => solvedTag(ctx, "rto"),
+        },
+        {
+          id: "budget-winter",
+          name: { en: "Budget Winter", zh: "预算之冬" },
+          desc: {
+            en: "Correctly solve any budget-related case.",
+            zh: "正确解读任意预算相关案件。",
+          },
+          cond: (ctx) => solvedTag(ctx, "budget"),
+        },
+        {
+          id: "okr-alchemist",
+          name: { en: "OKR Alchemist", zh: "OKR 炼金师" },
+          desc: {
+            en: "Correctly solve any OKR-related case.",
+            zh: "正确解读任意 OKR 相关案件。",
+          },
+          cond: (ctx) => solvedTag(ctx, "okr"),
+        },
+        {
+          id: "tooling-admin",
+          name: { en: "Tooling Admin", zh: "工具管理员" },
+          desc: {
+            en: "Correctly solve any tools-process case.",
+            zh: "正确解读任意 tools 流程类案件。",
+          },
+          cond: (ctx) => solvedTag(ctx, "tools"),
+        },
+        {
+          id: "cross-team-stitcher",
+          name: { en: "Cross-Team Stitcher", zh: "跨团队缝合怪" },
+          desc: {
+            en: "Correctly solve any cross-team ownership case.",
+            zh: "正确解读任意跨团队归属案件。",
+          },
+          cond: (ctx) => solvedTag(ctx, "cross-team"),
+        },
+        {
+          id: "performance-immunity",
+          name: { en: "Performance Immunity", zh: "绩效免疫" },
+          desc: {
+            en: "Keep calm and correctly solve 'Meets Expectations Panic'.",
+            zh: "冷静解读“达到预期恐慌”这题。",
+          },
+          cond: (ctx) =>
+            ctx.byId["case-074"] &&
+            ctx.log.some((e) => e.caseId === "case-074" && e.isCorrect),
+        },
+        {
+          id: "handover-artist",
+          name: { en: "Handover Artist", zh: "交接艺术家" },
+          desc: {
+            en: "Correctly spot a planned transition instead of denial.",
+            zh: "正确识别体面交接，而不是脑补否认现实。",
+          },
+          cond: (ctx) => solvedTag(ctx, "transition"),
+        },
+        {
+          id: "ambiguity-practitioner",
+          name: { en: "Ambiguity Practitioner", zh: "含糊学大师" },
+          desc: {
+            en: "Correctly solve an ambiguous case with confidence <= 40.",
+            zh: "在信心 <= 40 时，正确解读一个糊弄学案件。",
+          },
+          cond: (ctx) =>
+            ctx.log.some(
+              (e) =>
+                e.isCorrect &&
+                e.confidence <= 40 &&
+                (ctx.byId[e.caseId].tags || []).includes("ambiguous"),
+            ),
+        },
+        {
+          id: "schrodinger-corp",
+          name: { en: "Corporate Schrodinger", zh: "企业版薛定谔" },
+          desc: {
+            en: "Correctly solve 2+ ambiguous cases in one run.",
+            zh: "同一局内正确解读 2 题及以上 ambiguous 案件。",
+          },
+          cond: (ctx) =>
+            ctx.log.filter(
+              (e) =>
+                e.isCorrect &&
+                (ctx.byId[e.caseId].tags || []).includes("ambiguous"),
+            ).length >= 2,
+        },
+        {
+          id: "meta-victim",
+          name: { en: "Meta Victim", zh: "元叙事受害者" },
+          desc: {
+            en: "Correctly solve 'The Missing Models'.",
+            zh: "正确解读“消失的模型”。",
+          },
+          cond: (ctx) =>
+            ctx.byId["case-067"] &&
+            ctx.log.some((e) => e.caseId === "case-067" && e.isCorrect),
+        },
+        {
+          id: "finale-reader",
+          name: { en: "Finale Reader", zh: "终章读心术" },
+          desc: {
+            en: "Correctly solve the finale case ('We're a Family').",
+            zh: "正确解读终章“我们是一家人”。",
+          },
+          cond: (ctx) =>
+            ctx.byId["case-100"] &&
+            ctx.log.some((e) => e.caseId === "case-100" && e.isCorrect),
+        },
+        {
+          id: "politics-degree",
+          name: { en: "Politics Degree", zh: "办公室政治学位" },
+          desc: {
+            en: "Correctly solve 5+ politics-tagged cases in one run.",
+            zh: "同一局内正确解读 5 题及以上 politics 标签案件。",
+          },
+          cond: (ctx) =>
+            ctx.log.filter(
+              (e) =>
+                e.isCorrect &&
+                (ctx.byId[e.caseId].tags || []).includes("politics"),
+            ).length >= 5,
         },
       ];
 
