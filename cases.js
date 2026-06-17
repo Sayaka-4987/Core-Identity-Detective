@@ -3119,7 +3119,7 @@ const cases = [
     title: { en: "Your Manager Field Jumped Two Levels", zh: "你的 manager 字段跳了两级" },
     intro: {
       en: "Your manager field changed to someone two levels up, overnight.",
-      zh: "你的 manager 字段一夜之间变成了一个高你两级的人。",
+      zh: "你的 manager 突然一夜之间变成了本来高你两级的人。",
     },
     telemetry: [
       { key: { en: "Manager", zh: "manager" }, value: { en: "Now skip-level", zh: "现在是隔级" }, status: "warning" },
@@ -3137,10 +3137,10 @@ const cases = [
     answer: "interim_leave",
     explanation: {
       en: "The change is flagged 'interim', your old manager is on medical leave, and there's no reorg memo. You're temporarily reporting up until they're back. Nothing about you changed.",
-      zh: "变更标着“临时”、你原来的 manager 在休病假、也没有重组备忘。你只是临时往上汇报，等他们回来。关于你的一切都没变。",
+      zh: "变更标着“临时”、你原来的 manager 在休病假、也没有 reorg。你只是临时往上汇报，等他们回来。关于你的一切都没变。",
     },
     resultFlavor: {
-      correct: { en: "Correct. It's interim coverage, not a coup.", zh: "正确。这是临时代管，不是政变。" },
+      correct: { en: "Correct. It's interim coverage, not a coup.", zh: "正确。这是临时代管，不是一场政变。" },
       wrong: { en: "You assumed your manager was gone. They're just on leave.", zh: "你以为你的 manager 没了，其实只是请假了。" },
     },
   },
