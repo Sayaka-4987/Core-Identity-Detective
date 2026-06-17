@@ -198,6 +198,16 @@
         color: var(--muted);
         margin: 0 0 28px;
       }
+      .how-to-play {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+        margin: -16px 0 28px;
+        padding: 12px 14px;
+        border-left: 3px solid rgba(102, 183, 255, 0.55);
+        background: rgba(102, 183, 255, 0.08);
+        border-radius: 8px;
+      }
       .meta {
         color: var(--muted);
         font-size: 14px;
@@ -584,6 +594,7 @@
       <section id="screen-home" class="card">
         <h1 id="home-title"></h1>
         <p class="tagline" id="home-tagline"></p>
+        <p class="how-to-play" id="home-howto"></p>
         <div class="lang-hero" id="lang-hero">
           <p class="lang-hero-title" id="home-lang-title"></p>
           <p class="lang-hero-sub" id="home-lang-hint"></p>
@@ -680,6 +691,10 @@
         homeTagline: {
           en: "Read the telemetry. Figure out what happened.",
           zh: "有限信息，无限脑补。",
+        },
+        homeHowTo: {
+          en: "How it works: each round runs 20 scenarios. For every case, first pick what you think happened, then drag the confidence lever to bet on your call. Higher confidence scores more when you are right, but costs more when you are wrong.",
+          zh: "玩法说明：每回合 20 个场景。每个案件先选出你认为发生了什么，再拉动信心拉杆为自己的判断下注。越自信、判断正确得分越高；自信却判断错了，扣分也越狠。",
         },
         start: { en: "Start Investigation", zh: "开始调查" },
         telemetry: { en: "Identity Telemetry", zh: "身份档案" },
@@ -1375,6 +1390,7 @@
         document.documentElement.lang = lang;
         $("home-title").textContent = t(UI.homeTitle);
         $("home-tagline").textContent = t(UI.homeTagline);
+        $("home-howto").textContent = t(UI.homeHowTo);
         $("btn-start").textContent = t(UI.start);
         const showOppositeEnglish = lang === "zh";
         $("home-lang-title").textContent = showOppositeEnglish
