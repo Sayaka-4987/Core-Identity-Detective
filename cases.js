@@ -3187,7 +3187,7 @@ const cases = [
     },
     telemetry: [
       { key: { en: "Email Tone", zh: "邮件语气" }, value: { en: "Carefully vague", zh: "刻意含糊" }, status: "unknown" },
-      { key: { en: "Projects", zh: "项目" }, value: { en: "Some 'deprioritized'", zh: "部分“降优先级”" }, status: "warning" },
+      { key: { en: "Projects", zh: "项目" }, value: { en: "Some 'deprioritized'", zh: "有些东西“降优先级”" }, status: "warning" },
       { key: { en: "Headcount", zh: "人数" }, value: { en: "Not mentioned", zh: "只字未提" }, status: "unknown" },
       { key: { en: "Hiring", zh: "招聘" }, value: { en: "Paused", zh: "暂停" }, status: "warning" },
       { key: { en: "Severance Chatter", zh: "遣散传闻" }, value: { en: "None yet", zh: "暂时没有" }, status: "unknown" },
@@ -3196,7 +3196,7 @@ const cases = [
       { id: "definitely_layoffs", label: { en: "Definitely Layoffs", zh: "肯定是裁员" } },
       { id: "project_cuts", label: { en: "Project Cuts Only", zh: "只砍项目" } },
       { id: "normal_planning", label: { en: "Just Normal Planning", zh: "只是正常规划" } },
-      { id: "none", label: { en: "The Email Sent Itself Back From the Future", zh: "这封邮件是从未来自己发回来的" } },
+      { id: "none", label: { en: "The Email Sent Itself Back From the Future", zh: "这封邮件是从未来的自己发回来的" } },
     ],
     answer: "none",
     actualCause: { en: "Project Cuts or People Cuts — Too Vague", zh: "可能砍项目，也可能砍人，太含糊" },
@@ -3234,11 +3234,11 @@ const cases = [
     answer: "no_onboarding",
     explanation: {
       en: "No onboarding doc, no assigned work, and a manager hoping for 'osmosis'. Wall-to-wall meetings aren't a sign of importance; they're what happens when nobody wrote down how the team works.",
-      zh: "没有 onboarding 文档、没有分配工作、manager 还指望“耳濡目染”。排满的会议不是受重视的信号，而是没人写下团队怎么运转时的默认结果。",
+      zh: "没有 onboarding 文档、没有分配工作、manager 还指望“耳濡目染”。排满的会议不是 TA 受重视的信号，而是根本没人写下团队怎么运转。",
     },
     resultFlavor: {
       correct: { en: "Correct. It's a documentation gap, not a coronation.", zh: "正确。这是文档缺失，不是加冕典礼。" },
-      wrong: { en: "You read 'no onboarding' as 'fast track'.", zh: "你把“没有 onboarding”解读成了“快速通道”。" },
+      wrong: { en: "You read 'no onboarding' as 'fast track'.", zh: "你把“没有 onboarding”解读成了“新人坐火箭”？" },
     },
   },
   {
