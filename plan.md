@@ -116,36 +116,55 @@ Use this section when writing new cases so the humor stays dense and consistent.
 
 ### A) 10 Ready-to-Use Story Seeds
 
-1. The 3AM Hero Deploy
-   - Signal: one team says "resolved"; three regions disagree.
-   - Truth: wrong environment variable name in one region only.
-2. The Ghost PTO Case
-   - Signal: user offline, calendar empty, manager unknown.
-   - Truth: vacation auto-reply failed to sync; person is at the beach.
-3. The Two Alex Problem
-   - Signal: HR ticket filed against the wrong Alex.
-   - Truth: duplicate display names, different aliases.
-4. The Meeting That Ate Production
-   - Signal: sudden latency spike at :00 every hour.
-   - Truth: a "mandatory all-hands" bot job over-polls directory APIs.
-5. The Compliance Mirage
-   - Signal: dashboard all green, incident channel on fire.
-   - Truth: monitoring query filtered out the failing tenant.
-6. The Seasonal Permission Drift
-   - Signal: access removed, then restored, then removed.
-   - Truth: two automation jobs fighting with opposite rules.
-7. The Infinite Escalation Ladder
-   - Signal: every owner says "not my service".
-   - Truth: shared library bug owned by everyone and no one.
-8. The Emoji Outage
-   - Signal: one user's profile breaks every form.
-   - Truth: legacy parser fails on emoji in display name.
-9. The Security Drill That Was Real
-   - Signal: everyone assumes simulation.
-   - Truth: this one is an actual credential leak.
-10. The Fiscal Year Fortune Cookie
-   - Signal: review says "excellent judgment" after five wrong answers.
-   - Truth: player only used low confidence and avoided over-escalation.
+#### 1. The 3AM Hero Deploy
+
+- Signal: one team says "resolved"; three regions disagree.
+- Truth: wrong environment variable name in one region only.
+
+#### 2. The Ghost PTO Case
+
+- Signal: user offline, calendar empty, manager unknown.
+- Truth: vacation auto-reply failed to sync; person is at the beach.
+
+#### 3. The Two Alex Problem
+
+- Signal: HR ticket filed against the wrong Alex.
+- Truth: duplicate display names, different aliases.
+
+#### 4. The Meeting That Ate Production
+
+- Signal: sudden latency spike at :00 every hour.
+- Truth: a "mandatory all-hands" bot job over-polls directory APIs.
+
+#### 5. The Compliance Mirage
+
+- Signal: dashboard all green, incident channel on fire.
+- Truth: monitoring query filtered out the failing tenant.
+
+#### 6. The Seasonal Permission Drift
+
+- Signal: access removed, then restored, then removed.
+- Truth: two automation jobs fighting with opposite rules.
+
+#### 7. The Infinite Escalation Ladder
+
+- Signal: every owner says "not my service".
+- Truth: shared library bug owned by everyone and no one.
+
+#### 8. The Emoji Outage
+
+- Signal: one user's profile breaks every form.
+- Truth: legacy parser fails on emoji in display name.
+
+#### 9. The Security Drill That Was Real
+
+- Signal: everyone assumes simulation.
+- Truth: this one is an actual credential leak.
+
+#### 10. The Fiscal Year Fortune Cookie
+
+- Signal: review says "excellent judgment" after five wrong answers.
+- Truth: player only used low confidence and avoided over-escalation.
 
 ### B) Joke Construction Formula (Per Case)
 
