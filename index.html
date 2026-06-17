@@ -658,6 +658,7 @@
           <button class="primary" id="btn-next-fy"></button>
           <button class="primary" id="btn-home"></button>
           <button class="ghost" id="btn-share"></button>
+          <button class="ghost hidden" id="btn-reset"></button>
         </div>
         <p class="flavor" id="share-feedback"></p>
       </section>
@@ -715,13 +716,14 @@
           zh: "案卷用尽了",
         },
         contribBody: {
-          en: "You have worked every case on file. Got an identity mystery of your own? Add a case to cases.js and open a pull request, the field contract is in the comment at the top of that file.",
+          en: "You have worked every case on file in the company. Got an identity mystery of your own? Add a case to cases.js and open a pull request, the field contract is in the comment at the top of that file.",
           zh: "公司里的所有案子你都查完了。什么，你手上还有别的八卦？请往 cases.js 里加一个案件、再开个 pull request 就行，字段规则写在那个文件开头。",
         },
         contribLink: {
-          en: "Contribute a case on GitHub",
-          zh: "去 GitHub 贡献一个案件",
+          en: "📫 Contribute a case on GitHub",
+          zh: "📫 去 GitHub 贡献一个案件",
         },
+        resetLabel: { en: "Start Over", zh: "重新来过" },
         shareCopied: { en: "Copied to clipboard.", zh: "已复制到剪贴板。" },
         shareFailed: {
           en: "Copy failed. Select and copy manually.",
@@ -1653,12 +1655,15 @@
         $("btn-share").textContent = t(UI.share);
         $("btn-next-fy").textContent = t(UI.nextFy);
         $("btn-home").textContent = t(UI.backHome);
+        $("btn-reset").textContent = t(UI.resetLabel);
         $("share-feedback").textContent = "";
 
         // Offer the next Fiscal Year only while unplayed cases remain.
         $("btn-next-fy").classList.toggle("hidden", runFinished);
         // Share only makes sense for an actual scored run.
         $("btn-share").classList.toggle("hidden", emptyExhausted);
+        // Reset is shown only when the bank is exhausted.
+        $("btn-reset").classList.toggle("hidden", !runFinished);
 
         // Contribution prompt whenever the bank is exhausted.
         const contrib = $("contribution");
@@ -1767,6 +1772,12 @@
         startRun();
       }
 
+      // Clear all seen-case bookmarks so every case can be played again.
+      function resetSeen() {
+        localStorage.removeItem(SEEN_KEY);
+        startRun();
+      }
+
       /* Wiring -------------------------------------------------------------- */
       $("lang-en").addEventListener("click", () => {
         lang = "en";
@@ -1788,6 +1799,7 @@
       $("btn-submit").addEventListener("click", submitCase);
       $("btn-next").addEventListener("click", nextCase);
       $("btn-next-fy").addEventListener("click", nextFiscalYear);
+      $("btn-reset").addEventListener("click", resetSeen);
       $("btn-home").addEventListener("click", () => {
         renderStatic();
         show("screen-home");
