@@ -14,7 +14,11 @@
  *   choices[].id  stable string, unique within the case.
  *   answer      must equal exactly one choices[].id, OR the sentinel "none"
  *               which scores every choice as wrong (used for joke / ghost
- *               cases that have no knowable cause).
+ *               cases that have no knowable cause). The correct cause is the
+ *               label of the matching choice, so it is NOT repeated elsewhere.
+ *   actualCause  ONLY for `answer: "none"` cases: a { en, zh } pair naming the
+ *               real (unknowable / off-list) cause, since no choice carries it.
+ *               Omit it whenever `answer` points to a real choice.
  *   tags        optional array of lowercase-hyphenated strings. Used by the
  *               achievements system to recognize themes (e.g. "not-a-layoff",
  *               "insufficient-telemetry"). Safe to omit; absent = no tags.
@@ -72,7 +76,6 @@ const cases = [
       { id: "vacation", label: { en: "Vacation", zh: "休假中" } },
     ],
     answer: "sync_failure",
-    actualCause: { en: "Identity Sync Failure", zh: "身份同步炸了" },
     explanation: {
       en: "Only the photo is missing. The manager, GAL visibility, and groups are still normal. This is more likely a sync issue than an actual disappearance.",
       zh: "只有头像消失了，Manager、个人页面可见性和 Groups 都还正常。看着不像人真没了，更像是同步服务又炸了。",
@@ -137,7 +140,6 @@ const cases = [
       { id: "promotion", label: { en: "Promotion", zh: "升职了" } },
     ],
     answer: "transfer",
-    actualCause: { en: "Internal Transfer", zh: "内部转组" },
     explanation: {
       en: "Manager and cost center changed while the title stayed the same and GAL is still visible. That is the signature of a lateral move, not a departure.",
       zh: "Manager 和 Cost Center 变了，但 Title 没变、个人页面还可见。这是平级换组的样子，不是离职。",
@@ -267,7 +269,6 @@ const cases = [
       { id: "promotion", label: { en: "Promotion", zh: "升职了" } },
     ],
     answer: "reorg",
-    actualCause: { en: "Reorg", zh: "组织架构调整" },
     explanation: {
       en: "Both the manager and skip-level changed at once while title, groups, and GAL stayed put. When the chain shifts above you but your own record is intact, that is reorg weather.",
       zh: "Manager 和 Skip Manager 同时变了，而 Title、Groups、个人页面都没动。当你头顶的汇报链变了、但你自己完好无损，这就是幸福。",
@@ -353,10 +354,6 @@ const cases = [
       },
     ],
     answer: "dei_training",
-    actualCause: {
-      en: "DEI Training",
-      zh: "参加 DEI 培训",
-    },
     explanation: {
       en: "The employee was attending a three-day DEI training program. The telemetry was accurate. The theory was not.",
       zh: "他连着三天去上 DEI 培训。数据没撒谎，是你的脑补太丰富。",
@@ -415,7 +412,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "interview",
-    actualCause: { en: "Interviewing Elsewhere", zh: "在外面面试" },
     explanation: {
       en: "Camera always on, suddenly formal, secret 'Open to Work', and a dentist with implausible availability. Nobody has this many dental emergencies. They are interviewing.",
       zh: "摄像头全程开、突然穿正装、偷偷开了求职意向，还有一个空档多得离谱的牙医。没人会有这么多次牙科急诊。他在面试。",
@@ -477,10 +473,6 @@ const cases = [
       { id: "sabbatical", label: { en: "Sabbatical", zh: "停薪留职" } },
     ],
     answer: "security_training",
-    actualCause: {
-      en: "Phishing-Click Security Training",
-      zh: "钓鱼邮件安全培训",
-    },
     explanation: {
       en: "Mailbox last action was 'clicked a link', the account got a Security Hold, and the calendar reads 'Mandatory Training' for exactly five days. They clicked the test phish. They are in re-education for a week.",
       zh: "邮箱最后操作是“点了个链接”，账号被安全冻结，日历上正好五天“强制培训”。他点了那封钓鱼测试邮件，被送去再教育一周。",
@@ -539,7 +531,6 @@ const cases = [
       { id: "vacation", label: { en: "Vacation", zh: "休假中" } },
     ],
     answer: "startup",
-    actualCause: { en: "Leaving for a Startup", zh: "跳槽去创业公司" },
     explanation: {
       en: "Rocket emoji status, a 400% spike in equity talk, and an actual two-week notice on file. This one is not a theory. They are boarding the rocket ship.",
       zh: "火箭 emoji 状态、聊工资和股权的频率涨了 400%、还有一封实打实的离职通知。这次不是猜测，他真的要坐火箭了！",
@@ -601,7 +592,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "ai_startup",
-    actualCause: { en: "Joined an AI Lab as MTS", zh: "去 AI lab 当 Member of Technical Staff 了" },
     explanation: {
       en: "'Member of Technical Staff' with a NULL level, a brand-new tiny lab cost center, and the founder as direct manager. The flat-title-plus-no-level combo is the signature of an AI lab, not a promotion.",
       zh: "Title 是“Member of Technical Staff”、职级字段是 NULL、Cost Center 是个新成立的小 lab、直属 Manager 是创始人。扁平 Title 加没有职级，这是 AI lab 的味儿，不是升职。",
@@ -669,7 +659,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "cn_men_football",
-    actualCause: { en: "Chinese Men's Football", zh: "中国男足" },
     explanation: {
       en: "There was no safe answer. The real root cause, as always, traces back to Chinese men's football. The telemetry merely recorded the fallout.",
       zh: "这题没有安全答案。真正的 root cause，一如既往，最后都能追溯到中国男足身上。数据只是把余震记了下来。",
@@ -728,7 +717,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "name_change",
-    actualCause: { en: "Legal Name Change", zh: "改了法定姓名" },
     explanation: {
       en: "Same alias, same desk, same three-year tenure, and an HR record literally labeled 'legal name update'. Nobody new arrived. Someone just changed their name.",
       zh: "Alias 没变、工位没变、入职三年没变，HR 记录上白纸黑字写着“法定姓名更新”。没有新人来，只是有人结婚了。",
@@ -787,7 +775,6 @@ const cases = [
       { id: "security_breach", label: { en: "Security Breach", zh: "安全入侵" } },
     ],
     answer: "photo_outage",
-    actualCause: { en: "Photo Service Outage", zh: "头像服务挂了" },
     explanation: {
       en: "Everyone is affected, the org chart is intact, the photo service is returning 503, and even your own face is grey. When the whole company breaks at once, it is never the people. It is the backend.",
       zh: "所有人都受影响、组织架构完好、头像服务返回 503、连你自己的脸都灰了。全公司同时坏掉的时候，从来不是人出了问题，是后端。",
@@ -846,7 +833,6 @@ const cases = [
       { id: "sabbatical_fired", label: { en: "Fired Mid-Sabbatical", zh: "停薪留职期间被开" } },
     ],
     answer: "leave",
-    actualCause: { en: "Extended Leave", zh: "长假 / 育儿假" },
     explanation: {
       en: "Cost center unchanged, manager unchanged, desk reserved, GAL visible, and a multi-month OOF. Everything points to someone who is coming back. This is leave, not a departure.",
       zh: "Cost center 没变、Manager 没变、工位保留、个人页面可见，还有一条数月的 OOF。每个信号都指向一个会回来的人。这是休长假，不是离职。",
@@ -905,7 +891,6 @@ const cases = [
       { id: "leave", label: { en: "Extended Leave", zh: "长假" } },
     ],
     answer: "layoff",
-    actualCause: { en: "Layoff", zh: "被裁了" },
     explanation: {
       en: "GAL removed, badge revoked, laptop returned, severance auto-reply, position closed. Every signal points the same direction. The hardest lesson in this job is that sometimes the obvious answer is the true one.",
       zh: "个人页面移除、门禁撤销、笔记本寄回、补偿自动回复、岗位关闭。每一个信号都指向同一个方向。这份工作最难的一课是：有时候那个显而易见的答案，就是真的。",
@@ -964,7 +949,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "became_manager",
-    actualCause: { en: "Promoted to Manager", zh: "升职 Manager" },
     explanation: {
       en: "Their own manager is unchanged, cost center is the same, but four reports appeared under them and the title gained 'Manager'. They did not move. People moved under them.",
       zh: "他自己的 Manager 没变、Cost Center 没变，但下面挂了四个人，Title 多了“Manager”。他没有动，是有人被挪到了他下面。",
@@ -1082,7 +1066,6 @@ const cases = [
       { id: "transfer", label: { en: "Personal Transfer", zh: "个人转组" } },
     ],
     answer: "reorg",
-    actualCause: { en: "Org Reorg", zh: "组织架构调整" },
     explanation: {
       en: "Three levels of management changed at once, but the title and headcount stayed the same. A single person did not move. The whole branch was repotted. That is a reorg.",
       zh: "连着三层管理层同时变了，但 Title 和人数没变。不是一个人动了，是整根树被换了花盆。这是组织架构调整。",
@@ -1141,7 +1124,6 @@ const cases = [
       { id: "promotion", label: { en: "Promotion In Progress", zh: "升职流程中" } },
     ],
     answer: "data_bug",
-    actualCause: { en: "Title Field Data Bug", zh: "Title 字段数据 bug" },
     explanation: {
       en: "The level is unchanged and high, every other field is normal, and HR edited just the title field yesterday. A literal 'undefined' is a serialization bug, not a career event. Someone pushed a null into a string field.",
       zh: "职级没变而且很高、其它字段全正常、HR 昨天只动了 Title 字段。一个字面意义的“undefined”是序列化 bug，不是职业事件。有人把一个 null 塞进了字符串字段。",
@@ -1200,7 +1182,6 @@ const cases = [
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "counteroffer",
-    actualCause: { en: "Accepted a Counteroffer", zh: "接受了挽留 offer" },
     explanation: {
       en: "Interview signals dropped to zero, comp was adjusted up, manager unchanged, GAL visible, and HR literally noted 'counteroffer accepted'. They were leaving, then they weren't. The company paid to keep them.",
       zh: "面试信号归零、薪资上调、Manager 没变、个人页面可见，HR 备注白纸黑字写着“已接受挽留”。他本来要走，后来没走。公司花钱把他留下了。",
@@ -1259,7 +1240,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "dns",
-    actualCause: { en: "It Was DNS", zh: "是 DNS 的锅" },
     explanation: {
       en: "Every service timing out at once, and the last change was a single DNS record. It is always DNS. It has always been DNS. It will always be DNS.",
       zh: "所有服务同时超时，而最后一次变更是一条 DNS 记录。永远是 DNS，一直都是 DNS，将来也永远会是 DNS。",
@@ -1298,7 +1278,6 @@ const cases = [
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
     ],
     answer: "merge_bug",
-    actualCause: { en: "Two Records Merged", zh: "两条记录被合并" },
     explanation: {
       en: "There is a namesake in the GAL, and every duplicated field is exactly two values. The directory merged two different humans into one record. Nobody got promoted; a join got the key wrong.",
       zh: "地址簿里有一个同名者，而每个重复字段都正好是两个值。目录把两个不同的人合并成了一条记录。没人升职，是某个 join 用错了 key。",
@@ -1331,7 +1310,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "exif_bug",
-    actualCause: { en: "EXIF Orientation Bug", zh: "EXIF 方向 bug" },
     explanation: {
       en: "Fresh upload this morning, EXIF orientation flag ignored, everything else normal. The phone tagged the photo as rotated and the viewer did not honor it. It is a pixel problem, not a people problem.",
       zh: "手机给照片打了旋转标记，而显示端没遵守。这是 EXIF 问题，不是人的问题。",
@@ -1364,7 +1342,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "epoch_bug",
-    actualCause: { en: "Unix Epoch Null Date", zh: "Unix 纪元空日期" },
     explanation: {
       en: "1970-01-01 is timestamp zero. Several date fields reset together. A null date got rendered as the Unix epoch. Nobody has 56 years of tenure; somebody has a NULL.",
       zh: "1970-01-01 是时间戳 0。好几个日期字段一起被重置。一个空日期被渲染成了 Unix 纪元。没人有 56 年工龄，只是有人是 NULL。",
@@ -1397,7 +1374,6 @@ const cases = [
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "cycle_bug",
-    actualCause: { en: "Import Created a Cycle", zh: "导入造成环引用" },
     explanation: {
       en: "A reports to B and B reports to A, the tree renderer hit a stack overflow, and an HR feed imported last night. A real org chart is a tree, not a loop. The import wrote a cycle.",
       zh: "A 向 B 汇报、B 向 A 汇报、组织树渲染栈溢出、昨晚刚导入 HR 数据。真实的组织架构是一棵树，不是一个环。是导入写出了循环引用。",
@@ -1430,7 +1406,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "dedup_bug",
-    actualCause: { en: "Failed Deduplication", zh: "去重失败" },
     explanation: {
       en: "Same alias on both entries, one marked stale, org chart still shows a single node. The directory failed to dedupe an old and new copy of the same person. One human, two rows.",
       zh: "两条都是同一个 alias、其中一条标记为陈旧、组织架构仍是单个节点。目录没能把同一个人的新旧两份合并去重。一个人，两行。",
@@ -1463,7 +1438,6 @@ const cases = [
       { id: "training", label: { en: "Training", zh: "培训" } },
     ],
     answer: "offsite",
-    actualCause: { en: "Team Offsite", zh: "团队团建" },
     explanation: {
       en: "The whole team is blocked, the event literally says 'Team Offsite' at a hotel, and the org chart is unchanged. Nobody is leaving. Everybody is going to do trust falls.",
       zh: "整组都被屏蔽、事件白纸黑字写着在酒店的“团队 Offsite”、组织架构没变。没人要走，大家只是要去玩信任背摔。",
@@ -1496,7 +1470,6 @@ const cases = [
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
     ],
     answer: "mat_cover",
-    actualCause: { en: "Someone Covering Leave", zh: "有人在顶替休假" },
     explanation: {
       en: "The new person's title literally says 'maternity cover', the original is still in the GAL with a reserved desk, and the cost center is unchanged. They were not replaced. Someone is keeping the seat warm.",
       zh: "新人的 Title 白纸黑字写着“产假顶岗”、原同事仍在地址簿且工位保留、cost center 没变。他没被换掉，只是有人在帮他暖座位。",
@@ -1529,7 +1502,6 @@ const cases = [
       { id: "leave", label: { en: "On Leave", zh: "休假中" } },
     ],
     answer: "stuck_status",
-    actualCause: { en: "Stuck Presence Status", zh: "状态卡住了" },
     explanation: {
       en: "Nine days of 'Presenting' with no ongoing meetings, while they reply to messages normally. Nobody presents for nine days. The presence flag got stuck after a screen share never cleanly ended.",
       zh: "连续九天“正在演示”却没有任何在进行的会议，同时消息照常回复。没人能演示九天。是一次屏幕共享没干净结束，状态标记卡住了。",
@@ -1562,7 +1534,6 @@ const cases = [
       { id: "promotion", label: { en: "Promotion", zh: "升职了" } },
     ],
     answer: "oncall",
-    actualCause: { en: "On-Call Rotation", zh: "在 On-Call" },
     explanation: {
       en: "Their calendar says 'On-Call' this week, replies are instant around the clock, and the org chart is unchanged. They are not breaking down. They are paging-duty awake at 3am, typing fast in the dark.",
       zh: "日历显示本周“On-Call”、回复全天候秒回、组织架构没变。他不是崩溃了，是被事故逼到凌晨三点还醒着，在黑暗里飞快打字。",
@@ -1595,7 +1566,6 @@ const cases = [
       { id: "transfer", label: { en: "Permanent Transfer", zh: "永久转组" } },
     ],
     answer: "secondment",
-    actualCause: { en: "Secondment / Loan", zh: "借调 / 外派" },
     explanation: {
       en: "A six-month redirect, a temporary cost center move, and a set return date. They were lent to another team, not lost. The return date is the tell.",
       zh: "六个月的转接、临时的 cost center 调动、还有一个已设定的返回日期。他是被借调到另一个团队，不是走了。返回日期就是线索。",
@@ -1628,7 +1598,6 @@ const cases = [
       { id: "sabbatical", label: { en: "Sabbatical", zh: "停薪留职" } },
     ],
     answer: "retirement",
-    actualCause: { en: "Retirement", zh: "退休" },
     explanation: {
       en: "Thirty years tenure, a farewell party with cake, nostalgic emails, and a scheduled account end date. This is a planned, celebrated exit. They are retiring, not being cut.",
       zh: "三十年工龄、带蛋糕的欢送会、怀旧的邮件、还有一个计划好的账号截止日。这是一次有计划、被庆祝的告别。他是退休，不是被裁。",
@@ -1661,7 +1630,6 @@ const cases = [
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
     ],
     answer: "left",
-    actualCause: { en: "Resigned / Left", zh: "已离职" },
     explanation: {
       en: "GAL removed, badge revoked, a last-day email sent, the org node deleted, and a public 'Open To Work' banner. Every signal agrees. They resigned. Not every disappearance is a backend bug.",
       zh: "个人档案移除、门禁撤销、离职邮件已发、组织节点删除、公开主页挂上“求职中”。每个信号都一致。他离职了。不是每次消失都是后端 bug。",
@@ -1694,7 +1662,6 @@ const cases = [
       { id: "offsite", label: { en: "Offsite", zh: "团建" } },
     ],
     answer: "layoff",
-    actualCause: { en: "Department Layoff", zh: "部门裁员" },
     explanation: {
       en: "A closed cost center, ~40 people parked in a 'Transition' code, expiring badges, and a filed WARN notice. A reorg moves people between trees; this deletes the tree. This is a layoff.",
       zh: "关闭的 cost center、约 40 人被塞进“过渡”列表、即将过期的门禁、已提交的裁员预告通知。重组是把人在树之间挪动，这是把整棵树删掉。这是裁员。",
@@ -1727,7 +1694,6 @@ const cases = [
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
     ],
     answer: "left_alumni",
-    actualCause: { en: "Left, Moved to Alumni", zh: "毕业愉快" },
     explanation: {
       en: "The account type literally changed to 'Alumni', internal access was removed, and they were invited to the alumni portal. This is a formal, clean offboarding. They left on good terms.",
       zh: "账号类型白纸黑字变成了“校友”、内网权限移除、收到校友门户邀请。这是一次正式、体面的离职流程。他好聚好散地走了。",
@@ -1760,7 +1726,6 @@ const cases = [
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "visa_leave",
-    actualCause: { en: "Visa / Immigration Check", zh: "签证 / 移民审查" },
     explanation: {
       en: "Work authorization is 'under review', the leave is a month or two, the cost center is unchanged, and there is an estimated return date. This is an immigration processing pause, not a departure. The paperwork moves slowly; the job is still theirs.",
       zh: "工作授权显示“审核中”、休假一两个月、cost center 没变、还有一个预估返回日期，他的签证被安全调查了。手续走得慢，但岗位还是他的。",
@@ -1793,7 +1758,6 @@ const cases = [
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
     ],
     answer: "acting",
-    actualCause: { en: "Acting / Interim Role", zh: "代理 / 临时岗" },
     explanation: {
       en: "The title says 'Acting', the level did not change, the predecessor is on leave, and there is an 'interim' note. This is a temporary fill-in, not a real promotion. The level field is the truth-teller.",
       zh: "Title 写着“Acting”、职级没变、前任在休假、还有“临时”备注。这是临时顶岗，不是真升职。职级字段才是说真话的那个。",
@@ -1826,7 +1790,6 @@ const cases = [
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
     ],
     answer: "into_leadership",
-    actualCause: { en: "Moved Into Leadership", zh: "进入管理层" },
     explanation: {
       en: "Twelve leadership lists, more direct reports, a '+ Director' title, and a manager who is now a VP. The list membership tracks the title and the reports. They moved up into leadership.",
       zh: "12 个管理层组、更多直属下属、Title 加了“Director”、Manager 变成了 VP。邮件组的变化和 Title、下属是一致的。他升职进了管理层。",
@@ -1859,7 +1822,6 @@ const cases = [
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
     ],
     answer: "inband_promo",
-    actualCause: { en: "In-Band (Silent) Promotion", zh: "静默升级" },
     explanation: {
       en: "Level went up by one, comp band adjusted up, manager unchanged, title text the same. Many ladders promote within the same title text. The comp change confirms it is real, not a glitch.",
       zh: "职级加一、Compa ratio 上调、Manager 没变、Title 文字不变。很多职级体系在同一个 Title 文字下也能升级。W-2 表是真的。",
@@ -1892,7 +1854,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "monday",
-    actualCause: { en: "It Is Just Monday", zh: "只是周一而已" },
     explanation: {
       en: "Every system is normal, the only red signals are an empty coffee pot and the calendar saying Monday. There is no incident. There is only the slow dread of the week beginning.",
       zh: "系统正常，唯一的红色信号是咖啡壶和日历上的“周一”。没有故障，只有新一周开始时那种缓慢的恐惧。",
@@ -1925,7 +1886,6 @@ const cases = [
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "retrograde",
-    actualCause: { en: "Mercury Retrograde", zh: "水星逆行" },
     explanation: {
       en: "Flaky everything, no root cause found, and the only thing that correlates is a planet. When the postmortem has no answer, engineers reach for the stars. This is a joke case: the honest root cause is 'we never found it'.",
       zh: "什么都时好时坏、找不到根因，唯一能对上的是一颗行星。当复盘写不出结论时，工程师就开始仰望星空。“水逆”是个玩笑：诚实的根因是“我们一直没找到”。",
@@ -1958,7 +1918,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "dst",
-    actualCause: { en: "Daylight Saving Time", zh: "夏令时切换" },
     explanation: {
       en: "It is the second Sunday of March, the clocks moved forward an hour, and a server forgot to follow. Nobody disappeared, time just did. Twice a year, everyone becomes a timezone debugger.",
       zh: "今天是三月第二个周日，时钟往前拨了一小时，而某台服务器忘了跟上，没人消失，是时间消失了，每年两次大家都得当一回时区测试员。",
@@ -1991,7 +1950,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "unicode_bug",
-    actualCause: { en: "Unicode Edge Case", zh: "Unicode 边界 case" },
     explanation: {
       en: "A 4-byte UTF-8 emoji in a field that assumed 3 bytes maximum, and the tools that never tested by GenZ users fell over. Not an attack, just a unicorn the database could not swallow.",
       zh: "一个 4 字节的 UTF-8 emoji 被塞进了只允许 3 字节的字段里，那些从没见过 GenZ 用户的工具就这么倒了，不是攻击，只是一只数据库咽不下去的独角兽 🦄🦄🦄。",
@@ -2024,7 +1982,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "not_intern",
-    actualCause: { en: "Cannot Have Been The Intern", zh: "不可能是实习生" },
     explanation: {
       en: "The intern's account was deactivated and their last day was last week, but the bad commit landed yesterday. A deactivated account cannot push code. The blame was comfortable but the timeline says it was one of you.",
       zh: "实习生的账号上周就停用了，事故也是上周，可那个坏提交是昨天才进来的，一个停用的账号是推不了代码的，甩锅虽然舒服，但时间线说凶手就在你们中间。",
@@ -2156,7 +2113,6 @@ const cases = [
       { id: "none", label: { en: "Can't Attribute to a Person", zh: "归不到具体某个人" } },
     ],
     answer: "shared",
-    actualCause: { en: "It's a Shared Account", zh: "这是共享账号" },
     explanation: {
       en: "The account type literally says shared, there is no named owner, and the GAL lists it as a team. Five cities a day is normal when five people share one login. You cannot attribute any single action to a person, and that is by design.",
       zh: "账号类型明确写着共享、没有实名归属、地址簿里登记的也是团队，五个人共用一个登录，一天五座城市就很正常，你没法把任何一次操作归到某个人头上，is by degisn",
@@ -2189,7 +2145,6 @@ const cases = [
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "access_review",
-    actualCause: { en: "Access Review Cleanup", zh: "权限审查清理" },
     explanation: {
       en: "An access review just ran, the manager is unchanged, and the person is right there. Periodic reviews strip permissions nobody re-attested to. It is annoying, not a firing. They re-request and move on.",
       zh: "权限审查刚刚跑完、Manager 没变、人就在那儿坐着，周期性审查会把没人 Approve 的权限统统收掉，这很烦，但他重新申请一下就好了。",
@@ -2222,7 +2177,6 @@ const cases = [
       { id: "quit", label: { en: "Quit", zh: "离职了" } },
     ],
     answer: "legal_hold",
-    actualCause: { en: "Legal / Litigation Hold", zh: "法务 / 诉讼保留" },
     explanation: {
       en: "A litigation hold preserves a mailbox as potential evidence; it blocks deletion but does not touch the person, who is still working normally. Often the holdee is just a witness, not a target. It is a retention rule, not a verdict.",
       zh: "诉讼保留是把邮箱当成潜在证据冻存，它只挡删除，不动人，本人还在正常上班，很多时候被保留的人只是个证人，不是被告，这是一条留存规则，不是判决书。",
@@ -2255,7 +2209,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "cred_response",
-    actualCause: { en: "Credential Leak Response", zh: "凭据泄露响应" },
     explanation: {
       en: "The trigger says credential leak alert, the person is still employed and surprised, and the manager is unchanged. Security disabled and reset the account to lock out a leaked password. It is protection, not punishment.",
       zh: "触发原因写着凭据泄露告警，本人还在职、还一脸懵、Manager 也没变，安全团队停用并重置账号，是为了把泄露的密码挡在门外，这是保护，不是惩罚。",
@@ -2288,7 +2241,6 @@ const cases = [
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "patch",
-    actualCause: { en: "Missing a Patch", zh: "少装了更新" },
     explanation: {
       en: "The reason literally says OS patch missing and the fix is to run an update. Compliance gates access until the device catches up. The red badge is a nag, not a notice. One reboot later it goes green.",
       zh: "原因白纸黑字写着缺系统补丁，修复方法就是更新 Windows 系统，合规会先卡住权限直到设备补上，那个红标记是在催你，重启一次它就绿了。",
@@ -2321,7 +2273,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "new_phone",
-    actualCause: { en: "Got a New Phone", zh: "换了新手机" },
     explanation: {
       en: "An open help desk ticket says 'new phone', one new device is mid-registration, and the person is at their desk. Replacing a phone wipes the old MFA registrations and re-enrolls a new one. Scary-looking, completely routine.",
       zh: "一张客服工单写着“我换了手机”、一台新设备正在注册、人也好端端在工位上，换手机本来就会清掉旧的 MFA 注册再重新登记一台，看着吓人，其实再日常不过。",
@@ -2354,7 +2305,6 @@ const cases = [
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
     ],
     answer: "lunar_new_year",
-    actualCause: { en: "Lunar New Year", zh: "农历新年" },
     explanation: {
       en: "One region, the same two weeks every February, a public holiday note, and an unchanged org chart. This is Lunar New Year. Everyone is home eating dumplings and will be back. Calendars have culture in them.",
       zh: "只影响一个地区、年年都是二月这两周、日历备注是法定假日、组织架构也没变，这是农历新年，大家都回家吃饺子去了，过完就回来，日历里也是装着文化的。",
@@ -2387,7 +2337,6 @@ const cases = [
       { id: "outage", label: { en: "Outage", zh: "故障" } },
     ],
     answer: "summer_holiday",
-    actualCause: { en: "August Summer Holiday", zh: "八月夏休" },
     explanation: {
       en: "EU offices, the month of August, and out-of-office replies that literally say 'on holiday'. Much of Europe takes weeks off in August. Nobody quit; the whole continent is at the beach.",
       zh: "受影响的是欧洲办公室、月份是八月、自动回复明明白白写着“休假中”，欧洲很多地方八月就是要连休好几周，没人离职，是整个大陆都去海边了。",
@@ -2420,7 +2369,6 @@ const cases = [
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "name_order_bug",
-    actualCause: { en: "Name-Order Parsing Bug", zh: "姓名顺序解析 bug" },
     explanation: {
       en: "Same employee ID on both entries, same manager, and a surname-first import. A system that assumed given-name-first split one person into two when the name order flipped. One human, two rows, zero new hires.",
       zh: "两个条目工号相同、Manager 相同，这是一个默认 Surname 在前的系统，在遇到姓名顺序对调时，把一个人拆成了两个。我们没有新人入职。",
@@ -2453,7 +2401,6 @@ const cases = [
       { id: "outage", label: { en: "Cafeteria Closed", zh: "食堂关了" } },
     ],
     answer: "ramadan",
-    actualCause: { en: "Ramadan Fasting", zh: "斋月斋戒" },
     explanation: {
       en: "A month long, a subset of people, lunch consistently skipped, and activity that picks up after sunset. This is Ramadan: fasting through the day, active again after sundown. The calendar gap is observance, not absence.",
       zh: "持续一个月、只涉及一部分人、午饭固定不吃、日落之后又活跃起来，这是斋月，白天斋戒，日落后再恢复活动，日历上的那段空白是斋戒，不是缺勤。",
@@ -2486,7 +2433,6 @@ const cases = [
       { id: "outage", label: { en: "Outage", zh: "故障" } },
     ],
     answer: "diwali",
-    actualCause: { en: "Diwali Holiday", zh: "排灯节假期" },
     explanation: {
       en: "India office, one week in autumn, and out-of-office notes that say 'festival holiday'. This is Diwali, the festival of lights. The site is not closing; everyone is home lighting lamps. They will be back next week.",
       zh: "印度办公室、秋天的一周、自动回复写着“节日假期”，这是排灯节，灯火节，站点没有要关，大家都回家点灯去了，下周就回来。",
@@ -2519,7 +2465,6 @@ const cases = [
       { id: "quit", label: { en: "Quit", zh: "离职了" } },
     ],
     answer: "cert_expiry",
-    actualCause: { en: "Auth Certificate Expired", zh: "证书过期" },
     explanation: {
       en: "Physical badge works but every login fails, and the auth certificate expired today. Building access and digital auth run on different systems; only the cert lapsed. Renew it and they are back. Termination would kill the badge too.",
       zh: "实体门禁能用、但所有登录都失败、认证证书恰好今天过期，门禁和数字认证跑在不同系统上，过期的只是证书，续一下就回来了，真要是开除，连门禁也会一起停掉。",
@@ -2585,7 +2530,6 @@ const cases = [
       { id: "none", label: { en: "Cannot Investigate Yourself", zh: "查不了你自己" } },
     ],
     answer: "sync_failure",
-    actualCause: { en: "It's Just Sync (Again)", zh: "又是同步（老样子）" },
     explanation: {
       en: "Your photo is gone and your GAL is not found, yet your last login is right now and a sync job is mid-run. You are demonstrably here, reading this. Everything you learned about case-001 applies to you too: it is just sync, again.",
       zh: "你的头像没了、地址簿里查无此人，可你的上次登录就是刚刚，同步任务也正在跑，你明明就在这儿读着这行字，case-001 教给你的一切同样适用于你自己：又是同步，老样子。",
@@ -2595,4 +2539,1291 @@ const cases = [
       wrong: { en: "BAD END: You concluded you were fired, then logged off forever. The sync job finished two minutes later.", zh: "BAD END：你认定自己被开了，然后你开始打包东西，两分钟后，那个同步任务跑完了。" },
     },
   },
+  {
+    id: "case-061",
+    difficulty: "easy",
+    tags: ["promo", "politics"],
+    title: { en: "Promo Season Mirage", zh: "升职季的海市蜃楼" },
+    intro: {
+      en: "A peer suddenly shows up in every leadership meeting, but their title hasn't changed.",
+      zh: "一位同事突然出现在每一场 leadership 会议里，但 title 一点没变。",
+    },
+    telemetry: [
+      { key: { en: "Calendar", zh: "日历" }, value: { en: "Full of leadership syncs", zh: "塞满 leadership 同步" }, status: "warning" },
+      { key: { en: "Title", zh: "Title" }, value: { en: "Unchanged", zh: "不变" }, status: "normal" },
+      { key: { en: "Promo Packet", zh: "晋升材料" }, value: { en: "In progress", zh: "进行中" }, status: "warning" },
+      { key: { en: "Comp", zh: "薪资" }, value: { en: "Unchanged", zh: "不变" }, status: "normal" },
+      { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
+    ],
+    choices: [
+      { id: "already_promoted", label: { en: "Already Promoted", zh: "已经升了" } },
+      { id: "promo_in_progress", label: { en: "Promo Packet In Calibration", zh: "晋升材料在 calibration" } },
+      { id: "managed_out", label: { en: "Being Managed Out", zh: "在被劝退" } },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
+    ],
+    answer: "promo_in_progress",
+    explanation: {
+      en: "Lots of leadership exposure, a packet in progress, but title and comp unchanged. They're being prepped for promo, not promoted. Hold the congratulations.",
+      zh: "大量 leadership 露脸 + 材料进行中，但 title 和薪资都没变。是在为晋升铺路，还没成。先别急着道贺。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. They're pre-promo, not promoted. Hold the LinkedIn post.", zh: "正确。是晋升前夜，不是已晋升，先别发朋友圈。" },
+      wrong: { en: "You congratulated someone whose packet can still get dinged in calibration.", zh: "你恭喜了一个还可能在 calibration 被刷下来的人。" },
+    },
+  },
+  {
+    id: "case-062",
+    difficulty: "easy",
+    tags: ["reorg", "politics"],
+    title: { en: "The Rebrand Reorg", zh: "换皮重组" },
+    intro: {
+      en: "A VP announced a 'new charter' for the team. Same people, same code, new mission statement.",
+      zh: "一位 VP 给团队宣布了“新使命”。还是原班人马、原来的代码，只是换了句愿景。",
+    },
+    telemetry: [
+      { key: { en: "Team Roster", zh: "团队名单" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Mission Statement", zh: "使命愿景" }, value: { en: "Brand new", zh: "全新" }, status: "warning" },
+      { key: { en: "Codebase", zh: "代码库" }, value: { en: "Same repo", zh: "同一个 repo" }, status: "normal" },
+      { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
+      { key: { en: "Slogan", zh: "口号" }, value: { en: "'AI-first', now", zh: "现在叫“AI 优先”" }, status: "unknown" },
+    ],
+    choices: [
+      { id: "real_reorg", label: { en: "A Real Reorg", zh: "真重组" } },
+      { id: "rebrand", label: { en: "Just a Rebrand", zh: "只是改名" } },
+      { id: "layoff", label: { en: "Layoff Incoming", zh: "裁员要来" } },
+      { id: "budget_cut", label: { en: "Budget Cut", zh: "预算削减" } },
+    ],
+    answer: "rebrand",
+    explanation: {
+      en: "People, code, and manager are all unchanged; only the mission statement and slogan moved. This is a slide-deck reorg. Next quarter it gets renamed again.",
+      zh: "人、代码、Manager 都没变，变的只有愿景和口号。这是一次 PPT 重组，下季度还会再改个名。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. The org chart didn't move; the font did.", zh: "正确。动的不是组织架构，是 PPT 的字体。" },
+      wrong: { en: "You prepped for a reorg that lives entirely in a slide deck.", zh: "你为一次只活在 PPT 里的重组过度准备了一吨咖啡。" },
+    },
+  },
+  {
+    id: "case-063",
+    difficulty: "easy",
+    tags: ["rto", "politics"],
+    title: { en: "The Badge Swipe Spike", zh: "门禁刷卡暴增" },
+    intro: {
+      en: "Office badge swipes for a whole floor tripled overnight.",
+      zh: "整层楼的门禁刷卡量一夜之间翻了三倍。",
+    },
+    telemetry: [
+      { key: { en: "Badge Swipes", zh: "门禁刷卡" }, value: { en: "3x overnight", zh: "一夜 3 倍" }, status: "warning" },
+      { key: { en: "Date", zh: "日期" }, value: { en: "Matches RTO deadline", zh: "正好是 RTO 截止日" }, status: "normal" },
+      { key: { en: "Productivity", zh: "产出" }, value: { en: "Flat", zh: "持平" }, status: "normal" },
+      { key: { en: "Headcount", zh: "人数" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Cafeteria Line", zh: "食堂排队" }, value: { en: "Brutal", zh: "惨烈" }, status: "alarming" },
+    ],
+    choices: [
+      { id: "hiring_surge", label: { en: "Hiring Surge", zh: "大举招人" } },
+      { id: "rto_mandate", label: { en: "Return-to-Office Mandate", zh: "回办公室政策" } },
+      { id: "audit", label: { en: "Surprise Audit", zh: "突击审计" } },
+      { id: "hackathon", label: { en: "Hackathon", zh: "Hackathon" } },
+    ],
+    answer: "rto_mandate",
+    explanation: {
+      en: "The swipe spike lands exactly on the RTO deadline, headcount is flat, and the only casualty is the cafeteria line. People aren't more dedicated; they're more monitored.",
+      zh: "刷卡暴增的事情恰好踩在 RTO 截止日，人数没变，唯一的受害者是食堂和卫生间的工作人员。大家不是更敬业了，是更被盯着了。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. Nobody got passionate; the badge reader did.", zh: "正确。没人突然热爱工作，是门禁系统热爱了。" },
+      wrong: { en: "You read a mandate as a motivation renaissance.", zh: "你把一道行政命令读成了奋斗文艺复兴。" },
+    },
+  },
+  {
+    id: "case-064",
+    difficulty: "easy",
+    tags: ["meeting", "politics"],
+    title: { en: "The Skip-Level 'Quick Chat'", zh: "隔级的“随便聊聊”" },
+    intro: {
+      en: "Your skip-level manager sent a surprise 1:1 invite titled 'quick chat'.",
+      zh: "你的隔级老板突然发来一个 1:1 邀请，标题是“随便聊聊”。",
+    },
+    telemetry: [
+      { key: { en: "Invite Title", zh: "邀请标题" }, value: { en: "'quick chat'", zh: "“随便聊聊”" }, status: "warning" },
+      { key: { en: "Cadence", zh: "频率" }, value: { en: "First ever", zh: "史上第一次" }, status: "unknown" },
+      { key: { en: "HR Attendee", zh: "HR 参会" }, value: { en: "None", zh: "没有" }, status: "normal" },
+      { key: { en: "Your Perf", zh: "你的绩效" }, value: { en: "On track", zh: "正常" }, status: "normal" },
+      { key: { en: "Other Invitees", zh: "其他被邀" }, value: { en: "Several peers too", zh: "好几个同事也收到" }, status: "normal" },
+    ],
+    choices: [
+      { id: "getting_fired", label: { en: "Getting Fired", zh: "要被开了" } },
+      { id: "routine_skip_level", label: { en: "Routine Skip-Level 1:1", zh: "例行隔级沟通" } },
+      { id: "secret_promotion", label: { en: "Secret Promotion", zh: "秘密升职" } },
+      { id: "pip", label: { en: "PIP Warning", zh: "要进 PIP" } },
+    ],
+    answer: "routine_skip_level",
+    explanation: {
+      en: "No HR in the room, your perf is on track, and several peers got the same invite. This is a skip-level box-checking exercise, not an ambush. Breathe.",
+      zh: "房间里没有 HR、你绩效正常、好几个同事也收到了同样的邀请。这是隔级沟通的例行打卡，不是埋伏。深呼吸，放松一点。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. No HR, no ambush. Just a calendar checkbox.", zh: "正确。没有 HR 就没有埋伏，只是日历上的一个打勾项。" },
+      wrong: { en: "You drafted a resignation over a 'quick chat' with no HR in sight.", zh: "你为一场连 HR 都没有的“随便聊聊”写好了愤怒的辞职信。" },
+    },
+  },
+  {
+    id: "case-065",
+    difficulty: "medium",
+    tags: ["meeting", "politics"],
+    title: { en: "Let's Take This Offline", zh: "我们线下聊" },
+    intro: {
+      en: "In a 30-person meeting, your manager said 'let's take this offline' and moved your topic to a DM.",
+      zh: "在 30 人的大会上，你的老板说“我们线下聊”，把你的话题挪到了私聊。",
+    },
+    telemetry: [
+      { key: { en: "Public Discussion", zh: "公开讨论" }, value: { en: "Stopped", zh: "被叫停" }, status: "warning" },
+      { key: { en: "DM Thread", zh: "私聊" }, value: { en: "Opened, neutral", zh: "已开，语气中性" }, status: "normal" },
+      { key: { en: "Audience", zh: "听众" }, value: { en: "Was 30 people", zh: "刚才有 30 人" }, status: "normal" },
+      { key: { en: "Decision", zh: "决定" }, value: { en: "Deferred", zh: "推迟" }, status: "unknown" },
+      { key: { en: "Tone", zh: "语气" }, value: { en: "Calm", zh: "平静" }, status: "normal" },
+    ],
+    choices: [
+      { id: "being_silenced", label: { en: "Being Silenced", zh: "被消音" } },
+      { id: "avoiding_audience", label: { en: "Just Avoiding a Big Audience", zh: "只是不想当众细聊" } },
+      { id: "bad_news", label: { en: "Secret Bad News", zh: "藏着坏消息" } },
+      { id: "project_cancelled", label: { en: "Project Cancelled", zh: "项目被砍" } },
+    ],
+    answer: "avoiding_audience",
+    explanation: {
+      en: "Neutral tone, a normal DM thread, decision merely deferred. 'Take this offline' usually means 'this is too detailed for 29 bored people', not 'you're in trouble'.",
+      zh: "语气中性、私聊正常、决定只是推迟。“线下聊”通常是这事对另外 29 个无聊的人太细了，或者暴露了太多丑陋的技术问题，而不是“你摊上事了”。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It was bandwidth, not a burn notice.", zh: "正确。那是为了省时间，不是封杀令。" },
+      wrong: { en: "You heard 'offline' and assumed 'off the team'.", zh: "你听到“线下”就脑补成了“下岗”。" },
+    },
+  },
+  {
+    id: "case-066",
+    difficulty: "medium",
+    tags: ["calendar", "politics"],
+    title: { en: "Calendar Full of Holds", zh: "日历塞满了 HOLD" },
+    intro: {
+      en: "Your manager's calendar is suddenly wall-to-wall 'HOLD' blocks.",
+      zh: "你老板的日历突然被一排“HOLD”占满了。",
+    },
+    telemetry: [
+      { key: { en: "Hold Blocks", zh: "HOLD 时段" }, value: { en: "Many", zh: "一大堆" }, status: "warning" },
+      { key: { en: "Titles", zh: "标题" }, value: { en: "Generic 'HOLD'", zh: "统一“HOLD”" }, status: "unknown" },
+      { key: { en: "Recruiting Tool", zh: "招聘系统" }, value: { en: "Active", zh: "活跃" }, status: "normal" },
+      { key: { en: "Season", zh: "时节" }, value: { en: "Hiring ramp", zh: "加招期" }, status: "normal" },
+      { key: { en: "Your 1:1s", zh: "你的 1:1" }, value: { en: "Still happening", zh: "照常" }, status: "normal" },
+    ],
+    choices: [
+      { id: "planning_layoffs", label: { en: "Planning Layoffs", zh: "在策划裁员" } },
+      { id: "interview_slots", label: { en: "Holding Interview & Focus Slots", zh: "占住面试与专注时段" } },
+      { id: "job_hunting", label: { en: "Manager Job-Hunting", zh: "老板在找工作" } },
+      { id: "burnout_leave", label: { en: "Burnout Leave", zh: "过劳休假" } },
+    ],
+    answer: "interview_slots",
+    explanation: {
+      en: "The recruiting tool is active during a hiring ramp, and your 1:1s still happen. Those 'HOLD' blocks are interview loops and focus time, not a secret layoff war room.",
+      zh: "招聘系统在加招期里很活跃，你的 1:1 也照常。那些“HOLD”是面试 loop 和专注时间，不是秘密裁员作战室。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. The holds are for hiring, not firing.", zh: "正确。占的是招人的坑，不是裁人的坑。" },
+      wrong: { en: "You read interview holds as a layoff calendar.", zh: "你把面试占位读成了裁员日历。" },
+    },
+  },
+  {
+    id: "case-067",
+    difficulty: "easy",
+    tags: ["not-a-departure", "politics"],
+    title: { en: "OOF: Personal Leave", zh: "自动回复：个人事假" },
+    intro: {
+      en: "A coworker set a long out-of-office for 'personal leave' with no return date.",
+      zh: "一位同事设了很长的自动回复，写着“个人事假”，没写返回日期。",
+    },
+    telemetry: [
+      { key: { en: "OOF Message", zh: "自动回复" }, value: { en: "'Personal leave'", zh: "“个人事假”" }, status: "warning" },
+      { key: { en: "Return Date", zh: "返回日期" }, value: { en: "Blank", zh: "空白" }, status: "unknown" },
+      { key: { en: "Account", zh: "账号" }, value: { en: "Active", zh: "在职" }, status: "normal" },
+      { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
+      { key: { en: "Backfill Note", zh: "顶岗备注" }, value: { en: "'Covering temporarily'", zh: "“临时顶岗”" }, status: "normal" },
+    ],
+    choices: [
+      { id: "quit", label: { en: "Quit", zh: "离职了" } },
+      { id: "protected_leave", label: { en: "Sabbatical / Parental / Medical Leave", zh: "长假 / 育儿假 / 病假" } },
+      { id: "fired", label: { en: "Fired", zh: "被开了" } },
+      { id: "ghosting", label: { en: "Ghosting the Job", zh: "人间蒸发" } },
+    ],
+    answer: "protected_leave",
+    explanation: {
+      en: "Account active, manager same, and a teammate is 'covering temporarily'. A blank return date usually means a protected leave, not an exit. The seat is being kept warm.",
+      zh: "账号在、Manager 没变、还有同事“临时顶岗”。空白的返回日期通常意味着一种受保护的休假，而不是离职。位子给留着呢。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. They're on leave, not gone. The seat is warm.", zh: "正确。是休假，不是离开，位子还热着。" },
+      wrong: { en: "You wrote a goodbye card for someone on parental leave.", zh: "你给一个在休育儿假的人写了告别卡。" },
+    },
+  },
+  {
+    id: "case-068",
+    difficulty: "easy",
+    tags: ["reorg", "politics"],
+    title: { en: "New VP Reply-All Storm", zh: "新 VP 的全员回复风暴" },
+    intro: {
+      en: "A new VP sent a warm reply-all intro, and 200 'welcome!' replies followed.",
+      zh: "一位新 VP 发了热情洋溢的全员介绍信，紧接着是 200 封“欢迎！”回复。",
+    },
+    telemetry: [
+      { key: { en: "Reply-All Count", zh: "全员回复数" }, value: { en: "200+", zh: "200+" }, status: "alarming" },
+      { key: { en: "VP Status", zh: "VP 状态" }, value: { en: "New hire", zh: "新入职" }, status: "normal" },
+      { key: { en: "Your Mailbox", zh: "你的收件箱" }, value: { en: "Melting", zh: "快烧了" }, status: "warning" },
+      { key: { en: "Reorg Memo", zh: "重组备忘" }, value: { en: "None yet", zh: "暂无" }, status: "unknown" },
+      { key: { en: "Pet Project", zh: "Pet Project" }, value: { en: "'Coming soon'", zh: "“敬请期待”" }, status: "unknown" },
+    ],
+    choices: [
+      { id: "mass_chaos", label: { en: "Mass Chaos", zh: "全面混乱" } },
+      { id: "vp_honeymoon", label: { en: "New VP Honeymoon", zh: "新 VP 蜜月期" } },
+      { id: "email_breach", label: { en: "Email Breach", zh: "邮件被入侵" } },
+      { id: "layoff", label: { en: "Layoff Announcement", zh: "裁员公告" } },
+    ],
+    answer: "vp_honeymoon",
+    explanation: {
+      en: "It's a brand-new VP, no reorg memo yet, and a 'coming soon' pet project. The only real damage is your inbox. Enjoy the honeymoon; the reorg comes next quarter.",
+      zh: "一位全新的 VP、还没有重组计划、外加一个“敬请期待”的 pet project。唯一真正的损失是你的收件箱。好好享受蜜月期，重组下季度才来。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It's a honeymoon, not a meltdown. Mute the thread.", zh: "正确。这是蜜月期，赶紧把这个会话静音吧。" },
+      wrong: { en: "You treated reply-all enthusiasm as a breach.", zh: "你把全员回复的热情当成了安全事故。" },
+    },
+  },
+  {
+    id: "case-069",
+    difficulty: "medium",
+    tags: ["budget", "politics"],
+    title: { en: "Headcount Frozen", zh: "HC 冻结" },
+    intro: {
+      en: "An open role you were hiring for vanished from the system.",
+      zh: "一个你正在招的空缺岗位从系统里消失了。",
+    },
+    telemetry: [
+      { key: { en: "Req Status", zh: "招聘需求" }, value: { en: "Closed", zh: "已关闭" }, status: "warning" },
+      { key: { en: "Reason", zh: "原因" }, value: { en: "'Headcount freeze'", zh: "“HC 冻结”" }, status: "warning" },
+      { key: { en: "Existing Team", zh: "现有团队" }, value: { en: "Intact", zh: "完好" }, status: "normal" },
+      { key: { en: "Layoff Memo", zh: "裁员备忘" }, value: { en: "None", zh: "无" }, status: "normal" },
+      { key: { en: "Budget", zh: "预算" }, value: { en: "'Reassessing'", zh: "“重新评估中”" }, status: "unknown" },
+    ],
+    choices: [
+      { id: "team_being_cut", label: { en: "Team Being Cut", zh: "团队要被砍" } },
+      { id: "hiring_freeze", label: { en: "Hiring / Budget Freeze", zh: "招聘 / 预算冻结" } },
+      { id: "role_was_fake", label: { en: "Role Was Never Real", zh: "岗位本就是假的" } },
+      { id: "manager_quit", label: { en: "Manager Quit", zh: "经理跑了" } },
+    ],
+    answer: "hiring_freeze",
+    explanation: {
+      en: "The req closed with a 'headcount freeze' reason, the existing team is intact, and there's no layoff memo. They're not cutting people; they just won't add them. The work, of course, stays.",
+      zh: "req 以“HC 冻结”为由关闭、现有团队完好、也没有裁员备忘。他们不是要裁人，只是不再加人。当然，活还是那些活。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. They froze the req, not the team.", zh: "正确。冻的是招聘需求，不是团队。" },
+      wrong: { en: "You read a hiring freeze as a team funeral.", zh: "你把招聘冻结读成了团队葬礼。" },
+    },
+  },
+  {
+    id: "case-070",
+    difficulty: "hard",
+    tags: ["ambiguous", "politics"],
+    title: { en: "Moved to Special Projects", zh: "调去“特别项目”" },
+    intro: {
+      en: "A senior leader was quietly moved to 'Special Projects, reporting to the CEO'.",
+      zh: "一位资深领导被悄悄调去“特别项目，直接向 CEO 汇报”。",
+    },
+    telemetry: [
+      { key: { en: "New Title", zh: "新头衔" }, value: { en: "'Special Projects'", zh: "“特别项目”" }, status: "warning" },
+      { key: { en: "Reports To", zh: "汇报对象" }, value: { en: "CEO", zh: "CEO" }, status: "unknown" },
+      { key: { en: "Team", zh: "团队" }, value: { en: "Removed", zh: "已剥离" }, status: "alarming" },
+      { key: { en: "Comp", zh: "薪资" }, value: { en: "Unchanged", zh: "不变" }, status: "normal" },
+      { key: { en: "Calendar", zh: "日历" }, value: { en: "Mostly empty", zh: "基本空了" }, status: "alarming" },
+    ],
+    choices: [
+      { id: "promotion", label: { en: "Big Promotion", zh: "重磅升职" } },
+      { id: "parachute", label: { en: "Golden Parachute", zh: "金色降落伞" } },
+      { id: "strategic", label: { en: "Truly Strategic Role", zh: "真的战略要职" } },
+      { id: "none", label: { en: "Impossible to Tell", zh: "根本判断不了" } },
+    ],
+    answer: "none",
+    actualCause: { en: "Glory or the Departure Lounge — Unknowable", zh: "是重用还是离场休息室，无从得知" },
+    explanation: {
+      en: "'Special Projects reporting to the CEO' with no team and an empty calendar is the most ambiguous status in tech. It's either a kingmaker role or a dignified exit ramp. From here, nobody can tell.",
+      zh: "“特别项目、直接向 CEO 汇报”、没有团队、日历空空，这是科技公司里最暧昧的状态。它要么是造王者的位置，要么是体面的离场坡道。光看这些，谁也说不准。",
+    },
+    resultFlavor: {
+      correct: { en: "No one can call this. 'Special Projects' is Schrodinger's promotion.", zh: "这题没人能下结论。“特别项目”是薛定谔的升职。" },
+      wrong: { en: "No one can call this. 'Special Projects' is Schrodinger's promotion.", zh: "这题没人能下结论。“特别项目”是薛定谔的升职。" },
+    },
+  },
+  {
+    id: "case-071",
+    difficulty: "medium",
+    tags: ["politics"],
+    title: { en: "Mentor Went Quiet", zh: "Mentor 突然没声了" },
+    intro: {
+      en: "Your mentor stopped replying to your messages for two weeks.",
+      zh: "你的 mentor 连续两周不回你消息了。",
+    },
+    telemetry: [
+      { key: { en: "Replies", zh: "回复" }, value: { en: "None", zh: "没有" }, status: "warning" },
+      { key: { en: "Their Calendar", zh: "他们的日历" }, value: { en: "Back-to-back planning", zh: "排满了 planning" }, status: "normal" },
+      { key: { en: "Season", zh: "时节" }, value: { en: "Annual planning", zh: "年度规划季" }, status: "normal" },
+      { key: { en: "Last Message", zh: "上一条消息" }, value: { en: "Friendly", zh: "很友好" }, status: "normal" },
+      { key: { en: "Status", zh: "状态" }, value: { en: "'Heads down'", zh: "“专注中”" }, status: "normal" },
+    ],
+    choices: [
+      { id: "avoiding_you", label: { en: "Avoiding You", zh: "在躲你" } },
+      { id: "planning_busy", label: { en: "Buried in Planning Season", zh: "被 TODO List 埋了" } },
+      { id: "about_to_quit", label: { en: "About to Quit", zh: "要离职了" } },
+      { id: "you_messed_up", label: { en: "You Did Something Wrong", zh: "你做错了什么" } },
+    ],
+    answer: "planning_busy",
+    explanation: {
+      en: "Their calendar is wall-to-wall planning, last message was friendly, status says 'heads down'. It's not about you. During planning season, everyone above you disappears into spreadsheets.",
+      zh: "他们的日历全是 planning、上一条消息还很友好、状态写着“专注中”。这跟你无关。一到规划季，你头上的人都消失进了表格里。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It's planning season, not personal.", zh: "正确。是规划季，不是针对你。" },
+      wrong: { en: "You assumed silence meant judgment. It meant spreadsheets.", zh: "你以为沉默是评判，其实是表格。" },
+    },
+  },
+  {
+    id: "case-072",
+    difficulty: "medium",
+    tags: ["politics"],
+    title: { en: "Skip Started 1:1ing Your Peer", zh: "隔级开始单独约你同事" },
+    intro: {
+      en: "Your skip-level started weekly 1:1s with your peer, but not you.",
+      zh: "你的隔级老板开始每周跟你同事 1:1，却没找你。",
+    },
+    telemetry: [
+      { key: { en: "Peer 1:1", zh: "同事的 1:1" }, value: { en: "New, weekly", zh: "新增，每周" }, status: "warning" },
+      { key: { en: "Your 1:1", zh: "你的 1:1" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Your Manager", zh: "你的经理" }, value: { en: "On leave soon", zh: "即将休假" }, status: "normal" },
+      { key: { en: "Peer Role", zh: "同事角色" }, value: { en: "Covering for manager", zh: "代管经理职责" }, status: "normal" },
+      { key: { en: "Perf Gap", zh: "绩效差距" }, value: { en: "None", zh: "无" }, status: "normal" },
+    ],
+    choices: [
+      { id: "peer_groomed", label: { en: "Peer Being Groomed", zh: "同事在被培养上位" } },
+      { id: "interim_coverage", label: { en: "Interim Coverage During Leave", zh: "休假期间临时代管" } },
+      { id: "youre_sidelined", label: { en: "You're Being Sidelined", zh: "你被边缘化了" } },
+      { id: "peer_promoted", label: { en: "Peer Got Promoted", zh: "同事升职了" } },
+    ],
+    answer: "interim_coverage",
+    explanation: {
+      en: "Your manager is about to go on leave and your peer is covering. The new 1:1 is logistics, not favoritism. Your own 1:1 didn't change, and there's no perf gap. Gossip, defeated.",
+      zh: "你的经理即将休假，你的同事在代管。那个新 1:1 是工作交接，不是偏心。你自己的 1:1 没变，绩效也没差距。八卦，败。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It's coverage logistics, not a coronation.", zh: "正确。那是代管安排，不是加冕。" },
+      wrong: { en: "You read a leave-coverage 1:1 as your own sidelining.", zh: "你把一次休假代管的 1:1 读成了自己被边缘化。" },
+    },
+  },
+  {
+    id: "case-073",
+    difficulty: "easy",
+    tags: ["politics"],
+    title: { en: "The Stretch Project", zh: "Stretch 项目" },
+    intro: {
+      en: "You were handed a high-visibility 'stretch project' — no extra pay, no title change.",
+      zh: "你被塞了一个高曝光的“stretch 项目”，不加薪、不升职。",
+    },
+    telemetry: [
+      { key: { en: "Visibility", zh: "曝光度" }, value: { en: "High", zh: "高" }, status: "warning" },
+      { key: { en: "Comp", zh: "薪资" }, value: { en: "Unchanged", zh: "不变" }, status: "normal" },
+      { key: { en: "Title", zh: "Title" }, value: { en: "Unchanged", zh: "不变" }, status: "normal" },
+      { key: { en: "Owner", zh: "负责人" }, value: { en: "You", zh: "你" }, status: "normal" },
+      { key: { en: "Promo Promise", zh: "晋升承诺" }, value: { en: "'We'll see'", zh: "“再看看”" }, status: "unknown" },
+    ],
+    choices: [
+      { id: "promo_path", label: { en: "Secret Promotion Path", zh: "隐藏的升职路径" } },
+      { id: "glory_no_pay", label: { en: "Glory Work With No Comp", zh: "只有光环没有报酬的活" } },
+      { id: "set_up_to_fail", label: { en: "Being Set Up to Fail", zh: "被设局背锅" } },
+      { id: "demotion", label: { en: "Demotion", zh: "降级" } },
+    ],
+    answer: "glory_no_pay",
+    explanation: {
+      en: "High visibility, unchanged comp and title, and a 'we'll see' on promo. This is classic stretch work: you do the labor now and maybe get credit later. Get the promo criteria in writing.",
+      zh: "高曝光、薪资和 title 不变、晋升只给个“再看看”。这是经典的 stretch 活：你现在干活，credit 也许以后给。把晋升标准要成白纸黑字。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It's glory now, comp maybe never. Get it in writing.", zh: "正确。光环马上有，报酬也许永远没有。落到纸面上。" },
+      wrong: { en: "You took 'stretch' as a guaranteed promo. It's a guaranteed workload.", zh: "你把“stretch”当成了稳的晋升，其实稳的只是工作量。" },
+    },
+  },
+  {
+    id: "case-074",
+    difficulty: "medium",
+    tags: ["perf", "politics"],
+    title: { en: "'Meets Expectations' Panic", zh: "“达到预期”恐慌" },
+    intro: {
+      en: "Your review said 'Meets Expectations' and you spiraled.",
+      zh: "你的绩效写着“达到预期”，然后你就开始内耗。",
+    },
+    telemetry: [
+      { key: { en: "Rating", zh: "评级" }, value: { en: "'Meets Expectations'", zh: "“达到预期”" }, status: "warning" },
+      { key: { en: "Bonus", zh: "奖金" }, value: { en: "Paid in full", zh: "全额发放" }, status: "normal" },
+      { key: { en: "Manager Note", zh: "经理评语" }, value: { en: "'Solid year'", zh: "“扎实的一年”" }, status: "normal" },
+      { key: { en: "PIP", zh: "PIP" }, value: { en: "None", zh: "无" }, status: "normal" },
+      { key: { en: "Calibration", zh: "校准" }, value: { en: "Company-wide deflation", zh: "全公司压分" }, status: "normal" },
+    ],
+    choices: [
+      { id: "youre_failing", label: { en: "You're Failing", zh: "你不行了" } },
+      { id: "rating_is_fine", label: { en: "'Meets' Is Actually Fine", zh: "“达标”其实没问题" } },
+      { id: "managed_out", label: { en: "Being Managed Out", zh: "在被劝退" } },
+      { id: "no_bonus", label: { en: "No Bonus", zh: "没奖金" } },
+    ],
+    answer: "rating_is_fine",
+    explanation: {
+      en: "Full bonus, 'solid year' note, no PIP, and company-wide rating deflation. 'Meets Expectations' means you did your job well. The system is stingy with words, not with your paycheck.",
+      zh: "全额奖金、“扎实的一年”评语、没有 PIP、全公司还在压分。“达到预期”的意思就是你把活干好了。系统吝啬的是用词，不是你的工资。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. 'Meets' means fine. The bonus agrees.", zh: "正确。“达标”就是没问题，奖金也同意这点。" },
+      wrong: { en: "You spiraled over the word 'meets' while the money said 'great'.", zh: "你为“达标”两个字内耗，可钱已经说了“很棒”。" },
+    },
+  },
+  {
+    id: "case-075",
+    difficulty: "easy",
+    tags: ["not-a-departure", "politics"],
+    title: { en: "OOO but Committing at Night", zh: "挂着休假却半夜在提交" },
+    intro: {
+      en: "A coworker's status says '🌴 OOO' but they keep pushing commits at midnight.",
+      zh: "一位同事状态挂着“🌴休假中”，却老在半夜推 commit。",
+    },
+    telemetry: [
+      { key: { en: "Status", zh: "状态" }, value: { en: "'OOO'", zh: "“休假中”" }, status: "normal" },
+      { key: { en: "Commits", zh: "提交" }, value: { en: "Nightly", zh: "每晚都有" }, status: "warning" },
+      { key: { en: "PTO", zh: "年假" }, value: { en: "Approved", zh: "已批" }, status: "normal" },
+      { key: { en: "Manager Ask", zh: "经理喊话" }, value: { en: "'Please rest'", zh: "“请好好休息”" }, status: "normal" },
+      { key: { en: "Account", zh: "账号" }, value: { en: "Active", zh: "在职" }, status: "normal" },
+    ],
+    choices: [
+      { id: "secretly_fired", label: { en: "Secretly Fired", zh: "被偷偷开了" } },
+      { id: "vacation_guilt", label: { en: "Can't Stop Working on Vacation", zh: "度假也停不下来工作" } },
+      { id: "account_hacked", label: { en: "Account Hacked", zh: "账号被黑" } },
+      { id: "quitting", label: { en: "Quitting", zh: "要离职" } },
+    ],
+    answer: "vacation_guilt",
+    explanation: {
+      en: "Approved PTO, an active account, and a manager literally asking them to rest. This isn't a breach; it's someone who doesn't know how to be off. Tragic, common, not your incident.",
+      zh: "已批的休假、在用的账号、一个明确请他们休息的经理。这不是入侵，是一个不会“下线”的人。可悲、常见，但不是你要查的事故。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. The threat is their inability to relax.", zh: "正确。威胁来自他们无法放松。" },
+      wrong: { en: "You flagged a workaholic's vacation guilt as a breach.", zh: "你把一个工作狂的假期负罪感标成了入侵。" },
+    },
+  },
+  {
+    id: "case-076",
+    difficulty: "medium",
+    tags: ["meeting", "politics"],
+    title: { en: "All-Hands Rescheduled Twice", zh: "全员会改期了两次" },
+    intro: {
+      en: "The monthly all-hands got abruptly rescheduled twice in one week.",
+      zh: "月度全员会一周内被突然改期了两次。",
+    },
+    telemetry: [
+      { key: { en: "Reschedules", zh: "改期次数" }, value: { en: "2", zh: "2" }, status: "warning" },
+      { key: { en: "Reason Field", zh: "原因字段" }, value: { en: "Blank", zh: "空白" }, status: "unknown" },
+      { key: { en: "Exec Travel", zh: "高管行程" }, value: { en: "Active", zh: "在出差" }, status: "normal" },
+      { key: { en: "Agenda", zh: "议程" }, value: { en: "Same", zh: "不变" }, status: "normal" },
+      { key: { en: "Blind Thread", zh: "Blind 帖子" }, value: { en: "'Something's up'", zh: "“肯定出事了”" }, status: "alarming" },
+    ],
+    choices: [
+      { id: "bad_news", label: { en: "Bad News Incoming", zh: "坏消息要来" } },
+      { id: "scheduling_chaos", label: { en: "Exec Travel Scheduling Chaos", zh: "高管行程导致排期混乱" } },
+      { id: "event_cancelled", label: { en: "Event Cancelled", zh: "会议取消" } },
+      { id: "merger", label: { en: "Secret Merger", zh: "秘密并购" } },
+    ],
+    answer: "scheduling_chaos",
+    explanation: {
+      en: "The agenda is unchanged and execs are traveling; the only alarming signal is a Blind thread inventing doom. All-hands move because calendars collide, not because the sky is falling.",
+      zh: "议程没变、高管在出差，唯一拉响警报的是 Blind 上自编自演的末日帖。全员会改期是因为日历撞车，不是因为天要塌了。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. Calendars collided; Blind panicked.", zh: "正确。是日历撞车，是 Blind 自己慌了。" },
+      wrong: { en: "You trusted a Blind thread over an unchanged agenda.", zh: "你信了 Blind 上的帖子，没信那份没变的议程。" },
+    },
+  },
+  {
+    id: "case-077",
+    difficulty: "medium",
+    tags: ["politics"],
+    title: { en: "Removed from leadership@ DL", zh: "被移出 leadership@ 邮件组" },
+    intro: {
+      en: "You noticed you were removed from a 'leadership@' distribution list.",
+      zh: "你发现自己被从“leadership@”邮件组里移除了。",
+    },
+    telemetry: [
+      { key: { en: "DL Membership", zh: "邮件组成员" }, value: { en: "Removed", zh: "已移除" }, status: "warning" },
+      { key: { en: "Your Role", zh: "你的角色" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "DL Note", zh: "邮件组备注" }, value: { en: "'Cleanup: ICs removed'", zh: "“清理：移除 IC”" }, status: "normal" },
+      { key: { en: "Other ICs", zh: "其他 IC" }, value: { en: "Also removed", zh: "也被移除" }, status: "normal" },
+      { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
+    ],
+    choices: [
+      { id: "demotion", label: { en: "Demotion", zh: "降级" } },
+      { id: "dl_cleanup", label: { en: "Distribution List Cleanup", zh: "邮件组清理" } },
+      { id: "being_excluded", label: { en: "Being Excluded", zh: "被排挤" } },
+      { id: "pushed_out", label: { en: "Being Pushed Out", zh: "被挤走" } },
+    ],
+    answer: "dl_cleanup",
+    explanation: {
+      en: "The DL note literally says 'Cleanup: ICs removed', other ICs got removed too, and your role is unchanged. Someone just tidied a mailing list. Your status didn't change; the list did.",
+      zh: "邮件组备注白纸黑字写着“清理：移除 IC”，其他 IC 也被移了，你的角色没变。有人只是整理了一下邮件组。变的是列表，不是你的地位。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. The list got tidied, not your career.", zh: "正确。被整理的是列表，不是你的职业生涯。" },
+      wrong: { en: "You read a mailing-list cleanup as a public demotion.", zh: "你把一次邮件组清理读成了一场公开降级。" },
+    },
+  },
+  {
+    id: "case-078",
+    difficulty: "easy",
+    tags: ["reorg", "politics"],
+    title: { en: "Your Manager Field Jumped Two Levels", zh: "你的 Manager 字段跳了两级" },
+    intro: {
+      en: "Your manager field changed to someone two levels up, overnight.",
+      zh: "你的 Manager 字段一夜之间变成了一个高你两级的人。",
+    },
+    telemetry: [
+      { key: { en: "Manager", zh: "Manager" }, value: { en: "Now skip-level", zh: "现在是隔级" }, status: "warning" },
+      { key: { en: "Duration Note", zh: "时长备注" }, value: { en: "'Interim'", zh: "“临时”" }, status: "normal" },
+      { key: { en: "Old Manager", zh: "原经理" }, value: { en: "On medical leave", zh: "在休病假" }, status: "normal" },
+      { key: { en: "Your Role", zh: "你的角色" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Reorg Memo", zh: "重组备忘" }, value: { en: "None", zh: "无" }, status: "normal" },
+    ],
+    choices: [
+      { id: "manager_fired", label: { en: "Your Manager Got Fired", zh: "你的经理被开了" } },
+      { id: "interim_leave", label: { en: "Interim Reporting During Leave", zh: "休假期间临时汇报" } },
+      { id: "youre_promoted", label: { en: "You're Being Promoted", zh: "你要升职了" } },
+      { id: "team_dissolved", label: { en: "Team Dissolved", zh: "团队解散" } },
+    ],
+    answer: "interim_leave",
+    explanation: {
+      en: "The change is flagged 'interim', your old manager is on medical leave, and there's no reorg memo. You're temporarily reporting up until they're back. Nothing about you changed.",
+      zh: "变更标着“临时”、你原来的经理在休病假、也没有重组备忘。你只是临时往上汇报，等他们回来。关于你的一切都没变。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It's interim coverage, not a coup.", zh: "正确。这是临时代管，不是政变。" },
+      wrong: { en: "You assumed your manager was gone. They're just on leave.", zh: "你以为你的经理没了，其实只是请假了。" },
+    },
+  },
+  {
+    id: "case-079",
+    difficulty: "medium",
+    tags: ["politics"],
+    title: { en: "The Recruiter Ping Screenshot", zh: "猎头私信截图" },
+    intro: {
+      en: "Someone shared a screenshot of a recruiter ping in the team chat, and panic spread.",
+      zh: "有人在团队群里晒了一张猎头私信截图，然后恐慌蔓延。",
+    },
+    telemetry: [
+      { key: { en: "Recruiter Pings", zh: "猎头私信" }, value: { en: "Common lately", zh: "最近很常见" }, status: "warning" },
+      { key: { en: "Attrition", zh: "流失率" }, value: { en: "Flat", zh: "持平" }, status: "normal" },
+      { key: { en: "Team Morale", zh: "团队士气" }, value: { en: "Jittery", zh: "发慌" }, status: "warning" },
+      { key: { en: "Real Resignations", zh: "实际离职" }, value: { en: "Zero", zh: "零" }, status: "normal" },
+      { key: { en: "Market", zh: "市场" }, value: { en: "'Everyone's getting pinged'", zh: "“人人都被私信”" }, status: "normal" },
+    ],
+    choices: [
+      { id: "mass_exodus", label: { en: "Mass Exodus", zh: "集体出逃" } },
+      { id: "market_noise", label: { en: "Normal Recruiter Market Noise", zh: "正常的猎头市场噪音" } },
+      { id: "team_poached", label: { en: "Team Being Poached", zh: "团队被挖角" } },
+      { id: "layoff_rumor", label: { en: "Layoff Rumor", zh: "裁员传闻" } },
+    ],
+    answer: "market_noise",
+    explanation: {
+      en: "Pings are up everywhere, attrition is flat, and actual resignations are zero. One screenshot turned ambient recruiter spam into a panic. Everyone gets pinged; almost nobody leaves.",
+      zh: "到处的猎头私信都在涨、流失率持平、真正的离职是零。一张截图把背景噪音般的猎头骚扰变成了恐慌。人人都被私信，几乎没人真走。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It's market spam, not an exodus.", zh: "正确。那是市场骚扰，不是出逃潮。" },
+      wrong: { en: "You turned one recruiter DM into a team-wide attrition story.", zh: "你把一条猎头私信编成了全队离职大戏。" },
+    },
+  },
+  {
+    id: "case-080",
+    difficulty: "hard",
+    tags: ["ambiguous", "politics"],
+    title: { en: "The Q4 'Focus' Email", zh: "Q4 的“聚焦”邮件" },
+    intro: {
+      en: "Leadership sent a Q4 email about 'sharpening focus' and 'doing more with less'.",
+      zh: "领导层发了封 Q4 邮件，谈“聚焦重点”和“用更少做更多”。",
+    },
+    telemetry: [
+      { key: { en: "Email Tone", zh: "邮件语气" }, value: { en: "Carefully vague", zh: "刻意含糊" }, status: "unknown" },
+      { key: { en: "Projects", zh: "项目" }, value: { en: "Some 'deprioritized'", zh: "部分“降优先级”" }, status: "warning" },
+      { key: { en: "Headcount", zh: "人数" }, value: { en: "Not mentioned", zh: "只字未提" }, status: "unknown" },
+      { key: { en: "Hiring", zh: "招聘" }, value: { en: "Paused", zh: "暂停" }, status: "warning" },
+      { key: { en: "Severance Chatter", zh: "遣散传闻" }, value: { en: "None yet", zh: "暂时没有" }, status: "unknown" },
+    ],
+    choices: [
+      { id: "definitely_layoffs", label: { en: "Definitely Layoffs", zh: "肯定是裁员" } },
+      { id: "project_cuts", label: { en: "Project Cuts Only", zh: "只砍项目" } },
+      { id: "normal_planning", label: { en: "Just Normal Planning", zh: "只是正常规划" } },
+      { id: "none", label: { en: "Too Vague to Decode", zh: "太含糊，解不了" } },
+    ],
+    answer: "none",
+    actualCause: { en: "Project Cuts or People Cuts — Too Vague", zh: "可能砍项目，也可能砍人，太含糊" },
+    explanation: {
+      en: "'Do more with less' is the most load-bearing phrase in tech. Projects are deprioritized and hiring is paused, but headcount and severance are unmentioned. This email is engineered to be unfalsifiable. Wait for the next one.",
+      zh: "“用更少做更多”是科技圈最能承重的一句话。项目在降优先级、招聘暂停，但 headcount 和遣散只字未提。这封邮件就是设计成无法证伪的。等下一封吧。",
+    },
+    resultFlavor: {
+      correct: { en: "No one can decode this. Corporate vagueness is a feature, not a bug.", zh: "这题谁也解不了。企业级含糊是特性，不是 bug。" },
+      wrong: { en: "No one can decode this. Corporate vagueness is a feature, not a bug.", zh: "这题谁也解不了。企业级含糊是特性，不是 bug。" },
+    },
+  },
+  {
+    id: "case-081",
+    difficulty: "easy",
+    tags: ["onboarding", "politics"],
+    title: { en: "The Over-Invited New Hire", zh: "被疯狂拉会的新人" },
+    intro: {
+      en: "A first-week new hire is already invited to every team meeting.",
+      zh: "一位入职第一周的新人已经被拉进了所有团队会议。",
+    },
+    telemetry: [
+      { key: { en: "Tenure", zh: "入职时长" }, value: { en: "4 days", zh: "4 天" }, status: "warning" },
+      { key: { en: "Meeting Load", zh: "会议量" }, value: { en: "Maxed out", zh: "拉满" }, status: "alarming" },
+      { key: { en: "Onboarding Doc", zh: "Onboarding 文档" }, value: { en: "Does not exist", zh: "不存在" }, status: "alarming" },
+      { key: { en: "Assigned Work", zh: "已分配工作" }, value: { en: "None yet", zh: "暂无" }, status: "normal" },
+      { key: { en: "Manager Note", zh: "经理备注" }, value: { en: "'Learn by osmosis'", zh: "“耳濡目染地学”" }, status: "unknown" },
+    ],
+    choices: [
+      { id: "rising_star", label: { en: "A Rising Star", zh: "未来之星" } },
+      { id: "no_onboarding", label: { en: "No Onboarding, So Just Invited to Everything", zh: "没有 onboarding，只能全拉进会" } },
+      { id: "being_tested", label: { en: "Being Tested", zh: "在被考验" } },
+      { id: "wrong_team", label: { en: "Wrong Team", zh: "进错组了" } },
+    ],
+    answer: "no_onboarding",
+    explanation: {
+      en: "No onboarding doc, no assigned work, and a manager hoping for 'osmosis'. Wall-to-wall meetings aren't a sign of importance; they're what happens when nobody wrote down how the team works.",
+      zh: "没有 onboarding 文档、没有分配工作、经理还指望“耳濡目染”。排满的会议不是受重视的信号，而是没人写下团队怎么运转时的默认结果。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It's a documentation gap, not a coronation.", zh: "正确。这是文档缺失，不是加冕。" },
+      wrong: { en: "You read 'no onboarding' as 'fast track'.", zh: "你把“没有 onboarding”读成了“快速通道”。" },
+    },
+  },
+  {
+    id: "case-082",
+    difficulty: "easy",
+    tags: ["onboarding", "politics"],
+    title: { en: "The Buddy Who Vanished", zh: "消失的 Buddy" },
+    intro: {
+      en: "Your onboarding buddy stopped responding to your questions.",
+      zh: "你的 onboarding buddy 不再回你的问题了。",
+    },
+    telemetry: [
+      { key: { en: "Buddy Replies", zh: "Buddy 回复" }, value: { en: "Dried up", zh: "断了" }, status: "warning" },
+      { key: { en: "Their Sprint", zh: "他们的冲刺" }, value: { en: "Crunch week", zh: "封闭周" }, status: "alarming" },
+      { key: { en: "Their Status", zh: "他们的状态" }, value: { en: "'Heads down, ship date'", zh: "“冲刺中，赶发布”" }, status: "normal" },
+      { key: { en: "Your Access", zh: "你的权限" }, value: { en: "All granted", zh: "已全部开通" }, status: "normal" },
+      { key: { en: "Other Helpers", zh: "其他可问的人" }, value: { en: "Available", zh: "在线" }, status: "normal" },
+    ],
+    choices: [
+      { id: "you_annoyed_them", label: { en: "You Annoyed Them", zh: "你惹烦他们了" } },
+      { id: "buddy_crunch", label: { en: "Buddy Buried in a Deadline Crunch", zh: "Buddy 被 deadline 淹了" } },
+      { id: "buddy_quitting", label: { en: "Buddy Is Quitting", zh: "Buddy 要离职" } },
+      { id: "ignored_on_purpose", label: { en: "Being Ignored on Purpose", zh: "被故意无视" } },
+    ],
+    answer: "buddy_crunch",
+    explanation: {
+      en: "Their status literally says 'heads down, ship date', your access is all set, and other helpers are free. The buddy didn't abandon you; a deadline ate them. Ask someone else.",
+      zh: "他们状态明明写着“冲刺中，赶发布”、你的权限都开通了、还有别人能问。Buddy 不是抛弃了你，是被 deadline 吃了。换个人问吧。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. A deadline ate your buddy, not malice.", zh: "正确。吃掉你 buddy 的是 deadline，不是恶意。" },
+      wrong: { en: "You took a crunch week personally.", zh: "你把人家的封闭周当成了针对你。" },
+    },
+  },
+  {
+    id: "case-083",
+    difficulty: "medium",
+    tags: ["promo", "politics"],
+    title: { en: "Same Work, Different Outcome", zh: "一样的活，不一样的结果" },
+    intro: {
+      en: "A peer with the same scope as you got promoted. You didn't.",
+      zh: "一个和你 scope 一样的同事升职了，你没有。",
+    },
+    telemetry: [
+      { key: { en: "Your Packet", zh: "你的材料" }, value: { en: "Strong", zh: "很强" }, status: "normal" },
+      { key: { en: "Peer Packet", zh: "同事材料" }, value: { en: "Also strong", zh: "也很强" }, status: "normal" },
+      { key: { en: "Promo Quota", zh: "晋升名额" }, value: { en: "Full this cycle", zh: "本轮已满" }, status: "alarming" },
+      { key: { en: "Manager Feedback", zh: "经理反馈" }, value: { en: "'Next cycle, very likely'", zh: "“下轮，很有希望”" }, status: "warning" },
+      { key: { en: "Perf Rating", zh: "绩效" }, value: { en: "Exceeds", zh: "超出预期" }, status: "normal" },
+    ],
+    choices: [
+      { id: "youre_worse", label: { en: "You're Just Worse", zh: "你就是不如人" } },
+      { id: "quota_full", label: { en: "Promo Quota Was Full", zh: "晋升名额满了" } },
+      { id: "manager_dislikes", label: { en: "Manager Dislikes You", zh: "经理不喜欢你" } },
+      { id: "being_managed_out", label: { en: "Being Managed Out", zh: "在被劝退" } },
+    ],
+    answer: "quota_full",
+    explanation: {
+      en: "Both packets are strong, your rating exceeds, and the quota is full. Calibration is a budget, not a meritocracy. Two strong cases, one slot. It wasn't you; it was math.",
+      zh: "两份材料都很强、你绩效超出预期、名额满了。Calibration 是个预算，不是纯粹的择优。两个强 case，一个名额。不是你的问题，是算术。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It was a budget cap, not a verdict on you.", zh: "正确。那是预算上限，不是对你的判决。" },
+      wrong: { en: "You took a quota cap as a referendum on your worth.", zh: "你把一个名额上限当成了对你价值的全民公投。" },
+    },
+  },
+  {
+    id: "case-084",
+    difficulty: "hard",
+    tags: ["promo", "ambiguous", "politics"],
+    title: { en: "One More Cycle", zh: "再攒一个 cycle" },
+    intro: {
+      en: "For the third time, your manager said 'let's aim for next cycle'.",
+      zh: "你的经理第三次说“我们瞄准下一轮吧”。",
+    },
+    telemetry: [
+      { key: { en: "Times Deferred", zh: "被推迟次数" }, value: { en: "3", zh: "3" }, status: "alarming" },
+      { key: { en: "Stated Reason", zh: "给的理由" }, value: { en: "Different each time", zh: "每次都不一样" }, status: "warning" },
+      { key: { en: "Concrete Criteria", zh: "明确标准" }, value: { en: "Never written down", zh: "从未写下" }, status: "alarming" },
+      { key: { en: "Your Output", zh: "你的产出" }, value: { en: "Strong", zh: "很强" }, status: "normal" },
+      { key: { en: "Manager Sincerity", zh: "经理诚意" }, value: { en: "Unreadable", zh: "看不透" }, status: "unknown" },
+    ],
+    choices: [
+      { id: "genuine_soon", label: { en: "Genuinely Almost There", zh: "真的快了" } },
+      { id: "soft_no", label: { en: "A Polite Forever-No", zh: "礼貌的永远拒绝" } },
+      { id: "manager_powerless", label: { en: "Manager Has No Pull", zh: "经理根本没话语权" } },
+      { id: "none", label: { en: "Impossible to Tell", zh: "根本判断不了" } },
+    ],
+    answer: "none",
+    actualCause: { en: "Sincere Plan or Soft No — Unknowable", zh: "是真心计划还是软性拒绝，无从得知" },
+    explanation: {
+      en: "Three deferrals, shifting reasons, and criteria that are never written down. 'Next cycle' could be a sincere plan, a manager with no political capital, or a polite forever-no. Without written criteria, the phrase is undecidable. Demand them.",
+      zh: "三次推迟、理由每次都变、标准从来不落纸面。“下一轮”可能是真心计划、可能是经理根本没有政治资本、也可能是礼貌的永远拒绝。没有书面标准，这句话无法判定。把标准要出来。",
+    },
+    resultFlavor: {
+      correct: { en: "No one can call this. 'Next cycle' is corporate Schrodinger.", zh: "这题没人能下结论。“下一轮”是企业版薛定谔。" },
+      wrong: { en: "No one can call this. 'Next cycle' is corporate Schrodinger.", zh: "这题没人能下结论。“下一轮”是企业版薛定谔。" },
+    },
+  },
+  {
+    id: "case-085",
+    difficulty: "medium",
+    tags: ["cross-team", "politics"],
+    title: { en: "The Boomerang Ticket", zh: "回旋镖工单" },
+    intro: {
+      en: "Your ticket got reassigned across five teams and landed back on you.",
+      zh: "你的工单在五个组之间转了一圈，又转回了你这里。",
+    },
+    telemetry: [
+      { key: { en: "Reassignments", zh: "转派次数" }, value: { en: "5 teams", zh: "5 个组" }, status: "warning" },
+      { key: { en: "Each Note", zh: "每次备注" }, value: { en: "'Not our scope'", zh: "“不在我们 scope”" }, status: "warning" },
+      { key: { en: "Actual Owner", zh: "真正归属" }, value: { en: "Genuinely unclear", zh: "确实不明" }, status: "alarming" },
+      { key: { en: "Malice Signals", zh: "恶意信号" }, value: { en: "None", zh: "无" }, status: "normal" },
+      { key: { en: "Org Boundaries", zh: "组织边界" }, value: { en: "Overlapping", zh: "互相重叠" }, status: "warning" },
+    ],
+    choices: [
+      { id: "people_hate_you", label: { en: "People Are Dodging You", zh: "大家在躲你" } },
+      { id: "ownership_gap", label: { en: "Genuine Ownership Gap", zh: "真正的归属空白" } },
+      { id: "sabotage", label: { en: "Deliberate Sabotage", zh: "故意使绊子" } },
+      { id: "your_fault", label: { en: "You Filed It Wrong", zh: "你提错了" } },
+    ],
+    answer: "ownership_gap",
+    explanation: {
+      en: "Five 'not our scope' notes, overlapping org boundaries, and no malice signals. Nobody is dodging you; the work genuinely lives in a seam between teams. The boomerang is org design, not spite.",
+      zh: "五条“不在我们 scope”、组织边界互相重叠、没有恶意信号。没人在躲你，这活真的卡在团队之间的缝里。回旋镖是组织设计的锅，不是有人记仇。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It fell in a seam, not into a vendetta.", zh: "正确。它掉进了缝里，不是掉进了恩怨里。" },
+      wrong: { en: "You read an ownership gap as a personal snub.", zh: "你把一个归属空白读成了针对你的冷落。" },
+    },
+  },
+  {
+    id: "case-086",
+    difficulty: "hard",
+    tags: ["cross-team", "politics"],
+    title: { en: "The Scope Land Grab", zh: "抢地盘" },
+    intro: {
+      en: "Another team's deck suddenly lists your project under their charter.",
+      zh: "另一个组的 PPT 突然把你的项目列在了他们的 charter 下面。",
+    },
+    telemetry: [
+      { key: { en: "Their Deck", zh: "他们的 PPT" }, value: { en: "Claims your project", zh: "把你的项目划走了" }, status: "alarming" },
+      { key: { en: "Your Code", zh: "你的代码" }, value: { en: "Still yours", zh: "还是你的" }, status: "normal" },
+      { key: { en: "Season", zh: "时节" }, value: { en: "Planning / charters", zh: "规划 / 定 charter" }, status: "normal" },
+      { key: { en: "Their VP", zh: "他们的 VP" }, value: { en: "Expanding scope", zh: "在扩 scope" }, status: "warning" },
+      { key: { en: "Decision Made", zh: "已定的事" }, value: { en: "None yet", zh: "暂无" }, status: "unknown" },
+    ],
+    choices: [
+      { id: "youre_fired", label: { en: "Your Team Is Done", zh: "你们组要没了" } },
+      { id: "land_grab", label: { en: "Planning-Season Scope Land Grab", zh: "规划季的抢地盘" } },
+      { id: "already_lost", label: { en: "You Already Lost It", zh: "你已经丢了" } },
+      { id: "harmless_typo", label: { en: "Harmless Slide Typo", zh: "无害的 PPT 笔误" } },
+    ],
+    answer: "land_grab",
+    explanation: {
+      en: "It's planning season, their VP is expanding scope, your code is still yours, and no decision is made. A slide is an opening bid, not a verdict. This is empire-building theater; counter it with your own deck.",
+      zh: "正值规划季、他们 VP 在扩 scope、你的代码还是你的、也没有任何决定。一页 PPT 是开价，不是判决。这是扩张地盘的戏码，用你自己的 PPT 反击就行。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It's a bid, not a verdict. Make your own slide.", zh: "正确。那是开价，不是判决，做你自己的那页去。" },
+      wrong: { en: "You surrendered scope to a slide that decided nothing.", zh: "你向一页什么都没决定的 PPT 投降了。" },
+    },
+  },
+  {
+    id: "case-087",
+    difficulty: "easy",
+    tags: ["meeting", "politics"],
+    title: { en: "Added to a 50-Person 'Working Group'", zh: "被加进 50 人“工作组”" },
+    intro: {
+      en: "You were added to a 50-person 'collaboration' channel for one decision.",
+      zh: "为了一个决定，你被加进了一个 50 人的“协作”频道。",
+    },
+    telemetry: [
+      { key: { en: "Channel Size", zh: "频道人数" }, value: { en: "50", zh: "50" }, status: "warning" },
+      { key: { en: "Your Action Items", zh: "你的待办" }, value: { en: "Zero", zh: "零" }, status: "normal" },
+      { key: { en: "Decision Makers", zh: "决策者" }, value: { en: "3 of the 50", zh: "50 里的 3 个" }, status: "normal" },
+      { key: { en: "Your Role", zh: "你的角色" }, value: { en: "'FYI / awareness'", zh: "“知会 / 了解”" }, status: "normal" },
+      { key: { en: "Mute Available", zh: "可静音" }, value: { en: "Yes", zh: "可以" }, status: "normal" },
+    ],
+    choices: [
+      { id: "youre_key", label: { en: "You're a Key Stakeholder", zh: "你是关键干系人" } },
+      { id: "diffusion", label: { en: "Responsibility Diffusion, FYI Only", zh: "责任稀释，只是知会" } },
+      { id: "being_watched", label: { en: "Being Watched", zh: "被盯上了" } },
+      { id: "promotion_signal", label: { en: "A Promotion Signal", zh: "升职信号" } },
+    ],
+    answer: "diffusion",
+    explanation: {
+      en: "Fifty people, three actual decision-makers, zero action items for you, role tagged 'FYI'. Big channels feel important but usually mean diffuse accountability. You were added so nobody can say you weren't told. Mute it.",
+      zh: "50 个人、3 个真正的决策者、你 0 个待办、角色标着“知会”。大频道看着重要，实际多半意味着责任分散。你被加进来只是为了将来没人能说“没通知你”。静音吧。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. Big channel, small role. Mute and move on.", zh: "正确。大频道，小角色，静音继续。" },
+      wrong: { en: "You read a CYA add as a seat at the table.", zh: "你把一次“免责拉群”读成了核心席位。" },
+    },
+  },
+  {
+    id: "case-088",
+    difficulty: "medium",
+    tags: ["okr", "politics"],
+    title: { en: "Your Project Vanished from the OKRs", zh: "你的项目从 OKR 里消失了" },
+    intro: {
+      en: "Your project is no longer listed in the new quarterly OKRs.",
+      zh: "你的项目在新一季的 OKR 里不见了。",
+    },
+    telemetry: [
+      { key: { en: "OKR Listing", zh: "OKR 列项" }, value: { en: "Not found", zh: "找不到" }, status: "alarming" },
+      { key: { en: "Umbrella OKR", zh: "总 OKR" }, value: { en: "New, broad", zh: "新增，范围更大" }, status: "warning" },
+      { key: { en: "Your Funding", zh: "你的资源" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Your Headcount", zh: "你的人头" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Roadmap", zh: "路线图" }, value: { en: "Still active", zh: "仍在推进" }, status: "normal" },
+    ],
+    choices: [
+      { id: "project_killed", label: { en: "Project Killed", zh: "项目被砍" } },
+      { id: "folded_into_umbrella", label: { en: "Folded Into a Bigger Umbrella OKR", zh: "被并进了更大的总 OKR" } },
+      { id: "forgotten", label: { en: "Forgotten / Lost", zh: "被遗忘了" } },
+      { id: "defunded", label: { en: "Quietly Defunded", zh: "悄悄撤资" } },
+    ],
+    answer: "folded_into_umbrella",
+    explanation: {
+      en: "Funding, headcount, and roadmap are all unchanged, and a new broad umbrella OKR appeared. Your project didn't die; it got absorbed into a bigger line item for the slide. Same work, less visibility.",
+      zh: "资源、人头、路线图全没变，还冒出来一个范围更大的总 OKR。你的项目没死，是被吸进了一个更大的条目里好放进 PPT。活照旧，只是曝光少了。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. Absorbed, not axed.", zh: "正确。是被吸收，不是被砍。" },
+      wrong: { en: "You held a funeral for a project that's still funded.", zh: "你给一个还有预算的项目办了葬礼。" },
+    },
+  },
+  {
+    id: "case-089",
+    difficulty: "easy",
+    tags: ["okr", "politics"],
+    title: { en: "Everything Must 'Align'", zh: "一切都要“对齐”" },
+    intro: {
+      en: "Leadership now requires every project to 'align to the top company priority'.",
+      zh: "领导层现在要求每个项目都“对齐公司最高优先级”。",
+    },
+    telemetry: [
+      { key: { en: "New Mandate", zh: "新要求" }, value: { en: "'Align to priority'", zh: "“对齐优先级”" }, status: "warning" },
+      { key: { en: "Your Actual Work", zh: "你的实际工作" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Slide Headers", zh: "PPT 标题" }, value: { en: "Reworded", zh: "改了措辞" }, status: "warning" },
+      { key: { en: "Budget", zh: "预算" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Deadlines", zh: "截止日期" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+    ],
+    choices: [
+      { id: "huge_strategy_shift", label: { en: "Huge Strategy Shift", zh: "重大战略转向" } },
+      { id: "rewording_exercise", label: { en: "A Rewording Exercise", zh: "一次改措辞运动" } },
+      { id: "work_cancelled", label: { en: "Your Work Is Cancelled", zh: "你的活被取消" } },
+      { id: "layoff_prep", label: { en: "Layoff Prep", zh: "裁员前兆" } },
+    ],
+    answer: "rewording_exercise",
+    explanation: {
+      en: "Budgets, deadlines, and actual work are unchanged; only slide headers got reworded. 'Align to the priority' means 'retitle your deck to mention the buzzword'. Find-and-replace, not strategy.",
+      zh: "预算、截止日期、实际工作都没变，变的只有 PPT 标题。“对齐优先级”的意思是“把你 PPT 标题改成提一下那个热词”。是查找替换，不是战略。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It's find-and-replace, not a pivot.", zh: "正确。这是查找替换，不是转向。" },
+      wrong: { en: "You rebuilt your roadmap over a header change.", zh: "你为一次标题改动重建了整个路线图。" },
+    },
+  },
+  {
+    id: "case-090",
+    difficulty: "hard",
+    tags: ["okr", "ambiguous", "politics"],
+    title: { en: "Stamped P2", zh: "被盖了 P2" },
+    intro: {
+      en: "Your project got labeled 'P2' in the planning doc.",
+      zh: "你的项目在规划文档里被标成了“P2”。",
+    },
+    telemetry: [
+      { key: { en: "Priority Tag", zh: "优先级标签" }, value: { en: "P2", zh: "P2" }, status: "warning" },
+      { key: { en: "Funding", zh: "资源" }, value: { en: "Still there, for now", zh: "暂时还在" }, status: "unknown" },
+      { key: { en: "Exec Mentions", zh: "高管提及" }, value: { en: "Rare", zh: "很少" }, status: "warning" },
+      { key: { en: "Team Morale", zh: "团队士气" }, value: { en: "Reading tea leaves", zh: "在解读茶叶渣" }, status: "warning" },
+      { key: { en: "Official Stance", zh: "官方说法" }, value: { en: "'Still important'", zh: "“依然重要”" }, status: "unknown" },
+    ],
+    choices: [
+      { id: "just_sequencing", label: { en: "Just Resource Sequencing", zh: "只是资源排序" } },
+      { id: "slow_death", label: { en: "The Start of a Slow Death", zh: "慢性死亡的开始" } },
+      { id: "p2_is_fine", label: { en: "P2 Is Totally Fine", zh: "P2 完全没问题" } },
+      { id: "none", label: { en: "Can't Tell Yet", zh: "暂时判断不了" } },
+    ],
+    answer: "none",
+    actualCause: { en: "Healthy Sequencing or Slow Defunding — Too Early", zh: "是正常排序还是慢性撤资，太早判断" },
+    explanation: {
+      en: "P2 with funding 'for now', rare exec mentions, and an official 'still important'. P2 can mean honest sequencing or the first step of a quiet wind-down. Both look identical at this stage. Watch whether the funding survives next quarter.",
+      zh: "P2、资源“暂时还在”、高管很少提、官方还说“依然重要”。P2 既可能是诚实的排序，也可能是悄悄收尾的第一步。这个阶段两者长得一模一样。看看资源能不能熬过下一季再说。",
+    },
+    resultFlavor: {
+      correct: { en: "No one can call this yet. P2 is a fork in the road, not a destination.", zh: "这题暂时没人能下结论。P2 是岔路口，不是终点。" },
+      wrong: { en: "No one can call this yet. P2 is a fork in the road, not a destination.", zh: "这题暂时没人能下结论。P2 是岔路口，不是终点。" },
+    },
+  },
+  {
+    id: "case-091",
+    difficulty: "easy",
+    tags: ["tools", "politics"],
+    title: { en: "Demoted to Viewer", zh: "被降成 Viewer" },
+    intro: {
+      en: "Your manager changed your doc access from editor to viewer.",
+      zh: "你的经理把你对某文档的权限从 editor 降成了 viewer。",
+    },
+    telemetry: [
+      { key: { en: "Doc Access", zh: "文档权限" }, value: { en: "Editor -> Viewer", zh: "Editor -> Viewer" }, status: "warning" },
+      { key: { en: "Doc Status", zh: "文档状态" }, value: { en: "'Finalized / locked'", zh: "“已定稿 / 锁定”" }, status: "normal" },
+      { key: { en: "Everyone Else", zh: "其他所有人" }, value: { en: "Also viewer now", zh: "现在也是 viewer" }, status: "normal" },
+      { key: { en: "Your Role", zh: "你的角色" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Other Docs", zh: "其他文档" }, value: { en: "Still editor", zh: "仍是 editor" }, status: "normal" },
+    ],
+    choices: [
+      { id: "lost_trust", label: { en: "You Lost Their Trust", zh: "你失去了信任" } },
+      { id: "doc_locked", label: { en: "Doc Was Finalized and Locked", zh: "文档定稿后被锁定" } },
+      { id: "being_demoted", label: { en: "Being Demoted", zh: "在被降级" } },
+      { id: "punishment", label: { en: "Punishment", zh: "惩罚" } },
+    ],
+    answer: "doc_locked",
+    explanation: {
+      en: "The doc is marked 'finalized', everyone else is now viewer too, and your access on other docs is unchanged. They locked the document, not your standing. Once a doc ships, edit rights get revoked by default.",
+      zh: "文档标着“已定稿”、其他所有人现在也是 viewer、你在别的文档上还是 editor。被锁的是文档，不是你的地位。文档一旦定稿，编辑权默认会被收回。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. They locked the doc, not your career.", zh: "正确。锁的是文档，不是你的职业生涯。" },
+      wrong: { en: "You read a doc lock as a vote of no confidence.", zh: "你把一次文档锁定读成了不信任投票。" },
+    },
+  },
+  {
+    id: "case-092",
+    difficulty: "easy",
+    tags: ["tools", "politics"],
+    title: { en: "Removed from a Private Channel", zh: "被移出私密频道" },
+    intro: {
+      en: "You got removed from a private team channel without explanation.",
+      zh: "你被无声无息地移出了一个私密团队频道。",
+    },
+    telemetry: [
+      { key: { en: "Channel", zh: "频道" }, value: { en: "Now archived", zh: "已归档" }, status: "normal" },
+      { key: { en: "Removal Scope", zh: "移除范围" }, value: { en: "Everyone removed", zh: "所有人都被移" }, status: "normal" },
+      { key: { en: "Admin Note", zh: "管理员备注" }, value: { en: "'Channel cleanup'", zh: "“频道清理”" }, status: "normal" },
+      { key: { en: "New Channel", zh: "新频道" }, value: { en: "You're in it", zh: "你在里面" }, status: "normal" },
+      { key: { en: "Your Role", zh: "你的角色" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+    ],
+    choices: [
+      { id: "excluded", label: { en: "Being Excluded", zh: "被排挤" } },
+      { id: "channel_archived", label: { en: "Channel Archived in a Cleanup", zh: "频道清理时被归档" } },
+      { id: "secret_meeting", label: { en: "A Secret Channel Without You", zh: "有个不带你的秘密频道" } },
+      { id: "demotion", label: { en: "Demotion", zh: "降级" } },
+    ],
+    answer: "channel_archived",
+    explanation: {
+      en: "The channel is archived, everyone was removed, the note says 'cleanup', and you're already in the new channel. Nobody exiled you; an old channel got tidied and a new one replaced it. You're in that one.",
+      zh: "频道已归档、所有人都被移、备注写着“清理”、你已经在新频道里了。没人把你流放，是一个旧频道被整理掉、换了个新的。你就在新的里面。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. Archived, not exiled.", zh: "正确。是归档，不是流放。" },
+      wrong: { en: "You read a channel cleanup as a quiet shunning.", zh: "你把一次频道清理读成了无声的排挤。" },
+    },
+  },
+  {
+    id: "case-093",
+    difficulty: "medium",
+    tags: ["tools", "politics"],
+    title: { en: "Dropped from the Wiki Owners", zh: "从 Wiki Owner 里被去掉" },
+    intro: {
+      en: "Your name disappeared from a wiki page's owner list.",
+      zh: "你的名字从某个 wiki 页面的 owner 列表里消失了。",
+    },
+    telemetry: [
+      { key: { en: "Owner List", zh: "Owner 列表" }, value: { en: "You removed", zh: "你被移除" }, status: "warning" },
+      { key: { en: "Rotation Policy", zh: "轮换制度" }, value: { en: "Quarterly", zh: "每季轮换" }, status: "normal" },
+      { key: { en: "New Owner", zh: "新 Owner" }, value: { en: "A teammate", zh: "一位同事" }, status: "normal" },
+      { key: { en: "Your Access", zh: "你的访问" }, value: { en: "Still full", zh: "仍是完整" }, status: "normal" },
+      { key: { en: "Blame Signals", zh: "甩锅信号" }, value: { en: "None", zh: "无" }, status: "normal" },
+    ],
+    choices: [
+      { id: "blame_setup", label: { en: "Being Set Up to Take Blame", zh: "被安排背锅" } },
+      { id: "owner_rotation", label: { en: "Routine Owner Rotation", zh: "例行 owner 轮换" } },
+      { id: "pushed_out", label: { en: "Being Pushed Off the Project", zh: "被挤出项目" } },
+      { id: "demotion", label: { en: "Demotion", zh: "降级" } },
+    ],
+    answer: "owner_rotation",
+    explanation: {
+      en: "There's a quarterly rotation policy, a teammate took the slot, your access is still full, and there are no blame signals. Owner rotation spreads maintenance load; it's not a setup. You just rotated off.",
+      zh: "有每季轮换制度、同事接了班、你的访问权限仍完整、没有甩锅信号。Owner 轮换是为了分摊维护负担，不是设局。你只是轮到下场了。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. You rotated off, you weren't pushed off.", zh: "正确。你是轮下场，不是被挤下场。" },
+      wrong: { en: "You read a maintenance rotation as a blame trap.", zh: "你把一次维护轮换读成了背锅陷阱。" },
+    },
+  },
+  {
+    id: "case-094",
+    difficulty: "hard",
+    tags: ["comp", "ambiguous", "politics"],
+    title: { en: "The Smaller Refresh", zh: "变少的 Refresh" },
+    intro: {
+      en: "Your annual RSU refresh grant looks smaller than last year's.",
+      zh: "你今年的 RSU refresh 看起来比去年少。",
+    },
+    telemetry: [
+      { key: { en: "Share Count", zh: "股数" }, value: { en: "Lower", zh: "更少" }, status: "warning" },
+      { key: { en: "Stock Price", zh: "股价" }, value: { en: "Way up", zh: "涨了不少" }, status: "normal" },
+      { key: { en: "Dollar Value", zh: "美元价值" }, value: { en: "Roughly flat", zh: "大致持平" }, status: "unknown" },
+      { key: { en: "Band Position", zh: "薪资带位置" }, value: { en: "Not disclosed", zh: "未披露" }, status: "unknown" },
+      { key: { en: "Budget Memo", zh: "预算备忘" }, value: { en: "'Tighter this year'", zh: "“今年更紧”" }, status: "warning" },
+    ],
+    choices: [
+      { id: "youre_devalued", label: { en: "You're Being Devalued", zh: "你在被贬值" } },
+      { id: "price_offset", label: { en: "Fewer Shares, Same Dollars", zh: "股数少了，美元一样" } },
+      { id: "real_cut", label: { en: "A Real Comp Cut", zh: "真的降薪" } },
+      { id: "none", label: { en: "Can't Tell Without the Dollar Math", zh: "不算美元算不出来" } },
+    ],
+    answer: "none",
+    actualCause: { en: "Price-Offset or Real Cut — Depends on Undisclosed Math", zh: "是股价对冲还是真降薪，取决于没披露的数字" },
+    explanation: {
+      en: "Share count dropped but stock is up and dollar value is 'roughly flat' — yet the budget memo says 'tighter' and your band position is hidden. Fewer shares can mean nothing (price offset) or a quiet cut. Without the full dollar and band math, it's undecidable.",
+      zh: "股数少了，但股价涨了、美元价值“大致持平”——可预算备忘又说“更紧”、你的带位还藏着。股数变少可能毫无意义（股价对冲），也可能是悄悄降薪。没有完整的美元和薪资带数字，判不了。",
+    },
+    resultFlavor: {
+      correct: { en: "No one can call this from share count alone. Demand the dollar figure.", zh: "光看股数没人能下结论。把美元数字要出来。" },
+      wrong: { en: "No one can call this from share count alone. Demand the dollar figure.", zh: "光看股数没人能下结论。把美元数字要出来。" },
+    },
+  },
+  {
+    id: "case-095",
+    difficulty: "easy",
+    tags: ["budget", "politics"],
+    title: { en: "Team Offsite 'Postponed'", zh: "团建“暂缓”" },
+    intro: {
+      en: "Your team's offsite was abruptly 'postponed indefinitely'.",
+      zh: "你们团队的团建突然被“无限期暂缓”。",
+    },
+    telemetry: [
+      { key: { en: "Offsite", zh: "团建" }, value: { en: "Postponed", zh: "暂缓" }, status: "warning" },
+      { key: { en: "Timing", zh: "时点" }, value: { en: "End of fiscal quarter", zh: "财季末" }, status: "normal" },
+      { key: { en: "Travel Budget", zh: "差旅预算" }, value: { en: "Frozen till Q1", zh: "冻结到 Q1" }, status: "warning" },
+      { key: { en: "Headcount", zh: "人数" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Other Teams", zh: "其他团队" }, value: { en: "Also postponed", zh: "也暂缓了" }, status: "normal" },
+    ],
+    choices: [
+      { id: "team_dying", label: { en: "The Team Is Dying", zh: "团队要黄了" } },
+      { id: "quarter_end_savings", label: { en: "Quarter-End Cost Saving", zh: "财季末省钱" } },
+      { id: "punishment", label: { en: "Punishment for the Team", zh: "对团队的惩罚" } },
+      { id: "layoff_signal", label: { en: "Layoff Signal", zh: "裁员信号" } },
+    ],
+    answer: "quarter_end_savings",
+    explanation: {
+      en: "It's the end of the fiscal quarter, travel budget is frozen till Q1, headcount is unchanged, and other teams got postponed too. This is a finance-driven belt-tightening, not a verdict on your team. The offsite returns when the budget does.",
+      zh: "正值财季末、差旅预算冻结到 Q1、人数没变、其他团队也被暂缓了。这是财务驱动的勒紧裤腰带，不是对你团队的判决。预算回来，团建就回来。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. The budget got tight, not your team's future.", zh: "正确。紧的是预算，不是你团队的未来。" },
+      wrong: { en: "You read a frozen travel budget as a death sentence.", zh: "你把冻结的差旅预算读成了死刑判决。" },
+    },
+  },
+  {
+    id: "case-096",
+    difficulty: "medium",
+    tags: ["ghost", "politics"],
+    title: { en: "Open to Work", zh: "求职开放中" },
+    intro: {
+      en: "A senior colleague's LinkedIn quietly switched to 'open to work'.",
+      zh: "一位资深同事的 LinkedIn 悄悄变成了“open to work”。",
+    },
+    telemetry: [
+      { key: { en: "LinkedIn", zh: "领英" }, value: { en: "'Open to work'", zh: "“求职开放”" }, status: "warning" },
+      { key: { en: "Setting", zh: "设置" }, value: { en: "Recruiters-only, default", zh: "仅猎头可见，默认项" }, status: "normal" },
+      { key: { en: "Their Work", zh: "他们的工作" }, value: { en: "Fully engaged", zh: "投入如常" }, status: "normal" },
+      { key: { en: "Resignation", zh: "离职" }, value: { en: "None filed", zh: "未提交" }, status: "normal" },
+      { key: { en: "Profile Edits", zh: "资料改动" }, value: { en: "None else", zh: "其余无变化" }, status: "normal" },
+    ],
+    choices: [
+      { id: "definitely_leaving", label: { en: "Definitely Leaving", zh: "肯定要走" } },
+      { id: "default_or_noise", label: { en: "A Default Toggle / Hedging", zh: "默认开关 / 留后路" } },
+      { id: "already_resigned", label: { en: "Already Resigned", zh: "已经辞职了" } },
+      { id: "fired", label: { en: "Just Got Fired", zh: "刚被开" } },
+    ],
+    answer: "default_or_noise",
+    explanation: {
+      en: "It's the recruiters-only default setting, their work engagement is normal, no resignation is filed, and nothing else on the profile changed. 'Open to work' is often a low-effort hedge or a default, not a goodbye. Most people who toggle it never leave.",
+      zh: "这是“仅猎头可见”的默认设置、他们工作投入如常、没提离职、资料其余部分也没动。“open to work”常常只是个低成本的后路或默认项，不是告别。大多数勾上它的人根本没走。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It's a toggle, not a two-weeks notice.", zh: "正确。那是个开关，不是离职信。" },
+      wrong: { en: "You wrote their farewell over a LinkedIn default.", zh: "你为一个领英默认项写好了他们的送别词。" },
+    },
+  },
+  {
+    id: "case-097",
+    difficulty: "medium",
+    tags: ["transition", "politics"],
+    title: { en: "Scheduling Meetings Into Next Quarter", zh: "把会排到下个季度" },
+    intro: {
+      en: "Someone rumored to be leaving keeps scheduling meetings into next quarter.",
+      zh: "一个传说要走的人，还在把会排到下个季度。",
+    },
+    telemetry: [
+      { key: { en: "Rumor", zh: "传闻" }, value: { en: "'They're leaving'", zh: "“他们要走”" }, status: "warning" },
+      { key: { en: "Their Calendar", zh: "他们的日历" }, value: { en: "Booked Q+1", zh: "排到了下季度" }, status: "normal" },
+      { key: { en: "Meeting Type", zh: "会议类型" }, value: { en: "Handover / KT", zh: "交接 / 知识转移" }, status: "normal" },
+      { key: { en: "Doc Activity", zh: "文档活动" }, value: { en: "Writing runbooks", zh: "在写 runbook" }, status: "normal" },
+      { key: { en: "Backfill", zh: "补位" }, value: { en: "Being interviewed", zh: "正在面试" }, status: "warning" },
+    ],
+    choices: [
+      { id: "rumor_false", label: { en: "Rumor Is False, They're Staying", zh: "传闻是假的，他们要留" } },
+      { id: "planned_handover", label: { en: "A Planned, Known Handover", zh: "有计划、本人知情的交接" } },
+      { id: "in_denial", label: { en: "They Don't Know They're Out", zh: "他们不知道自己要走" } },
+      { id: "doing_nothing", label: { en: "Just Killing Time", zh: "在混日子" } },
+    ],
+    answer: "planned_handover",
+    explanation: {
+      en: "The meetings are handover/KT, they're writing runbooks, and a backfill is being interviewed. Booking into next quarter isn't denial; it's a person responsibly handing off. The rumor is true and so is the professionalism.",
+      zh: "那些会是交接和知识转移、他们在写 runbook、补位的人也在面试。把会排到下季度不是不知情，而是一个人在负责任地交接。传闻是真的，专业也是真的。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. That's a clean handover, not denial.", zh: "正确。那是体面的交接，不是蒙在鼓里。" },
+      wrong: { en: "You mistook a professional handover for cluelessness.", zh: "你把一次专业交接当成了状况外。" },
+    },
+  },
+  {
+    id: "case-098",
+    difficulty: "easy",
+    tags: ["not-a-departure", "politics"],
+    title: { en: "The Whole Team OOO", zh: "全组同一天 OOO" },
+    intro: {
+      en: "Your entire team is out of office on the exact same day.",
+      zh: "你整个团队在同一天集体 OOO。",
+    },
+    telemetry: [
+      { key: { en: "OOO Scope", zh: "OOO 范围" }, value: { en: "Whole team", zh: "全团队" }, status: "alarming" },
+      { key: { en: "Same Date", zh: "同一天" }, value: { en: "Yes", zh: "是" }, status: "warning" },
+      { key: { en: "Company Calendar", zh: "公司日历" }, value: { en: "'Wellness Day'", zh: "“身心健康日”" }, status: "normal" },
+      { key: { en: "Other Orgs", zh: "其他部门" }, value: { en: "Also out", zh: "也都休" }, status: "normal" },
+      { key: { en: "Accounts", zh: "账号" }, value: { en: "All active", zh: "全部在职" }, status: "normal" },
+    ],
+    choices: [
+      { id: "mass_resignation", label: { en: "Mass Resignation", zh: "集体辞职" } },
+      { id: "company_wellness_day", label: { en: "Company-Wide Wellness Day", zh: "公司级身心健康日" } },
+      { id: "secret_layoff", label: { en: "Secret Layoff Day", zh: "秘密裁员日" } },
+      { id: "team_strike", label: { en: "Team Walkout", zh: "团队罢工" } },
+    ],
+    answer: "company_wellness_day",
+    explanation: {
+      en: "The company calendar literally says 'Wellness Day', other orgs are out too, and every account is active. The whole team is off because the whole company is off. Synchronized absence here means a holiday, not an exodus.",
+      zh: "公司日历白纸黑字写着“身心健康日”、其他部门也都休、每个账号都在职。全团队休是因为全公司休。这里的同步缺席意味着放假，不是出逃。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. It's a holiday, not a walkout.", zh: "正确。是放假，不是罢工。" },
+      wrong: { en: "You read a wellness day as a mass resignation.", zh: "你把一个身心健康日读成了集体辞职。" },
+    },
+  },
+  {
+    id: "case-099",
+    difficulty: "hard",
+    tags: ["ambiguous", "politics"],
+    title: { en: "Untitled, 15 Minutes, HR Invited", zh: "无标题，15 分钟，HR 在列" },
+    intro: {
+      en: "You got a same-day 15-minute invite with no title, no agenda, and HR on it.",
+      zh: "你收到一个当天的 15 分钟邀请，没标题、没议程，HR 在受邀列表里。",
+    },
+    telemetry: [
+      { key: { en: "Title", zh: "标题" }, value: { en: "Blank", zh: "空白" }, status: "warning" },
+      { key: { en: "Agenda", zh: "议程" }, value: { en: "None", zh: "无" }, status: "warning" },
+      { key: { en: "HR Present", zh: "HR 在列" }, value: { en: "Yes", zh: "是" }, status: "alarming" },
+      { key: { en: "Length", zh: "时长" }, value: { en: "15 min", zh: "15 分钟" }, status: "warning" },
+      { key: { en: "Context", zh: "背景信息" }, value: { en: "None given", zh: "没有任何" }, status: "unknown" },
+    ],
+    choices: [
+      { id: "definitely_fired", label: { en: "Definitely Bad News", zh: "肯定是坏消息" } },
+      { id: "could_be_routine", label: { en: "Could Be Routine HR Logistics", zh: "可能只是 HR 例行事务" } },
+      { id: "definitely_fine", label: { en: "Definitely Nothing", zh: "肯定没事" } },
+      { id: "none", label: { en: "Cannot Tell — Genuinely", zh: "真的判断不了" } },
+    ],
+    answer: "none",
+    actualCause: { en: "An Ominous Format — But Outcome Unknowable", zh: "一个不祥的格式，但结果无从得知" },
+    explanation: {
+      en: "No title, no agenda, HR present, short and same-day — this is the format people dread, and it is genuinely a poor signal. But the same wrapper covers benefits paperwork, a transfer, a reorg notice, or hard news. The format raises the odds of something; it does not tell you what. You cannot resolve this from the invite alone.",
+      zh: "没标题、没议程、HR 在列、又短又是当天——这正是大家最怕的格式，它确实是个不太好的信号。但同样的包装也可能装着福利手续、一次调岗、一份重组通知，或者坏消息。这个格式提高了“有事”的概率，却没告诉你是什么事。光凭这个邀请，你解不出答案。",
+    },
+    resultFlavor: {
+      correct: { en: "Honest call. The format is ominous, but the contents are unknowable. Breathe, then go find out.", zh: "诚实的判断。格式是不祥，但内容无从得知。先深呼吸，然后去弄清楚。" },
+      wrong: { en: "Honest call. The format is ominous, but the contents are unknowable. Breathe, then go find out.", zh: "诚实的判断。格式是不祥，但内容无从得知。先深呼吸，然后去弄清楚。" },
+    },
+  },
+  {
+    id: "case-100",
+    difficulty: "hard",
+    tags: ["joke", "ambiguous", "politics", "finale"],
+    title: { en: "We're a Family", zh: "我们是一家人" },
+    intro: {
+      en: "Leadership sent a heartfelt 'we're a family' all-hands email. Then went silent.",
+      zh: "领导层发了一封情真意切的“我们是一家人”全员邮件，然后就没声了。",
+    },
+    telemetry: [
+      { key: { en: "Email Sentiment", zh: "邮件情绪" }, value: { en: "Very warm", zh: "非常温暖" }, status: "warning" },
+      { key: { en: "Specifics", zh: "具体内容" }, value: { en: "Zero", zh: "零" }, status: "alarming" },
+      { key: { en: "Follow-up", zh: "后续" }, value: { en: "Silence", zh: "沉默" }, status: "alarming" },
+      { key: { en: "Stock", zh: "股价" }, value: { en: "Down lately", zh: "最近在跌" }, status: "warning" },
+      { key: { en: "Actual News", zh: "实际消息" }, value: { en: "None yet", zh: "暂无" }, status: "unknown" },
+    ],
+    choices: [
+      { id: "genuine_warmth", label: { en: "Genuine Warmth", zh: "真情流露" } },
+      { id: "layoffs_next_week", label: { en: "Layoffs Next Week", zh: "下周裁员" } },
+      { id: "nothing_at_all", label: { en: "Means Nothing At All", zh: "什么都不意味着" } },
+      { id: "none", label: { en: "Undecodable By Design", zh: "设计上就无法解码" } },
+    ],
+    answer: "none",
+    actualCause: { en: "Maximum Corporate Ambiguity", zh: "企业含糊的最高形态" },
+    explanation: {
+      en: "'We're a family' with zero specifics, followed by silence, with the stock down — this is the most load-bearing non-statement in tech. It precedes warmth, layoffs, or absolutely nothing, with equal frequency. Like case-003 and case-100's whole lineage: when there's no signal, the honest verdict is that you cannot know. Follow the telemetry; there isn't any.",
+      zh: "“我们是一家人”、零具体内容、紧接着沉默、股价还在跌——这是科技圈最能承重的一句废话。它前面可能是温情、可能是裁员、也可能什么都没有，概率不相上下。就像 case-003 那一脉：当没有信号时，诚实的结论就是你无法知道。跟着遥测走吧——可这次根本没有遥测。",
+    },
+    resultFlavor: {
+      correct: { en: "Correct. 'We're a family' is Schrodinger's memo. Follow the telemetry — there is none.", zh: "正确。“我们是一家人”是薛定谔的备忘录。跟着遥测走——而这次根本没有遥测。" },
+      wrong: { en: "Correct verdict was 'unknowable'. A warm email with no specifics decodes to nothing — and possibly everything.", zh: "正确答案是“无从得知”。一封没有具体内容的温情邮件解出来是“什么都没有”——也可能是“一切”。" },
+    },
+  }
 ];

@@ -375,7 +375,7 @@
         <span class="brand">Core Identity Detective</span>
         <div class="lang-toggle">
           <span class="meta-lang" data-lang="label"></span>
-          <button id="lang-en">English</button>
+          <button id="lang-en">EN</button>
           <span>|</span>
           <button id="lang-zh">中文</button>
         </div>
@@ -597,7 +597,7 @@
           cond: (s) => s.accuracy >= 0.8,
           text: {
             en: "Accurate, but your confidence ran ahead of your evidence at least once. Promising. Loud.",
-            zh: "判断很准，但是太自信了。有前途，就是嗓门大。",
+            zh: "你的判断很准，但是太过于自信了，有前途。",
           },
         },
         {
@@ -617,7 +617,7 @@
         {
           cond: () => true,
           text: {
-            en: "More wrong than right. 'Insufficient telemetry' is a perfectly respectable default.",
+            en: "More wrong than right. 'IDK' is a perfectly respectable default.",
             zh: "错的比对的多。其实“我不知道”是个相当体面的默认答案。",
           },
         },
@@ -636,16 +636,16 @@
           name: { en: "First Contact", zh: "初次接案" },
           desc: {
             en: "Close your first case.",
-            zh: "完成你的第一个案件。",
+            zh: "完成你的第一个调查案件。",
           },
           cond: (ctx) => ctx.log.length >= 1,
         },
         {
           id: "fiscal-year-complete",
-          name: { en: "Fiscal Year Complete", zh: "熬过一个财年" },
+          name: { en: "Fiscal Year Complete", zh: "又活了一个财年" },
           desc: {
             en: "Reach the end of a full run.",
-            zh: "走完一个财年的调查。",
+            zh: "完成一个财年的调查。",
           },
           cond: (ctx) => ctx.log.length >= cases.length,
         },
@@ -654,7 +654,7 @@
           name: { en: "Flawless Audit", zh: "完美审计" },
           desc: {
             en: "Solve every scorable case in a run.",
-            zh: "本局每一个案件都判断正确。",
+            zh: "每一个案件都判断正确。",
           },
           cond: (ctx) => ctx.stats.scored > 0 && ctx.stats.solved === ctx.stats.scored,
         },
@@ -783,7 +783,7 @@
           name: { en: "Security Cleared", zh: "虚惊一场" },
           desc: {
             en: "Correctly read a security or compliance flag instead of a firing.",
-            zh: "把安全或合规标记正确读成虚惊，而不是开除。",
+            zh: "把安全或合规标记正确读成规定，而不是开除。",
           },
           cond: (ctx) => solvedTag(ctx, "security"),
         },
@@ -1120,6 +1120,16 @@
         if (!r) return;
         const c = cases[r.caseIndex];
         const guess = c.choices.find((x) => x.id === r.selectedChoiceId);
+        /* The real cause is derived from the answer choice's label, so it is
+         * never duplicated in the data. Unanswerable ("none") cases have no
+         * such choice, so they carry an explicit `actualCause` instead. */
+        const answerChoice = c.choices.find((x) => x.id === c.answer);
+        const causeLabel =
+          c.answer === "none"
+            ? t(c.actualCause)
+            : answerChoice
+              ? t(answerChoice.label)
+              : "-";
 
         const verdict = $("verdict");
         verdict.textContent = r.isCorrect ? t(UI.correct) : t(UI.incorrect);
@@ -1137,7 +1147,7 @@
           addLine(`${t(UI.yourGuess)}: ${guess ? t(guess.label) : "-"}`);
           addLine(`${t(UI.confidence)}: ${r.confidence}%`);
         }
-        addLine(`${t(UI.actualCause)}: ${t(c.actualCause)}`);
+        addLine(`${t(UI.actualCause)}: ${causeLabel}`);
         if (!r.isCorrect && r.confidence >= 90) addLine(t(UI.penalty));
 
         $("explanation").textContent = t(c.explanation);

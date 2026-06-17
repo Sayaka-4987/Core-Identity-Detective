@@ -1,6 +1,7 @@
 # Core Identity Detective
 
 > Follow the telemetry. Find the truth.
+> 
 > 读取档案，找出真相。
 
 A tiny bilingual (EN / 中文) static web game about fictional enterprise identity
@@ -48,10 +49,12 @@ purpose: the honest verdict is "nobody knows".
 
 Cases live in `cases.js`. Every player-visible string is an `{ en, zh }` pair.
 `telemetry[].status` is one of `normal | warning | alarming | unknown`.
-`answer` must equal a `choices[].id`, or the sentinel `"none"`. The optional
-`tags` array drives theme achievements. LocalStorage keys use the `cid-` prefix
-(`cid-seen` tracks which cases this browser has already played). Deploy via
-GitHub Pages from `main`, folder `/ (root)`.
+`answer` must equal a `choices[].id`, or the sentinel `"none"`. The correct
+cause is shown from the matching choice's label, so do not repeat it; only
+`"none"` cases add an `actualCause` `{ en, zh }` pair for the off-list truth.
+The optional `tags` array drives theme achievements. LocalStorage keys use the
+`cid-` prefix (`cid-seen` tracks which cases this browser has already played).
+Deploy via GitHub Pages from `main`, folder `/ (root)`.
 
 ## Notes
 
