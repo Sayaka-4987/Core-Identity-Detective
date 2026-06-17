@@ -1875,7 +1875,7 @@ const cases = [
     telemetry: [
       { key: { en: "Deploys", zh: "部署" }, value: { en: "Flaky", zh: "时好时坏" }, status: "warning" },
       { key: { en: "Network", zh: "网络" }, value: { en: "Intermittent", zh: "间歇性" }, status: "warning" },
-      { key: { en: "Root Cause Found", zh: "已找到根因" }, value: { en: "No", zh: "没有" }, status: "unknown" },
+      { key: { en: "Root Cause Found", zh: "已找到 Root Cause" }, value: { en: "No", zh: "没有" }, status: "unknown" },
       { key: { en: "Astrology App", zh: "星座 App" }, value: { en: "Mercury retrograde", zh: "水星逆行" }, status: "alarming" },
       { key: { en: "Engineer Morale", zh: "工程师士气" }, value: { en: "Superstitious", zh: "开始信命" }, status: "warning" },
     ],
@@ -1888,10 +1888,10 @@ const cases = [
     answer: "retrograde",
     explanation: {
       en: "Flaky everything, no root cause found, and the only thing that correlates is a planet. When the postmortem has no answer, engineers reach for the stars. This is a joke case: the honest root cause is 'we never found it'.",
-      zh: "什么都时好时坏、找不到根因，唯一能对上的是一颗行星。当复盘写不出结论时，工程师就开始仰望星空。“水逆”是个玩笑：诚实的根因是“我们一直没找到”。",
+      zh: "什么都时好时坏、找不到 Root Cause，唯一能对上的是一颗行星。当复盘写不出结论时，工程师就开始仰望星空。“水逆”是个玩笑：诚实的回答是“我们不知道”。",
     },
     resultFlavor: {
-      correct: { en: "Correct, astrologically. The real RCA is 'unknown'. Mercury took the blame.", zh: "正确，从占星学上说。真正的根因是“未知”。锅让水星背了。" },
+      correct: { en: "Correct, astrologically. The real RCA is 'unknown'. Mercury took the blame.", zh: "正确，从占星学上说。真正的 Root Cause 是“未知”。锅让水星背了。" },
       wrong: { en: "BAD END: You filed a real bug against a planet. It will not be fixed by next sprint.", zh: "BAD END：你给一颗行星提了个 bug，它才不会在下个 sprint 修好呢！" },
     },
   },
