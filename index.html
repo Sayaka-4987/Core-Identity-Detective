@@ -700,6 +700,24 @@
           },
           cond: (ctx) => solvedTag(ctx, "actually-leaving"),
         },
+        {
+          id: "security-cleared",
+          name: { en: "Security Cleared", zh: "虚惊一场" },
+          desc: {
+            en: "Correctly read a security or compliance flag instead of a firing.",
+            zh: "把安全或合规标记正确读成虚惊，而不是开除。",
+          },
+          cond: (ctx) => solvedTag(ctx, "security"),
+        },
+        {
+          id: "happy-holidays",
+          name: { en: "Happy Holidays", zh: "节日限定" },
+          desc: {
+            en: "Correctly read a cultural holiday instead of a disappearance.",
+            zh: "把跨文化节日正确读成放假，而不是消失。",
+          },
+          cond: (ctx) => solvedTag(ctx, "cross-cultural"),
+        },
       ];
 
       function solvedTag(ctx, tag) {
