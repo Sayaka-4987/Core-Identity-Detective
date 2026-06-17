@@ -1414,10 +1414,10 @@ const cases = [
     title: { en: "Seen Twice", zh: "出现了两次" },
     intro: {
       en: "A coworker appears twice in the GAL. Same face, same alias, two entries.",
-      zh: "一位同事在 GAL 里出现了两次。同一张脸、同一个 alias、两个条目。",
+      zh: "一位同事在地址簿里出现了两次。同一张脸、同一个 alias、两个条目。",
     },
     telemetry: [
-      { key: { en: "GAL Entries", zh: "GAL 条目" }, value: { en: "2 (identical)", zh: "2 个（相同）" }, status: "warning" },
+      { key: { en: "GAL Entries", zh: "地址簿条目" }, value: { en: "2 (identical)", zh: "2 个（相同）" }, status: "warning" },
       { key: { en: "Alias", zh: "Alias" }, value: { en: "Same on both", zh: "两个相同" }, status: "alarming" },
       { key: { en: "One Entry Status", zh: "其中一条状态" }, value: { en: "Stale", zh: "陈旧" }, status: "warning" },
       { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
@@ -1484,7 +1484,7 @@ const cases = [
     },
     telemetry: [
       { key: { en: "New Person's Title", zh: "新人的 Title" }, value: { en: "X (maternity cover)", zh: "X（产假顶岗）" }, status: "warning" },
-      { key: { en: "Original Person", zh: "原同事" }, value: { en: "Still in GAL", zh: "仍在 GAL" }, status: "normal" },
+      { key: { en: "Original Person", zh: "原同事" }, value: { en: "Still in GAL", zh: "仍在地址簿" }, status: "normal" },
       { key: { en: "Original's Desk", zh: "原同事工位" }, value: { en: "Reserved", zh: "保留" }, status: "normal" },
       { key: { en: "Cost Center", zh: "Cost Center" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
       { key: { en: "GAL", zh: "个人页面" }, value: { en: "Both visible", zh: "两人都可见" }, status: "normal" },
@@ -1645,7 +1645,7 @@ const cases = [
     title: { en: "Open To Work", zh: "求职意向已公开" },
     intro: {
       en: "A coworker's GAL entry is gone and their public profile elsewhere now has a green ring.",
-      zh: "一位同事的 GAL 条目没了，而他在别处的公开主页加上了一圈绿环。",
+      zh: "一位同事的地址簿条目没了，而他在别处的公开主页加上了一圈绿环。",
     },
     telemetry: [
       { key: { en: "GAL", zh: "个人页面" }, value: { en: "Removed", zh: "已移除" }, status: "alarming" },
@@ -1722,18 +1722,18 @@ const cases = [
     ],
     choices: [
       { id: "sabbatical", label: { en: "Sabbatical", zh: "停薪留职" } },
-      { id: "left_alumni", label: { en: "Left, Moved to Alumni", zh: "毕业转校友" } },
+      { id: "left_alumni", label: { en: "Left, Moved to Alumni", zh: "毕业愉快" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
     ],
     answer: "left_alumni",
-    actualCause: { en: "Left, Moved to Alumni", zh: "毕业转校友" },
+    actualCause: { en: "Left, Moved to Alumni", zh: "毕业愉快" },
     explanation: {
       en: "The account type literally changed to 'Alumni', internal access was removed, and they were invited to the alumni portal. This is a formal, clean offboarding. They left on good terms.",
       zh: "账号类型白纸黑字变成了“校友”、内网权限移除、收到校友门户邀请。这是一次正式、体面的离职流程。他好聚好散地走了。",
     },
     resultFlavor: {
-      correct: { en: "Correct. Alumni means graduated, not glitched.", zh: "正确。“校友”是毕业了，不是出 bug 了。" },
+      correct: { en: "Correct. Alumni means graduated, not glitched.", zh: "正确。“校友”是被毕业了，不是出 bug 了。" },
       wrong: { en: "You called a clean offboarding a sync error. They are at the alumni mixer.", zh: "你把一次干净的离职流程说成了同步错误。人家在校友酒会上呢。" },
     },
   },
@@ -1744,10 +1744,10 @@ const cases = [
     title: { en: "The Visa Check", zh: "签证 Check" },
     intro: {
       en: "A coworker vanished abruptly mid-project. Their work authorization field shows a flag.",
-      zh: "一位同事在项目中途突然消失了，他的工作许可字段上挂着一个标记。",
+      zh: "一位同事在项目中途突然消失了，他的“工作授权”字段上挂着一个标记。",
     },
     telemetry: [
-      { key: { en: "Work Auth", zh: "工作许可" }, value: { en: "Under review", zh: "审核中" }, status: "warning" },
+      { key: { en: "Work Auth", zh: "工作授权" }, value: { en: "Under review", zh: "审核中" }, status: "warning" },
       { key: { en: "Status", zh: "状态" }, value: { en: "On leave (1-2 mo)", zh: "休假中（1-2 月）" }, status: "warning" },
       { key: { en: "Cost Center", zh: "Cost Center" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
       { key: { en: "Return Date", zh: "返回日期" }, value: { en: "Estimated", zh: "已预估" }, status: "normal" },
@@ -1763,7 +1763,7 @@ const cases = [
     actualCause: { en: "Visa / Immigration Check", zh: "签证 / 移民审查" },
     explanation: {
       en: "Work authorization is 'under review', the leave is a month or two, the cost center is unchanged, and there is an estimated return date. This is an immigration processing pause, not a departure. The paperwork moves slowly; the job is still theirs.",
-      zh: "工作许可显示“审核中”、休假一两个月、cost center 没变、还有一个预估返回日期。这是一次移民流程的暂停，不是离职。手续走得慢，但岗位还是他的。",
+      zh: "工作授权显示“审核中”、休假一两个月、cost center 没变、还有一个预估返回日期，他的签证被安全调查了。手续走得慢，但岗位还是他的。",
     },
     resultFlavor: {
       correct: { en: "Correct. The border is slow, the seat is kept.", zh: "正确。大使馆很慢，座位给他留着。" },
@@ -1833,7 +1833,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The DLs followed the promotion, not the other way around.", zh: "正确。是邮件组跟着人走，不是反过来。" },
-      wrong: { en: "You called a directorship a spam bug. Reply-all your congratulations.", zh: "你把一次升任总监说成了刷错邮件组，赶紧回复全体一句 congratulations 吧！" },
+      wrong: { en: "You called a directorship a spam bug. Reply-all your congratulations.", zh: "你把一次升任总监说成了刷错邮件组，赶紧回复全体一句 congratulations 吧。" },
     },
   },
   {
