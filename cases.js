@@ -58,7 +58,7 @@ const cases = [
         status: "normal",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -122,7 +122,7 @@ const cases = [
         status: "warning",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -181,7 +181,7 @@ const cases = [
         status: "alarming",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -254,7 +254,7 @@ const cases = [
         status: "normal",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -318,7 +318,7 @@ const cases = [
         status: "normal",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -400,7 +400,7 @@ const cases = [
         status: "alarming",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -458,7 +458,7 @@ const cases = [
         status: "normal",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -519,7 +519,7 @@ const cases = [
         status: "alarming",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible (for now)", zh: "可见（暂时）" },
         status: "normal",
       },
@@ -577,7 +577,7 @@ const cases = [
         status: "alarming",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -705,7 +705,7 @@ const cases = [
         status: "normal",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -763,7 +763,7 @@ const cases = [
         status: "warning",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -821,7 +821,7 @@ const cases = [
         status: "normal",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -859,7 +859,7 @@ const cases = [
     },
     telemetry: [
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Removed", zh: "已移除" },
         status: "alarming",
       },
@@ -937,7 +937,7 @@ const cases = [
         status: "normal",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -995,7 +995,7 @@ const cases = [
         status: "unknown",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Hidden", zh: "隐藏" },
         status: "unknown",
       },
@@ -1112,7 +1112,7 @@ const cases = [
         status: "normal",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -1165,7 +1165,7 @@ const cases = [
         status: "normal",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Visible", zh: "可见" },
         status: "normal",
       },
@@ -1213,7 +1213,7 @@ const cases = [
         status: "alarming",
       },
       {
-        key: { en: "GAL", zh: "个人页面" },
+        key: { en: "Profile", zh: "个人页面" },
         value: { en: "Unreachable", zh: "无法连接" },
         status: "alarming",
       },
@@ -1269,7 +1269,7 @@ const cases = [
       { key: { en: "Job Title", zh: "职位" }, value: { en: "Two values", zh: "两个值" }, status: "alarming" },
       { key: { en: "Phone", zh: "电话" }, value: { en: "Two values", zh: "两个值" }, status: "alarming" },
       { key: { en: "Namesake in GAL", zh: "地址簿同名者" }, value: { en: "Exists", zh: "存在" }, status: "warning" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "promotion", label: { en: "Dual Role / Promotion", zh: "身兼两职 / 升职" } },
@@ -1301,7 +1301,7 @@ const cases = [
       { key: { en: "Upload Time", zh: "上传时间" }, value: { en: "This morning", zh: "今早" }, status: "normal" },
       { key: { en: "EXIF Orientation", zh: "EXIF 方向" }, value: { en: "Ignored", zh: "被忽略" }, status: "warning" },
       { key: { en: "Everything Else", zh: "其它一切" }, value: { en: "Normal", zh: "正常" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "layoff", label: { en: "Something's Wrong (Layoff?)", zh: "出事了（裁员？）" } },
@@ -1333,7 +1333,7 @@ const cases = [
       { key: { en: "Tenure Badge", zh: "工龄徽章" }, value: { en: "56 years", zh: "56 年" }, status: "alarming" },
       { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
       { key: { en: "Other Dates", zh: "其它日期" }, value: { en: "Also reset", zh: "也被重置" }, status: "warning" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "veteran", label: { en: "A True Veteran", zh: "真·元老" } },
@@ -1365,7 +1365,7 @@ const cases = [
       { key: { en: "B's Manager", zh: "B 的 Manager" }, value: { en: "A", zh: "A" }, status: "alarming" },
       { key: { en: "Org Tree Render", zh: "组织树渲染" }, value: { en: "Stack overflow", zh: "栈溢出" }, status: "alarming" },
       { key: { en: "Recent Import", zh: "近期导入" }, value: { en: "HR feed, last night", zh: "HR 数据，昨晚" }, status: "warning" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Both visible", zh: "两人都可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Both visible", zh: "两人都可见" }, status: "normal" },
     ],
     choices: [
       { id: "copilot_promo", label: { en: "Co-Leadership Setup", zh: "双负责人结构" } },
@@ -1429,7 +1429,7 @@ const cases = [
       { key: { en: "Event Title", zh: "事件标题" }, value: { en: "'Team Offsite'", zh: "“团队 Offsite”" }, status: "normal" },
       { key: { en: "Location", zh: "地点" }, value: { en: "A hotel", zh: "某酒店" }, status: "normal" },
       { key: { en: "Org Chart", zh: "组织架构" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "mass_layoff", label: { en: "Team Layoff", zh: "整组裁员" } },
@@ -1461,7 +1461,7 @@ const cases = [
       { key: { en: "Original Person", zh: "原同事" }, value: { en: "Still in GAL", zh: "仍在地址簿" }, status: "normal" },
       { key: { en: "Original's Desk", zh: "原同事工位" }, value: { en: "Reserved", zh: "保留" }, status: "normal" },
       { key: { en: "Cost Center", zh: "Cost Center" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Both visible", zh: "两人都可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Both visible", zh: "两人都可见" }, status: "normal" },
     ],
     choices: [
       { id: "replaced", label: { en: "Quietly Replaced", zh: "被悄悄换掉了" } },
@@ -1493,7 +1493,7 @@ const cases = [
       { key: { en: "Actual Meetings", zh: "实际会议" }, value: { en: "None ongoing", zh: "没有在进行" }, status: "normal" },
       { key: { en: "Messages", zh: "消息" }, value: { en: "Replying normally", zh: "正常回复" }, status: "normal" },
       { key: { en: "Org Chart", zh: "组织架构" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "busy_leaving", label: { en: "Too Busy, About to Quit", zh: "忙到要离职" } },
@@ -1525,7 +1525,7 @@ const cases = [
       { key: { en: "Reply Latency", zh: "回复延迟" }, value: { en: "< 5s, 24h", zh: "< 5 秒，全天" }, status: "warning" },
       { key: { en: "Calendar", zh: "日历" }, value: { en: "'On-Call' this week", zh: "本周“On-Call”" }, status: "normal" },
       { key: { en: "Org Chart", zh: "组织架构" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "breakdown", label: { en: "Stress, About to Quit", zh: "压力崩溃要离职" } },
@@ -1557,7 +1557,7 @@ const cases = [
       { key: { en: "Duration", zh: "时长" }, value: { en: "6 months", zh: "六个月" }, status: "warning" },
       { key: { en: "Cost Center", zh: "Cost Center" }, value: { en: "Temporarily moved", zh: "临时调动" }, status: "warning" },
       { key: { en: "Return Date", zh: "返回日期" }, value: { en: "Set", zh: "已设定" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "quit", label: { en: "Quit", zh: "离职了" } },
@@ -1589,7 +1589,7 @@ const cases = [
       { key: { en: "Tenure", zh: "工龄" }, value: { en: "30 years", zh: "30 年" }, status: "normal" },
       { key: { en: "Account End Date", zh: "账号截止日" }, value: { en: "End of month", zh: "月底" }, status: "alarming" },
       { key: { en: "Tone of Emails", zh: "邮件语气" }, value: { en: "Nostalgic", zh: "怀旧" }, status: "warning" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible (ends soon)", zh: "可见（即将结束）" }, status: "warning" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible (ends soon)", zh: "可见（即将结束）" }, status: "warning" },
     ],
     choices: [
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
@@ -1617,7 +1617,7 @@ const cases = [
       zh: "一位同事的地址簿条目没了，而TA在别处的公开主页加上了一圈绿环。",
     },
     telemetry: [
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Removed", zh: "已移除" }, status: "alarming" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Removed", zh: "已移除" }, status: "alarming" },
       { key: { en: "Public Profile", zh: "公开主页" }, value: { en: "#OpenToWork", zh: "#OpenToWork" }, status: "alarming" },
       { key: { en: "Badge Access", zh: "门禁权限" }, value: { en: "Revoked", zh: "已撤销" }, status: "alarming" },
       { key: { en: "Last Day Email", zh: "离职邮件" }, value: { en: "Sent", zh: "已发出" }, status: "warning" },
@@ -1685,7 +1685,7 @@ const cases = [
       { key: { en: "Mailbox", zh: "邮箱" }, value: { en: "Forwarding off", zh: "转发已关" }, status: "warning" },
       { key: { en: "Internal Access", zh: "内网权限" }, value: { en: "Removed", zh: "已移除" }, status: "alarming" },
       { key: { en: "Alumni Portal", zh: "校友门户" }, value: { en: "Invited", zh: "已邀请" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Removed", zh: "已移除" }, status: "alarming" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Removed", zh: "已移除" }, status: "alarming" },
     ],
     choices: [
       { id: "sabbatical", label: { en: "Sabbatical", zh: "停薪留职" } },
@@ -1717,7 +1717,7 @@ const cases = [
       { key: { en: "Status", zh: "状态" }, value: { en: "On leave (1-2 mo)", zh: "休假中（1-2 月）" }, status: "warning" },
       { key: { en: "Cost Center", zh: "Cost Center" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
       { key: { en: "Return Date", zh: "返回日期" }, value: { en: "Estimated", zh: "已预估" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "fired", label: { en: "Forced Out", zh: "被迫离开" } },
@@ -1749,7 +1749,7 @@ const cases = [
       { key: { en: "Level", zh: "职级" }, value: { en: "Unchanged", zh: "未变" }, status: "normal" },
       { key: { en: "Predecessor", zh: "前任" }, value: { en: "On leave", zh: "休假中" }, status: "warning" },
       { key: { en: "Duration Note", zh: "时限备注" }, value: { en: "'Interim'", zh: "“临时”" }, status: "warning" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "promotion", label: { en: "Full Promotion", zh: "正式升职" } },
@@ -1781,7 +1781,7 @@ const cases = [
       { key: { en: "Direct Reports", zh: "直属下属" }, value: { en: "Increased", zh: "增加" }, status: "warning" },
       { key: { en: "Title", zh: "Title" }, value: { en: "+ Director", zh: "+ Director" }, status: "warning" },
       { key: { en: "Their Manager", zh: "TA的 Manager" }, value: { en: "Now a VP", zh: "变成了 VP" }, status: "warning" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "spam", label: { en: "Mailing List Spam Bug", zh: "邮件组错了" } },
@@ -1813,7 +1813,7 @@ const cases = [
       { key: { en: "Title Text", zh: "Title 文字" }, value: { en: "Unchanged", zh: "未变" }, status: "normal" },
       { key: { en: "Comp Band", zh: "薪资带" }, value: { en: "Adjusted up", zh: "上调" }, status: "warning" },
       { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "data_bug", label: { en: "Level Field Glitch", zh: "职级字段出错" } },
@@ -1845,7 +1845,7 @@ const cases = [
       { key: { en: "User Mood", zh: "用户心情" }, value: { en: "Low", zh: "低落" }, status: "warning" },
       { key: { en: "Coffee Level", zh: "咖啡库存" }, value: { en: "Empty", zh: "空了" }, status: "alarming" },
       { key: { en: "Day of Week", zh: "星期几" }, value: { en: "Monday", zh: "周一" }, status: "alarming" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "outage", label: { en: "Real Outage", zh: "真的故障" } },
@@ -1909,7 +1909,7 @@ const cases = [
       { key: { en: "Date", zh: "日期" }, value: { en: "Second Sunday of March", zh: "三月第二个周日" }, status: "alarming" },
       { key: { en: "Server TZ", zh: "服务器时区" }, value: { en: "Did not update", zh: "没更新" }, status: "warning" },
       { key: { en: "People", zh: "人员" }, value: { en: "All present", zh: "全员在岗" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "outage", label: { en: "Calendar Outage", zh: "日历故障" } },
@@ -1941,7 +1941,7 @@ const cases = [
       { key: { en: "Tool A", zh: "工具 A" }, value: { en: "500 error", zh: "500 错误" }, status: "alarming" },
       { key: { en: "Tool B", zh: "工具 B" }, value: { en: "Truncates name", zh: "名字被截断" }, status: "warning" },
       { key: { en: "Encoding", zh: "编码" }, value: { en: "4-byte UTF-8", zh: "4 字节 UTF-8" }, status: "alarming" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "attack", label: { en: "Injection Attack", zh: "注入攻击" } },
@@ -1973,7 +1973,7 @@ const cases = [
       { key: { en: "Intern's Account", zh: "实习生账号" }, value: { en: "Deactivated", zh: "已停用" }, status: "alarming" },
       { key: { en: "Intern's Last Day", zh: "实习生的 last day" }, value: { en: "Last week", zh: "上周" }, status: "alarming" },
       { key: { en: "Commit Date", zh: "提交日期" }, value: { en: "Yesterday", zh: "昨天" }, status: "alarming" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Removed", zh: "已移除" }, status: "warning" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Removed", zh: "已移除" }, status: "warning" },
     ],
     choices: [
       { id: "intern", label: { en: "It Was The Intern", zh: "就是实习生干的" } },
@@ -2037,7 +2037,7 @@ const cases = [
       { key: { en: "Their Timezone", zh: "TA的时区" }, value: { en: "Not set", zh: "未设置" }, status: "alarming" },
       { key: { en: "Office", zh: "办公地" }, value: { en: "Blank", zh: "空白" }, status: "warning" },
       { key: { en: "Output Quality", zh: "产出质量" }, value: { en: "Fine", zh: "正常" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "burnout", label: { en: "Burning Out", zh: "熬夜燃尽" } },
@@ -2070,7 +2070,7 @@ const cases = [
       { key: { en: "Last Reply", zh: "最后回复" }, value: { en: "14 days ago", zh: "14 天前" }, status: "warning" },
       { key: { en: "Calendar", zh: "日历" }, value: { en: "Empty", zh: "空的" }, status: "unknown" },
       { key: { en: "Status Reason", zh: "状态原因" }, value: { en: "None given", zh: "未说明" }, status: "unknown" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "leave", label: { en: "Definitely On Leave", zh: "肯定在休假" } },
@@ -2103,7 +2103,7 @@ const cases = [
       { key: { en: "Account Type", zh: "账号类型" }, value: { en: "Shared / team", zh: "共享 / 团队" }, status: "normal" },
       { key: { en: "Named Owner", zh: "实名归属" }, value: { en: "None", zh: "无" }, status: "warning" },
       { key: { en: "MFA", zh: "MFA" }, value: { en: "Shared token", zh: "共享令牌" }, status: "warning" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Listed as team", zh: "登记为团队" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Listed as team", zh: "登记为团队" }, status: "normal" },
     ],
     choices: [
       { id: "hacked", label: { en: "Account Compromised", zh: "账号被盗" } },
@@ -2135,7 +2135,7 @@ const cases = [
       { key: { en: "Person Present", zh: "人是否在" }, value: { en: "Yes", zh: "在" }, status: "normal" },
       { key: { en: "Access Review", zh: "权限审查" }, value: { en: "Just ran", zh: "刚跑完" }, status: "warning" },
       { key: { en: "Manager", zh: "Manager" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "fired", label: { en: "Being Fired", zh: "被开了" } },
@@ -2167,7 +2167,7 @@ const cases = [
       { key: { en: "Legal Flag", zh: "法务标记" }, value: { en: "'Litigation Hold'", zh: "“诉讼保留”" }, status: "alarming" },
       { key: { en: "Person Status", zh: "本人状态" }, value: { en: "Working normally", zh: "正常工作" }, status: "normal" },
       { key: { en: "Manager", zh: "Manager" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "fired_cause", label: { en: "Fired For Cause", zh: "被开除问责" } },
@@ -2199,7 +2199,7 @@ const cases = [
       { key: { en: "Trigger", zh: "触发原因" }, value: { en: "Credential leak alert", zh: "凭据泄露告警" }, status: "alarming" },
       { key: { en: "Person Status", zh: "本人状态" }, value: { en: "Employed, surprised", zh: "在职，懵了" }, status: "normal" },
       { key: { en: "Manager", zh: "Manager" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "fired", label: { en: "Fired", zh: "被开了" } },
@@ -2231,7 +2231,7 @@ const cases = [
       { key: { en: "Reason", zh: "原因" }, value: { en: "OS patch missing", zh: "缺系统补丁" }, status: "warning" },
       { key: { en: "Person Status", zh: "本人状态" }, value: { en: "Working", zh: "在岗" }, status: "normal" },
       { key: { en: "Fix", zh: "修复" }, value: { en: "Run update", zh: "跑个更新" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "fired", label: { en: "Being Removed", zh: "要被清退" } },
@@ -2263,7 +2263,7 @@ const cases = [
       { key: { en: "New Device", zh: "新设备" }, value: { en: "One registering", zh: "正在注册一台" }, status: "warning" },
       { key: { en: "Help Desk Ticket", zh: "客服工单" }, value: { en: "'New phone'", zh: "“换了手机”" }, status: "normal" },
       { key: { en: "Person Status", zh: "本人状态" }, value: { en: "At desk", zh: "在工位" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "hacked", label: { en: "Account Takeover", zh: "账号被接管" } },
@@ -2295,7 +2295,7 @@ const cases = [
       { key: { en: "Pattern", zh: "规律" }, value: { en: "Every year, same weeks", zh: "年年同几周" }, status: "normal" },
       { key: { en: "Calendar Note", zh: "日历备注" }, value: { en: "Public holiday", zh: "法定假日" }, status: "normal" },
       { key: { en: "Org Chart", zh: "组织架构" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "layoff", label: { en: "Regional Layoff", zh: "区域裁员" } },
@@ -2327,7 +2327,7 @@ const cases = [
       { key: { en: "Month", zh: "月份" }, value: { en: "August", zh: "八月" }, status: "normal" },
       { key: { en: "OOF Replies", zh: "自动回复" }, value: { en: "'On holiday'", zh: "“休假中”" }, status: "normal" },
       { key: { en: "Org Chart", zh: "组织架构" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "layoff", label: { en: "European Layoffs", zh: "欧洲裁员" } },
@@ -2391,7 +2391,7 @@ const cases = [
       { key: { en: "Affected Group", zh: "受影响人群" }, value: { en: "A subset", zh: "一部分人" }, status: "normal" },
       { key: { en: "Evening Activity", zh: "傍晚活动" }, value: { en: "Picks up after sunset", zh: "日落后变活跃" }, status: "normal" },
       { key: { en: "Org Chart", zh: "组织架构" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "diet", label: { en: "Office Diet Challenge", zh: "办公室减肥比赛" } },
@@ -2423,7 +2423,7 @@ const cases = [
       { key: { en: "Timing", zh: "时间" }, value: { en: "Autumn, one week", zh: "秋天，一周" }, status: "normal" },
       { key: { en: "OOF Note", zh: "自动回复" }, value: { en: "'Festival holiday'", zh: "“节日假期”" }, status: "normal" },
       { key: { en: "Org Chart", zh: "组织架构" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "layoff", label: { en: "Site Closure", zh: "站点关闭" } },
@@ -2455,7 +2455,7 @@ const cases = [
       { key: { en: "Login", zh: "登录" }, value: { en: "Fails everywhere", zh: "处处失败" }, status: "alarming" },
       { key: { en: "Cert Status", zh: "证书状态" }, value: { en: "Expired today", zh: "今天过期" }, status: "alarming" },
       { key: { en: "Person Status", zh: "本人状态" }, value: { en: "Employed", zh: "在职" }, status: "normal" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "fired", label: { en: "Being Locked Out / Fired", zh: "被锁定 / 开除" } },
@@ -2487,7 +2487,7 @@ const cases = [
       { key: { en: "Person Says", zh: "本人说法" }, value: { en: "News to them", zh: "头一回听说" }, status: "alarming" },
       { key: { en: "Effective Date", zh: "生效日期" }, value: { en: "Future / unclear", zh: "未来 / 不明" }, status: "unknown" },
       { key: { en: "Manager Field", zh: "Manager 字段" }, value: { en: "Two values disagree", zh: "两个值打架" }, status: "alarming" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
+      { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
       { id: "transfer", label: { en: "Definitely a Transfer", zh: "肯定是转组" } },
