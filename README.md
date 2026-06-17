@@ -26,18 +26,22 @@ purpose: the honest verdict is "nobody knows".
 
 ## Features
 
-- One ROUND = One full Fiscal Year = 20 cases, including a joke / bad-end case or two
+- 60 cases in the bank, including a joke / bad-end case or two
+- One run = one Fiscal Year = up to 20 cases, drawn at random
+- Runs never repeat a case until you have seen the whole bank in this browser;
+  once it is cleared, the game says so and points you at contributing more
 - Bilingual UI with a remembered language toggle
-- Confidence slider, end-of-run review, cumulative achievements
+- Confidence slider, end-of-run Fiscal Year review, cumulative achievements
 - Single-file game logic + separate `cases.js` content, zero dependencies
 
 ## Adding cases
 
 Cases live in `cases.js`. Every player-visible string is an `{ en, zh }` pair.
 `telemetry[].status` is one of `normal | warning | alarming | unknown`.
-`answer` must equal a `choices[].id`, or the sentinel `"none"`. LocalStorage
-keys use the `cid-` prefix. Deploy via GitHub Pages from `main`, folder
-`/ (root)`.
+`answer` must equal a `choices[].id`, or the sentinel `"none"`. The optional
+`tags` array drives theme achievements. LocalStorage keys use the `cid-` prefix
+(`cid-seen` tracks which cases this browser has already played). Deploy via
+GitHub Pages from `main`, folder `/ (root)`.
 
 ## License
 

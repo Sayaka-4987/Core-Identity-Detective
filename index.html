@@ -394,7 +394,11 @@
         <!-- Achievements unlocked (cumulative across runs). -->
         <div id="achievements-block" class="achievements"></div>
 
+        <!-- Shown only when every case has been played (case bank exhausted). -->
+        <div id="contribution" class="fy-review hidden"></div>
+
         <div class="btn-row">
+          <button class="primary" id="btn-next-fy"></button>
           <button class="primary" id="btn-home"></button>
           <button class="ghost" id="btn-share"></button>
         </div>
@@ -440,6 +444,27 @@
         endTitle: { en: "Investigation Complete", zh: "调查完成" },
         backHome: { en: "Back to Start", zh: "返回主界面" },
         share: { en: "Share Result", zh: "分享成绩" },
+        nextFy: { en: "Next Fiscal Year", zh: "进入下一财年" },
+        fyTitle: {
+          en: "Fiscal Year {n} Closed",
+          zh: "第 {n} 财年结束",
+        },
+        allClearedTitle: {
+          en: "Case Bank Cleared",
+          zh: "案卷已全部查完",
+        },
+        contribTitle: {
+          en: "Out of Cases",
+          zh: "案卷用尽了",
+        },
+        contribBody: {
+          en: "You have worked every case on file. Got an identity mystery of your own? Add a case to cases.js and open a pull request, the field contract is in the comment at the top of that file.",
+          zh: "档案库里的案子你都查完了。手上还有别的身份谜案？往 cases.js 里加一个案件、再开个 pull request 就行，字段规则写在那个文件开头的注释里。",
+        },
+        contribLink: {
+          en: "Contribute a case on GitHub",
+          zh: "去 GitHub 贡献一个案件",
+        },
         shareCopied: { en: "Copied to clipboard.", zh: "已复制到剪贴板。" },
         shareFailed: {
           en: "Copy failed. Select and copy manually.",
@@ -447,7 +472,7 @@
         },
         shareLine: {
           en: "I followed the telemetry.",
-          zh: "我把他们的个人主页从头读了一遍。",
+          zh: "我把同事们的个人主页从头读了一遍。",
         },
         continueWord: { en: "Continue", zh: "继续上一局" },
         diff: {
@@ -540,7 +565,7 @@
           cond: () => true,
           text: {
             en: "More wrong than right. 'Insufficient telemetry' is a perfectly respectable default.",
-            zh: "错的比对的多。其实“数据不足”是个相当体面的默认答案。",
+            zh: "错的比对的多。其实“我不知道”是个相当体面的默认答案。",
           },
         },
       ];
@@ -759,6 +784,74 @@
        * achievement checks. Entries: { caseId, isCorrect, confidence, none }. */
       let runLog = [];
 
+      /* A run ("局") is one Fiscal Year of up to RUN_LENGTH cases, drawn from
+       * the cases not yet seen in this browser (tracked in cid-seen). `order`
+       * holds the real `cases` indices for the current run (length <= RUN_LENGTH,
+       * all distinct); `caseIndex` is the position within `order`, so the case
+       * in play is `cases[order[caseIndex]]`. Across runs there are no repeats
+       * until the whole bank has been seen, at which point the run ends with a
+       * "case bank cleared" prompt instead of a new run. */
+      const RUN_LENGTH = 20;
+      let order = [];
+      let runFinished = false;
+
+      /* Fisher-Yates shuffle, in place. */
+      function shuffleInPlace(a) {
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      /* Validate a persisted run order: a non-empty array of distinct valid
+       * `cases` indices, at most one full bank long. */
+      function isValidOrder(arr) {
+        if (!Array.isArray(arr) || arr.length === 0 || arr.length > cases.length)
+          return false;
+        const used = new Array(cases.length).fill(false);
+        for (const v of arr) {
+          if (!Number.isInteger(v) || v < 0 || v >= cases.length || used[v])
+            return false;
+          used[v] = true;
+        }
+        return true;
+      }
+
+      /* Seen-case bookmark (cid-seen): ids of every case played in this browser,
+       * so successive runs never repeat a case until the bank is exhausted. */
+      const SEEN_KEY = "cid-seen";
+      function loadSeen() {
+        try {
+          const raw = localStorage.getItem(SEEN_KEY);
+          const arr = raw ? JSON.parse(raw) : null;
+          return Array.isArray(arr) ? arr : [];
+        } catch (e) {
+          return [];
+        }
+      }
+      function addSeen(ids) {
+        try {
+          const merged = Array.from(new Set([...loadSeen(), ...ids]));
+          localStorage.setItem(SEEN_KEY, JSON.stringify(merged));
+        } catch (e) {
+          /* storage unavailable; ignore */
+        }
+      }
+      /* Indices of cases not yet seen in this browser. */
+      function unplayedIndices() {
+        const seen = new Set(loadSeen());
+        const out = [];
+        cases.forEach((c, i) => {
+          if (!seen.has(c.id)) out.push(i);
+        });
+        return out;
+      }
+      /* Pick the next run: up to RUN_LENGTH shuffled unplayed cases. */
+      function pickRun() {
+        return shuffleInPlace(unplayedIndices()).slice(0, RUN_LENGTH);
+      }
+
       /* Progress persistence (cid-total / cid-progress / cid-runlog). `progress`
        * is the index of the next unplayed case; a run is resumable while
        * 0 < progress < length. The run log is persisted alongside so the
@@ -766,11 +859,13 @@
       const TOTAL_KEY = "cid-total";
       const PROGRESS_KEY = "cid-progress";
       const RUNLOG_KEY = "cid-runlog";
+      const ORDER_KEY = "cid-order";
       function saveProgress(nextIndex, total) {
         try {
           localStorage.setItem(PROGRESS_KEY, String(nextIndex));
           localStorage.setItem(TOTAL_KEY, String(total));
           localStorage.setItem(RUNLOG_KEY, JSON.stringify(runLog));
+          localStorage.setItem(ORDER_KEY, JSON.stringify(order));
         } catch (e) {
           /* storage unavailable; ignore */
         }
@@ -780,6 +875,7 @@
           localStorage.removeItem(PROGRESS_KEY);
           localStorage.removeItem(TOTAL_KEY);
           localStorage.removeItem(RUNLOG_KEY);
+          localStorage.removeItem(ORDER_KEY);
         } catch (e) {
           /* storage unavailable; ignore */
         }
@@ -788,13 +884,15 @@
         try {
           const p = parseInt(localStorage.getItem(PROGRESS_KEY), 10);
           const tt = parseInt(localStorage.getItem(TOTAL_KEY), 10);
+          const ord = JSON.parse(localStorage.getItem(ORDER_KEY));
           if (
             Number.isInteger(p) &&
             p > 0 &&
-            p < cases.length &&
+            isValidOrder(ord) &&
+            p < ord.length &&
             Number.isFinite(tt)
           ) {
-            return { progress: p, total: tt };
+            return { progress: p, total: tt, order: ord };
           }
         } catch (e) {
           /* storage unavailable; ignore */
@@ -890,7 +988,7 @@
 
       /* Case screen --------------------------------------------------------- */
       function renderCase() {
-        const c = cases[caseIndex];
+        const c = cases[order[caseIndex]];
         $("case-meta").textContent =
           `${t(UI.caseWord)} #${String(caseIndex + 1).padStart(3, "0")}  ·  ${t(UI.difficulty)}: ${t(UI.diff[c.difficulty])}`;
         $("case-title").textContent = t(c.title);
@@ -940,14 +1038,15 @@
 
       function submitCase() {
         if (selectedChoiceId === null) return;
-        const c = cases[caseIndex];
+        const realIndex = order[caseIndex];
+        const c = cases[realIndex];
         const confidence = Number($("confidence").value);
         const isCorrect = c.answer !== "none" && selectedChoiceId === c.answer;
         const delta = isCorrect ? Math.round(50 + confidence / 2) : -confidence;
         totalScore += delta;
 
         lastResult = {
-          caseIndex,
+          caseIndex: realIndex,
           selectedChoiceId,
           confidence,
           isCorrect,
@@ -1095,22 +1194,63 @@
       }
 
       function renderEnd() {
-        $("end-title").textContent = t(UI.endTitle);
-        $("end-flavor").textContent = scoreTitle(totalScore);
-        $("end-score").textContent =
-          `${t(UI.total)}: ${totalScore} / ${cases.length * 100}`;
+        /* Two end states share this screen:
+         *  - a finished run (runLog has entries): Fiscal Year review + maybe the
+         *    contribution prompt if that run drained the bank;
+         *  - "Start" pressed with the bank already cleared (runLog empty): only
+         *    the contribution prompt. `runFinished` means the bank is exhausted. */
+        const emptyExhausted = runFinished && runLog.length === 0;
+        const fyNumber = Math.max(1, Math.ceil(loadSeen().length / RUN_LENGTH));
+
+        if (emptyExhausted) {
+          $("end-title").textContent = t(UI.allClearedTitle);
+        } else {
+          $("end-title").textContent = t(UI.fyTitle).replace(
+            "{n}",
+            String(fyNumber),
+          );
+        }
+        $("end-flavor").textContent = emptyExhausted ? "" : scoreTitle(totalScore);
+        $("end-score").textContent = emptyExhausted
+          ? ""
+          : `${t(UI.total)}: ${totalScore} / ${order.length * 100}`;
         $("btn-share").textContent = t(UI.share);
+        $("btn-next-fy").textContent = t(UI.nextFy);
+        $("btn-home").textContent = t(UI.backHome);
         $("share-feedback").textContent = "";
 
-        const stats = fyStats();
-        renderFyReview(stats);
-        renderAchievements(lastFreshAchievements);
+        // Offer the next Fiscal Year only while unplayed cases remain.
+        $("btn-next-fy").classList.toggle("hidden", runFinished);
+        // Share only makes sense for an actual scored run.
+        $("btn-share").classList.toggle("hidden", emptyExhausted);
+
+        // Contribution prompt whenever the bank is exhausted.
+        const contrib = $("contribution");
+        if (runFinished) {
+          contrib.classList.remove("hidden");
+          contrib.innerHTML =
+            `<h2>${t(UI.contribTitle)}</h2>` +
+            `<p class="fy-verdict">${t(UI.contribBody)}</p>` +
+            `<p><a href="https://github.com/Sayaka-4987/Core-Identity-Detective" ` +
+            `target="_blank" rel="noopener">${t(UI.contribLink)}</a></p>`;
+        } else {
+          contrib.classList.add("hidden");
+          contrib.innerHTML = "";
+        }
+
+        // FY stats / achievements only for a run that was actually played.
+        $("fy-review").classList.toggle("hidden", emptyExhausted);
+        $("achievements-block").classList.toggle("hidden", emptyExhausted);
+        if (!emptyExhausted) {
+          renderFyReview(fyStats());
+          renderAchievements(lastFreshAchievements);
+        }
       }
 
       function shareText() {
         return [
           t(UI.homeTitle),
-          `${t(UI.total)}: ${totalScore} / ${cases.length * 100} · ${scoreTitle(totalScore)}`,
+          `${t(UI.total)}: ${totalScore} / ${order.length * 100} · ${scoreTitle(totalScore)}`,
           t(UI.shareLine),
           "https://sayaka-4987.github.io/Core-Identity-Detective/",
         ].join("\n");
@@ -1129,10 +1269,22 @@
       /* Navigation ---------------------------------------------------------- */
       function startRun() {
         clearProgress();
-        caseIndex = 0;
+        const pool = pickRun();
         totalScore = 0;
         selectedChoiceId = null;
         runLog = [];
+        // Bank already cleared this browser: go straight to the prompt.
+        if (pool.length === 0) {
+          order = [];
+          caseIndex = 0;
+          runFinished = true;
+          renderEnd();
+          show("screen-end");
+          return;
+        }
+        order = pool;
+        caseIndex = 0;
+        runFinished = false;
         $("confidence").value = 50;
         renderCase();
         show("screen-case");
@@ -1144,7 +1296,9 @@
           startRun();
           return;
         }
+        order = saved.order;
         caseIndex = saved.progress;
+        runFinished = false;
         totalScore = saved.total;
         selectedChoiceId = null;
         runLog = loadRunLog();
@@ -1155,8 +1309,12 @@
 
       function nextCase() {
         caseIndex += 1;
-        if (caseIndex >= cases.length) {
+        // Run complete: record the cases as seen, then show the Fiscal Year
+        // review (plus the contribution prompt if the bank is now empty).
+        if (caseIndex >= order.length) {
           clearProgress();
+          addSeen(order.map((i) => cases[i].id));
+          runFinished = unplayedIndices().length === 0;
           lastFreshAchievements = commitAchievements(fyStats());
           renderEnd();
           show("screen-end");
@@ -1166,6 +1324,11 @@
         $("confidence").value = 50;
         renderCase();
         show("screen-case");
+      }
+
+      // From the review screen, start the next Fiscal Year (next unplayed run).
+      function nextFiscalYear() {
+        startRun();
       }
 
       /* Wiring -------------------------------------------------------------- */
@@ -1183,6 +1346,7 @@
       $("btn-continue").addEventListener("click", resumeRun);
       $("btn-submit").addEventListener("click", submitCase);
       $("btn-next").addEventListener("click", nextCase);
+      $("btn-next-fy").addEventListener("click", nextFiscalYear);
       $("btn-home").addEventListener("click", () => {
         renderStatic();
         show("screen-home");

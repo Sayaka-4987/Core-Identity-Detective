@@ -75,7 +75,7 @@ const cases = [
     actualCause: { en: "Identity Sync Failure", zh: "身份同步炸了" },
     explanation: {
       en: "Only the photo is missing. The manager, GAL visibility, and groups are still normal. This is more likely a sync issue than an actual disappearance.",
-      zh: "只有头像消失了，Manager、个人页面可见性和 Groups 都还正常。比起真的人没了，这更像是同步服务炸了。",
+      zh: "只有头像消失了，Manager、个人页面可见性和 Groups 都还正常。看着不像人真没了，更像是同步服务又炸了。",
     },
     resultFlavor: {
       correct: {
@@ -95,7 +95,7 @@ const cases = [
     title: { en: "The Quiet Transfer", zh: "平静转组" },
     intro: {
       en: "A coworker's record changed, but nobody announced anything.",
-      zh: "一位同事的记录变了，但没人发任何公告。",
+      zh: "一位同事的记录悄悄变了，没人发公告。",
     },
     telemetry: [
       {
@@ -140,12 +140,12 @@ const cases = [
     actualCause: { en: "Internal Transfer", zh: "内部转组" },
     explanation: {
       en: "Manager and cost center changed while the title stayed the same and GAL is still visible. That is the signature of a lateral move, not a departure.",
-      zh: "Manager 和 Cost Center 变了，但 Title 没变、个人页面还可见。这是平级转组的特征，不是离职。",
+      zh: "Manager 和 Cost Center 变了，但 Title 没变、个人页面还可见。这是平级换组的样子，不是离职。",
     },
     resultFlavor: {
       correct: {
         en: "Calmly read as a transfer. No drama generated.",
-        zh: "冷静判断为转组，没有制造戏剧。",
+        zh: "冷静判断为转组，没有制造 drama。",
       },
       wrong: {
         en: "You wrote a farewell message for someone who just moved two desks over.",
@@ -160,7 +160,7 @@ const cases = [
     title: { en: "The Ghost Account", zh: "幽灵账号" },
     intro: {
       en: "An account exists, but every signal points nowhere.",
-      zh: "一个账号存在，但所有信号都指向虚无。",
+      zh: "账号是在的，可每个信号都指不到任何地方。",
     },
     telemetry: [
       {
@@ -208,7 +208,7 @@ const cases = [
     actualCause: { en: "Nobody knows", zh: "没人知道" },
     explanation: {
       en: "Half the fields are NULL, groups are zero, but GAL is still visible. The evidence is genuinely insufficient. The honest answer is: nobody knows.",
-      zh: "一半字段是 NULL，Groups 是 0，但个人页面还可见。证据确实不足。诚实的答案是：没人知道。",
+      zh: "一半字段是 NULL，Groups 是 0，但个人页面还可见。证据是真不够，老实说就是：没人知道。",
     },
     resultFlavor: {
       correct: {
@@ -293,7 +293,7 @@ const cases = [
     },
     intro: {
       en: "A coworker disappeared from normal activities for three business days.",
-      zh: "某位同事连续三个工作日没有出现在日常活动中。",
+      zh: "一位同事连着三个工作日没在日常露面。",
     },
     telemetry: [
       {
@@ -359,7 +359,7 @@ const cases = [
     },
     explanation: {
       en: "The employee was attending a three-day DEI training program. The telemetry was accurate. The theory was not.",
-      zh: "该员工连续三天参加 DEI 培训。数据没有说谎，但你的理论过于丰富。",
+      zh: "他连着三天去上 DEI 培训。数据没撒谎，是你的脑补太丰富。",
     },
     resultFlavor: {
       correct: {
@@ -472,14 +472,14 @@ const cases = [
       { id: "vacation", label: { en: "Vacation", zh: "休假中" } },
       {
         id: "security_training",
-        label: { en: "Phishing-Click Security Training", zh: "钓鱼邮件点击者安全培训" },
+        label: { en: "Phishing-Click Security Training", zh: "钓鱼邮件安全培训" },
       },
       { id: "sabbatical", label: { en: "Sabbatical", zh: "停薪留职" } },
     ],
     answer: "security_training",
     actualCause: {
       en: "Phishing-Click Security Training",
-      zh: "钓鱼邮件点击者安全培训",
+      zh: "钓鱼邮件安全培训",
     },
     explanation: {
       en: "Mailbox last action was 'clicked a link', the account got a Security Hold, and the calendar reads 'Mandatory Training' for exactly five days. They clicked the test phish. They are in re-education for a week.",
@@ -542,7 +542,7 @@ const cases = [
     actualCause: { en: "Leaving for a Startup", zh: "跳槽去创业公司" },
     explanation: {
       en: "Rocket emoji status, a 400% spike in equity talk, and an actual two-week notice on file. This one is not a theory. They are boarding the rocket ship.",
-      zh: "火箭 emoji 状态、聊工资和股权的频率涨了 400%、还有一封实打实的离职通知。这次不是猜测，他真的要乘上那艘火箭了！",
+      zh: "火箭 emoji 状态、聊工资和股权的频率涨了 400%、还有一封实打实的离职通知。这次不是猜测，他真的要坐火箭了！",
     },
     resultFlavor: {
       correct: {
@@ -604,7 +604,7 @@ const cases = [
     actualCause: { en: "Joined an AI Lab as MTS", zh: "去 AI lab 当 Member of Technical Staff 了" },
     explanation: {
       en: "'Member of Technical Staff' with a NULL level, a brand-new tiny lab cost center, and the founder as direct manager. The flat-title-plus-no-level combo is the signature of an AI lab, not a promotion.",
-      zh: "Title 是“Member of Technical Staff”、职级字段是 NULL、Cost Center 是个新成立的小 lab、直属 Manager 是创始人。扁平 Title 加没有职级，这是 AI lab 的特征，不是升职。",
+      zh: "Title 是“Member of Technical Staff”、职级字段是 NULL、Cost Center 是个新成立的小 lab、直属 Manager 是创始人。扁平 Title 加没有职级，这是 AI lab 的味儿，不是升职。",
     },
     resultFlavor: {
       correct: {
@@ -624,7 +624,7 @@ const cases = [
     title: { en: "Support Your Country", zh: "支持你的国家" },
     intro: {
       en: "During World Cup season, a coworker tried to make friendly small talk. It did not go to plan.",
-      zh: "世界杯期间，一位同事想找你友好地寒暄。事情没有按计划发展。",
+      zh: "世界杯期间，一位同事想找你友好地寒暄。结果没往他设想的方向走。",
     },
     telemetry: [
       {
@@ -672,7 +672,7 @@ const cases = [
     actualCause: { en: "Chinese Men's Football", zh: "中国男足" },
     explanation: {
       en: "There was no safe answer. The real root cause, as always, traces back to Chinese men's football. The telemetry merely recorded the fallout.",
-      zh: "这题没有安全答案。真正的 root cause，一如既往，最后都能追溯到中国男足身上。数据只是记录了余波。",
+      zh: "这题没有安全答案。真正的 root cause，一如既往，最后都能追溯到中国男足身上。数据只是把余震记了下来。",
     },
     resultFlavor: {
       correct: {
@@ -849,7 +849,7 @@ const cases = [
     actualCause: { en: "Extended Leave", zh: "长假 / 育儿假" },
     explanation: {
       en: "Cost center unchanged, manager unchanged, desk reserved, GAL visible, and a multi-month OOF. Everything points to someone who is coming back. This is leave, not a departure.",
-      zh: "Cost center 没变、Manager 没变、工位保留、个人页面可见，还有一条数月的 OOF。所有信号都指向一个会回来的人。这是休长假，不是离职。",
+      zh: "Cost center 没变、Manager 没变、工位保留、个人页面可见，还有一条数月的 OOF。每个信号都指向一个会回来的人。这是休长假，不是离职。",
     },
     resultFlavor: {
       correct: {
@@ -1026,7 +1026,7 @@ const cases = [
     actualCause: { en: "Insufficient Telemetry", zh: "数据不足" },
     explanation: {
       en: "Type is a question mark, manager is NULL, password was never set, GAL is hidden. Every field that could identify this account is empty. You cannot conclude what it is. The honest answer is: not enough data.",
-      zh: "类型是个问号、Manager 是 NULL、密码从未设置、个人页面隐藏。每一个能识别它的字段都是空的。你无法断定它是什么。诚实的答案是：数据不足。",
+      zh: "类型是个问号、Manager 是 NULL、密码从未设置、个人页面隐藏。每一个能识别它的字段都是空的。你根本断不出它是什么。老实说：数据不够。",
     },
     resultFlavor: {
       correct: {
@@ -2324,7 +2324,7 @@ const cases = [
     actualCause: { en: "Got a New Phone", zh: "换了新手机" },
     explanation: {
       en: "An open help desk ticket says 'new phone', one new device is mid-registration, and the person is at their desk. Replacing a phone wipes the old MFA registrations and re-enrolls a new one. Scary-looking, completely routine.",
-      zh: "一张客服工单写着“换了手机”、一台新设备正在注册、人也好端端在工位上，换手机本来就会清掉旧的 MFA 注册再重新登记一台，看着吓人，其实再日常不过。",
+      zh: "一张客服工单写着“我换了手机”、一台新设备正在注册、人也好端端在工位上，换手机本来就会清掉旧的 MFA 注册再重新登记一台，看着吓人，其实再日常不过。",
     },
     resultFlavor: {
       correct: { en: "Correct. New phone, old panic.", zh: "正确，新手机，旧惊吓。" },
@@ -2338,7 +2338,7 @@ const cases = [
     title: { en: "Gone for Two Weeks in February", zh: "二月消失两周" },
     intro: {
       en: "A big chunk of one office goes quiet for two weeks every February. Same weeks each year.",
-      zh: "每年二月，某个办公室都会有一大批人安静整整两周，而且年年都是这几周。",
+      zh: "每年二月，某个办公室都会有一大批亚洲人安静整整两周，而且年年都是这几周。",
     },
     telemetry: [
       { key: { en: "Affected Office", zh: "受影响办公室" }, value: { en: "One region", zh: "某个地区" }, status: "normal" },
@@ -2588,11 +2588,11 @@ const cases = [
     actualCause: { en: "It's Just Sync (Again)", zh: "又是同步（老样子）" },
     explanation: {
       en: "Your photo is gone and your GAL is not found, yet your last login is right now and a sync job is mid-run. You are demonstrably here, reading this. Everything you learned about case-001 applies to you too: it is just sync, again.",
-      zh: "你的头像没了、地址簿里查无此人，可你的上次登录就是此刻，同步任务也正在跑，你明明就在这儿读着这行字，case-001 教给你的一切同样适用于你自己：又是同步，老样子。",
+      zh: "你的头像没了、地址簿里查无此人，可你的上次登录就是刚刚，同步任务也正在跑，你明明就在这儿读着这行字，case-001 教给你的一切同样适用于你自己：又是同步，老样子。",
     },
     resultFlavor: {
       correct: { en: "Correct. You disappeared from the directory, not from existence. Refresh in five minutes.", zh: "正确，你只是从目录里消失了，不是从世界上消失了，五分钟后刷新一下。" },
-      wrong: { en: "BAD END: You concluded you were fired, then logged off forever. The sync job finished two minutes later.", zh: "BAD END：你认定自己被开了，然后永久登出，两分钟后，那个同步任务跑完了。" },
+      wrong: { en: "BAD END: You concluded you were fired, then logged off forever. The sync job finished two minutes later.", zh: "BAD END：你认定自己被开了，然后你开始打包东西，两分钟后，那个同步任务跑完了。" },
     },
   },
 ];

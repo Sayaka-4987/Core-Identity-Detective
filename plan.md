@@ -124,9 +124,9 @@ Scoring should punish overconfidence:
 ### Nice to Have
 
 > Confirmed non-MVP in the UI Layout notes: **Case library** and **Random
-> case mode**. The Home Screen `[Case Library]` button and any random
-> ordering are deferred; the MVP runs cases in fixed array order. Do not
-> let either block the MVP.
+> case mode**. **Update**: random case order is now shipped (runs are
+> shuffled and non-repeating). The Home Screen `[Case Library]` button is
+> still deferred and currently hidden. Did not let either block the MVP.
 
 - Case library
 - Random case mode
@@ -138,11 +138,14 @@ Scoring should punish overconfidence:
 - Tiny animations
 - Shareable result text
 
-> LocalStorage key naming convention (when these features are built): prefix
+> LocalStorage key naming convention: prefix
 > every key with `cid-` so the game's storage is namespaced and easy to
-> clear. Reserved keys: `cid-lang` (UI language), `cid-total` (saved total
-> score), `cid-progress` (case index / run state). The MVP does not write
-> any of these; they are reserved so later features stay consistent.
+> clear. Keys in use: `cid-lang` (UI language), `cid-total` (saved total
+> score), `cid-progress` (case index within the current run), `cid-order`
+> (the current run's shuffled case indices), `cid-runlog` (per-case log for
+> the Fiscal Year review), `cid-achievements` (cumulative unlocks), and
+> `cid-seen` (ids of every case played in this browser, so runs do not
+> repeat until the bank is cleared).
 
 ### Do Not Build in MVP
 
@@ -431,11 +434,13 @@ Chinese:
 > formula.
 
 > After the Result Screen, a `[Next Case]` button advances to the next case
-> in order. MVP case order is **fixed sequential** (the array order in
-> `cases`); random mode is a Nice-to-Have. After the last case, show a
-> simple end-of-run summary (final `totalScore` plus a one-line flavor) and
-> a button back to the Home Screen. The 20-case Fiscal Year / performance
-> review loop is post-MVP (see Ending Design Philosophy).
+> in the run. **Shipped**: case order is randomized per run, and a run is one
+> Fiscal Year of up to 20 cases drawn from the cases this browser has not yet
+> played (tracked in `cid-seen`), so successive runs never repeat a case
+> until the whole bank is exhausted. After the last case of a run, the
+> end-of-run screen shows the Fiscal Year review (see Ending Design
+> Philosophy). When the bank is fully cleared, the same screen shows a
+> "case bank cleared" prompt pointing the player at contributing more cases.
 
 ## Scoring Idea
 
@@ -488,19 +493,20 @@ Chinese:
 
 ## Content Roadmap
 
-> Scope note: the milestone is **20 cases = one Fiscal Year**, not 100. The
-> Ending Design Philosophy reuses cases by cycling ("there is always another
-> case"), so endless play does not require 100 unique entries. Grow content
-> in small batches so quality stays high and the schema can change cheaply
-> before it is locked in by volume.
+> Scope note: a run is **one Fiscal Year = up to 20 cases**, drawn at
+> random from what this browser has not yet played. The bank now holds 60
+> cases (three Fiscal Years' worth); once a browser has cleared all of them
+> the game says so rather than recycling, and points the player at adding
+> more. Grow content in small batches so quality stays high.
 
 Target progression:
 
-- **Done**: 20 cases, living in `cases.js`. Mix of
+- **Done**: 60 cases, living in `cases.js`. Mix of
   easy/medium/hard, including joke / bad-end cases and `answer: "none"`
   insufficient-telemetry cases. Achievements cover the major themes.
-- **Next**: balance and polish rather than raw count, e.g. shuffle / random
-  case order, a second Fiscal Year of fresh cases, or per-case art.
+  Runs are shuffled and never repeat a case until the bank is cleared.
+- **Next**: balance and polish rather than raw count, e.g. a fourth Fiscal
+  Year of fresh cases, per-Fiscal-Year review copy, or per-case art.
 - **Later**: only after a post-MVP feature that needs new case fields (see
   below) is chosen, extend the field contract first, then keep authoring.
 
@@ -758,10 +764,13 @@ Corporate dashboard + detective notebook + incident console
 
 ## Ending Design Philosophy
 
-> Scope note for the developer: everything in this section (Fiscal Year,
-> 20-case cycles, performance review, endless loop) is post-MVP narrative
-> design. The MVP only needs the 5-case flow plus a simple end-of-run
-> total score screen. Build the loop below only after the MVP works.
+> Scope note for the developer: the Fiscal Year review and review-then-new-run
+> loop in this section are **shipped**. One difference from the original
+> "endless loop" vision: runs do not recycle cases. Each new Fiscal Year
+> draws from the cases this browser has not played yet, and once the bank is
+> cleared the loop ends with a "case bank cleared" prompt instead of looping
+> forever. The endless framing below is aspirational flavor; in practice
+> "another case" lasts until the player has seen all 60.
 
 Every 20 cases count as one Fiscal Year.
 
