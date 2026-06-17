@@ -77,7 +77,7 @@ const cases = [
     ],
     answer: "sync_failure",
     explanation: {
-      en: "Only the photo is missing. The manager, GAL visibility, and groups are still normal. This is more likely a sync issue than an actual disappearance.",
+      en: "Only the photo is missing. The manager, GAL visibility, and groups are still normal. This looks less like a person actually vanishing and more like the sync service blowing up again.",
       zh: "只有头像消失了，manager、地址簿可见性和 Groups 都还正常。看着不像人真没了，更像是同步服务又炸了。",
     },
     resultFlavor: {
@@ -279,7 +279,7 @@ const cases = [
         zh: "你解读的是天气，不是恐慌。动的是组织，不是人。",
       },
       wrong: {
-        en: "You filed an HR incident over an org-chart weather change.",
+        en: "You filed an HR incident over an org-chart weather change. The team laughed about it for a month.",
         zh: "你为组织架构变化提了一个事故单给 HR，大家笑了你一个月。",
       },
     },
@@ -479,7 +479,7 @@ const cases = [
     },
     resultFlavor: {
       correct: {
-        en: "Correct. The disappearance was a punishment, not a departure. They will be back, humbled.",
+        en: "Correct. This was just security compliance training, not a departure. They will be back, now a self-proclaimed cybersecurity expert.",
         zh: "正确。这只是安全合规教育。TA 会回来的，而且变成了网络安全专家。",
       },
       wrong: {
@@ -537,7 +537,7 @@ const cases = [
     },
     resultFlavor: {
       correct: {
-        en: "Correct. Ask for the referral bonus terms before they leave.",
+        en: "Correct. Quick, before they leave, beg them to take you with them.",
         zh: "正确。趁 TA 还没走，你赶紧求 TA 能不能带你走。",
       },
       wrong: {
@@ -718,7 +718,7 @@ const cases = [
     ],
     answer: "name_change",
     explanation: {
-      en: "Same alias, same desk, same three-year tenure, and an HR record literally labeled 'legal name update'. Nobody new arrived. Someone just changed their name.",
+      en: "Same alias, same desk, same three-year tenure, and an HR record literally labeled 'legal name update'. Nobody new arrived. Someone just got married.",
       zh: "Alias 没变、工位没变、入职三年没变，HR 记录上白纸黑字写着“法定姓名更新”。没有新人来，只是有人结婚了。",
     },
     resultFlavor: {
@@ -727,7 +727,7 @@ const cases = [
         zh: "正确。Alias 从不说谎，显示名只是件外套。",
       },
       wrong: {
-        en: "You declared a coworker a stranger. They sit two desks away and remember your birthday.",
+        en: "You declared a coworker who sits two desks away a stranger. Procedurally airtight, socially radioactive.",
         zh: "你把坐在两张桌子外的同事判成了“陌生人”，流程上很完整，人情上很危险。",
       },
     },
@@ -843,7 +843,7 @@ const cases = [
         zh: "正确。一个被保留的工位，是一句“TA 会回来”的承诺。",
       },
       wrong: {
-        en: "You wrote them off. They are coming back in spring, well-rested and slightly offended.",
+        en: "You wrote their obituary early. They are coming back in spring, well-rested and slightly offended.",
         zh: "你提前给同事写了讣告。可是 TA 春天就回来，精神饱满，而且有点被冒犯。",
       },
     },
@@ -897,7 +897,7 @@ const cases = [
     },
     resultFlavor: {
       correct: {
-        en: "Correct, and not happy about it. Skepticism is a tool, not a religion.",
+        en: "Correct, and not happy about it. Sometimes knowing too much just makes you miserable.",
         zh: "正确，但你并不开心。有些时候知道了太多会让你不幸福。",
       },
       wrong: {
@@ -1764,7 +1764,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. 'Acting' is a hat, not a raise.", zh: "正确。“代理”是顶帽子，不是涨薪。" },
-      wrong: { en: "You promoted someone who is just covering until the boss is back.", zh: "你给一个只是临时顶到老板生完孩子回来的人发了升职恭喜。" },
+      wrong: { en: "You sent congratulations to someone who is just covering until the boss is back from maternity leave.", zh: "你给一个只是临时顶到老板生完孩子回来的人发了升职恭喜。" },
     },
   },
   {
@@ -2599,7 +2599,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The org chart didn't move; the font did.", zh: "正确。动的不是组织架构，是 PPT 的字体。" },
-      wrong: { en: "You prepped for a reorg that lives entirely in a slide deck.", zh: "你为一次只活在 PPT 里的重组过度准备了一吨咖啡。" },
+      wrong: { en: "You over-prepared, and over-caffeinated, for a reorg that lives entirely in a slide deck.", zh: "你为一次只活在 PPT 里的重组过度准备了一吨咖啡。" },
     },
   },
   {
@@ -2663,7 +2663,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. No HR, no ambush. Just a calendar checkbox.", zh: "正确。没有 HR 就没有埋伏，只是日历上的一个打勾项。" },
-      wrong: { en: "You drafted a resignation over a 'quick chat' with no HR in sight.", zh: "你为一场连 HR 都没有的“随便聊聊”写好了愤怒的辞职信。" },
+      wrong: { en: "You drafted an angry resignation letter over a 'quick chat' with no HR in sight.", zh: "你为一场连 HR 都没有的“随便聊聊”写好了愤怒的辞职信。" },
     },
   },
   {
@@ -2690,7 +2690,7 @@ const cases = [
     ],
     answer: "avoiding_audience",
     explanation: {
-      en: "Neutral tone, a normal DM thread, decision merely deferred. 'Take this offline' usually means 'this is too detailed for 29 bored people', not 'you're in trouble'.",
+      en: "Neutral tone, a normal DM thread, decision merely deferred. 'Take this offline' usually means 'this is too detailed for the other 29 bored people', or 'this is exposing too many ugly technical problems', not 'you're in trouble'.",
       zh: "语气中性、私聊正常、决定只是推迟。“线下聊”通常是这事对另外 29 个无聊的人太细了，或者暴露了太多丑陋的技术问题，而不是“你摊上事了”。",
     },
     resultFlavor: {
@@ -3270,7 +3270,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. A deadline ate your buddy, not malice.", zh: "正确。吃掉你 buddy 的是 deadline，不是恶意。" },
-      wrong: { en: "You took a crunch week personally.", zh: "你把人家的闭关修炼周当成了针对你，不要过度思考了。" },
+      wrong: { en: "You took someone's heads-down crunch week personally. Stop overthinking it.", zh: "你把人家的闭关修炼周当成了针对你，不要过度思考了。" },
     },
   },
   {
@@ -3302,7 +3302,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. It was a budget cap, not a verdict on you.", zh: "正确。那是预算上限，不是对你的判决。" },
-      wrong: { en: "You took a quota cap as a referendum on your worth.", zh: "你把一个升职的名额当成了对你个人全部价值的公审，不至于这么严重。" },
+      wrong: { en: "You took a quota cap as a referendum on your entire worth. It is really not that deep.", zh: "你把一个升职的名额当成了对你个人全部价值的公审，不至于这么严重。" },
     },
   },
   {
@@ -3334,8 +3334,8 @@ const cases = [
       zh: "三次推迟、理由每次都变、标准从来不落纸面。“下一轮”可能是真心计划、可能是 manager 根本没有政治资本、也可能是礼貌的永远拒绝。没有书面标准，这句话无法判定。把标准要出来。",
     },
     resultFlavor: {
-      correct: { en: "No one can call this. 'Next cycle' is corporate Schrodinger.", zh: "这题没人能下结论。“下一轮”是企业版薛定谔的猫，你就是那只猫。" },
-      wrong: { en: "No one can call this. 'Next cycle' is corporate Schrodinger.", zh: "这题没人能下结论。“下一轮”是企业版薛定谔的猫，你就是那只猫。" },
+      correct: { en: "No one can call this. 'Next cycle' is corporate Schrodinger's cat, and you are the cat.", zh: "这题没人能下结论。“下一轮”是企业版薛定谔的猫，你就是那只猫。" },
+      wrong: { en: "No one can call this. 'Next cycle' is corporate Schrodinger's cat, and you are the cat.", zh: "这题没人能下结论。“下一轮”是企业版薛定谔的猫，你就是那只猫。" },
     },
   },
   {
@@ -3367,7 +3367,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. It fell in a seam, not into a vendetta.", zh: "正确。它掉进了缝里，不是掉进了恩怨里。" },
-      wrong: { en: "You read an ownership gap as a personal snub.", zh: "你把一个归属空白解读成了针对你的冷落，哭到了第二天的清晨。" },
+      wrong: { en: "You read an ownership gap as a personal snub, and cried about it until the next morning.", zh: "你把一个归属空白解读成了针对你的冷落，哭到了第二天的清晨。" },
     },
   },
   {
@@ -3560,7 +3560,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. They locked the doc, not your career.", zh: "正确。锁的是文档，不是你的职业生涯。" },
-      wrong: { en: "You read a doc lock as a vote of no confidence.", zh: "你把一次文档锁定解读成了陶片放逐。" },
+      wrong: { en: "You read a doc lock as an ostracism vote.", zh: "你把一次文档锁定解读成了陶片放逐。" },
     },
   },
   {
@@ -3624,7 +3624,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. You rotated off, you weren't pushed off.", zh: "正确。你是轮岗下场，不是被推下场。" },
-      wrong: { en: "You read a maintenance rotation as a blame trap.", zh: "你把一次轮换维护解读成了背锅陷阱，心理医生在路上了。" },
+      wrong: { en: "You read a maintenance rotation as a blame trap. Your therapist is already on the way.", zh: "你把一次轮换维护解读成了背锅陷阱，心理医生在路上了。" },
     },
   },
   {
@@ -3689,7 +3689,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The budget got tight, not your team's future.", zh: "正确。吃紧的是预算，不是你的未来。" },
-      wrong: { en: "You read a frozen travel budget as a death sentence.", zh: "你把冻结的差旅预算解读成了死刑判决，自己坐公交车去出差吧。" },
+      wrong: { en: "You read a frozen travel budget as a death sentence. Enjoy taking the bus on your next business trip.", zh: "你把冻结的差旅预算解读成了死刑判决，自己坐公交车去出差吧。" },
     },
   },
   {
@@ -3817,8 +3817,8 @@ const cases = [
       zh: "没标题、没议程、HR 在列、又短、当天邀请，这正是大家最怕的格式，确实是个不太好的信号。但同样的包装也可能装着文书手续、一次国际调岗、一份重组通知，或者坏消息。这个格式提高了“有事”的概率，却没告诉你是什么事。光凭这个邀请，你解不出答案。",
     },
     resultFlavor: {
-      correct: { en: "Honest call. The format is ominous, but the contents are unknowable. Breathe, then go find out.", zh: "诚实的判断。格式不祥，信息不足；按流程进会，现场取证。记得带上你的录音笔。" },
-      wrong: { en: "Honest call. The format is ominous, but the contents are unknowable. Breathe, then go find out.", zh: "诚实的判断。格式不祥，信息不足；按流程进会，现场取证。记得带上你的录音笔。" },
+      correct: { en: "Honest call. The format is ominous, but the contents are unknowable. Breathe, walk in, and gather evidence on the spot. Remember to bring your voice recorder.", zh: "诚实的判断。格式不祥，信息不足；按流程进会，现场取证。记得带上你的录音笔。" },
+      wrong: { en: "Honest call. The format is ominous, but the contents are unknowable. Breathe, walk in, and gather evidence on the spot. Remember to bring your voice recorder.", zh: "诚实的判断。格式不祥，信息不足；按流程进会，现场取证。记得带上你的录音笔。" },
     },
   },
   {
