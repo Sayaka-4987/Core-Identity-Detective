@@ -149,16 +149,21 @@
         margin: 6px 0 0;
         color: var(--muted);
       }
-      .lang-hero-actions {
-        display: flex;
-        gap: 10px;
-        margin-top: 12px;
-        flex-wrap: wrap;
+
+      #screen-case,
+      #screen-result,
+      #screen-end {
+        font-size: 17px;
       }
-      .lang-hero button {
-        min-height: 52px;
-        font-size: clamp(16px, 3vw, 18px);
-        padding: 12px 22px;
+      #case-title {
+        font-size: 26px;
+      }
+      #screen-case .telemetry {
+        font-size: 15px;
+      }
+      #screen-case .section-title,
+      #screen-case .confidence-label {
+        font-size: 14px;
       }
 
       body.mode-home .lang-toggle {
@@ -488,11 +493,16 @@
           margin-bottom: 18px;
           padding: 13px 13px 14px;
         }
-        .lang-hero-actions {
-          gap: 8px;
+        #screen-case,
+        #screen-result,
+        #screen-end {
+          font-size: 16px;
         }
-        .lang-hero button {
-          width: 100%;
+        #case-title {
+          font-size: 24px;
+        }
+        #screen-case .telemetry {
+          font-size: 14px;
         }
       }
 
@@ -572,12 +582,10 @@
         <div class="lang-hero" id="lang-hero">
           <p class="lang-hero-title" id="home-lang-title"></p>
           <p class="lang-hero-sub" id="home-lang-hint"></p>
-          <div class="lang-hero-actions">
-            <button class="primary" id="btn-home-switch"></button>
-          </div>
         </div>
         <div class="btn-row">
           <button class="primary" id="btn-start"></button>
+          <button class="ghost" id="btn-home-switch"></button>
           <button class="ghost hidden" id="btn-continue"></button>
         </div>
       </section>
@@ -585,7 +593,7 @@
       <!-- CASE -->
       <section id="screen-case" class="card hidden">
         <p class="meta" id="case-meta"></p>
-        <h1 id="case-title" style="font-size: 22px"></h1>
+        <h1 id="case-title"></h1>
         <p id="case-intro"></p>
 
         <div class="section-title" id="label-telemetry"></div>
