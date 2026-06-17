@@ -417,6 +417,17 @@
         font-style: italic;
         line-height: 1.45;
       }
+      #contribution a,
+      #contribution a:visited {
+        color: var(--accent);
+        text-decoration-color: rgba(88, 166, 255, 0.55);
+        text-underline-offset: 3px;
+      }
+      #contribution a:hover,
+      #contribution a:focus-visible {
+        color: #8ec5ff;
+        text-decoration-color: rgba(142, 197, 255, 0.9);
+      }
 
       .achievements {
         text-align: left;
@@ -769,19 +780,23 @@
           { max: 90, text: { en: "Confident", zh: "自信推断" } },
           { max: 100, text: { en: "Famous Last Words", zh: "全部梭哈" } },
         ],
-        // Final-score title bands (total ranges roughly -500..500 over 5 cases).
+        // Final-score title bands for one run (roughly -2000..+2000 over 20 cases).
         // Checked high-to-low; the first band whose `min` the score meets wins.
         scoreTitle: [
-          { min: 350, text: { en: "Master Detective", zh: "业界首席侦探" } },
-          { min: 150, text: { en: "Senior Investigator", zh: "传奇调查员" } },
-          { min: 0, text: { en: "Cautious Analyst", zh: "谨慎的分析师" } },
+          { min: 1600, text: { en: "Legendary Incident Oracle", zh: "事故预言机" } },
+          { min: 1200, text: { en: "Principal Root Cause Hunter", zh: "首席 Root cause 猎手" } },
+          { min: 800, text: { en: "Staff Telemetry Detective", zh: "资深员工档案侦探" } },
+          { min: 300, text: { en: "Senior Investigator", zh: "传奇调查员" } },
+          { min: -300, text: { en: "Mostly Functional Analyst", zh: "基本能用分析师" } },
+          { min: -800, text: { en: "Pager-Driven Guesser", zh: "猜题选手" } },
+          { min: -1200, text: { en: "Escalation Generator", zh: "升级 ticket 制造机" } },
           {
-            min: -200,
-            text: { en: "Overconfident Engineer", zh: "过度自信工程师" },
+            min: -1600,
+            text: { en: "Overconfident Blast Radius", zh: "过度自信爆炸半径" },
           },
           {
             min: -Infinity,
-            text: { en: "Root Cause: You", zh: "事故根因：你" },
+            text: { en: "Root Cause: You (Confirmed)", zh: "事故根因：你（已实锤）" },
           },
         ],
         // Fiscal Year performance review (end screen).
@@ -811,43 +826,43 @@
         {
           cond: (s) => s.scored === 0,
           text: {
-            en: "No scorable cases this run. The telemetry told you nothing, and you wisely expected nothing.",
-            zh: "本局没有可评分的案件。数据什么也没说，而你也什么都没期待。",
+            en: "No scorable cases this run. You argued with pure fog and somehow still looked confident.",
+            zh: "本局没有可评分案件。你对着一团雾输出半天，还挺自信。",
           },
         },
         {
           cond: (s) => s.accuracy >= 0.8 && s.overconfident === 0,
           text: {
-            en: "Calibrated and correct. You investigated like someone who has been paged at 3am before.",
-            zh: "既准又稳。你查案的样子，像个凌晨三点被 oncall 叫起来过的人。",
+            en: "Accurate and calibrated. Annoyingly competent. You made telemetry look easy.",
+            zh: "又准又稳，强得有点烦人。你把档案查得像开了透视。",
           },
         },
         {
           cond: (s) => s.accuracy >= 0.8,
           text: {
-            en: "Accurate, but your confidence ran ahead of your evidence at least once. Promising. Loud.",
-            zh: "你的判断很准，但是太过于自信了，有前途。",
+            en: "Great hit rate, but at least once your confidence clocked in before your evidence did.",
+            zh: "命中率很高，但你至少有一次是自信先到，证据后到。",
           },
         },
         {
           cond: (s) => s.accuracy >= 0.5,
           text: {
-            en: "Middling. You are right about as often as the org chart is.",
-            zh: "中规中矩。你说对的概率，跟组织架构图差不多。",
+            en: "Average run. Not a disaster, not a flex, just enough to survive a retro.",
+            zh: "中规中矩，不算翻车，也不算封神，够你在复盘会上活下来。",
           },
         },
         {
           cond: (s) => s.accuracy < 0.5 && s.overconfident > 0,
           text: {
-            en: "Both wrong and loud. A classic combination. Consider listening to the telemetry next time.",
-            zh: "又菜又爱玩，经典组合。下次考虑动动脑子吧。",
+            en: "Wrong and loud is a legendary combo. You brought keynote energy to bad guesses.",
+            zh: "又错又大声，经典名场面。你把错误判断讲出了发布会气势。",
           },
         },
         {
           cond: () => true,
           text: {
-            en: "More wrong than right. 'IDK' is a perfectly respectable default.",
-            zh: "错的比对的多。其实“我不知道”是个相当体面的默认答案。",
+            en: "More misses than hits. Next run, try evidence-first instead of vibe-first.",
+            zh: "错的比对的多。下局建议先看证据，再看感觉。",
           },
         },
       ];
@@ -855,8 +870,9 @@
       /* ----------------------------------------------------------------------
        * Achievement definitions. Each is unlocked when `cond(ctx)` is true for
        * a finished run. Unlocks are cumulative and persisted in cid-achievements.
-       * ctx = { stats, log, byId } where log entries are
-       *   { caseId, isCorrect, confidence, none } and byId maps id -> case.
+      * ctx = { stats, log, byId } where log entries are
+      *   { caseId, isCorrect, confidence, none, selectedChoiceId }
+      *   and byId maps id -> case.
        * Helpers: solvedTag(tag) = a case carrying `tag` was answered correctly.
        * -------------------------------------------------------------------- */
       const ACHIEVEMENTS = [
@@ -904,7 +920,7 @@
         },
         {
           id: "overconfidence-any",
-          name: { en: "Overconfidence Any%", zh: "过度自信 Any%" },
+          name: { en: "Overconfidence Any%", zh: "过度自信 90%" },
           desc: {
             en: "Be wrong at 90%+ confidence at least once.",
             zh: "至少一次在 90%+ 信心下判断错误。",
@@ -913,11 +929,127 @@
             ctx.log.some((e) => !e.isCorrect && e.confidence >= 90),
         },
         {
+          id: "confidence-with-receipts",
+          name: { en: "Confidence With Receipts", zh: "自信且有证据" },
+          desc: {
+            en: "In one run, get 3+ cases correct at 85%+ confidence.",
+            zh: "同一局内，至少 3 题在 85%+ 信心下判断正确。",
+          },
+          cond: (ctx) =>
+            ctx.log.filter((e) => e.isCorrect && e.confidence >= 85).length >= 3,
+        },
+        {
+          id: "managed-risk",
+          name: { en: "Managed Risk", zh: "风险可控" },
+          desc: {
+            en: "In one run, make 2+ wrong calls at <=35% confidence (wrong, but contained).",
+            zh: "同一局内，至少 2 次在 <=35% 信心下误判（错了，但没爆）。",
+          },
+          cond: (ctx) =>
+            ctx.log.filter((e) => !e.isCorrect && e.confidence <= 35).length >= 2,
+        },
+        {
+          id: "calibrated-operator",
+          name: { en: "Calibrated Operator", zh: "校准型选手" },
+          desc: {
+            en: "Finish a run with 60%+ accuracy, 0 overconfident misses, and avg confidence between 45% and 70%.",
+            zh: "单局正确率 >=60%、过度自信误判为 0、且平均信心在 45%-70% 之间。",
+          },
+          cond: (ctx) =>
+            ctx.stats.scored >= 8 &&
+            ctx.stats.accuracy >= 0.6 &&
+            ctx.stats.overconfident === 0 &&
+            ctx.stats.avgConfidence >= 45 &&
+            ctx.stats.avgConfidence <= 70,
+        },
+        {
+          id: "all-in-rollercoaster",
+          name: { en: "All-In Rollercoaster", zh: "梭哈过山车" },
+          desc: {
+            en: "In one run, score both a correct and a wrong call at 95%+ confidence.",
+            zh: "同一局内，既有 95%+ 信心下的正确判断，也有 95%+ 信心下的误判。",
+          },
+          cond: (ctx) =>
+            ctx.log.some((e) => e.isCorrect && e.confidence >= 95) &&
+            ctx.log.some((e) => !e.isCorrect && e.confidence >= 95),
+        },
+        {
+          id: "steady-hand",
+          name: { en: "Steady Hand", zh: "高手" },
+          desc: {
+            en: "For 10+ answers in one run, keep every confidence between 40% and 70%.",
+            zh: "单局作答 >=10 题，且每题信心都在 40%-70% 之间。",
+          },
+          cond: (ctx) =>
+            ctx.log.length >= 10 &&
+            ctx.log.every((e) => e.confidence >= 40 && e.confidence <= 70),
+        },
+        {
+          id: "gal-master",
+          name: { en: "GAL Master", zh: "GAL 领域大神" },
+          desc: {
+            en: "In one run, correctly solve one org-chart case, one system-sync case, and one not-a-departure case.",
+            zh: "同一局内，至少各正确解读 1 题组织架构、1 题系统同步、1 题“人还在”的案件。",
+          },
+          cond: (ctx) =>
+            (solvedTag(ctx, "reorg") || solvedTag(ctx, "org-chart")) &&
+            (solvedTag(ctx, "sync") || solvedTag(ctx, "it-was-the-backend")) &&
+            (solvedTag(ctx, "not-a-departure") || solvedTag(ctx, "not-a-layoff")),
+        },
+        {
+          id: "blame-the-system",
+          name: { en: "System Was Down (According To You)", zh: "在你眼里什么都是系统炸了" },
+          desc: {
+            en: "In one run, make at least 3 wrong calls and every wrong guess is a system-failure explanation.",
+            zh: "单局至少 3 次误判，且每一次误判都选了“员工系统故障”方向。",
+          },
+          cond: (ctx) => {
+            const wrong = ctx.log.filter((e) => !e.isCorrect);
+            return wrong.length >= 3 && wrong.every((e) => guessedSystemFailure(ctx, e));
+          },
+        },
+        {
+          id: "it-was-hr",
+          name: { en: "It Was HR", zh: "这次真是 HR" },
+          desc: {
+            en: "Correctly solve 2+ people-policy cases (performance, compensation, or budget).",
+            zh: "正确拿下 2 题及以上 HR 策略案（绩效、薪酬、预算）。",
+          },
+          cond: (ctx) =>
+            ctx.log.filter((e) => {
+              if (!e.isCorrect) return false;
+              const tags = ctx.byId[e.caseId].tags || [];
+              return (
+                tags.includes("perf") ||
+                tags.includes("comp") ||
+                tags.includes("budget")
+              );
+            }).length >= 2,
+        },
+        {
+          id: "it-was-not-hr",
+          name: { en: "It Was Not HR", zh: "不是 HR 的锅" },
+          desc: {
+            en: "Correctly solve 2+ non-HR incident cases (security, sync, or backend failure).",
+            zh: "正确拿下 2 题及以上非 HR 事故案（安全、同步、后端故障）。",
+          },
+          cond: (ctx) =>
+            ctx.log.filter((e) => {
+              if (!e.isCorrect) return false;
+              const tags = ctx.byId[e.caseId].tags || [];
+              return (
+                tags.includes("security") ||
+                tags.includes("sync") ||
+                tags.includes("it-was-the-backend")
+              );
+            }).length >= 2,
+        },
+        {
           id: "not-a-layoff",
           name: { en: "Not A Layoff", zh: "这不是裁员" },
           desc: {
-            en: "Correctly call a disappearance that turned out not to be a departure.",
-            zh: "正确识破一次“看似离职、其实没走”的消失。",
+            en: "Call a disappearance correctly when it was never a departure.",
+            zh: "看似人间蒸发，其实人还在，且你判断对了。",
           },
           cond: (ctx) =>
             solvedTag(ctx, "not-a-layoff") || solvedTag(ctx, "not-a-departure"),
@@ -1003,7 +1135,7 @@
           name: { en: "Saw It Coming", zh: "你看出来了" },
           desc: {
             en: "Correctly call a real departure when every signal says gone.",
-            zh: "在所有信号都指向离开时，正确判断出真的走了。",
+            zh: "在所有信号都指向离开时，正确判断出 TA 真的走了。",
           },
           cond: (ctx) => solvedTag(ctx, "actually-leaving"),
         },
@@ -1029,8 +1161,8 @@
           id: "politics-radar",
           name: { en: "Politics Radar", zh: "政治嗅觉" },
           desc: {
-            en: "Correctly solve any office-politics case.",
-            zh: "正确解读任意办公室政治案件。",
+            en: "Correctly read at least one office-politics case.",
+            zh: "在办公室政治题里，嗅到了真正的风向。",
           },
           cond: (ctx) => solvedTag(ctx, "politics"),
         },
@@ -1056,8 +1188,8 @@
           id: "budget-winter",
           name: { en: "Budget Winter", zh: "预算之冬" },
           desc: {
-            en: "Correctly solve any budget-related case.",
-            zh: "正确解读任意预算相关案件。",
+            en: "Correctly read at least one budget-related case.",
+            zh: "看见预算收紧时，没有把它误会成世界末日。",
           },
           cond: (ctx) => solvedTag(ctx, "budget"),
         },
@@ -1065,8 +1197,8 @@
           id: "okr-alchemist",
           name: { en: "OKR Alchemist", zh: "OKR 炼金师" },
           desc: {
-            en: "Correctly solve any OKR-related case.",
-            zh: "正确解读任意 OKR 相关案件。",
+            en: "Correctly read at least one OKR-related case.",
+            zh: "把 OKR 黑话翻译成了人话，并且翻译正确。",
           },
           cond: (ctx) => solvedTag(ctx, "okr"),
         },
@@ -1074,8 +1206,8 @@
           id: "tooling-admin",
           name: { en: "Tooling Admin", zh: "工具管理员" },
           desc: {
-            en: "Correctly solve any tools-process case.",
-            zh: "正确解读任意 tools 流程类案件。",
+            en: "Correctly read at least one tools-process case.",
+            zh: "流程和工具双双抽风时，你还是找到了正确入口。",
           },
           cond: (ctx) => solvedTag(ctx, "tools"),
         },
@@ -1083,8 +1215,8 @@
           id: "cross-team-stitcher",
           name: { en: "Cross-Team Stitcher", zh: "跨团队缝合怪" },
           desc: {
-            en: "Correctly solve any cross-team ownership case.",
-            zh: "正确解读任意跨团队归属案件。",
+            en: "Correctly read at least one cross-team ownership case.",
+            zh: "多团队互踢皮球时，你把 ownership 缝回来了。",
           },
           cond: (ctx) => solvedTag(ctx, "cross-team"),
         },
@@ -1110,10 +1242,10 @@
         },
         {
           id: "ambiguity-practitioner",
-          name: { en: "Ambiguity Practitioner", zh: "含糊学大师" },
+          name: { en: "Ambiguity Practitioner", zh: "糊弄学大师" },
           desc: {
             en: "Correctly solve an ambiguous case with confidence <= 40.",
-            zh: "在信心 <= 40 时，正确解读一个糊弄学案件。",
+            zh: "在信心 <= 40 的前提下，依然拿下一题糊弄局。",
           },
           cond: (ctx) =>
             ctx.log.some(
@@ -1128,7 +1260,7 @@
           name: { en: "Corporate Schrodinger", zh: "企业版薛定谔" },
           desc: {
             en: "Correctly solve 2+ ambiguous cases in one run.",
-            zh: "同一局内正确解读 2 题及以上含糊不清的案件。",
+            zh: "同一局内看穿 2 题以上“既是也不是”的企业谜语。",
           },
           cond: (ctx) =>
             ctx.log.filter(
@@ -1181,6 +1313,23 @@
         );
       }
 
+      function selectedChoice(ctx, entry) {
+        const c = ctx.byId[entry.caseId];
+        if (!c || !Array.isArray(c.choices)) return null;
+        return c.choices.find((x) => x.id === entry.selectedChoiceId) || null;
+      }
+
+      function guessedSystemFailure(ctx, entry) {
+        const ch = selectedChoice(ctx, entry);
+        if (!ch || !ch.label) return false;
+        const en = String(ch.label.en || "").toLowerCase();
+        const zh = String(ch.label.zh || "");
+        return (
+          /sync|backend|identity\s*service|directory/.test(en) ||
+          /同步|后端|系统|身份|目录/.test(zh)
+        );
+      }
+
       /* ----------------------------------------------------------------------
        * Case data (`cases`) is loaded from cases.js, which runs before this
        * script. See that file for the field contract.
@@ -1211,7 +1360,8 @@
       let totalScore = 0;
       let selectedChoiceId = null;
       /* Per-case log for this run, drives the Fiscal Year review and
-       * achievement checks. Entries: { caseId, isCorrect, confidence, none }. */
+       * achievement checks. Entries:
+       * { caseId, isCorrect, confidence, none, selectedChoiceId }. */
       let runLog = [];
 
       /* A run ("局") is one Fiscal Year of up to RUN_LENGTH cases, drawn from
@@ -1501,6 +1651,7 @@
           isCorrect,
           confidence,
           none: c.answer === "none",
+          selectedChoiceId,
         });
         saveProgress(caseIndex + 1, totalScore);
         renderResult(lastResult);
