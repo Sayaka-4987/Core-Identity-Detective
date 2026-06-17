@@ -356,7 +356,7 @@ const cases = [
     answer: "dei_training",
     explanation: {
       en: "The employee was attending a three-day DEI training program. The telemetry was accurate. The theory was not.",
-      zh: "他连着三天去上 DEI 培训。数据没撒谎，是你的脑补太丰富。",
+      zh: "TA连着三天去上 DEI 培训。数据没撒谎，是你的脑补太丰富。",
     },
     resultFlavor: {
       correct: {
@@ -365,7 +365,7 @@ const cases = [
       },
       wrong: {
         en: "BAD END: Built a complete departure theory around a training course.",
-        zh: "BAD END：围绕一次培训，你为他编造了一整套离职故事。",
+        zh: "BAD END：围绕一次培训，你为TA编造了一整套离职故事。",
       },
     },
   },
@@ -376,7 +376,7 @@ const cases = [
     title: { en: "The Calendar Tells All", zh: "日历什么都招了" },
     intro: {
       en: "A coworker keeps booking 'Dentist' appointments. Their teeth have never looked better.",
-      zh: "一位同事最近频繁预约“看牙”。他的牙从没这么好过。",
+      zh: "一位同事最近频繁预约“看牙”。TA的牙从没这么好过。",
     },
     telemetry: [
       {
@@ -414,12 +414,12 @@ const cases = [
     answer: "interview",
     explanation: {
       en: "Camera always on, suddenly formal, secret 'Open to Work', and a dentist with implausible availability. Nobody has this many dental emergencies. They are interviewing.",
-      zh: "摄像头全程开、突然穿正装、偷偷开了求职意向，还有一个空档多得离谱的牙医。没人会有这么多次牙科急诊。他在面试。",
+      zh: "摄像头全程开、突然穿正装、偷偷开了求职意向，还有一个空档多得离谱的牙医。没人会有这么多次牙科急诊。TA在面试。",
     },
     resultFlavor: {
       correct: {
         en: "You read the formal-wear-on-a-Tuesday signal correctly. Wish them luck silently.",
-        zh: "你正确读出了“周二穿正装”这个信号。你在心里默默祝他好运。",
+        zh: "你正确读出了“周二穿正装”这个信号。你在心里默默祝TA好运。",
       },
       wrong: {
         en: "You believed in the dentist. The dentist was a Zoom link.",
@@ -475,12 +475,12 @@ const cases = [
     answer: "security_training",
     explanation: {
       en: "Mailbox last action was 'clicked a link', the account got a Security Hold, and the calendar reads 'Mandatory Training' for exactly five days. They clicked the test phish. They are in re-education for a week.",
-      zh: "邮箱最后操作是“点了个链接”，账号被安全冻结，日历上正好五天“强制培训”。他点了那封钓鱼测试邮件，被送去再教育一周。",
+      zh: "邮箱最后操作是“点了个链接”，账号被安全冻结，日历上正好五天“强制培训”。TA点了那封钓鱼测试邮件，被送去再教育一周。",
     },
     resultFlavor: {
       correct: {
         en: "Correct. The disappearance was a punishment, not a departure. They will be back, humbled.",
-        zh: "正确。这次消失是惩罚，不是离职。他会回来的，而且变成了网络安全专家。",
+        zh: "正确。这次消失是惩罚，不是离职。TA会回来的，而且变成了网络安全专家。",
       },
       wrong: {
         en: "It was never HR. It was one curious click on a link titled 'URGENT: Your Payslip'.",
@@ -533,12 +533,12 @@ const cases = [
     answer: "startup",
     explanation: {
       en: "Rocket emoji status, a 400% spike in equity talk, and an actual two-week notice on file. This one is not a theory. They are boarding the rocket ship.",
-      zh: "火箭 emoji 状态、聊工资和股权的频率涨了 400%、还有一封实打实的离职通知。这次不是猜测，他真的要坐火箭了！",
+      zh: "火箭 emoji 状态、聊工资和股权的频率涨了 400%、还有一封实打实的离职通知。这次不是猜测，TA真的要坐火箭了！",
     },
     resultFlavor: {
       correct: {
         en: "Correct. Ask for the referral bonus terms before they leave.",
-        zh: "正确。趁他还没走，你赶紧问他能不能带你走。",
+        zh: "正确。趁TA还没走，你赶紧问TA能不能带你走。",
       },
       wrong: {
         en: "You called it a vacation. The 'vacation' has a cap table.",
@@ -614,7 +614,7 @@ const cases = [
     title: { en: "Support Your Country", zh: "支持你的国家" },
     intro: {
       en: "During World Cup season, a coworker tried to make friendly small talk. It did not go to plan.",
-      zh: "世界杯期间，一位同事想找你友好地寒暄。结果没往他设想的方向走。",
+      zh: "世界杯期间，一位同事想找你友好地寒暄。结果没往TA设想的方向走。",
     },
     telemetry: [
       {
@@ -728,7 +728,7 @@ const cases = [
       },
       wrong: {
         en: "You declared a coworker a stranger. They sit two desks away and remember your birthday.",
-        zh: "你这个冷漠无情的人，居然把一位同事认成了陌生人。他坐在你斜对面，还记得你的生日。",
+        zh: "你这个冷漠无情的人，居然把一位同事认成了陌生人。TA坐在你斜对面，还记得你的生日。",
       },
     },
   },
@@ -797,7 +797,7 @@ const cases = [
     title: { en: "The Long Out-of-Office", zh: "超长的 OOF" },
     intro: {
       en: "A coworker set an out-of-office reply months long and went quiet. The desk is still theirs.",
-      zh: "一位同事设了一条长达数月的 OOF 自动回复，然后没了声音。工位还是他的。",
+      zh: "一位同事设了一条长达数月的 OOF 自动回复，然后没了声音。工位还是TA的。",
     },
     telemetry: [
       {
@@ -840,11 +840,11 @@ const cases = [
     resultFlavor: {
       correct: {
         en: "Correct. A reserved desk is a promise that someone is coming back.",
-        zh: "正确。一个被保留的工位，是一句“他会回来”的承诺。",
+        zh: "正确。一个被保留的工位，是一句“TA会回来”的承诺。",
       },
       wrong: {
         en: "You wrote them off. They are coming back in spring, well-rested and slightly offended.",
-        zh: "你提前给他写了讣告。可是他春天就回来，精神饱满，而且有点被冒犯。",
+        zh: "你提前给TA写了讣告。可是TA春天就回来，精神饱满，而且有点被冒犯。",
       },
     },
   },
@@ -922,7 +922,7 @@ const cases = [
         status: "warning",
       },
       {
-        key: { en: "Their Manager", zh: "他的 Manager" },
+        key: { en: "Their Manager", zh: "TA的 Manager" },
         value: { en: "Unchanged", zh: "不变" },
         status: "normal",
       },
@@ -951,16 +951,16 @@ const cases = [
     answer: "became_manager",
     explanation: {
       en: "Their own manager is unchanged, cost center is the same, but four reports appeared under them and the title gained 'Manager'. They did not move. People moved under them.",
-      zh: "他自己的 Manager 没变、Cost Center 没变，但下面挂了四个人，Title 多了“Manager”。他没有动，是有人被挪到了他下面。",
+      zh: "TA自己的 Manager 没变、Cost Center 没变，但下面挂了四个人，Title 多了“Manager”。TA没有动，是有人被挪到了TA下面。",
     },
     resultFlavor: {
       correct: {
         en: "Correct. The expand arrow is the tell. They are someone's boss now.",
-        zh: "正确。他现在是别人的老板了。",
+        zh: "正确。TA现在是别人的老板了。",
       },
       wrong: {
         en: "You missed the four people who appeared under their name. They noticed.",
-        zh: "你没注意到他名下突然多出来的四个人，但那四个人注意到了。",
+        zh: "你没注意到TA名下突然多出来的四个人，但那四个人注意到了。",
       },
     },
   },
@@ -1030,7 +1030,7 @@ const cases = [
     title: { en: "The Whole Tree Moved", zh: "整棵树都挪了" },
     intro: {
       en: "Your coworker's manager changed. So did their manager's manager. So did three levels up.",
-      zh: "你同事的 Manager 变了。他 Manager 的 Manager 也变了。往上三层全变了。",
+      zh: "你同事的 Manager 变了。TA Manager 的 Manager 也变了。往上三层全变了。",
     },
     telemetry: [
       {
@@ -1088,7 +1088,7 @@ const cases = [
     title: { en: "Title: undefined", zh: "Title：undefined" },
     intro: {
       en: "A respected senior engineer's title now literally reads 'undefined' across every tool.",
-      zh: "一位受人尊敬的资深工程师，他的 Title 现在在所有工具里都写着“undefined”。",
+      zh: "一位受人尊敬的资深工程师，TA的 Title 现在在所有工具里都写着“undefined”。",
     },
     telemetry: [
       {
@@ -1146,7 +1146,7 @@ const cases = [
     title: { en: "The Counteroffer", zh: "挽留 offer" },
     intro: {
       en: "A coworker who was clearly interviewing suddenly stopped, then got a raise. Or did they leave?",
-      zh: "一位明显在面试的同事，突然不面了，然后涨薪了。还是说，他其实走了？",
+      zh: "一位明显在面试的同事，突然不面了，然后涨薪了。还是说，TA其实走了？",
     },
     telemetry: [
       {
@@ -1184,7 +1184,7 @@ const cases = [
     answer: "counteroffer",
     explanation: {
       en: "Interview signals dropped to zero, comp was adjusted up, manager unchanged, GAL visible, and HR literally noted 'counteroffer accepted'. They were leaving, then they weren't. The company paid to keep them.",
-      zh: "面试信号归零、薪资上调、Manager 没变、个人页面可见，HR 备注白纸黑字写着“已接受挽留”。他本来要走，后来没走。公司花钱把他留下了。",
+      zh: "面试信号归零、薪资上调、Manager 没变、个人页面可见，HR 备注白纸黑字写着“已接受挽留”。TA本来要走，后来没走。公司花钱把TA留下了。",
     },
     resultFlavor: {
       correct: {
@@ -1193,7 +1193,7 @@ const cases = [
       },
       wrong: {
         en: "You buried someone who is still at their desk, now slightly richer and slightly bored.",
-        zh: "你埋葬了一个还坐在工位上的人。他现在钱多了一点，也寂寞了一点。",
+        zh: "你埋葬了一个还坐在工位上的人。TA现在钱多了一点，也寂寞了一点。",
       },
     },
   },
@@ -1294,7 +1294,7 @@ const cases = [
     title: { en: "The Sideways Face", zh: "歪掉的脸" },
     intro: {
       en: "A coworker's photo is suddenly rotated 90 degrees. They look very relaxed about it.",
-      zh: "一位同事的头像突然旋转了 90 度。照片里的他看起来毫不在意。",
+      zh: "一位同事的头像突然旋转了 90 度。照片里的TA看起来毫不在意。",
     },
     telemetry: [
       { key: { en: "Photo", zh: "头像" }, value: { en: "Rotated 90°", zh: "旋转 90°" }, status: "warning" },
@@ -1326,7 +1326,7 @@ const cases = [
     title: { en: "Born in 1970", zh: "生于 1970" },
     intro: {
       en: "A coworker's hire date now reads January 1, 1970. They do not look 56 years tenured.",
-      zh: "一位同事的入职日期现在显示 1970 年 1 月 1 日，可是他看起来没有 56 年工龄。",
+      zh: "一位同事的入职日期现在显示 1970 年 1 月 1 日，可是TA看起来没有 56 年工龄。",
     },
     telemetry: [
       { key: { en: "Hire Date", zh: "入职日期" }, value: { en: "1970-01-01", zh: "1970-01-01" }, status: "warning" },
@@ -1422,7 +1422,7 @@ const cases = [
     title: { en: "The Empty Week", zh: "空白的一周" },
     intro: {
       en: "Your coworker, and everyone near them, has a fully blocked calendar next week.",
-      zh: "你的同事，以及他身边所有人，下周的日历都被整块占满了。",
+      zh: "你的同事，以及TA身边所有人，下周的日历都被整块占满了。",
     },
     telemetry: [
       { key: { en: "Calendar", zh: "日历" }, value: { en: "Blocked, whole team", zh: "整组屏蔽" }, status: "warning" },
@@ -1472,7 +1472,7 @@ const cases = [
     answer: "mat_cover",
     explanation: {
       en: "The new person's title literally says 'maternity cover', the original is still in the GAL with a reserved desk, and the cost center is unchanged. They were not replaced. Someone is keeping the seat warm.",
-      zh: "新人的 Title 白纸黑字写着“产假顶岗”、原同事仍在地址簿且工位保留、cost center 没变。他没被换掉，只是有人在帮他暖座位。",
+      zh: "新人的 Title 白纸黑字写着“产假顶岗”、原同事仍在地址簿且工位保留、cost center 没变。TA没被换掉，只是有人在帮TA暖座位。",
     },
     resultFlavor: {
       correct: { en: "Correct. Read the title suffix before writing the eulogy.", zh: "写悼词之前先读一下 Title 后缀。" },
@@ -1507,7 +1507,7 @@ const cases = [
       zh: "连续九天“正在演示”却没有任何在进行的会议，同时消息照常回复。没人能演示九天。是一次屏幕共享没干净结束，状态标记卡住了。",
     },
     resultFlavor: {
-      correct: { en: "Correct. The status lied. The human is fine.", zh: "正确。状态在撒谎，他人好得很。" },
+      correct: { en: "Correct. The status lied. The human is fine.", zh: "正确。状态在撒谎，TA人好得很。" },
       wrong: { en: "You read a stuck flag as a resignation. They were eating lunch the whole time.", zh: "你把一个卡住的标记读成了辞职。人家这九天一直在坚持吃午饭。" },
     },
   },
@@ -1536,11 +1536,11 @@ const cases = [
     answer: "oncall",
     explanation: {
       en: "Their calendar says 'On-Call' this week, replies are instant around the clock, and the org chart is unchanged. They are not breaking down. They are paging-duty awake at 3am, typing fast in the dark.",
-      zh: "日历显示本周“On-Call”、回复全天候秒回、组织架构没变。他不是崩溃了，是被事故逼到凌晨三点还醒着，在黑暗里飞快打字。",
+      zh: "日历显示本周“On-Call”、回复全天候秒回、组织架构没变。TA不是崩溃了，是被事故逼到凌晨三点还醒着，在黑暗里飞快打字。",
     },
     resultFlavor: {
       correct: { en: "Correct. That is not panic, that is a pager.", zh: "正确。那不是恐慌，那是个事故。" },
-      wrong: { en: "You diagnosed burnout. It was a rotation. Bring them coffee.", zh: "你诊断成了倦怠。其实是 oncall。给他递杯咖啡吧。" },
+      wrong: { en: "You diagnosed burnout. It was a rotation. Bring them coffee.", zh: "你诊断成了倦怠。其实是 oncall。给TA递杯咖啡吧。" },
     },
   },
   {
@@ -1568,10 +1568,10 @@ const cases = [
     answer: "secondment",
     explanation: {
       en: "A six-month redirect, a temporary cost center move, and a set return date. They were lent to another team, not lost. The return date is the tell.",
-      zh: "六个月的转接、临时的 cost center 调动、还有一个已设定的返回日期。他是被借调到另一个团队，不是走了。返回日期就是线索。",
+      zh: "六个月的转接、临时的 cost center 调动、还有一个已设定的返回日期。TA是被借调到另一个团队，不是走了。返回日期就是线索。",
     },
     resultFlavor: {
-      correct: { en: "Correct. A return date means they are coming back.", zh: "正确。有返回日期，就说明他会回来。" },
+      correct: { en: "Correct. A return date means they are coming back.", zh: "正确。有返回日期，就说明TA会回来。" },
       wrong: { en: "You closed the file on someone with a scheduled return date.", zh: "你给一个有明确返回日期的人宣判了死刑。" },
     },
   },
@@ -1600,10 +1600,10 @@ const cases = [
     answer: "retirement",
     explanation: {
       en: "Thirty years tenure, a farewell party with cake, nostalgic emails, and a scheduled account end date. This is a planned, celebrated exit. They are retiring, not being cut.",
-      zh: "三十年工龄、带蛋糕的欢送会、怀旧的邮件、还有一个计划好的账号截止日。这是一次有计划、被庆祝的告别。他是退休，不是被裁。",
+      zh: "三十年工龄、带蛋糕的欢送会、怀旧的邮件、还有一个计划好的账号截止日。这是一次有计划、被庆祝的告别。TA是退休，不是被裁。",
     },
     resultFlavor: {
-      correct: { en: "Correct. Thirty years earns the cake. Wish them well.", zh: "正确。三十年换来这块蛋糕。祝他一切都好。" },
+      correct: { en: "Correct. Thirty years earns the cake. Wish them well.", zh: "正确。三十年换来这块蛋糕。祝TA一切都好。" },
       wrong: { en: "You called a retirement party a layoff. Eat some cake and apologize.", zh: "你把退休欢送会说成了裁员。赶紧吃块蛋糕道个歉吧。" },
     },
   },
@@ -1614,7 +1614,7 @@ const cases = [
     title: { en: "Open To Work", zh: "求职意向已公开" },
     intro: {
       en: "A coworker's GAL entry is gone and their public profile elsewhere now has a green ring.",
-      zh: "一位同事的地址簿条目没了，而他在别处的公开主页加上了一圈绿环。",
+      zh: "一位同事的地址簿条目没了，而TA在别处的公开主页加上了一圈绿环。",
     },
     telemetry: [
       { key: { en: "GAL", zh: "个人页面" }, value: { en: "Removed", zh: "已移除" }, status: "alarming" },
@@ -1632,7 +1632,7 @@ const cases = [
     answer: "left",
     explanation: {
       en: "GAL removed, badge revoked, a last-day email sent, the org node deleted, and a public 'Open To Work' banner. Every signal agrees. They resigned. Not every disappearance is a backend bug.",
-      zh: "个人档案移除、门禁撤销、离职邮件已发、组织节点删除、公开主页挂上“求职中”。每个信号都一致。他离职了。不是每次消失都是后端 bug。",
+      zh: "个人档案移除、门禁撤销、离职邮件已发、组织节点删除、公开主页挂上“求职中”。每个信号都一致。TA离职了。不是每次消失都是后端 bug。",
     },
     resultFlavor: {
       correct: { en: "Correct. Sometimes gone means gone.", zh: "正确。有时候“走了”就是真的走了。" },
@@ -1696,7 +1696,7 @@ const cases = [
     answer: "left_alumni",
     explanation: {
       en: "The account type literally changed to 'Alumni', internal access was removed, and they were invited to the alumni portal. This is a formal, clean offboarding. They left on good terms.",
-      zh: "账号类型白纸黑字变成了“校友”、内网权限移除、收到校友门户邀请。这是一次正式、体面的离职流程。他好聚好散地走了。",
+      zh: "账号类型白纸黑字变成了“校友”、内网权限移除、收到校友门户邀请。这是一次正式、体面的离职流程。TA好聚好散地走了。",
     },
     resultFlavor: {
       correct: { en: "Correct. Alumni means graduated, not glitched.", zh: "正确。“校友”是被毕业了，不是出 bug 了。" },
@@ -1710,7 +1710,7 @@ const cases = [
     title: { en: "The Visa Check", zh: "签证 Check" },
     intro: {
       en: "A coworker vanished abruptly mid-project. Their work authorization field shows a flag.",
-      zh: "一位同事在项目中途突然消失了，他的“工作授权”字段上挂着一个标记。",
+      zh: "一位同事在项目中途突然消失了，TA的“工作授权”字段上挂着一个标记。",
     },
     telemetry: [
       { key: { en: "Work Auth", zh: "工作授权" }, value: { en: "Under review", zh: "审核中" }, status: "warning" },
@@ -1728,11 +1728,11 @@ const cases = [
     answer: "visa_leave",
     explanation: {
       en: "Work authorization is 'under review', the leave is a month or two, the cost center is unchanged, and there is an estimated return date. This is an immigration processing pause, not a departure. The paperwork moves slowly; the job is still theirs.",
-      zh: "工作授权显示“审核中”、休假一两个月、cost center 没变、还有一个预估返回日期，他的签证被安全调查了。手续走得慢，但岗位还是他的。",
+      zh: "工作授权显示“审核中”、休假一两个月、cost center 没变、还有一个预估返回日期，TA的签证被安全调查了。手续走得慢，但岗位还是TA的。",
     },
     resultFlavor: {
-      correct: { en: "Correct. The border is slow, the seat is kept.", zh: "正确。大使馆很慢，座位给他留着。" },
-      wrong: { en: "You wrote them off over a paperwork delay. They are stuck in a consulate queue, not gone.", zh: "你因为一次手续延迟就给他写了讣告，他只是卡在领事馆排队，不是走了。" },
+      correct: { en: "Correct. The border is slow, the seat is kept.", zh: "正确。大使馆很慢，座位给TA留着。" },
+      wrong: { en: "You wrote them off over a paperwork delay. They are stuck in a consulate queue, not gone.", zh: "你因为一次手续延迟就给TA写了讣告，TA只是卡在领事馆排队，不是走了。" },
     },
   },
   {
@@ -1780,7 +1780,7 @@ const cases = [
       { key: { en: "New DLs", zh: "新邮件组" }, value: { en: "12 leadership lists", zh: "12 个管理层组" }, status: "warning" },
       { key: { en: "Direct Reports", zh: "直属下属" }, value: { en: "Increased", zh: "增加" }, status: "warning" },
       { key: { en: "Title", zh: "Title" }, value: { en: "+ Director", zh: "+ Director" }, status: "warning" },
-      { key: { en: "Their Manager", zh: "他的 Manager" }, value: { en: "Now a VP", zh: "变成了 VP" }, status: "warning" },
+      { key: { en: "Their Manager", zh: "TA的 Manager" }, value: { en: "Now a VP", zh: "变成了 VP" }, status: "warning" },
       { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
@@ -1792,7 +1792,7 @@ const cases = [
     answer: "into_leadership",
     explanation: {
       en: "Twelve leadership lists, more direct reports, a '+ Director' title, and a manager who is now a VP. The list membership tracks the title and the reports. They moved up into leadership.",
-      zh: "12 个管理层组、更多直属下属、Title 加了“Director”、Manager 变成了 VP。邮件组的变化和 Title、下属是一致的。他升职进了管理层。",
+      zh: "12 个管理层组、更多直属下属、Title 加了“Director”、Manager 变成了 VP。邮件组的变化和 Title、下属是一致的。TA升职进了管理层。",
     },
     resultFlavor: {
       correct: { en: "Correct. The DLs followed the promotion, not the other way around.", zh: "正确。是邮件组跟着人走，不是反过来。" },
@@ -1991,37 +1991,36 @@ const cases = [
       wrong: { en: "BAD END: You blamed someone who left last week. The bug is still here. So is the real author.", zh: "BAD END：你怪了一个上周就走的人，bug 还在，真正的作者也还在。" },
     },
   },
-  {
+    {
     id: "case-044",
-    difficulty: "hard",
-    tags: ["insufficient-telemetry", "ghost"],
-    title: { en: "Activity Without Owner", zh: "有活动，没 Owner" },
+    difficulty: "medium",
+    tags: ["immigration", "not-a-layoff"],
+    title: { en: "The Req That Vanished", zh: "消失的招聘需求" },
     intro: {
-      en: "An account is clearly doing things, but every ownership field is blank.",
-      zh: "一个账号明显在干活，可每一个归属字段都是空白。",
+      en: "An open headcount position you were recruiting for just closed in the system.",
+      zh: "你一直在招的一个岗位突然在系统里关闭了。",
     },
     telemetry: [
-      { key: { en: "Recent Activity", zh: "近期活动" }, value: { en: "Yes, daily", zh: "有，每天" }, status: "normal" },
-      { key: { en: "Owner Field", zh: "Owner 字段" }, value: { en: "Blank", zh: "空白" }, status: "alarming" },
-      { key: { en: "Manager", zh: "Manager" }, value: { en: "Blank", zh: "空白" }, status: "alarming" },
-      { key: { en: "Cost Center", zh: "Cost Center" }, value: { en: "Blank", zh: "空白" }, status: "alarming" },
-      { key: { en: "GAL", zh: "个人页面" }, value: { en: "Not listed", zh: "未列出" }, status: "warning" },
+      { key: { en: "Req Status", zh: "招聘需求" }, value: { en: "Closed", zh: "已关闭" }, status: "warning" },
+      { key: { en: "Reason Field", zh: "原因" }, value: { en: "'PERM sponsorship coordination'", zh: "PERM 赞助" }, status: "normal" },
+      { key: { en: "Employee Affected", zh: "涉及员工" }, value: { en: "China-based IC", zh: "中国籍 IC" }, status: "normal" },
+      { key: { en: "Legal Counsel", zh: "法律顾问" }, value: { en: "Copied on emails", zh: "在邮件抄送里" }, status: "normal" },
+      { key: { en: "That Employee Status", zh: "该员工状态" }, value: { en: "Active, working normally", zh: "在职，正常工作" }, status: "normal" },
     ],
     choices: [
-      { id: "service_acct", label: { en: "Definitely a Service Account", zh: "肯定是服务账号" } },
-      { id: "person", label: { en: "Definitely a Person", zh: "肯定是个人" } },
-      { id: "orphaned", label: { en: "Orphaned After Owner Left", zh: "Owner 离职后留下的孤儿账号" } },
-      { id: "hacked", label: { en: "Compromised", zh: "救命我们被入侵了" } },
+      { id: "budget_freeze", label: { en: "Budget Freeze", zh: "预算冻结" } },
+      { id: "layoff_prep", label: { en: "Layoff Signal", zh: "裁员信号" } },
+      { id: "perm_sponsorship", label: { en: "PERM Sponsorship Hold", zh: "PERM 流程中" } },
+      { id: "role_canceled", label: { en: "Role Canceled", zh: "岗位取消" } },
     ],
-    answer: "none",
-    actualCause: { en: "Not Enough To Tell", zh: "证据不足，判不了" },
+    answer: "perm_sponsorship",
     explanation: {
-      en: "Daily activity but every ownership field blank and not in the GAL. It could be a service account, a misconfigured human, or something worse. There is genuinely not enough here to say. The honest call is: unknown.",
-      zh: "每天都有活动，可归属字段全空、地址簿里也查不到，它可能是服务账号、可能是个配置出错的真人、也可能是更糟的东西，这里真的不够下判断，诚实的答案就是：未知。",
+      en: "The reason field literally says 'PERM sponsorship coordination'. A China-based IC's green card sponsorship is in progress, and the req is frozen to avoid complications with labor certification. When PERM moves forward, staffing decisions pause. The employee is still here; the paperwork is just moving slowly.",
+      zh: "原因字段明确写着 PERM 赞助。这只是一位中国籍 IC 的绿卡申请在推进，招聘需求被冻结以避免和劳工证明产生冲突。TA 还在这儿好好上班，只是文件在走流程。",
     },
     resultFlavor: {
-      correct: { en: "Correct. 'I don't know' is a valid verdict. File for more data.", zh: "正确，“我不知道”也是一种合格的结论，先去补数据吧。" },
-      wrong: { en: "You guessed confidently about a record with no owner. The record did not confirm your guess.", zh: "你对着一条没有主人的记录大胆开麦，可它并没有点头。" },
+      correct: { en: "Correct. The req froze, not the job. PERM paperwork moves slowly.", zh: "正确。冻的是招聘需求，不是岗位。PERM 文件走得慢。" },
+      wrong: { en: "You read a frozen req as a layoff signal. Someone's just doing green card paperwork.", zh: "你把一个冻结的招聘需求读成了裁员信号。人家只是在走绿卡手续。" },
     },
   },
   {
@@ -2035,7 +2034,7 @@ const cases = [
     },
     telemetry: [
       { key: { en: "Activity Window", zh: "活跃时段" }, value: { en: "3 AM your TZ", zh: "你时区凌晨 3 点" }, status: "warning" },
-      { key: { en: "Their Timezone", zh: "他的时区" }, value: { en: "Not set", zh: "未设置" }, status: "alarming" },
+      { key: { en: "Their Timezone", zh: "TA的时区" }, value: { en: "Not set", zh: "未设置" }, status: "alarming" },
       { key: { en: "Office", zh: "办公地" }, value: { en: "Blank", zh: "空白" }, status: "warning" },
       { key: { en: "Output Quality", zh: "产出质量" }, value: { en: "Fine", zh: "正常" }, status: "normal" },
       { key: { en: "GAL", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
@@ -2050,7 +2049,7 @@ const cases = [
     actualCause: { en: "Timezone Unknown, Can't Tell", zh: "时区不明，判不了" },
     explanation: {
       en: "Their timezone is not set and office is blank, so 3 AM your time could be 3 PM theirs. Output is fine. Without their timezone you cannot tell exhaustion from a perfectly normal afternoon. Not enough to judge.",
-      zh: "他的时区没设、办公地也空着，所以你这边的凌晨三点，可能正是他那边的下午三点，产出也都正常，既然没有时区信息，你根本分不清这是熬夜还是一个再普通不过的下午。",
+      zh: "TA的时区没设、办公地也空着，所以你这边的凌晨三点，可能正是TA那边的下午三点，产出也都正常，既然没有时区信息，你根本分不清这是熬夜还是一个再普通不过的下午。",
     },
     resultFlavor: {
       correct: { en: "Correct. 3 AM here is lunch somewhere. Set the timezone before you worry.", zh: "正确，全球化时代。这里的凌晨三点是别处的午饭点，先把时区填上再操心。" },
@@ -2064,7 +2063,7 @@ const cases = [
     title: { en: "Everything Normal, Nobody Home", zh: "一切正常，无人应答" },
     intro: {
       en: "Every field on this coworker reads normal, but no one has reached them in two weeks.",
-      zh: "这位同事的每一个字段都显示正常，可整整两周没人联系上他。",
+      zh: "这位同事的每一个字段都显示正常，可整整两周没人联系上TA。",
     },
     telemetry: [
       { key: { en: "All Fields", zh: "所有字段" }, value: { en: "Normal", zh: "正常" }, status: "normal" },
@@ -2086,7 +2085,7 @@ const cases = [
       zh: "字段正常只说明目录没被改过，并不告诉你人在哪里，一个没有任何说明的空日历，既可能是休假、可能是停薪留职、也可能是悄悄出了状况，数据替你选不了。",
     },
     resultFlavor: {
-      correct: { en: "Correct. Normal is not the same as fine. Go check on them.", zh: "正确，“正常”不等于“没事”，赶紧去看看他吧。" },
+      correct: { en: "Correct. Normal is not the same as fine. Go check on them.", zh: "正确，“正常”不等于“没事”，赶紧去看看TA吧。" },
       wrong: { en: "You read 'all fields normal' as 'all is well'. Maybe knock on the door first.", zh: "你把“所有字段正常”读成了“一切都好”，也许先去敲敲门。" },
     },
   },
@@ -2129,7 +2128,7 @@ const cases = [
     title: { en: "Permissions Gone, Person Stays", zh: "权限没了，人还在" },
     intro: {
       en: "A coworker's permissions zeroed out overnight, yet they are at their desk, confused.",
-      zh: "一位同事的权限一夜清零，可他正坐在工位上，一脸懵。",
+      zh: "一位同事的权限一夜清零，可TA正坐在工位上，一脸懵。",
     },
     telemetry: [
       { key: { en: "Permissions", zh: "权限" }, value: { en: "Revoked", zh: "已撤销" }, status: "alarming" },
@@ -2147,11 +2146,11 @@ const cases = [
     answer: "access_review",
     explanation: {
       en: "An access review just ran, the manager is unchanged, and the person is right there. Periodic reviews strip permissions nobody re-attested to. It is annoying, not a firing. They re-request and move on.",
-      zh: "权限审查刚刚跑完、Manager 没变、人就在那儿坐着，周期性审查会把没人 Approve 的权限统统收掉，这很烦，但他重新申请一下就好了。",
+      zh: "权限审查刚刚跑完、Manager 没变、人就在那儿坐着，周期性审查会把没人 Approve 的权限统统收掉，这很烦，但TA重新申请一下就好了。",
     },
     resultFlavor: {
       correct: { en: "Correct. The robot revoked it, not the boss. Re-request and move on.", zh: "正确，是机器人收的，不是老板，重新申请就完事了。" },
-      wrong: { en: "You read a compliance sweep as a termination. Hand them the access-request form.", zh: "你把一次合规扫描读成了解雇，快把权限申请表递给他吧。" },
+      wrong: { en: "You read a compliance sweep as a termination. Hand them the access-request form.", zh: "你把一次合规扫描读成了解雇，快把权限申请表递给TA吧。" },
     },
   },
   {
@@ -2182,7 +2181,7 @@ const cases = [
       zh: "诉讼保留是把邮箱当成潜在证据冻存，它只挡删除，不动人，本人还在正常上班，很多时候被保留的人只是个证人，不是被告，这是一条留存规则，不是判决书。",
     },
     resultFlavor: {
-      correct: { en: "Correct. Their inbox is evidence, not a confession.", zh: "正确，他的收件箱是证据，不是认罪书。" },
+      correct: { en: "Correct. Their inbox is evidence, not a confession.", zh: "正确，TA的收件箱是证据，不是认罪书。" },
       wrong: { en: "You convicted someone over a retention rule. Legal just wants the emails kept.", zh: "你凭一条留存规则就给人定了罪，法务只是想把邮件留着而已。" },
     },
   },
@@ -2193,7 +2192,7 @@ const cases = [
     title: { en: "Locked Out Overnight", zh: "一夜被锁" },
     intro: {
       en: "A coworker's account was disabled and force-reset at 2 AM. They did not do it.",
-      zh: "一位同事的账号在凌晨两点被停用并强制改密，他自己没动过。",
+      zh: "一位同事的账号在凌晨两点被停用并强制改密，TA自己没动过。",
     },
     telemetry: [
       { key: { en: "Account", zh: "账号" }, value: { en: "Disabled then reset", zh: "停用后重置" }, status: "alarming" },
@@ -2407,7 +2406,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. They are fasting, not fading. Iftar is after sunset.", zh: "正确，人家在斋戒，不是在消失，开饭得等日落。" },
-      wrong: { en: "You read a religious observance as a layoff. Wish them Ramadan Mubarak instead.", zh: "你把一项宗教习俗读成了裁员，不如祝他们斋月安康。" },
+      wrong: { en: "You read a religious observance as a layoff. Wish them Ramadan Mubarak instead.", zh: "你把一项宗教习俗读成了裁员，不如祝TA们斋月安康。" },
     },
   },
   {
@@ -2471,17 +2470,17 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The cert lapsed, not the job. Renew and resume.", zh: "正确，过期的是证书，不是工作，续期就能继续。" },
-      wrong: { en: "You read an expired cert as a firing. Their badge still opens the door, remember?", zh: "你把一张过期证书读成了开除，可他门禁还能开门，记得吗？" },
+      wrong: { en: "You read an expired cert as a firing. Their badge still opens the door, remember?", zh: "你把一张过期证书读成了开除，可TA门禁还能开门，记得吗？" },
     },
   },
   {
     id: "case-059",
     difficulty: "hard",
     tags: ["insufficient-telemetry", "ghost"],
-    title: { en: "They Didn't Know Either", zh: "连他自己都不知道" },
+    title: { en: "They Didn't Know Either", zh: "连TA自己都不知道" },
     intro: {
       en: "The system says a coworker moved teams. The coworker says they have no idea what you mean.",
-      zh: "系统说一位同事转组了，可这位同事说他完全不知道你在讲什么。",
+      zh: "系统说一位同事转组了，可这位同事说TA完全不知道你在讲什么。",
     },
     telemetry: [
       { key: { en: "System Says", zh: "系统显示" }, value: { en: "Moved teams", zh: "已转组" }, status: "warning" },
@@ -2649,7 +2648,7 @@ const cases = [
       { key: { en: "Cadence", zh: "频率" }, value: { en: "First ever", zh: "史上第一次" }, status: "unknown" },
       { key: { en: "HR Attendee", zh: "HR 参会" }, value: { en: "None", zh: "没有" }, status: "normal" },
       { key: { en: "Your Perf", zh: "你的绩效" }, value: { en: "On track", zh: "正常" }, status: "normal" },
-      { key: { en: "Other Invitees", zh: "其他被邀" }, value: { en: "Several peers too", zh: "好几个同事也收到" }, status: "normal" },
+      { key: { en: "Other Invitees", zh: "其TA被邀" }, value: { en: "Several peers too", zh: "好几个同事也收到" }, status: "normal" },
     ],
     choices: [
       { id: "getting_fired", label: { en: "Getting Fired", zh: "要被开了" } },
@@ -2820,7 +2819,7 @@ const cases = [
     answer: "hiring_freeze",
     explanation: {
       en: "The req closed with a 'headcount freeze' reason, the existing team is intact, and there's no layoff memo. They're not cutting people; they just won't add them. The work, of course, stays.",
-      zh: "req 以“HC 冻结”为由关闭、现有团队完好、也没有裁员备忘。他们不是要裁人，只是不再加人。当然，活还是那些活。",
+      zh: "req 以“HC 冻结”为由关闭、现有团队完好、也没有裁员备忘。TA们不是要裁人，只是不再加人。当然，活还是那些活。",
     },
     resultFlavor: {
       correct: { en: "Correct. They froze the req, not the team.", zh: "正确。冻的是招聘需求，不是团队。" },
@@ -2871,7 +2870,7 @@ const cases = [
     },
     telemetry: [
       { key: { en: "Replies", zh: "回复" }, value: { en: "None", zh: "没有" }, status: "warning" },
-      { key: { en: "Their Calendar", zh: "他们的日历" }, value: { en: "Back-to-back planning", zh: "排满了 planning" }, status: "normal" },
+      { key: { en: "Their Calendar", zh: "TA们的日历" }, value: { en: "Back-to-back planning", zh: "排满了 planning" }, status: "normal" },
       { key: { en: "Season", zh: "时节" }, value: { en: "Annual planning", zh: "年度规划季" }, status: "normal" },
       { key: { en: "Last Message", zh: "上一条消息" }, value: { en: "Friendly", zh: "很友好" }, status: "normal" },
       { key: { en: "Status", zh: "状态" }, value: { en: "'Heads down'", zh: "“专注中”" }, status: "normal" },
@@ -2885,7 +2884,7 @@ const cases = [
     answer: "planning_busy",
     explanation: {
       en: "Their calendar is wall-to-wall planning, last message was friendly, status says 'heads down'. It's not about you. During planning season, everyone above you disappears into spreadsheets.",
-      zh: "他们的日历全是 planning、上一条消息还很友好、状态写着“专注中”。这跟你无关。一到规划季，你头上的人都消失进了表格里。",
+      zh: "TA们的日历全是 planning、上一条消息还很友好、状态写着“专注中”。这跟你无关。一到规划季，你头上的人都消失进了表格里。",
     },
     resultFlavor: {
       correct: { en: "Correct. It's planning season, not personal.", zh: "正确。是规划季，不是针对你。" },
@@ -3013,10 +3012,10 @@ const cases = [
     answer: "vacation_guilt",
     explanation: {
       en: "Approved PTO, an active account, and a manager literally asking them to rest. This isn't a breach; it's someone who doesn't know how to be off. Tragic, common, not your incident.",
-      zh: "已批的休假、在用的账号、一个明确请他们休息的经理。这不是入侵，是一个不会“下线”的人。可悲、常见，但不是你要查的事故。",
+      zh: "已批的休假、在用的账号、一个明确请TA们休息的经理。这不是入侵，是一个不会“下线”的人。可悲、常见，但不是你要查的事故。",
     },
     resultFlavor: {
-      correct: { en: "Correct. The threat is their inability to relax.", zh: "正确。威胁来自他们无法放松。" },
+      correct: { en: "Correct. The threat is their inability to relax.", zh: "正确。威胁来自TA们无法放松。" },
       wrong: { en: "You flagged a workaholic's vacation guilt as a breach.", zh: "你把一个工作狂的假期负罪感标成了入侵。" },
     },
   },
@@ -3065,7 +3064,7 @@ const cases = [
       { key: { en: "DL Membership", zh: "邮件组成员" }, value: { en: "Removed", zh: "已移除" }, status: "warning" },
       { key: { en: "Your Role", zh: "你的角色" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
       { key: { en: "DL Note", zh: "邮件组备注" }, value: { en: "'Cleanup: ICs removed'", zh: "“清理：移除 IC”" }, status: "normal" },
-      { key: { en: "Other ICs", zh: "其他 IC" }, value: { en: "Also removed", zh: "也被移除" }, status: "normal" },
+      { key: { en: "Other ICs", zh: "其TA IC" }, value: { en: "Also removed", zh: "也被移除" }, status: "normal" },
       { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
     ],
     choices: [
@@ -3077,7 +3076,7 @@ const cases = [
     answer: "dl_cleanup",
     explanation: {
       en: "The DL note literally says 'Cleanup: ICs removed', other ICs got removed too, and your role is unchanged. Someone just tidied a mailing list. Your status didn't change; the list did.",
-      zh: "邮件组备注白纸黑字写着“清理：移除 IC”，其他 IC 也被移了，你的角色没变。有人只是整理了一下邮件组。变的是列表，不是你的地位。",
+      zh: "邮件组备注白纸黑字写着“清理：移除 IC”，其TA IC 也被移了，你的角色没变。有人只是整理了一下邮件组。变的是列表，不是你的地位。",
     },
     resultFlavor: {
       correct: { en: "Correct. The list got tidied, not your career.", zh: "正确。被整理的是列表，不是你的职业生涯。" },
@@ -3109,7 +3108,7 @@ const cases = [
     answer: "interim_leave",
     explanation: {
       en: "The change is flagged 'interim', your old manager is on medical leave, and there's no reorg memo. You're temporarily reporting up until they're back. Nothing about you changed.",
-      zh: "变更标着“临时”、你原来的经理在休病假、也没有重组备忘。你只是临时往上汇报，等他们回来。关于你的一切都没变。",
+      zh: "变更标着“临时”、你原来的经理在休病假、也没有重组备忘。你只是临时往上汇报，等TA们回来。关于你的一切都没变。",
     },
     resultFlavor: {
       correct: { en: "Correct. It's interim coverage, not a coup.", zh: "正确。这是临时代管，不是政变。" },
@@ -3224,13 +3223,13 @@ const cases = [
     },
     telemetry: [
       { key: { en: "Buddy Replies", zh: "Buddy 回复" }, value: { en: "Dried up", zh: "断了" }, status: "warning" },
-      { key: { en: "Their Sprint", zh: "他们的冲刺" }, value: { en: "Crunch week", zh: "封闭周" }, status: "alarming" },
-      { key: { en: "Their Status", zh: "他们的状态" }, value: { en: "'Heads down, ship date'", zh: "“冲刺中，赶发布”" }, status: "normal" },
+      { key: { en: "Their Sprint", zh: "TA们的冲刺" }, value: { en: "Crunch week", zh: "封闭周" }, status: "alarming" },
+      { key: { en: "Their Status", zh: "TA们的状态" }, value: { en: "'Heads down, ship date'", zh: "“冲刺中，赶发布”" }, status: "normal" },
       { key: { en: "Your Access", zh: "你的权限" }, value: { en: "All granted", zh: "已全部开通" }, status: "normal" },
-      { key: { en: "Other Helpers", zh: "其他可问的人" }, value: { en: "Available", zh: "在线" }, status: "normal" },
+      { key: { en: "Other Helpers", zh: "其TA可问的人" }, value: { en: "Available", zh: "在线" }, status: "normal" },
     ],
     choices: [
-      { id: "you_annoyed_them", label: { en: "You Annoyed Them", zh: "你惹烦他们了" } },
+      { id: "you_annoyed_them", label: { en: "You Annoyed Them", zh: "你惹烦TA们了" } },
       { id: "buddy_crunch", label: { en: "Buddy Buried in a Deadline Crunch", zh: "Buddy 被 deadline 淹了" } },
       { id: "buddy_quitting", label: { en: "Buddy Is Quitting", zh: "Buddy 要离职" } },
       { id: "ignored_on_purpose", label: { en: "Being Ignored on Purpose", zh: "被故意无视" } },
@@ -3238,7 +3237,7 @@ const cases = [
     answer: "buddy_crunch",
     explanation: {
       en: "Their status literally says 'heads down, ship date', your access is all set, and other helpers are free. The buddy didn't abandon you; a deadline ate them. Ask someone else.",
-      zh: "他们状态明明写着“冲刺中，赶发布”、你的权限都开通了、还有别人能问。Buddy 不是抛弃了你，是被 deadline 吃了。换个人问吧。",
+      zh: "TA们状态明明写着“冲刺中，赶发布”、你的权限都开通了、还有别人能问。Buddy 不是抛弃了你，是被 deadline 吃了。换个人问吧。",
     },
     resultFlavor: {
       correct: { en: "Correct. A deadline ate your buddy, not malice.", zh: "正确。吃掉你 buddy 的是 deadline，不是恶意。" },
@@ -3349,13 +3348,13 @@ const cases = [
     title: { en: "The Scope Land Grab", zh: "抢地盘" },
     intro: {
       en: "Another team's deck suddenly lists your project under their charter.",
-      zh: "另一个组的 PPT 突然把你的项目列在了他们的 charter 下面。",
+      zh: "另一个组的 PPT 突然把你的项目列在了TA们的 charter 下面。",
     },
     telemetry: [
-      { key: { en: "Their Deck", zh: "他们的 PPT" }, value: { en: "Claims your project", zh: "把你的项目划走了" }, status: "alarming" },
+      { key: { en: "Their Deck", zh: "TA们的 PPT" }, value: { en: "Claims your project", zh: "把你的项目划走了" }, status: "alarming" },
       { key: { en: "Your Code", zh: "你的代码" }, value: { en: "Still yours", zh: "还是你的" }, status: "normal" },
       { key: { en: "Season", zh: "时节" }, value: { en: "Planning / charters", zh: "规划 / 定 charter" }, status: "normal" },
-      { key: { en: "Their VP", zh: "他们的 VP" }, value: { en: "Expanding scope", zh: "在扩 scope" }, status: "warning" },
+      { key: { en: "Their VP", zh: "TA们的 VP" }, value: { en: "Expanding scope", zh: "在扩 scope" }, status: "warning" },
       { key: { en: "Decision Made", zh: "已定的事" }, value: { en: "None yet", zh: "暂无" }, status: "unknown" },
     ],
     choices: [
@@ -3367,7 +3366,7 @@ const cases = [
     answer: "land_grab",
     explanation: {
       en: "It's planning season, their VP is expanding scope, your code is still yours, and no decision is made. A slide is an opening bid, not a verdict. This is empire-building theater; counter it with your own deck.",
-      zh: "正值规划季、他们 VP 在扩 scope、你的代码还是你的、也没有任何决定。一页 PPT 是开价，不是判决。这是扩张地盘的戏码，用你自己的 PPT 反击就行。",
+      zh: "正值规划季、TA们 VP 在扩 scope、你的代码还是你的、也没有任何决定。一页 PPT 是开价，不是判决。这是扩张地盘的戏码，用你自己的 PPT 反击就行。",
     },
     resultFlavor: {
       correct: { en: "Correct. It's a bid, not a verdict. Make your own slide.", zh: "正确。那是开价，不是判决，做你自己的那页去。" },
@@ -3515,9 +3514,9 @@ const cases = [
     telemetry: [
       { key: { en: "Doc Access", zh: "文档权限" }, value: { en: "Editor -> Viewer", zh: "Editor -> Viewer" }, status: "warning" },
       { key: { en: "Doc Status", zh: "文档状态" }, value: { en: "'Finalized / locked'", zh: "“已定稿 / 锁定”" }, status: "normal" },
-      { key: { en: "Everyone Else", zh: "其他所有人" }, value: { en: "Also viewer now", zh: "现在也是 viewer" }, status: "normal" },
+      { key: { en: "Everyone Else", zh: "其TA所有人" }, value: { en: "Also viewer now", zh: "现在也是 viewer" }, status: "normal" },
       { key: { en: "Your Role", zh: "你的角色" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "Other Docs", zh: "其他文档" }, value: { en: "Still editor", zh: "仍是 editor" }, status: "normal" },
+      { key: { en: "Other Docs", zh: "其TA文档" }, value: { en: "Still editor", zh: "仍是 editor" }, status: "normal" },
     ],
     choices: [
       { id: "lost_trust", label: { en: "You Lost Their Trust", zh: "你失去了信任" } },
@@ -3528,7 +3527,7 @@ const cases = [
     answer: "doc_locked",
     explanation: {
       en: "The doc is marked 'finalized', everyone else is now viewer too, and your access on other docs is unchanged. They locked the document, not your standing. Once a doc ships, edit rights get revoked by default.",
-      zh: "文档标着“已定稿”、其他所有人现在也是 viewer、你在别的文档上还是 editor。被锁的是文档，不是你的地位。文档一旦定稿，编辑权默认会被收回。",
+      zh: "文档标着“已定稿”、其TA所有人现在也是 viewer、你在别的文档上还是 editor。被锁的是文档，不是你的地位。文档一旦定稿，编辑权默认会被收回。",
     },
     resultFlavor: {
       correct: { en: "Correct. They locked the doc, not your career.", zh: "正确。锁的是文档，不是你的职业生涯。" },
@@ -3646,7 +3645,7 @@ const cases = [
       { key: { en: "Timing", zh: "时点" }, value: { en: "End of fiscal quarter", zh: "财季末" }, status: "normal" },
       { key: { en: "Travel Budget", zh: "差旅预算" }, value: { en: "Frozen till Q1", zh: "冻结到 Q1" }, status: "warning" },
       { key: { en: "Headcount", zh: "人数" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
-      { key: { en: "Other Teams", zh: "其他团队" }, value: { en: "Also postponed", zh: "也暂缓了" }, status: "normal" },
+      { key: { en: "Other Teams", zh: "其TA团队" }, value: { en: "Also postponed", zh: "也暂缓了" }, status: "normal" },
     ],
     choices: [
       { id: "team_dying", label: { en: "The Team Is Dying", zh: "团队要黄了" } },
@@ -3657,7 +3656,7 @@ const cases = [
     answer: "quarter_end_savings",
     explanation: {
       en: "It's the end of the fiscal quarter, travel budget is frozen till Q1, headcount is unchanged, and other teams got postponed too. This is a finance-driven belt-tightening, not a verdict on your team. The offsite returns when the budget does.",
-      zh: "正值财季末、差旅预算冻结到 Q1、人数没变、其他团队也被暂缓了。这是财务驱动的勒紧裤腰带，不是对你团队的判决。预算回来，团建就回来。",
+      zh: "正值财季末、差旅预算冻结到 Q1、人数没变、其TA团队也被暂缓了。这是财务驱动的勒紧裤腰带，不是对你团队的判决。预算回来，团建就回来。",
     },
     resultFlavor: {
       correct: { en: "Correct. The budget got tight, not your team's future.", zh: "正确。紧的是预算，不是你团队的未来。" },
@@ -3676,7 +3675,7 @@ const cases = [
     telemetry: [
       { key: { en: "LinkedIn", zh: "领英" }, value: { en: "'Open to work'", zh: "“求职开放”" }, status: "warning" },
       { key: { en: "Setting", zh: "设置" }, value: { en: "Recruiters-only, default", zh: "仅猎头可见，默认项" }, status: "normal" },
-      { key: { en: "Their Work", zh: "他们的工作" }, value: { en: "Fully engaged", zh: "投入如常" }, status: "normal" },
+      { key: { en: "Their Work", zh: "TA们的工作" }, value: { en: "Fully engaged", zh: "投入如常" }, status: "normal" },
       { key: { en: "Resignation", zh: "离职" }, value: { en: "None filed", zh: "未提交" }, status: "normal" },
       { key: { en: "Profile Edits", zh: "资料改动" }, value: { en: "None else", zh: "其余无变化" }, status: "normal" },
     ],
@@ -3689,11 +3688,11 @@ const cases = [
     answer: "default_or_noise",
     explanation: {
       en: "It's the recruiters-only default setting, their work engagement is normal, no resignation is filed, and nothing else on the profile changed. 'Open to work' is often a low-effort hedge or a default, not a goodbye. Most people who toggle it never leave.",
-      zh: "这是“仅猎头可见”的默认设置、他们工作投入如常、没提离职、资料其余部分也没动。“open to work”常常只是个低成本的后路或默认项，不是告别。大多数勾上它的人根本没走。",
+      zh: "这是“仅猎头可见”的默认设置、TA们工作投入如常、没提离职、资料其余部分也没动。“open to work”常常只是个低成本的后路或默认项，不是告别。大多数勾上它的人根本没走。",
     },
     resultFlavor: {
       correct: { en: "Correct. It's a toggle, not a two-weeks notice.", zh: "正确。那是个开关，不是离职信。" },
-      wrong: { en: "You wrote their farewell over a LinkedIn default.", zh: "你为一个领英默认项写好了他们的送别词。" },
+      wrong: { en: "You wrote their farewell over a LinkedIn default.", zh: "你为一个领英默认项写好了TA们的送别词。" },
     },
   },
   {
@@ -3706,22 +3705,22 @@ const cases = [
       zh: "一个传说要走的人，还在把会排到下个季度。",
     },
     telemetry: [
-      { key: { en: "Rumor", zh: "传闻" }, value: { en: "'They're leaving'", zh: "“他们要走”" }, status: "warning" },
-      { key: { en: "Their Calendar", zh: "他们的日历" }, value: { en: "Booked Q+1", zh: "排到了下季度" }, status: "normal" },
+      { key: { en: "Rumor", zh: "传闻" }, value: { en: "'They're leaving'", zh: "“TA们要走”" }, status: "warning" },
+      { key: { en: "Their Calendar", zh: "TA们的日历" }, value: { en: "Booked Q+1", zh: "排到了下季度" }, status: "normal" },
       { key: { en: "Meeting Type", zh: "会议类型" }, value: { en: "Handover / KT", zh: "交接 / 知识转移" }, status: "normal" },
       { key: { en: "Doc Activity", zh: "文档活动" }, value: { en: "Writing runbooks", zh: "在写 runbook" }, status: "normal" },
       { key: { en: "Backfill", zh: "补位" }, value: { en: "Being interviewed", zh: "正在面试" }, status: "warning" },
     ],
     choices: [
-      { id: "rumor_false", label: { en: "Rumor Is False, They're Staying", zh: "传闻是假的，他们要留" } },
+      { id: "rumor_false", label: { en: "Rumor Is False, They're Staying", zh: "传闻是假的，TA们要留" } },
       { id: "planned_handover", label: { en: "A Planned, Known Handover", zh: "有计划、本人知情的交接" } },
-      { id: "in_denial", label: { en: "They Don't Know They're Out", zh: "他们不知道自己要走" } },
+      { id: "in_denial", label: { en: "They Don't Know They're Out", zh: "TA们不知道自己要走" } },
       { id: "doing_nothing", label: { en: "Just Killing Time", zh: "在混日子" } },
     ],
     answer: "planned_handover",
     explanation: {
       en: "The meetings are handover/KT, they're writing runbooks, and a backfill is being interviewed. Booking into next quarter isn't denial; it's a person responsibly handing off. The rumor is true and so is the professionalism.",
-      zh: "那些会是交接和知识转移、他们在写 runbook、补位的人也在面试。把会排到下季度不是不知情，而是一个人在负责任地交接。传闻是真的，专业也是真的。",
+      zh: "那些会是交接和知识转移、TA们在写 runbook、补位的人也在面试。把会排到下季度不是不知情，而是一个人在负责任地交接。传闻是真的，专业也是真的。",
     },
     resultFlavor: {
       correct: { en: "Correct. That's a clean handover, not denial.", zh: "正确。那是体面的交接，不是蒙在鼓里。" },
@@ -3741,7 +3740,7 @@ const cases = [
       { key: { en: "OOO Scope", zh: "OOO 范围" }, value: { en: "Whole team", zh: "全团队" }, status: "alarming" },
       { key: { en: "Same Date", zh: "同一天" }, value: { en: "Yes", zh: "是" }, status: "warning" },
       { key: { en: "Company Calendar", zh: "公司日历" }, value: { en: "'Wellness Day'", zh: "“身心健康日”" }, status: "normal" },
-      { key: { en: "Other Orgs", zh: "其他部门" }, value: { en: "Also out", zh: "也都休" }, status: "normal" },
+      { key: { en: "Other Orgs", zh: "其TA部门" }, value: { en: "Also out", zh: "也都休" }, status: "normal" },
       { key: { en: "Accounts", zh: "账号" }, value: { en: "All active", zh: "全部在职" }, status: "normal" },
     ],
     choices: [
@@ -3753,7 +3752,7 @@ const cases = [
     answer: "company_wellness_day",
     explanation: {
       en: "The company calendar literally says 'Wellness Day', other orgs are out too, and every account is active. The whole team is off because the whole company is off. Synchronized absence here means a holiday, not an exodus.",
-      zh: "公司日历白纸黑字写着“身心健康日”、其他部门也都休、每个账号都在职。全团队休是因为全公司休。这里的同步缺席意味着放假，不是出逃。",
+      zh: "公司日历白纸黑字写着“身心健康日”、其TA部门也都休、每个账号都在职。全团队休是因为全公司休。这里的同步缺席意味着放假，不是出逃。",
     },
     resultFlavor: {
       correct: { en: "Correct. It's a holiday, not a walkout.", zh: "正确。是放假，不是罢工。" },
