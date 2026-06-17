@@ -16,7 +16,7 @@ A deadpan workplace detective game about identity data, bad assumptions, and con
 ## Play
 
 - Online: https://sayaka-4987.github.io/Core-Identity-Detective/
-- Local: open index.html (no backend, no build)
+- Local: git clone, open index.html (no backend, no build)
 
 ## Scoring
 
@@ -28,3 +28,5 @@ A deadpan workplace detective game about identity data, bad assumptions, and con
 ## Notes
 
 All content is fictional. No real employee data is used. License: GNU/GPL v3.0.
+
+In this project, AI was used for coding, translating, and polishing text. 
