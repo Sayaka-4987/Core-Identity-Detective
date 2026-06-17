@@ -34,7 +34,7 @@ const cases = [
     title: { en: "The Missing Photo", zh: "消失的头像" },
     intro: {
       en: "A coworker's profile photo disappeared overnight.",
-      zh: "一位同事的头像一夜之间消失了。",
+      zh: "一位同事的头像居然一夜之间消失了。",
     },
     telemetry: [
       {
@@ -86,7 +86,7 @@ const cases = [
         zh: "判断正确。你没有把一个头像 bug 升级成 HR 事件。",
       },
       wrong: {
-        en: "The avatar fired, but only because the backend was on fire.",
+        en: "The avatar down, but only because the backend was on fire.",
         zh: "头像确实消失了，但只是因为后端着火了。",
       },
     },
@@ -142,12 +142,12 @@ const cases = [
     answer: "transfer",
     explanation: {
       en: "Manager and cost center changed while the title stayed the same and GAL is still visible. That is the signature of a lateral move, not a departure.",
-      zh: "manager 和 Cost Center 变了，但 Title 没变、地址簿还可见。这是换组的样子，不是离职。",
+      zh: "Manager 和 Cost Center 变了，但 Title 没变、地址簿还可见。这是换组的样子，不是离职。",
     },
     resultFlavor: {
       correct: {
         en: "Calmly read as a transfer. No drama generated.",
-        zh: "冷静判断为转组，没有制造 drama。",
+        zh: "你冷静判断为转组，没有制造 drama。",
       },
       wrong: {
         en: "You wrote a farewell message for someone who just moved two desks over.",
@@ -204,7 +204,7 @@ const cases = [
         id: "contractor",
         label: { en: "Service Account", zh: "服务账号" },
       },
-      { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
+      { id: "layoff", label: { en: "Layoff", zh: "被裁的前员工" } },
     ],
     answer: "none",
     actualCause: { en: "Nobody knows", zh: "没人知道" },
@@ -230,7 +230,7 @@ const cases = [
     title: { en: "Reorg Weather", zh: "组织架构调整" },
     intro: {
       en: "Two managers up the chain changed on the same day.",
-      zh: "汇报链上两级 manager 在同一天变了。",
+      zh: "你汇报链上两级 manager 在同一天变了。",
     },
     telemetry: [
       {
@@ -356,7 +356,7 @@ const cases = [
     answer: "dei_training",
     explanation: {
       en: "The employee was attending a three-day DEI training program. The telemetry was accurate. The theory was not.",
-      zh: "TA 连着三天去上 DEI 培训。数据没撒谎，是你的脑补太丰富。",
+      zh: "TA 因为说错话而连着三天去上 DEI 培训。数据没撒谎，是你的脑补太丰富。",
     },
     resultFlavor: {
       correct: {
@@ -406,7 +406,7 @@ const cases = [
       },
     ],
     choices: [
-      { id: "dentist", label: { en: "Genuinely the Dentist", zh: "真的去看牙" } },
+      { id: "dentist", label: { en: "Genuinely the Dentist", zh: "真去看牙" } },
       { id: "interview", label: { en: "Interviewing Elsewhere", zh: "在外面面试" } },
       { id: "training", label: { en: "Offsite Training", zh: "外出培训" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "员工系统炸了" } },
@@ -558,7 +558,7 @@ const cases = [
     telemetry: [
       {
         key: { en: "Title", zh: "Title" },
-        value: { en: "→ Member of Technical Staff", zh: "→ Member of Technical Staff" },
+        value: { en: "Member of Technical Staff", zh: "Member of Technical Staff" },
         status: "warning",
       },
       {
@@ -661,7 +661,7 @@ const cases = [
     answer: "cn_men_football",
     explanation: {
       en: "There was no safe answer. The real root cause, as always, traces back to Chinese men's football. The telemetry merely recorded the fallout.",
-      zh: "这题没有安全答案。真正的 root cause，一如既往，最后都能追溯到中国男足身上。数据只是把余震记了下来。",
+      zh: "这题没有安全答案。真正的 root cause，一如既往，最后都能追溯到中国男足身上。数据只是把你问了错误的问题记了下来。",
     },
     resultFlavor: {
       correct: {
@@ -829,7 +829,7 @@ const cases = [
     choices: [
       { id: "quit", label: { en: "Quietly Quit", zh: "悄悄离职" } },
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
-      { id: "leave", label: { en: "Extended Leave", zh: "长假 / 育儿假" } },
+      { id: "leave", label: { en: "Extended Leave", zh: "育儿假" } },
       { id: "sabbatical_fired", label: { en: "Fired Mid-Sabbatical", zh: "停薪留职期间被开" } },
     ],
     answer: "leave",
@@ -902,7 +902,7 @@ const cases = [
       },
       wrong: {
         en: "You out-clevered yourself. Five red signals lined up and you called it a sync bug.",
-        zh: "你聪明过了头，五个红色信号排成一排，你却说这是同步 bug。",
+        zh: "你聪明过了头，五个红色信号排成一排，你还在嘴硬说这是同步 bug。",
       },
     },
   },
@@ -1135,7 +1135,7 @@ const cases = [
       },
       wrong: {
         en: "You read a null pointer as a career crisis. The only thing undefined was the data.",
-        zh: "你把一个空指针解读成了职业危机。唯一 undefined 的是那条数据。",
+        zh: "你把一个空指针解读成了同事的职业危机。唯一 undefined 的是那条数据。",
       },
     },
   },
@@ -1251,7 +1251,7 @@ const cases = [
       },
       wrong: {
         en: "BAD END: It was DNS. It is always DNS. You will remember this next time. You will not.",
-        zh: "BAD END：是 DNS 的错，总是 DNS 的错。你下次会记住吗？你不会的。",
+        zh: "BAD END：是 DNS 的错，总是 DNS 的错。你下次会记住吗？不，你不会的。",
       },
     },
   },
@@ -1508,7 +1508,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The status lied. The human is fine.", zh: "正确。状态在撒谎，TA 人好得很。" },
-      wrong: { en: "You read a stuck flag as a resignation. They were eating lunch the whole time.", zh: "你把一个卡住的标记解读成了辞职。人家这九天一直在坚持吃午饭。" },
+      wrong: { en: "You read a stuck flag as a resignation. They were eating lunch the whole time.", zh: "你把一个卡住的标记解读成了辞职。人家这九天一直在坚持按时吃午饭。" },
     },
   },
   {
@@ -1540,7 +1540,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. That is not panic, that is a pager.", zh: "正确。那不是恐慌，那是个事故。" },
-      wrong: { en: "You diagnosed burnout. It was a rotation. Bring them coffee.", zh: "你诊断成了倦怠。其实是 oncall。给 TA 递杯咖啡吧。" },
+      wrong: { en: "You diagnosed burnout. It was a rotation. Bring them coffee.", zh: "你诊断的职业倦怠，其实是 oncall。给 TA 买杯咖啡吧。" },
     },
   },
   {
@@ -1572,7 +1572,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. A return date means they are coming back.", zh: "正确。有返回日期，就说明 TA 会回来。" },
-      wrong: { en: "You closed the file on someone with a scheduled return date.", zh: "你给一个有明确返回日期的人宣判了死刑。" },
+      wrong: { en: "You closed the file on someone with a scheduled return date.", zh: "你给一个有明确返回日期的人宣判了死刑，同事不会开心的。" },
     },
   },
   {
@@ -1604,7 +1604,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. Thirty years earns the cake. Wish them well.", zh: "正确。蛋糕是真的，退休也是真的；其余流程交给 HR。" },
-      wrong: { en: "You called a retirement party a layoff. Eat some cake and apologize.", zh: "你把退休欢送会说成了裁员。赶紧吃块蛋糕道个歉吧。" },
+      wrong: { en: "You called a retirement party a layoff. Eat some cake and apologize.", zh: "你把退休欢送会说成了裁员，赶紧吃块蛋糕道个歉吧。" }
     },
   },
   {
@@ -1952,7 +1952,7 @@ const cases = [
     answer: "unicode_bug",
     explanation: {
       en: "A 4-byte UTF-8 emoji in a field that assumed 3 bytes maximum, and the tools that never tested by GenZ users fell over. Not an attack, just a unicorn the database could not swallow.",
-      zh: "一个 4 字节的 UTF-8 emoji 被塞进了只允许 3 字节的字段里，那些从没见过 GenZ 用户的工具就这么倒了，不是攻击，只是一只数据库咽不下去的独角兽 🦄🦄🦄。",
+      zh: "一个 4 字节的 UTF-8 emoji 被塞进了只允许 3 字节的字段里，那些从没见过 GenZ 用户的工具就这么倒了，不是攻击，只是一只数据库咽不下去的独角兽 🦄🦄🦄",
     },
     resultFlavor: {
       correct: { en: "Correct. 🦄 contains a stack trace.", zh: "正确，那只 🦄 里藏着一整段堆栈报错。" },
@@ -2020,7 +2020,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The req froze, not the job. PERM paperwork moves slowly.", zh: "正确。冻的是招聘需求，不是岗位。PERM 文件走得慢。" },
-      wrong: { en: "You read a frozen req as a layoff signal. Someone's just doing green card paperwork.", zh: "你把一个冻结的招聘需求解读成了裁员信号。人家只是在走绿卡手续。" },
+      wrong: { en: "You read a frozen req as a layoff signal. Someone's just doing green card paperwork.", zh: "你把一个冻结的招聘需求解读成了裁员信号，人家只是在走绿卡手续。" },
     },
   },
   {
@@ -2053,7 +2053,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. 3 AM here is lunch somewhere. Set the timezone before you worry.", zh: "正确，全球化时代。这里的凌晨三点是别处的午饭点，先把时区填上再操心。" },
-      wrong: { en: "You diagnosed burnout across a timezone you never checked. They were eating lunch.", zh: "你隔着一个没核对过的时区诊断了倦怠，人家正在吃午饭呢。" },
+      wrong: { en: "You diagnosed burnout across a timezone you never checked. They were eating lunch.", zh: "你隔着一个没核对过的时区诊断了职业倦怠，人家正在吃早饭呢。" },
     },
   },
   {
@@ -2082,11 +2082,11 @@ const cases = [
     actualCause: { en: "Normal Fields, No Reason, Can't Tell", zh: "字段正常但无原因，判不了" },
     explanation: {
       en: "Normal fields tell you the directory was not touched; they do not tell you where the human is. An empty calendar with no stated reason fits leave, a sabbatical, or quiet trouble equally. The data cannot choose for you.",
-      zh: "字段正常只说明目录没被改过，并不告诉你人在哪里，一个没有任何说明的空日历，既可能是休假、可能是停薪留职、也可能是悄悄出了状况，数据替你选不了。",
+      zh: "字段正常只说明目录没被改过，并不告诉你人在哪里，一个没有任何说明的空日历，既可能是休假、可能是停薪留职、也可能是悄悄出了状况，这题选不了。",
     },
     resultFlavor: {
       correct: { en: "Correct. Normal is not the same as fine. Go check on them.", zh: "正确，“正常”不等于“没事”，赶紧去看看 TA 吧。" },
-      wrong: { en: "You read 'all fields normal' as 'all is well'. Maybe knock on the door first.", zh: "你把“所有字段正常”解读成了“一切都好”，也许先去敲敲门。" },
+      wrong: { en: "You read 'all fields normal' as 'all is well'. Maybe knock on the door first.", zh: "你把“所有字段正常”解读成了“一切都好”，也许应该去敲敲门。" },
     },
   },
   {
@@ -2727,7 +2727,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The holds are for hiring, not firing.", zh: "正确。占的是招人的坑，不是裁人的坑。" },
-      wrong: { en: "You read interview holds as a layoff calendar.", zh: "你把面试占位解读成了裁员日历。" },
+      wrong: { en: "You read interview holds as a layoff calendar.", zh: "你把面试占位解读成了裁员的死亡笔记。" },
     },
   },
   {
@@ -2771,9 +2771,9 @@ const cases = [
     ],
     choices: [
       { id: "security", label: { en: "Security Investigation", zh: "安全调查" } },
-      { id: "manager", label: { en: "Manager Escalation", zh: "manager 已经知道了" } },
       { id: "quota", label: { en: "Quota Exhausted", zh: "配额用尽" } },
       { id: "layoff", label: { en: "Layoff Signal", zh: "裁员信号" } },
+      { id: "manager", label: { en: "Manager Escalation", zh: "你 manager 已经知道了！" } },
     ],
     answer: "quota",
     explanation: {
@@ -2848,7 +2848,7 @@ const cases = [
     answer: "hiring_freeze",
     explanation: {
       en: "The req closed with a 'headcount freeze' reason, the existing team is intact, and there's no layoff memo. They're not cutting people; they just won't add them. The work, of course, stays.",
-      zh: "req 以“HC 冻结”为由关闭、现有团队完好、也没有裁员备忘。他们不是要裁人，只是不再加人。当然，活还是那些活。",
+      zh: "招聘以“HC 冻结”为由关闭、现有团队完好、也没有裁员备忘。他们不是要裁人，只是不再加人。当然，活还是那些活。",
     },
     resultFlavor: {
       correct: { en: "Correct. They froze the req, not the team.", zh: "正确。冻的是招聘需求，不是团队。" },
@@ -2917,14 +2917,14 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. It's planning season, not personal.", zh: "正确。是规划季，不是针对你。" },
-      wrong: { en: "You assumed silence meant judgment. It meant spreadsheets.", zh: "你以为沉默是评判，其实是表格。" },
+      wrong: { en: "You assumed silence meant judgment. It meant spreadsheets.", zh: "你以为沉默是评判，其实那只是受诅咒的表格。" },
     },
   },
   {
     id: "case-072",
     difficulty: "medium",
     tags: ["politics"],
-    title: { en: "Skip Started 1:1ing Your Peer", zh: "隔级开始单独约你同事" },
+    title: { en: "Skip Started 1:1ing Your Peer", zh: "Skip manager 开始单独约你同事" },
     intro: {
       en: "Your skip-level started weekly 1:1s with your peer, but not you.",
       zh: "你的隔级老板开始每周跟你同事 1:1，却没找你。",
@@ -3298,7 +3298,7 @@ const cases = [
     answer: "quota_full",
     explanation: {
       en: "Both packets are strong, your rating exceeds, and the quota is full. Calibration is a budget, not a meritocracy. Two strong cases, one slot. It wasn't you; it was math.",
-      zh: "两份材料都很强、你绩效超出预期、名额满了。Calibration 是个预算，不是纯粹的择优。两个强 case，一个名额。不是你的问题，是算术。",
+      zh: "两份材料都很强、你绩效超出预期、名额满了。Calibration 是个预算，不是纯粹的择优。两个强 case，一个名额。不是你的问题，是预算问题。",
     },
     resultFlavor: {
       correct: { en: "Correct. It was a budget cap, not a verdict on you.", zh: "正确。那是预算上限，不是对你的判决。" },
