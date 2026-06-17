@@ -2053,7 +2053,7 @@ const cases = [
     choices: [
       { id: "service_acct", label: { en: "Definitely a Service Account", zh: "肯定是服务账号" } },
       { id: "person", label: { en: "Definitely a Person", zh: "肯定是个人" } },
-      { id: "none", label: { en: "Not Enough To Tell", zh: "证据不足，判不了" } },
+      { id: "orphaned", label: { en: "Orphaned After Owner Left", zh: "Owner 离职后留下的孤儿账号" } },
       { id: "hacked", label: { en: "Compromised", zh: "救命我们被入侵了" } },
     ],
     answer: "none",
@@ -2086,7 +2086,7 @@ const cases = [
     choices: [
       { id: "burnout", label: { en: "Burning Out", zh: "熬夜燃尽" } },
       { id: "timezone", label: { en: "Just a Different Timezone", zh: "只是时区不同" } },
-      { id: "none", label: { en: "Timezone Unknown, Can't Tell", zh: "时区不明，判不了" } },
+      { id: "moonlighting", label: { en: "Secretly Moonlighting", zh: "偷偷在接私活" } },
       { id: "leaving", label: { en: "About to Quit", zh: "要离职了" } },
     ],
     answer: "none",
@@ -2119,7 +2119,7 @@ const cases = [
     choices: [
       { id: "leave", label: { en: "Definitely On Leave", zh: "肯定在休假" } },
       { id: "quit", label: { en: "Definitely Quit", zh: "肯定离职了" } },
-      { id: "none", label: { en: "Normal Fields, No Reason, Can't Tell", zh: "字段正常但无原因，判不了" } },
+      { id: "deep_work", label: { en: "Heads-Down on a Secret Project", zh: "在憋一个保密项目" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "none",
@@ -2548,7 +2548,7 @@ const cases = [
     choices: [
       { id: "transfer", label: { en: "Definitely a Transfer", zh: "肯定是转组" } },
       { id: "data_bug", label: { en: "Definitely Just a Bug", zh: "肯定只是 bug" } },
-      { id: "none", label: { en: "System vs Reality Disagree, Can't Tell", zh: "系统与现实打架，判不了" } },
+      { id: "pending_reorg", label: { en: "An Unannounced Reorg", zh: "还没宣布的重组" } },
       { id: "layoff", label: { en: "Layoff", zh: "被裁了" } },
     ],
     answer: "none",
