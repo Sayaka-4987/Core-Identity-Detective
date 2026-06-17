@@ -2429,16 +2429,16 @@ const cases = [
       { id: "diwali", label: { en: "Diwali Holiday", zh: "排灯节假期" } },
       { id: "reorg", label: { en: "Reorg", zh: "重组" } },
       { id: "outage", label: { en: "Outage", zh: "故障" } },
-      { id: "layoff", label: { en: "Site Closure", zh: "站点关闭" } },
+      { id: "layoff", label: { en: "Site Closure", zh: "办公室关闭" } },
     ],
     answer: "diwali",
     explanation: {
       en: "India office, one week in autumn, and out-of-office notes that say 'festival holiday'. This is Diwali, the festival of lights. The site is not closing; everyone is home lighting lamps. They will be back next week.",
-      zh: "印度办公室、秋天的一周、自动回复写着“节日假期”，这是排灯节，灯火节，站点没有要关，大家都回家点灯去了，下周就回来。",
+      zh: "印度办公室、秋天的一周、自动回复写着“节日假期”，这是排灯节，灯火节，办公室没有要关，大家都回家点灯去了，下周就回来。",
     },
     resultFlavor: {
       correct: { en: "Correct. They are lighting diyas, not packing boxes. Happy Diwali.", zh: "正确，人家在点油灯，不是在收拾箱子，排灯节快乐。" },
-      wrong: { en: "You read a festival of lights as a site shutdown. Send sweets, not severance.", zh: "你把灯火节解读成了站点关停，该送的是甜点，不是遣散费。" },
+      wrong: { en: "You read a festival of lights as a site shutdown. Send sweets, not severance.", zh: "你把灯火节解读成了办公室关停，该送的是甜点，不是遣散费。" },
     },
   },
   {
@@ -2599,7 +2599,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. The org chart didn't move; the font did.", zh: "正确。动的不是组织架构，是 PPT 的字体。" },
-      wrong: { en: "You over-prepared, and over-caffeinated, for a reorg that lives entirely in a slide deck.", zh: "你为一次只活在 PPT 里的重组过度准备了一吨咖啡。" },
+      wrong: { en: "You over-prepared, and over-caffeinated, for a reorg that lives entirely in a slide deck.", zh: "你为一次只活在 PPT 里的重组过度准备了一吨咖啡，心悸不已。" },
     },
   },
   {
@@ -2630,8 +2630,8 @@ const cases = [
       zh: "刷卡暴增的事情恰好踩在 RTO 截止日，人数没变，唯一的受害者是食堂和卫生间的工作人员。大家不是更敬业了，是被盯上了。",
     },
     resultFlavor: {
-      correct: { en: "Correct. Nobody got passionate; the badge reader did.", zh: "正确。没人热爱工作，是门禁系统热爱了。" },
-      wrong: { en: "You read a mandate as a motivation renaissance.", zh: "你把一道行政命令读成了奋斗主义者的文艺复兴。" },
+      correct: { en: "Correct. Nobody got passionate; the badge reader did.", zh: "正确。没人热爱工作，是门禁系统爱上你了。" },
+      wrong: { en: "You read a mandate as a motivation renaissance.", zh: "你把一道行政命令理解成了优绩主义者的文艺复兴，不要怀念过去了。" },
     },
   },
   {
