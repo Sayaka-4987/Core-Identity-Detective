@@ -783,20 +783,20 @@
         // Final-score title bands for one run (roughly -2000..+2000 over 20 cases).
         // Checked high-to-low; the first band whose `min` the score meets wins.
         scoreTitle: [
-          { min: 1600, text: { en: "Legendary Incident Oracle", zh: "事故预言机" } },
-          { min: 1200, text: { en: "Principal Root Cause Hunter", zh: "首席 Root cause 猎手" } },
+          { min: 1600, text: { en: "Legendary Incident Oracle", zh: "办公室事故预言家" } },
+          { min: 1200, text: { en: "Principal Root Cause Hunter", zh: "首席 Root Cause 猎手" } },
           { min: 800, text: { en: "Staff Telemetry Detective", zh: "资深员工档案侦探" } },
           { min: 300, text: { en: "Senior Investigator", zh: "传奇调查员" } },
-          { min: -300, text: { en: "Mostly Functional Analyst", zh: "基本能用分析师" } },
+          { min: -300, text: { en: "Mostly Functional Analyst", zh: "能用的分析师" } },
           { min: -800, text: { en: "Pager-Driven Guesser", zh: "猜题选手" } },
-          { min: -1200, text: { en: "Escalation Generator", zh: "升级 ticket 制造机" } },
+          { min: -1200, text: { en: "Escalation Generator", zh: "Escalation 制造机" } },
           {
             min: -1600,
-            text: { en: "Overconfident Blast Radius", zh: "过度自信爆炸半径" },
+            text: { en: "Overconfident Blast Radius", zh: "过度自信到爆炸" },
           },
           {
             min: -Infinity,
-            text: { en: "Root Cause: You (Confirmed)", zh: "事故根因：你（已实锤）" },
+            text: { en: "Root Cause: You (Confirmed)", zh: "Root Cause 就是你（已实锤）" },
           },
         ],
         // Fiscal Year performance review (end screen).
@@ -827,21 +827,21 @@
           cond: (s) => s.scored === 0,
           text: {
             en: "No scorable cases this run. You argued with pure fog and somehow still looked confident.",
-            zh: "本局没有可评分案件。你对着一团雾输出半天，还挺自信。",
+            zh: "本局没有可评分案件。你对战争迷雾输出半天，还挺自信。",
           },
         },
         {
           cond: (s) => s.accuracy >= 0.8 && s.overconfident === 0,
           text: {
             en: "Accurate and calibrated. Annoyingly competent. You made telemetry look easy.",
-            zh: "又准又稳，强得有点烦人。你把档案查得像开了透视。",
+            zh: "又准又稳，强得有点烦人。你就像开了同事透视挂。",
           },
         },
         {
           cond: (s) => s.accuracy >= 0.8,
           text: {
             en: "Great hit rate, but at least once your confidence clocked in before your evidence did.",
-            zh: "命中率很高，但你至少有一次是自信先到，证据后到。",
+            zh: "命中率很高，但你至少有一次是自信先行，证据后补。",
           },
         },
         {
@@ -855,7 +855,7 @@
           cond: (s) => s.accuracy < 0.5 && s.overconfident > 0,
           text: {
             en: "Wrong and loud is a legendary combo. You brought keynote energy to bad guesses.",
-            zh: "又错又大声，经典名场面。你把错误判断讲出了发布会气势。",
+            zh: "又错又大声，经典名场面。你把错误判断讲出了新品发布会的气势。",
           },
         },
         {
