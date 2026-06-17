@@ -1,4 +1,4 @@
-/* ======================================================================
+﻿/* ======================================================================
  * Core Identity Detective — case data
  * ----------------------------------------------------------------------
  * This file holds ONLY content. No UI logic lives here, so cases can be
@@ -48,7 +48,7 @@ const cases = [
         status: "warning",
       },
       {
-        key: { en: "Manager", zh: "Manager" },
+        key: { en: "Manager", zh: "manager" },
         value: { en: "Present", zh: "存在" },
         status: "normal",
       },
@@ -78,7 +78,7 @@ const cases = [
     answer: "sync_failure",
     explanation: {
       en: "Only the photo is missing. The manager, GAL visibility, and groups are still normal. This is more likely a sync issue than an actual disappearance.",
-      zh: "只有头像消失了，Manager、个人页面可见性和 Groups 都还正常。看着不像人真没了，更像是同步服务又炸了。",
+      zh: "只有头像消失了，manager、地址簿可见性和 Groups 都还正常。看着不像人真没了，更像是同步服务又炸了。",
     },
     resultFlavor: {
       correct: {
@@ -107,7 +107,7 @@ const cases = [
         status: "normal",
       },
       {
-        key: { en: "Manager", zh: "Manager" },
+        key: { en: "Manager", zh: "manager" },
         value: { en: "Changed", zh: "已变更" },
         status: "warning",
       },
@@ -142,7 +142,7 @@ const cases = [
     answer: "transfer",
     explanation: {
       en: "Manager and cost center changed while the title stayed the same and GAL is still visible. That is the signature of a lateral move, not a departure.",
-      zh: "Manager 和 Cost Center 变了，但 Title 没变、个人页面还可见。这是平级换组的样子，不是离职。",
+      zh: "manager 和 Cost Center 变了，但 Title 没变、地址簿还可见。这是平级换组的样子，不是离职。",
     },
     resultFlavor: {
       correct: {
@@ -171,7 +171,7 @@ const cases = [
         status: "unknown",
       },
       {
-        key: { en: "Manager", zh: "Manager" },
+        key: { en: "Manager", zh: "manager" },
         value: { en: "NULL", zh: "NULL" },
         status: "unknown",
       },
@@ -210,7 +210,7 @@ const cases = [
     actualCause: { en: "Nobody knows", zh: "没人知道" },
     explanation: {
       en: "Half the fields are NULL, groups are zero, but GAL is still visible. The evidence is genuinely insufficient. The honest answer is: nobody knows.",
-      zh: "一半字段是 NULL，Groups 是 0，但个人页面还可见。证据是真不够，老实说就是：没人知道。",
+      zh: "一半字段是 NULL，Groups 是 0，但地址簿还可见。证据是真不够，老实说就是：没人知道。",
     },
     resultFlavor: {
       correct: {
@@ -234,12 +234,12 @@ const cases = [
     },
     telemetry: [
       {
-        key: { en: "Manager", zh: "Manager" },
+        key: { en: "Manager", zh: "manager" },
         value: { en: "Changed", zh: "已变更" },
         status: "warning",
       },
       {
-        key: { en: "Skip Manager", zh: "Skip Manager" },
+        key: { en: "Skip Manager", zh: "skip manager" },
         value: { en: "Changed", zh: "已变更" },
         status: "warning",
       },
@@ -271,7 +271,7 @@ const cases = [
     answer: "reorg",
     explanation: {
       en: "Both the manager and skip-level changed at once while title, groups, and GAL stayed put. When the chain shifts above you but your own record is intact, that is reorg weather.",
-      zh: "Manager 和 Skip manager 同时变了，而 Title、Groups、个人页面都没动。当你头顶的汇报链变了、但你自己完好无损，这只是一次重组天气。",
+      zh: "manager 和 skip manager 同时变了，而 Title、Groups、地址簿都没动。当你头顶的汇报链变了、但你自己完好无损，这只是一次重组天气。",
     },
     resultFlavor: {
       correct: {
@@ -509,7 +509,7 @@ const cases = [
         status: "warning",
       },
       {
-        key: { en: "Manager", zh: "Manager" },
+        key: { en: "Manager", zh: "manager" },
         value: { en: "Present", zh: "存在" },
         status: "normal",
       },
@@ -572,7 +572,7 @@ const cases = [
         status: "warning",
       },
       {
-        key: { en: "Manager", zh: "Manager" },
+        key: { en: "Manager", zh: "manager" },
         value: { en: "Founder", zh: "创始人本人" },
         status: "alarming",
       },
@@ -811,7 +811,7 @@ const cases = [
         status: "normal",
       },
       {
-        key: { en: "Manager", zh: "Manager" },
+        key: { en: "Manager", zh: "manager" },
         value: { en: "Same", zh: "不变" },
         status: "normal",
       },
@@ -835,7 +835,7 @@ const cases = [
     answer: "leave",
     explanation: {
       en: "Cost center unchanged, manager unchanged, desk reserved, GAL visible, and a multi-month OOF. Everything points to someone who is coming back. This is leave, not a departure.",
-      zh: "Cost center 没变、manager 没变、工位保留、个人页面可见，还有一条数月的 OOF。每个信号都指向一个会回来的人。这是休长假，不是离职。",
+      zh: "Cost center 没变、manager 没变、工位保留、地址簿可见，还有一条数月的 OOF。每个信号都指向一个会回来的人。这是休长假，不是离职。",
     },
     resultFlavor: {
       correct: {
@@ -893,7 +893,7 @@ const cases = [
     answer: "layoff",
     explanation: {
       en: "GAL removed, badge revoked, laptop returned, severance auto-reply, position closed. Every signal points the same direction. The hardest lesson in this job is that sometimes the obvious answer is the true one.",
-      zh: "个人页面移除、门禁撤销、笔记本寄回、补偿自动回复、岗位关闭。每一个信号都指向同一个方向。这份工作最难的一课是：有时候那个显而易见的答案，就是真的。",
+      zh: "地址簿移除、门禁撤销、笔记本寄回、补偿自动回复、岗位关闭。每一个信号都指向同一个方向。这份工作最难的一课是：有时候那个显而易见的答案，就是真的。",
     },
     resultFlavor: {
       correct: {
@@ -922,13 +922,13 @@ const cases = [
         status: "warning",
       },
       {
-        key: { en: "Their Manager", zh: "TA 的 Manager" },
+        key: { en: "Their Manager", zh: "TA 的 manager" },
         value: { en: "Unchanged", zh: "不变" },
         status: "normal",
       },
       {
         key: { en: "Title", zh: "Title" },
-        value: { en: "+ Manager", zh: "+ Manager" },
+        value: { en: "+ Manager", zh: "+ manager" },
         status: "warning",
       },
       {
@@ -945,7 +945,7 @@ const cases = [
     choices: [
       { id: "reorg", label: { en: "Reorg", zh: "组织架构调整" } },
       { id: "transfer", label: { en: "Transfer", zh: "转组" } },
-      { id: "became_manager", label: { en: "Promoted to Manager", zh: "升职 Manager" } },
+      { id: "became_manager", label: { en: "Promoted to Manager", zh: "升职 manager" } },
       { id: "sync_failure", label: { en: "Identity Sync Failure", zh: "身份同步炸了" } },
     ],
     answer: "became_manager",
@@ -971,7 +971,7 @@ const cases = [
     title: { en: "The Account That Was Always There", zh: "一直都在的账号" },
     intro: {
       en: "A service account starts showing up in human meeting invites. It has no manager and no face.",
-      zh: "一个服务账号开始出现在真人的会议邀请里。它没有 Manager，也没有脸。",
+      zh: "一个服务账号开始出现在真人的会议邀请里。它没有 manager，也没有脸。",
     },
     telemetry: [
       {
@@ -980,7 +980,7 @@ const cases = [
         status: "unknown",
       },
       {
-        key: { en: "Manager", zh: "Manager" },
+        key: { en: "Manager", zh: "manager" },
         value: { en: "NULL", zh: "NULL" },
         status: "unknown",
       },
@@ -1010,7 +1010,7 @@ const cases = [
     actualCause: { en: "Insufficient Telemetry", zh: "数据不足" },
     explanation: {
       en: "Type is a question mark, manager is NULL, password was never set, GAL is hidden. Every field that could identify this account is empty. You cannot conclude what it is. The honest answer is: not enough data.",
-      zh: "类型是个问号、manager 是 NULL、密码从未设置、个人页面隐藏。每一个能识别它的字段都是空的。你根本断不出它是什么。老实说：数据不够。",
+      zh: "类型是个问号、manager 是 NULL、密码从未设置、地址簿隐藏。每一个能识别它的字段都是空的。你根本断不出它是什么。老实说：数据不够。",
     },
     resultFlavor: {
       correct: {
@@ -1034,17 +1034,17 @@ const cases = [
     },
     telemetry: [
       {
-        key: { en: "Manager", zh: "Manager" },
+        key: { en: "Manager", zh: "manager" },
         value: { en: "Changed", zh: "已变更" },
         status: "warning",
       },
       {
-        key: { en: "Skip Manager", zh: "Skip Manager" },
+        key: { en: "Skip Manager", zh: "skip manager" },
         value: { en: "Changed", zh: "已变更" },
         status: "warning",
       },
       {
-        key: { en: "Skip-Skip Manager", zh: "Skip-Skip Manager" },
+        key: { en: "Skip-Skip Manager", zh: "skip-skip manager" },
         value: { en: "Changed", zh: "已变更" },
         status: "warning",
       },
@@ -1160,7 +1160,7 @@ const cases = [
         status: "warning",
       },
       {
-        key: { en: "Manager", zh: "Manager" },
+        key: { en: "Manager", zh: "manager" },
         value: { en: "Same", zh: "不变" },
         status: "normal",
       },
@@ -1184,7 +1184,7 @@ const cases = [
     answer: "counteroffer",
     explanation: {
       en: "Interview signals dropped to zero, comp was adjusted up, manager unchanged, GAL visible, and HR literally noted 'counteroffer accepted'. They were leaving, then they weren't. The company paid to keep them.",
-      zh: "面试信号归零、薪资上调、manager 没变、个人页面可见，HR 备注白纸黑字写着“已接受挽留”。TA 本来要走，后来没走。公司花钱把 TA 留下了。",
+      zh: "面试信号归零、薪资上调、manager 没变、地址簿可见，HR 备注白纸黑字写着“已接受挽留”。TA 本来要走，后来没走。公司花钱把 TA 留下了。",
     },
     resultFlavor: {
       correct: {
@@ -1331,7 +1331,7 @@ const cases = [
     telemetry: [
       { key: { en: "Hire Date", zh: "入职日期" }, value: { en: "1970-01-01", zh: "1970-01-01" }, status: "warning" },
       { key: { en: "Tenure Badge", zh: "工龄徽章" }, value: { en: "56 years", zh: "56 年" }, status: "alarming" },
-      { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
+      { key: { en: "Manager", zh: "manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
       { key: { en: "Other Dates", zh: "其它日期" }, value: { en: "Also reset", zh: "也被重置" }, status: "warning" },
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
@@ -1355,14 +1355,14 @@ const cases = [
     id: "case-024",
     difficulty: "hard",
     tags: ["it-was-the-backend", "org-chart"],
-    title: { en: "The Manager Loop", zh: "Manager 闭环" },
+    title: { en: "The Manager Loop", zh: "manager 闭环" },
     intro: {
       en: "A reports to B. B reports to A. The org chart has eaten its own tail.",
       zh: "A 向 B 汇报，B 向 A 汇报。组织架构图咬住了自己的尾巴。",
     },
     telemetry: [
-      { key: { en: "A's Manager", zh: "A 的 Manager" }, value: { en: "B", zh: "B" }, status: "warning" },
-      { key: { en: "B's Manager", zh: "B 的 Manager" }, value: { en: "A", zh: "A" }, status: "alarming" },
+      { key: { en: "A's Manager", zh: "A 的 manager" }, value: { en: "B", zh: "B" }, status: "warning" },
+      { key: { en: "B's Manager", zh: "B 的 manager" }, value: { en: "A", zh: "A" }, status: "alarming" },
       { key: { en: "Org Tree Render", zh: "组织树渲染" }, value: { en: "Stack overflow", zh: "栈溢出" }, status: "alarming" },
       { key: { en: "Recent Import", zh: "近期导入" }, value: { en: "HR feed, last night", zh: "HR 数据，昨晚" }, status: "warning" },
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Both visible", zh: "两人都可见" }, status: "normal" },
@@ -1396,7 +1396,7 @@ const cases = [
       { key: { en: "GAL Entries", zh: "地址簿条目" }, value: { en: "2 (identical)", zh: "2 个（相同）" }, status: "warning" },
       { key: { en: "Alias", zh: "Alias" }, value: { en: "Same on both", zh: "两个相同" }, status: "alarming" },
       { key: { en: "One Entry Status", zh: "其中一条状态" }, value: { en: "Stale", zh: "陈旧" }, status: "warning" },
-      { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
+      { key: { en: "Manager", zh: "manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
       { key: { en: "Org Chart", zh: "组织架构" }, value: { en: "Single node", zh: "单个节点" }, status: "normal" },
     ],
     choices: [
@@ -1632,7 +1632,7 @@ const cases = [
     answer: "left",
     explanation: {
       en: "GAL removed, badge revoked, a last-day email sent, the org node deleted, and a public 'Open To Work' banner. Every signal agrees. They resigned. Not every disappearance is a backend bug.",
-      zh: "个人档案移除、门禁撤销、离职邮件已发、组织节点删除、公开主页挂上“求职中”。每个信号都一致，该同事离职了。不是每次消失都是后端 bug。",
+      zh: "地址簿移除、门禁撤销、离职邮件已发、组织节点删除、公开主页挂上“求职中”。每个信号都一致，该同事离职了。不是每次消失都是后端 bug。",
     },
     resultFlavor: {
       correct: { en: "Correct. Sometimes gone means gone.", zh: "正确。有时候“走了”就是真的走了。" },
@@ -1780,7 +1780,7 @@ const cases = [
       { key: { en: "New DLs", zh: "新邮件组" }, value: { en: "12 leadership lists", zh: "12 个管理层组" }, status: "warning" },
       { key: { en: "Direct Reports", zh: "直属下属" }, value: { en: "Increased", zh: "增加" }, status: "warning" },
       { key: { en: "Title", zh: "Title" }, value: { en: "+ Director", zh: "+ Director" }, status: "warning" },
-      { key: { en: "Their Manager", zh: "TA 的 Manager" }, value: { en: "Now a VP", zh: "变成了 VP" }, status: "warning" },
+      { key: { en: "Their Manager", zh: "TA 的 manager" }, value: { en: "Now a VP", zh: "变成了 VP" }, status: "warning" },
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
@@ -1812,7 +1812,7 @@ const cases = [
       { key: { en: "Level", zh: "职级" }, value: { en: "+1", zh: "+1" }, status: "warning" },
       { key: { en: "Title Text", zh: "Title 文字" }, value: { en: "Unchanged", zh: "未变" }, status: "normal" },
       { key: { en: "Comp Band", zh: "薪资带" }, value: { en: "Adjusted up", zh: "上调" }, status: "warning" },
-      { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
+      { key: { en: "Manager", zh: "manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
@@ -1998,7 +1998,7 @@ const cases = [
     title: { en: "The Req That Vanished", zh: "消失的招聘需求" },
     intro: {
       en: "An open headcount position you were recruiting for just closed in the system.",
-      zh: "你一直在招的一个岗位突然在系统里关闭了。",
+      zh: "一直在招的一个岗位突然在系统里关闭了。",
     },
     telemetry: [
       { key: { en: "Req Status", zh: "招聘需求" }, value: { en: "Closed", zh: "已关闭" }, status: "warning" },
@@ -2134,7 +2134,7 @@ const cases = [
       { key: { en: "Permissions", zh: "权限" }, value: { en: "Revoked", zh: "已撤销" }, status: "alarming" },
       { key: { en: "Person Present", zh: "人是否在" }, value: { en: "Yes", zh: "在" }, status: "normal" },
       { key: { en: "Access Review", zh: "权限审查" }, value: { en: "Just ran", zh: "刚跑完" }, status: "warning" },
-      { key: { en: "Manager", zh: "Manager" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Manager", zh: "manager" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
@@ -2166,7 +2166,7 @@ const cases = [
       { key: { en: "Mailbox Delete", zh: "邮箱删除" }, value: { en: "Blocked", zh: "被阻止" }, status: "warning" },
       { key: { en: "Legal Flag", zh: "法务标记" }, value: { en: "'Litigation Hold'", zh: "“诉讼保留”" }, status: "alarming" },
       { key: { en: "Person Status", zh: "本人状态" }, value: { en: "Working normally", zh: "正常工作" }, status: "normal" },
-      { key: { en: "Manager", zh: "Manager" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Manager", zh: "manager" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
@@ -2198,7 +2198,7 @@ const cases = [
       { key: { en: "Account", zh: "账号" }, value: { en: "Disabled then reset", zh: "停用后重置" }, status: "alarming" },
       { key: { en: "Trigger", zh: "触发原因" }, value: { en: "Credential leak alert", zh: "凭据泄露告警" }, status: "alarming" },
       { key: { en: "Person Status", zh: "本人状态" }, value: { en: "Employed, surprised", zh: "在职，懵了" }, status: "normal" },
-      { key: { en: "Manager", zh: "Manager" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
+      { key: { en: "Manager", zh: "manager" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
@@ -2358,7 +2358,7 @@ const cases = [
       { key: { en: "GAL Entries", zh: "地址簿条目" }, value: { en: "2, split name", zh: "2 个，姓名被拆" }, status: "alarming" },
       { key: { en: "Source", zh: "来源" }, value: { en: "Surname-first import", zh: "姓在前的导入" }, status: "warning" },
       { key: { en: "Employee ID", zh: "工号" }, value: { en: "Same on both", zh: "两个相同" }, status: "warning" },
-      { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "相同" }, status: "normal" },
+      { key: { en: "Manager", zh: "manager" }, value: { en: "Same", zh: "相同" }, status: "normal" },
       { key: { en: "Person Count", zh: "实际人数" }, value: { en: "Actually one", zh: "其实是一个" }, status: "normal" },
     ],
     choices: [
@@ -2486,7 +2486,7 @@ const cases = [
       { key: { en: "System Says", zh: "系统显示" }, value: { en: "Moved teams", zh: "已转组" }, status: "warning" },
       { key: { en: "Person Says", zh: "本人说法" }, value: { en: "News to them", zh: "头一回听说" }, status: "alarming" },
       { key: { en: "Effective Date", zh: "生效日期" }, value: { en: "Future / unclear", zh: "未来 / 不明" }, status: "unknown" },
-      { key: { en: "Manager Field", zh: "Manager 字段" }, value: { en: "Two values disagree", zh: "两个值打架" }, status: "alarming" },
+      { key: { en: "Manager Field", zh: "manager 字段" }, value: { en: "Two values disagree", zh: "两个值打架" }, status: "alarming" },
       { key: { en: "Profile", zh: "个人页面" }, value: { en: "Visible", zh: "可见" }, status: "normal" },
     ],
     choices: [
@@ -2513,12 +2513,12 @@ const cases = [
     title: { en: "The Detective Is Missing", zh: "侦探不见了" },
     intro: {
       en: "You open the directory to check yourself. Your own entry is gone. Manager: unknown.",
-      zh: "你打开目录想查查自己，结果你自己的条目没了，Manager：未知。",
+      zh: "你打开目录想查查自己，结果你自己的条目没了，manager：未知。",
     },
     telemetry: [
       { key: { en: "Your Photo", zh: "你的头像" }, value: { en: "Missing", zh: "消失" }, status: "warning" },
-      { key: { en: "Your GAL", zh: "你的个人页面" }, value: { en: "Not found", zh: "查无此人" }, status: "alarming" },
-      { key: { en: "Your Manager", zh: "你的 Manager" }, value: { en: "Unknown", zh: "未知" }, status: "unknown" },
+      { key: { en: "Your GAL", zh: "你的 GAL（地址簿）" }, value: { en: "Not found", zh: "查无此人" }, status: "alarming" },
+      { key: { en: "Your Manager", zh: "你的 manager" }, value: { en: "Unknown", zh: "未知" }, status: "unknown" },
       { key: { en: "Your Last Login", zh: "你的上次登录" }, value: { en: "Right now", zh: "就是现在" }, status: "normal" },
       { key: { en: "Sync Job", zh: "同步任务" }, value: { en: "Running", zh: "运行中" }, status: "warning" },
     ],
@@ -2552,7 +2552,7 @@ const cases = [
       { key: { en: "Title", zh: "Title" }, value: { en: "Unchanged", zh: "不变" }, status: "normal" },
       { key: { en: "Promo Packet", zh: "晋升材料" }, value: { en: "In progress", zh: "进行中" }, status: "warning" },
       { key: { en: "Comp", zh: "薪资" }, value: { en: "Unchanged", zh: "不变" }, status: "normal" },
-      { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
+      { key: { en: "Manager", zh: "manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
     ],
     choices: [
       { id: "already_promoted", label: { en: "Already Promoted", zh: "已经升了" } },
@@ -2583,7 +2583,7 @@ const cases = [
       { key: { en: "Team Roster", zh: "团队名单" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
       { key: { en: "Mission Statement", zh: "使命愿景" }, value: { en: "Brand new", zh: "全新" }, status: "warning" },
       { key: { en: "Codebase", zh: "代码库" }, value: { en: "Same repo", zh: "同一个 repo" }, status: "normal" },
-      { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
+      { key: { en: "Manager", zh: "manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
       { key: { en: "Slogan", zh: "口号" }, value: { en: "'AI-first', now", zh: "现在叫“AI 优先”" }, status: "unknown" },
     ],
     choices: [
@@ -2771,7 +2771,7 @@ const cases = [
     ],
     choices: [
       { id: "security", label: { en: "Security Investigation", zh: "安全调查" } },
-      { id: "manager", label: { en: "Manager Escalation", zh: "Manager 已经知道了" } },
+      { id: "manager", label: { en: "Manager Escalation", zh: "manager 已经知道了" } },
       { id: "quota", label: { en: "Quota Exhausted", zh: "配额用尽" } },
       { id: "layoff", label: { en: "Layoff Signal", zh: "裁员信号" } },
     ],
@@ -3029,7 +3029,7 @@ const cases = [
       { key: { en: "Status", zh: "状态" }, value: { en: "'OOF'", zh: "“休假中”" }, status: "normal" },
       { key: { en: "Commits", zh: "提交" }, value: { en: "Nightly", zh: "每晚都有" }, status: "warning" },
       { key: { en: "PTO", zh: "年假" }, value: { en: "Approved", zh: "已批" }, status: "normal" },
-      { key: { en: "Manager Ask", zh: "manager喊话" }, value: { en: "'Please rest'", zh: "“请好好休息”" }, status: "normal" },
+      { key: { en: "Manager Ask", zh: "manager 喊话" }, value: { en: "'Please rest'", zh: "“请好好休息”" }, status: "normal" },
       { key: { en: "Account", zh: "账号" }, value: { en: "Active", zh: "在职" }, status: "normal" },
     ],
     choices: [
@@ -3094,7 +3094,7 @@ const cases = [
       { key: { en: "Your Role", zh: "你的角色" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
       { key: { en: "DL Note", zh: "邮件组备注" }, value: { en: "'Cleanup: ICs removed'", zh: "“清理：移除 IC”" }, status: "normal" },
       { key: { en: "Other ICs", zh: "其他 IC" }, value: { en: "Also removed", zh: "也被移除" }, status: "normal" },
-      { key: { en: "Manager", zh: "Manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
+      { key: { en: "Manager", zh: "manager" }, value: { en: "Same", zh: "不变" }, status: "normal" },
     ],
     choices: [
       { id: "demotion", label: { en: "Demotion", zh: "降级" } },
@@ -3122,7 +3122,7 @@ const cases = [
       zh: "你的 manager 字段一夜之间变成了一个高你两级的人。",
     },
     telemetry: [
-      { key: { en: "Manager", zh: "Manager" }, value: { en: "Now skip-level", zh: "现在是隔级" }, status: "warning" },
+      { key: { en: "Manager", zh: "manager" }, value: { en: "Now skip-level", zh: "现在是隔级" }, status: "warning" },
       { key: { en: "Duration Note", zh: "时长备注" }, value: { en: "'Interim'", zh: "“临时”" }, status: "normal" },
       { key: { en: "Old Manager", zh: "原 manager" }, value: { en: "On medical leave", zh: "在休病假" }, status: "normal" },
       { key: { en: "Your Role", zh: "你的角色" }, value: { en: "Unchanged", zh: "无变化" }, status: "normal" },
@@ -3223,7 +3223,7 @@ const cases = [
       { key: { en: "Meeting Load", zh: "会议量" }, value: { en: "Maxed out", zh: "拉满" }, status: "alarming" },
       { key: { en: "Onboarding Doc", zh: "Onboarding 文档" }, value: { en: "Does not exist", zh: "不存在" }, status: "alarming" },
       { key: { en: "Assigned Work", zh: "已分配工作" }, value: { en: "None yet", zh: "暂无" }, status: "normal" },
-      { key: { en: "Manager Note", zh: "manager备注" }, value: { en: "'Learn by osmosis'", zh: "“耳濡目染地学”" }, status: "unknown" },
+      { key: { en: "Manager Note", zh: "manager 备注" }, value: { en: "'Learn by osmosis'", zh: "“耳濡目染地学”" }, status: "unknown" },
     ],
     choices: [
       { id: "rising_star", label: { en: "A Rising Star", zh: "未来之星" } },
@@ -3234,7 +3234,7 @@ const cases = [
     answer: "no_onboarding",
     explanation: {
       en: "No onboarding doc, no assigned work, and a manager hoping for 'osmosis'. Wall-to-wall meetings aren't a sign of importance; they're what happens when nobody wrote down how the team works.",
-      zh: "没有 onboarding 文档、没有分配工作、manager还指望“耳濡目染”。排满的会议不是受重视的信号，而是没人写下团队怎么运转时的默认结果。",
+      zh: "没有 onboarding 文档、没有分配工作、manager 还指望“耳濡目染”。排满的会议不是受重视的信号，而是没人写下团队怎么运转时的默认结果。",
     },
     resultFlavor: {
       correct: { en: "Correct. It's a documentation gap, not a coronation.", zh: "正确。这是文档缺失，不是加冕。" },
@@ -3286,13 +3286,13 @@ const cases = [
       { key: { en: "Your Packet", zh: "你的材料" }, value: { en: "Strong", zh: "很强" }, status: "normal" },
       { key: { en: "Peer Packet", zh: "同事材料" }, value: { en: "Also strong", zh: "也很强" }, status: "normal" },
       { key: { en: "Promo Quota", zh: "晋升名额" }, value: { en: "Full this cycle", zh: "本轮已满" }, status: "alarming" },
-      { key: { en: "Manager Feedback", zh: "manager反馈" }, value: { en: "'Next cycle, very likely'", zh: "“下轮，很有希望”" }, status: "warning" },
+      { key: { en: "Manager Feedback", zh: "manager 反馈" }, value: { en: "'Next cycle, very likely'", zh: "“下轮，很有希望”" }, status: "warning" },
       { key: { en: "Perf Rating", zh: "绩效" }, value: { en: "Exceeds", zh: "超出预期" }, status: "normal" },
     ],
     choices: [
       { id: "youre_worse", label: { en: "You're Just Worse", zh: "你就是不如人" } },
       { id: "quota_full", label: { en: "Promo Quota Was Full", zh: "晋升名额满了" } },
-      { id: "manager_dislikes", label: { en: "Manager Dislikes You", zh: "manager不喜欢你" } },
+      { id: "manager_dislikes", label: { en: "Manager Dislikes You", zh: "manager 不喜欢你" } },
       { id: "being_managed_out", label: { en: "Being Managed Out", zh: "在被劝退" } },
     ],
     answer: "quota_full",
@@ -3319,19 +3319,19 @@ const cases = [
       { key: { en: "Stated Reason", zh: "给的理由" }, value: { en: "Different each time", zh: "每次都不一样" }, status: "warning" },
       { key: { en: "Concrete Criteria", zh: "明确标准" }, value: { en: "Never written down", zh: "从未写下" }, status: "alarming" },
       { key: { en: "Your Output", zh: "你的产出" }, value: { en: "Strong", zh: "很强" }, status: "normal" },
-      { key: { en: "Manager Sincerity", zh: "manager诚意" }, value: { en: "Unreadable", zh: "看不透" }, status: "unknown" },
+      { key: { en: "Manager Sincerity", zh: "manager 诚意" }, value: { en: "Unreadable", zh: "看不透" }, status: "unknown" },
     ],
     choices: [
       { id: "genuine_soon", label: { en: "Genuinely Almost There", zh: "真的快了" } },
       { id: "soft_no", label: { en: "A Polite Forever-No", zh: "礼貌的永远拒绝" } },
-      { id: "manager_powerless", label: { en: "Manager Has No Pull", zh: "manager根本没话语权" } },
+      { id: "manager_powerless", label: { en: "Manager Has No Pull", zh: "manager 根本没话语权" } },
       { id: "none", label: { en: "Impossible to Tell", zh: "根本判断不了" } },
     ],
     answer: "none",
     actualCause: { en: "Sincere Plan or Soft No — Unknowable", zh: "是真心计划还是软性拒绝，无从得知" },
     explanation: {
       en: "Three deferrals, shifting reasons, and criteria that are never written down. 'Next cycle' could be a sincere plan, a manager with no political capital, or a polite forever-no. Without written criteria, the phrase is undecidable. Demand them.",
-      zh: "三次推迟、理由每次都变、标准从来不落纸面。“下一轮”可能是真心计划、可能是manager根本没有政治资本、也可能是礼貌的永远拒绝。没有书面标准，这句话无法判定。把标准要出来。",
+      zh: "三次推迟、理由每次都变、标准从来不落纸面。“下一轮”可能是真心计划、可能是 manager 根本没有政治资本、也可能是礼貌的永远拒绝。没有书面标准，这句话无法判定。把标准要出来。",
     },
     resultFlavor: {
       correct: { en: "No one can call this. 'Next cycle' is corporate Schrodinger.", zh: "这题没人能下结论。“下一轮”是企业版薛定谔。" },
@@ -3855,3 +3855,4 @@ const cases = [
     },
   }
 ];
+

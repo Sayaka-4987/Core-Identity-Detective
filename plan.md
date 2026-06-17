@@ -1,6 +1,6 @@
 # Core Identity Detective
 
-> Follow the telemetry. Find the truth.  
+> Read the telemetry. Figure out what happened.  
 > 根据不完整的企业身份信息，推断某个神秘员工身上发生了什么。
 
 ## Project Goal
@@ -341,7 +341,7 @@ const cases = [
 
 ```text
 Core Identity Detective
-Follow the telemetry. Find the truth.
+Read the telemetry. Figure out what happened.
 
 [Start Investigation]
 [Case Library]
@@ -896,7 +896,7 @@ https://<username>.github.io/core-identity-detective/
 ```md
 # Core Identity Detective
 
-Follow the telemetry. Find the truth.
+Read the telemetry. Figure out what happened.
 
 Core Identity Detective is a tiny bilingual static web detective game about fake enterprise identity telemetry, org chart archaeology, and overconfident incident analysis.
 
