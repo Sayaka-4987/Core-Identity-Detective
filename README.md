@@ -12,7 +12,17 @@ data, no backend, no build step.
 ## Play
 
 - Live: <https://sayaka-4987.github.io/Core-Identity-Detective/>
-- Local: open `index.html` in any modern browser.
+- Local: git clone, open `index.html` in any modern browser. That's the whole game.
+
+## How to play
+
+1. Press **Start Investigation**.
+2. Read the **Identity Telemetry** card (color-coded: green normal, yellow
+   warning, red alarming, gray unknown).
+3. Pick what you think happened.
+4. Drag the **Confidence** slider (0–100). Scoring punishes overconfidence.
+5. Submit, read the actual cause, then continue to the next case.
+6. After all cases, see your total and optionally **Share Result**.
 
 ## Scoring
 
