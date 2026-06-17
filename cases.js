@@ -2499,7 +2499,7 @@ const cases = [
     actualCause: { en: "System vs Reality Disagree, Can't Tell", zh: "系统与现实打架，判不了" },
     explanation: {
       en: "The system says moved, the person says it is news to them, the effective date is unclear, and the manager field holds two values that disagree. When the record and the human contradict each other and nothing breaks the tie, you cannot resolve it from telemetry. Go ask a human.",
-      zh: "系统说转了、本人说头一回听说、生效日期不明、manager 字段还存着两个互相打架的值，当记录和真人对不上、又没有任何东西能一锤定音时，你光靠数据是判不出来的，去问个活人吧。",
+      zh: "系统说此人转组了、本人说真新鲜头一回听说、生效日期不明、manager 字段还存着两个互相打架的值，当记录和真人对不上、又没有任何东西能一锤定音时，你光靠数据是判不出来的，去问个活人吧。",
     },
     resultFlavor: {
       correct: { en: "Correct. When the record and the human disagree, telemetry is not the referee.", zh: "正确，当记录和真人各执一词时，数据当不了裁判。" },
