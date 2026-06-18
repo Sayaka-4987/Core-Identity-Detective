@@ -868,14 +868,14 @@
           cond: (s) => s.accuracy >= 0.5,
           text: {
             en: "Average run. Not a disaster, not a flex, just enough to survive a retro.",
-            zh: "中规中矩，不算翻车，也不算封神，够你在复盘会上活下来。",
+            zh: "中规中矩，不算翻车，也不算封神，刚好够你在复盘会上活下来。",
           },
         },
         {
           cond: (s) => s.accuracy < 0.5 && s.overconfident > 0,
           text: {
             en: "Wrong and loud is a legendary combo. You brought keynote energy to bad guesses.",
-            zh: "又错又大声，经典名场面。你把错误判断讲出了新品发布会的气势。",
+            zh: "又错又大声，经典名场面，你把错误判断讲出了新品发布会的气势。",
           },
         },
         {
@@ -950,7 +950,7 @@
         },
         {
           id: "confidence-with-receipts",
-          name: { en: "Confidence With Receipts", zh: "自信且有证据" },
+          name: { en: "Confidence With Receipts", zh: "有理有据" },
           desc: {
             en: "In one run, get 3+ cases correct at 85%+ confidence.",
             zh: "同一局内，至少 3 题在 85%+ 信心下判断正确。",
@@ -995,7 +995,7 @@
         },
         {
           id: "steady-hand",
-          name: { en: "Steady Hand", zh: "高手" },
+          name: { en: "Steady Hand", zh: "稳如老狗" },
           desc: {
             en: "For 10+ answers in one run, keep every confidence between 40% and 70%.",
             zh: "单局作答 >=10 题，且每题信心都在 40%-70% 之间。",
@@ -1085,7 +1085,7 @@
         },
         {
           id: "org-chart-archaeologist",
-          name: { en: "Org Chart Archaeologist", zh: "组织架构考古学家" },
+          name: { en: "Org Chart Archaeologist", zh: "组织考古学家" },
           desc: {
             en: "Correctly trace a problem back to a reorg.",
             zh: "正确把问题追溯到一次 reorg。",
@@ -1124,7 +1124,7 @@
           name: { en: "Reading the Arrow", zh: "读懂那个按钮" },
           desc: {
             en: "Correctly identify a promotion or new title instead of a departure.",
-            zh: "把升职或头衔变化正确解读成升职，而不是离职。",
+            zh: "把头衔变化正确解读成升职，而不是离职。",
           },
           cond: (ctx) => solvedTag(ctx, "promotion") || solvedTag(ctx, "title-change"),
         },
@@ -1144,7 +1144,7 @@
           name: { en: "Mercury Retrograde", zh: "水逆" },
           desc: {
             en: "Blame a planet and somehow be right.",
-            zh: "把锅甩给一颗行星，居然还甩对了。",
+            zh: "你把锅甩给一颗行星，居然还甩对了。",
           },
           cond: (ctx) =>
             ctx.byId["case-040"] &&
@@ -1164,7 +1164,7 @@
           name: { en: "Security Cleared", zh: "虚惊一场" },
           desc: {
             en: "Correctly read a security or compliance flag instead of a firing.",
-            zh: "把安全或合规标记正确解读成规定，而不是开除。",
+            zh: "把安全或合规解读成公司的正常规定，而不是开除。",
           },
           cond: (ctx) => solvedTag(ctx, "security"),
         },
@@ -1173,7 +1173,7 @@
           name: { en: "Happy Holidays", zh: "节日限定" },
           desc: {
             en: "Correctly read a cultural holiday instead of a disappearance.",
-            zh: "把跨文化节日正确解读成放假，而不是消失。",
+            zh: "把跨文化节日正确解读成放假，而不是区域性裁员。",
           },
           cond: (ctx) => solvedTag(ctx, "cross-cultural"),
         },
@@ -1188,7 +1188,7 @@
         },
         {
           id: "meeting-room-survivor",
-          name: { en: "Meeting Room Survivor", zh: "会议室幸存者" },
+          name: { en: "Meeting Room Survivor", zh: "会议幸存者" },
           desc: {
             en: "In one run, correctly solve at least one meeting case and one calendar case.",
             zh: "同一局内，至少各正确解读一题 meeting 和 calendar。",
@@ -1277,7 +1277,7 @@
         },
         {
           id: "schrodinger-corp",
-          name: { en: "Corporate Schrodinger", zh: "企业版薛定谔" },
+          name: { en: "Corporate Schrodinger", zh: "企业谜语人" },
           desc: {
             en: "Correctly solve 2+ ambiguous cases in one run.",
             zh: "同一局内看穿 2 题以上“既是也不是”的企业谜语。",
