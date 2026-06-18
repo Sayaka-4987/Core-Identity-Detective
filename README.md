@@ -30,3 +30,9 @@ A deadpan workplace detective game about identity data, bad assumptions, and con
 All content is fictional. No real employee data is used. License: GNU/GPL v3.0.
 
 In this project, AI was used for coding, translating, and polishing text.
+
+## Screenshots
+
+![start](Screenshot-1.png)
+![choose](Screenshot-2.png)
+![review](Screenshot-3.png)
