@@ -468,7 +468,13 @@
         font-size: 15px;
         margin-top: 2px;
       }
-
+      .reset-note {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
+        margin: 8px 0 0;
+        opacity: 0.85;
+      }
       .hidden {
         display: none;
       }
@@ -685,6 +691,7 @@
           <button class="ghost" id="btn-share"></button>
           <button class="ghost hidden" id="btn-reset"></button>
         </div>
+        <p class="reset-note hidden" id="reset-note"></p>
         <p class="flavor" id="share-feedback"></p>
       </section>
     </div>
@@ -753,6 +760,10 @@
           zh: "📫 去 GitHub 贡献一个案件",
         },
         resetLabel: { en: "Start Over", zh: "重新来过" },
+        resetNote: {
+          en: "Heads up: this clears your play history. Previously seen cases can show up again, so you can try different answers.",
+          zh: "提醒：此操作会清空游玩缓存。之前出过的题目可能再次出现，你可以做出不同的回答。",
+        },
         shareCopied: { en: "Copied to clipboard.", zh: "已复制到剪贴板。" },
         shareFailed: {
           en: "Copy failed. Select and copy manually.",
@@ -1932,6 +1943,9 @@
         $("btn-share").classList.toggle("hidden", emptyExhausted);
         // Reset is shown only when the bank is exhausted.
         $("btn-reset").classList.toggle("hidden", !runFinished);
+        // Reset caption explains the cache-clearing effect (same visibility).
+        $("reset-note").textContent = t(UI.resetNote);
+        $("reset-note").classList.toggle("hidden", !runFinished);
 
         // Contribution prompt whenever the bank is exhausted.
         const contrib = $("contribution");
@@ -2043,7 +2057,9 @@
       // Clear all seen-case bookmarks so every case can be played again.
       function resetSeen() {
         localStorage.removeItem(SEEN_KEY);
-        startRun();
+        clearProgress();
+        renderStatic();
+        show("screen-home");
       }
 
       /* Wiring -------------------------------------------------------------- */
