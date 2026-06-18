@@ -927,8 +927,8 @@
           id: "i-dont-know",
           name: { en: "I Don't Know", zh: "我不知道" },
           desc: {
-            en: "Stay humble (confidence ≤ 30) on a case with insufficient telemetry.",
-            zh: "在数据不足的案件上保持谦逊（信心 ≤ 30）。",
+            en: "Stay humble (confidence <= 30) on a case with insufficient telemetry.",
+            zh: "在数据不足的案件上保持谦逊（信心 <= 30）。",
           },
           cond: (ctx) =>
             ctx.log.some(
@@ -943,7 +943,7 @@
           name: { en: "Overconfidence Any%", zh: "过度自信 90%" },
           desc: {
             en: "Be wrong at 90%+ confidence at least once.",
-            zh: "至少一次在 90%+ 信心下判断错误。",
+            zh: "至少一次在 >= 90% 信心下判断错误。",
           },
           cond: (ctx) =>
             ctx.log.some((e) => !e.isCorrect && e.confidence >= 90),
@@ -953,7 +953,7 @@
           name: { en: "Confidence With Receipts", zh: "有理有据" },
           desc: {
             en: "In one run, get 3+ cases correct at 85%+ confidence.",
-            zh: "同一局内，至少 3 题在 85%+ 信心下判断正确。",
+            zh: "同一局内，至少 3 题在 >= 85% 信心下判断正确。",
           },
           cond: (ctx) =>
             ctx.log.filter((e) => e.isCorrect && e.confidence >= 85).length >= 3,
@@ -962,8 +962,8 @@
           id: "managed-risk",
           name: { en: "Managed Risk", zh: "风险可控" },
           desc: {
-            en: "In one run, make 2+ wrong calls at <=35% confidence (wrong, but contained).",
-            zh: "同一局内，至少 2 次在 <=35% 信心下误判（错了，但没爆）。",
+            en: "In one run, make 2+ wrong calls at <= 35% confidence (wrong, but contained).",
+            zh: "同一局内，至少 2 次在 <= 35% 信心下误判（错了，但没爆）。",
           },
           cond: (ctx) =>
             ctx.log.filter((e) => !e.isCorrect && e.confidence <= 35).length >= 2,
@@ -973,7 +973,7 @@
           name: { en: "Calibrated Operator", zh: "校准型选手" },
           desc: {
             en: "Finish a run with 60%+ accuracy, 0 overconfident misses, and avg confidence between 45% and 70%.",
-            zh: "单局正确率 >=60%、过度自信误判为 0、且平均信心在 45%-70% 之间。",
+            zh: "单局正确率 >= 60%、过度自信误判为 0、且平均信心在 45%-70% 之间。",
           },
           cond: (ctx) =>
             ctx.stats.scored >= 8 &&
@@ -987,7 +987,7 @@
           name: { en: "All-In Rollercoaster", zh: "梭哈过山车" },
           desc: {
             en: "In one run, score both a correct and a wrong call at 95%+ confidence.",
-            zh: "同一局内，既有 95%+ 信心下的正确判断，也有 95%+ 信心下的误判。",
+            zh: "同一局内，既有 >= 95% 信心下的正确判断，也有 >= 95% 信心下的误判。",
           },
           cond: (ctx) =>
             ctx.log.some((e) => e.isCorrect && e.confidence >= 95) &&
@@ -1124,7 +1124,7 @@
           name: { en: "Reading the Arrow", zh: "读懂那个按钮" },
           desc: {
             en: "Correctly identify a promotion or new title instead of a departure.",
-            zh: "把头衔变化正确解读成升职，而不是离职。",
+            zh: "把头衔和 org chart 的变化正确解读成升职，而不是离职。",
           },
           cond: (ctx) => solvedTag(ctx, "promotion") || solvedTag(ctx, "title-change"),
         },
@@ -1209,7 +1209,7 @@
           name: { en: "Budget Winter", zh: "预算之冬" },
           desc: {
             en: "Correctly read at least one budget-related case.",
-            zh: "看见预算收紧时，没有把它误会成世界末日。",
+            zh: "看见预算收紧时，没有把它脑补成世界末日。",
           },
           cond: (ctx) => solvedTag(ctx, "budget"),
         },
@@ -1256,7 +1256,7 @@
           name: { en: "Handover Artist", zh: "交接艺术家" },
           desc: {
             en: "Correctly spot a planned transition instead of denial.",
-            zh: "正确识别体面交接，而不是脑补否认现实。",
+            zh: "正确识别体面交接，而不是脑补和否认现实。",
           },
           cond: (ctx) => solvedTag(ctx, "transition"),
         },
@@ -1330,7 +1330,7 @@
           name: { en: "Full Table Scan", zh: "全表扫描" },
           desc: {
             en: "See every case in the bank at least once. No index, no WHERE clause, just read all of it.",
-            zh: "把每一个情景都至少读了一遍。没建索引、不带 WHERE，你硬是全表扫描了一遍。",
+            zh: "你把每一个情景都至少读了一遍。没建索引、不带 WHERE，你硬是全表扫描了一遍。",
           },
           cond: () => {
             const seen = new Set(loadSeen());
@@ -1343,7 +1343,7 @@
           hidden: true,
           desc: {
             en: "In one run, cry 'layoff' on 3+ cases and be wrong every time. Stable pessimism is a talent too.",
-            zh: "同一局内至少 3 次把事情脑补成裁员，还全都猜错。稳定的悲观也算一种天赋。",
+            zh: "同一局内至少 3 次把事情脑补成裁员，还全都猜错。你稳定的悲观也是一种天赋。",
           },
           cond: (ctx) =>
             ctx.log.filter((e) => !e.isCorrect && guessedLayoff(ctx, e))
