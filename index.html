@@ -1326,6 +1326,18 @@
             ).length >= 5,
         },
         {
+          id: "case-bank-complete",
+          name: { en: "Full Table Scan", zh: "全表扫描" },
+          desc: {
+            en: "See every case in the bank at least once. No index, no WHERE clause, just read all of it.",
+            zh: "把每一个情景都至少读了一遍。没建索引、不带 WHERE，你硬是全表扫描了一遍。",
+          },
+          cond: () => {
+            const seen = new Set(loadSeen());
+            return cases.every((c) => seen.has(c.id));
+          },
+        },
+        {
           id: "layoff-paranoia",
           name: { en: "Everything Is a Layoff", zh: "一切转裁员" },
           hidden: true,
