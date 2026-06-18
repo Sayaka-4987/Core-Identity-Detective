@@ -3266,7 +3266,7 @@ const cases = [
     answer: "buddy_crunch",
     explanation: {
       en: "Their status literally says 'heads down, ship date', your access is all set, and other helpers are free. The buddy didn't abandon you; a deadline ate them. Ask someone else.",
-      zh: "他们状态明明写着“冲刺中，赶发布”、你的权限都开通了、还有别人能问。Buddy 不是抛弃了你，是被 deadline 吃了。换个人问吧。",
+      zh: "他们状态明明写着“冲刺中，赶着发布”、你的权限都开通了、还有别人能问。Buddy 不是抛弃了你，是被 deadline 吞噬了。你去换个人问吧。",
     },
     resultFlavor: {
       correct: { en: "Correct. A deadline ate your buddy, not malice.", zh: "正确。吃掉你 buddy 的是 deadline，不是恶意。" },
@@ -3302,7 +3302,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. It was a budget cap, not a verdict on you.", zh: "正确。那是预算上限，不是对你的判决。" },
-      wrong: { en: "You took a quota cap as a referendum on your entire worth. It is really not that deep.", zh: "你把一个升职的名额当成了对你个人全部价值的公审，不至于这么严重。" },
+      wrong: { en: "You took a quota cap as a referendum on your entire worth. It is really not that deep.", zh: "你把一个升职的名额当成了对你个人全部价值的公审，这事儿不至于这么严重。" },
     },
   },
   {
@@ -3366,7 +3366,7 @@ const cases = [
       zh: "五条“不在我们 scope”、组织边界互相重叠、没有恶意信号。没人在躲你，这活真的卡在团队之间的缝里。回旋镖是组织设计的锅，不是有人记仇。",
     },
     resultFlavor: {
-      correct: { en: "Correct. It fell in a seam, not into a vendetta.", zh: "正确。它掉进了缝里，不是掉进了恩怨里。" },
+      correct: { en: "Correct. It fell in a seam, not into a vendetta.", zh: "正确。它掉进了桌子缝里，不是掉进了私人恩怨里。" },
       wrong: { en: "You read an ownership gap as a personal snub, and cried about it until the next morning.", zh: "你把一个归属空白解读成了针对你的冷落，哭到了第二天的清晨。" },
     },
   },
@@ -3399,7 +3399,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. It's a bid, not a verdict. Make your own slide.", zh: "正确。那是开价，不是判决，赶紧做你自己的那页 PPT 去。" },
-      wrong: { en: "You surrendered scope to a slide that decided nothing.", zh: "你向一页什么都没决定的 PPT 投降了。" },
+      wrong: { en: "You surrendered scope to a slide that decided nothing. Don't do that!", zh: "你向一页什么都没决定的 PPT 投降了……不要这么做！" },
     },
   },
   {
@@ -3419,15 +3419,15 @@ const cases = [
       { key: { en: "Mute Available", zh: "可静音" }, value: { en: "Yes", zh: "可以" }, status: "normal" },
     ],
     choices: [
-      { id: "youre_key", label: { en: "You're a Key Stakeholder", zh: "你是关键干系人" } },
-      { id: "diffusion", label: { en: "Responsibility Diffusion, FYI Only", zh: "责任稀释，只是知会" } },
+      { id: "youre_key", label: { en: "You're a Key Stakeholder", zh: "你是关键的利益相关人" } },
+      { id: "diffusion", label: { en: "Responsibility Diffusion, FYI Only", zh: "责任稀释，只是 FYI" } },
       { id: "promotion_signal", label: { en: "A Promotion Signal", zh: "升职信号" } },
       { id: "being_watched", label: { en: "Being Watched", zh: "被盯上了" } },
     ],
     answer: "diffusion",
     explanation: {
       en: "Fifty people, three actual decision-makers, zero action items for you, role tagged 'FYI'. Big channels feel important but usually mean diffuse accountability. You were added so nobody can say you weren't told. Mute it.",
-      zh: "50 个人、3 个真正的决策者、你 0 个待办、角色标着“知会”。大频道看着重要，实际多半意味着责任分散。你被加进来只是为了将来没人能说“没通知你”。静音吧。",
+      zh: "50 个人、3 个真正的决策者、你 0 个待办、角色标着“FYI”。大频道看着重要，实际多半意味着责任分散。你被加进来只是为了将来没人能说“没通知你”。静音吧。",
     },
     resultFlavor: {
       correct: { en: "Correct. Big channel, small role. Mute and move on.", zh: "正确。大频道，小角色，静音继续。" },
@@ -3459,7 +3459,7 @@ const cases = [
     answer: "folded_into_umbrella",
     explanation: {
       en: "Funding, headcount, and roadmap are all unchanged, and a new broad umbrella OKR appeared. Your project didn't die; it got absorbed into a bigger line item for the slide. Same work, less visibility.",
-      zh: "资源、Headcount、路线图全没变，还冒出来一个范围更大的总 OKR。你的项目没死，是被吸进了一个更大的条目里好放进 PPT。活照旧，只是曝光少了。",
+      zh: "资源、Headcount、路线图全没变，还冒出来一个范围更大的总 OKR。你的项目没死，是被吸进了一个更大的条目里好放进 PPT。活儿照旧，只是曝光少了。",
     },
     resultFlavor: {
       correct: { en: "Correct. Absorbed, not axed.", zh: "正确。那只是被吸收，不是被砍。" },
@@ -3592,7 +3592,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. Archived, not exiled.", zh: "正确。是归档，不是流放。" },
-      wrong: { en: "You read a channel cleanup as a quiet shunning.", zh: "一次频道清理被你解读成了无声的孤立排挤。" },
+      wrong: { en: "You read a channel cleanup as a quiet shunning.", zh: "一次老频道清理被你解读成了无声的孤立排挤，学习一下读空气吧。" },
     },
   },
   {
@@ -3653,7 +3653,7 @@ const cases = [
     actualCause: { en: "Price-Offset or Real Cut — Depends on Undisclosed Math", zh: "是股价对冲还是真降薪，取决于没披露的数字" },
     explanation: {
       en: "Share count dropped but stock is up and dollar value is 'roughly flat' — yet the budget memo says 'tighter' and your band position is hidden. Fewer shares can mean nothing (price offset) or a quiet cut. Without the full dollar and band math, it's undecidable.",
-      zh: "股数少了，但股价涨了、美元价值“大致持平”，可预算备忘又说“更紧”。股数变少可能毫无意义（股价对冲），也可能是悄悄降薪。没有完整的美元和薪资带数字，判不了。",
+      zh: "股数少了，但股价涨了、美元价值“大致持平”，可预算备忘又说“更紧”。股数变少可能毫无意义（例如股价对冲），也可能是悄悄降薪。没有完整的美元和薪资带数字，判不了。",
     },
     resultFlavor: {
       correct: { en: "No one can call this from share count alone. Demand the dollar figure.", zh: "光看股数没人能下结论，把美元数字要到。" },
@@ -3685,7 +3685,7 @@ const cases = [
     answer: "quarter_end_savings",
     explanation: {
       en: "It's the end of the fiscal quarter, travel budget is frozen till Q1, headcount is unchanged, and other teams got postponed too. This is a finance-driven belt-tightening, not a verdict on your team. The offsite returns when the budget does.",
-      zh: "正值财季末、差旅预算冻结到 Q1、人数没变、其他团队也被暂缓了。这是财务驱动的勒紧裤腰带，不是对你团队的判决。预算回来，团建就回来。",
+      zh: "正值财季末、差旅预算冻结到 Q1、人数没变、其他团队也被暂缓了。这是财务团队的“勒紧裤腰带”，不是对你团队的判决。预算回来，团建就回来。",
     },
     resultFlavor: {
       correct: { en: "Correct. The budget got tight, not your team's future.", zh: "正确。吃紧的是预算，不是你的未来。" },
@@ -3721,7 +3721,7 @@ const cases = [
     },
     resultFlavor: {
       correct: { en: "Correct. It's a toggle, not a two-weeks notice.", zh: "正确。那是个开关，不是离职信。" },
-      wrong: { en: "You wrote their farewell over a LinkedIn default.", zh: "你为一个领英选项过度思考，写好了给同事的送别词。" },
+      wrong: { en: "You wrote their farewell over a LinkedIn default.", zh: "你为一个领英的默认选项过度思考，提前写好了给同事的送别词。" },
     },
   },
   {
