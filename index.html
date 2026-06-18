@@ -1305,6 +1305,38 @@
                 (ctx.byId[e.caseId].tags || []).includes("politics"),
             ).length >= 5,
         },
+        {
+          id: "layoff-paranoia",
+          name: { en: "Everything Is a Layoff", zh: "Blind 管理员" },
+          desc: {
+            en: "In one run, wrongly cry 'layoff' on 3+ cases.",
+            zh: "同一局内，至少 3 次把事情脑补成裁员，而且都猜错了。",
+          },
+          cond: (ctx) =>
+            ctx.log.filter((e) => !e.isCorrect && guessedLayoff(ctx, e))
+              .length >= 3,
+        },
+        {
+          id: "perfectly-wrong",
+          name: { en: "Perfectly Wrong", zh: "全军覆没" },
+          desc: {
+            en: "Finish a full run and get every scorable case wrong.",
+            zh: "完整跑完一个财年，且每一道可计分案件都判断错了。",
+          },
+          cond: (ctx) =>
+            ctx.log.length >= Math.min(RUN_LENGTH, cases.length) &&
+            ctx.stats.scored > 0 &&
+            ctx.stats.solved === 0,
+        },
+        {
+          id: "occult-analyst",
+          name: { en: "Occult Incident Analyst", zh: "玄学大师" },
+          desc: {
+            en: "Pick one of the magical explanations (aliens, ghosts, parallel universe, Mercury retrograde).",
+            zh: "选择了那些魔幻解释之一（外星人、幽灵、平行宇宙、水星逆行）。",
+          },
+          cond: (ctx) => ctx.log.some((e) => guessedMagical(ctx, e)),
+        },
       ];
 
       function solvedTag(ctx, tag) {
@@ -1328,6 +1360,30 @@
           /sync|backend|identity\s*service|directory/.test(en) ||
           /同步|后端|系统|身份|目录/.test(zh)
         );
+      }
+
+      function guessedLayoff(ctx, entry) {
+        if (
+          entry.selectedChoiceId === "layoff" ||
+          entry.selectedChoiceId === "mass_layoff"
+        )
+          return true;
+        const ch = selectedChoice(ctx, entry);
+        if (!ch || !ch.label) return false;
+        const en = String(ch.label.en || "").toLowerCase();
+        const zh = String(ch.label.zh || "");
+        return /layoff|laid\s*off/.test(en) || /裁/.test(zh);
+      }
+
+      /* Joke / "magical" explanation choices scattered across the case bank. */
+      const MAGICAL_CHOICE_IDS = [
+        "aliens",
+        "parallel_universe",
+        "ghost",
+        "retrograde",
+      ];
+      function guessedMagical(ctx, entry) {
+        return MAGICAL_CHOICE_IDS.includes(entry.selectedChoiceId);
       }
 
       /* ----------------------------------------------------------------------
