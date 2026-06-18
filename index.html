@@ -435,7 +435,7 @@
       }
       .achievements h2 {
         font-family: var(--mono);
-        font-size: 15px;
+        font-size: 18px;
         letter-spacing: 0.04em;
         text-transform: uppercase;
         margin: 0 0 8px;
@@ -443,7 +443,7 @@
       }
       .ach-sub {
         color: var(--muted);
-        font-size: 12px;
+        font-size: 15px;
         margin: 0 0 8px;
         font-family: var(--mono);
       }
@@ -461,11 +461,11 @@
       }
       .ach-name {
         font-weight: 700;
-        font-size: 14px;
+        font-size: 17px;
       }
       .ach-desc {
         color: var(--muted);
-        font-size: 12px;
+        font-size: 15px;
         margin-top: 2px;
       }
 
@@ -612,9 +612,12 @@
         </div>
         <div class="btn-row">
           <button class="primary" id="btn-start"></button>
-          <button class="ghost" id="btn-home-switch"></button>
           <button class="ghost hidden" id="btn-continue"></button>
+          <button class="ghost" id="btn-home-switch"></button>
         </div>
+
+        <!-- Unlocked achievements, shown inline only when at least one exists. -->
+        <div id="home-achievements" class="achievements hidden"></div>
       </section>
 
       <!-- CASE -->
@@ -682,7 +685,12 @@
           <button class="ghost" id="btn-share"></button>
           <button class="ghost hidden" id="btn-reset"></button>
         </div>
-        <p class="flavor" id="share-feedback"></p>
+      <!-- ACHIEVEMENTS (standalone, reachable from home) -->
+      <section id="screen-achievements" class="card hidden">
+        <div id="achievements-list" class="achievements"></div>
+        <div class="btn-row">
+          <button class="primary" id="btn-ach-back"></button>
+        </div>
       </section>
     </div>
 
@@ -816,6 +824,12 @@
           zh: "本局没有解锁新成就。",
         },
         achProgress: { en: "Unlocked", zh: "已解锁" },
+        achHidden: { en: "??? (Hidden)", zh: "？？？（隐藏）" },
+        achHiddenDesc: {
+          en: "Hidden achievement. Keep messing up; you'll get there.",
+          zh: "隐藏成就，请继续翻车，你迟早会撞上的。",
+        },
+        achListBtn: { en: "Achievements", zh: "成就列表" },
       };
 
       /* ----------------------------------------------------------------------
@@ -1307,10 +1321,11 @@
         },
         {
           id: "layoff-paranoia",
-          name: { en: "Everything Is a Layoff", zh: "Blind 管理员" },
+          name: { en: "Everything Is a Layoff", zh: "一切转裁员" },
+          hidden: true,
           desc: {
-            en: "In one run, wrongly cry 'layoff' on 3+ cases.",
-            zh: "同一局内，至少 3 次把事情脑补成裁员，而且都猜错了。",
+            en: "In one run, cry 'layoff' on 3+ cases and be wrong every time. Stable pessimism is a talent too.",
+            zh: "同一局内至少 3 次把事情脑补成裁员，还全都猜错。稳定的悲观也算一种天赋。",
           },
           cond: (ctx) =>
             ctx.log.filter((e) => !e.isCorrect && guessedLayoff(ctx, e))
@@ -1318,10 +1333,11 @@
         },
         {
           id: "perfectly-wrong",
-          name: { en: "Perfectly Wrong", zh: "全军覆没" },
+          name: { en: "Flawless Failure", zh: "完美翻车" },
+          hidden: true,
           desc: {
-            en: "Finish a full run and get every scorable case wrong.",
-            zh: "完整跑完一个财年，且每一道可计分案件都判断错了。",
+            en: "Finish a full run and get every scorable case wrong. Dodging every correct answer takes real skill.",
+            zh: "在一个财年中，对每一道可计分案件都判断错误。能完美避开所有正确答案，也是一种实力。",
           },
           cond: (ctx) =>
             ctx.log.length >= Math.min(RUN_LENGTH, cases.length) &&
@@ -1330,10 +1346,11 @@
         },
         {
           id: "occult-analyst",
-          name: { en: "Occult Incident Analyst", zh: "玄学大师" },
+          name: { en: "Occult Incident Analyst", zh: "玄学事故大师" },
+          hidden: true,
           desc: {
-            en: "Pick one of the magical explanations (aliens, ghosts, parallel universe, Mercury retrograde).",
-            zh: "选择了那些魔幻解释之一（外星人、幽灵、平行宇宙、水星逆行）。",
+            en: "Blame an incident on aliens, ghosts, a parallel universe, or Mercury retrograde. The postmortem writes itself.",
+            zh: "把一次事故甩锅给外星人、幽灵、平行宇宙或水星逆行。RCA 这就写好了吗？",
           },
           cond: (ctx) => ctx.log.some((e) => guessedMagical(ctx, e)),
         },
@@ -1594,7 +1611,7 @@
       /* Static text that does not depend on the current screen's dynamic data. */
       function renderStatic() {
         document.documentElement.lang = lang;
-        $("home-title").textContent = t(UI.homeTitle);
+        $("home-title").textContent = "🔍" + t(UI.homeTitle);
         $("home-tagline").textContent = t(UI.homeTagline);
         $("home-howto").textContent = t(UI.homeHowTo);
         $("btn-start").textContent = t(UI.start);
@@ -1623,6 +1640,9 @@
         const cont = $("btn-continue");
         cont.textContent = t(UI.continueWord);
         cont.classList.toggle("hidden", loadProgress() === null);
+
+        // Inline unlocked-achievements block on the home screen.
+        renderHomeAchievements();
       }
 
       /* Re-render whichever screen is currently visible (for language toggle). */
@@ -1827,31 +1847,61 @@
           `<p class="fy-verdict">${reviewVerdict(stats)}</p>`;
       }
 
-      function renderAchievements(freshIds) {
-        const box = $("achievements-block");
+      function renderAchievements(freshIds, opts) {
+        opts = opts || {};
+        const box = $(opts.targetId || "achievements-block");
         const unlocked = loadAchievements();
+        const unlockedSet = new Set(unlocked);
         const fresh = new Set(freshIds);
-        // Show newly-unlocked first, then any other already-unlocked ones.
-        const shown = ACHIEVEMENTS.filter((a) => unlocked.includes(a.id)).sort(
-          (a, b) => (fresh.has(b.id) ? 1 : 0) - (fresh.has(a.id) ? 1 : 0),
-        );
+        // Full list, ordered: newly unlocked, then other unlocked, then locked.
+        const rank = (a) =>
+          fresh.has(a.id) ? 0 : unlockedSet.has(a.id) ? 1 : 2;
+        let list = [...ACHIEVEMENTS];
+        if (opts.unlockedOnly) list = list.filter((a) => unlockedSet.has(a.id));
+        const shown = list.sort((a, b) => rank(a) - rank(b));
         const items = shown
           .map((a) => {
+            const isUnlocked = unlockedSet.has(a.id);
             const isNew = fresh.has(a.id);
+            // Hidden achievements stay masked as ??? until unlocked.
+            const masked = a.hidden && !isUnlocked;
+            const name = masked ? t(UI.achHidden) : t(a.name);
+            const desc = masked ? t(UI.achHiddenDesc) : t(a.desc);
+            const cls = "ach-item" + (isUnlocked ? "" : " locked");
             return (
-              `<div class="ach-item">` +
-              `<div class="ach-name">${isNew ? "\u2728 " : ""}${t(a.name)}</div>` +
-              `<div class="ach-desc">${t(a.desc)}</div></div>`
+              `<div class="${cls}">` +
+              `<div class="ach-name">${isNew ? "\u2728 " : ""}${name}</div>` +
+              `<div class="ach-desc">${desc}</div></div>`
             );
           })
           .join("");
-        const sub = freshIds.length
-          ? `${t(UI.achNew)}: ${freshIds.length}`
-          : t(UI.achNone);
+        // Standalone view (from home) drops the per-run "new unlocks" line.
+        const sub = opts.standalone
+          ? ""
+          : freshIds.length
+            ? `${t(UI.achNew)}: ${freshIds.length}`
+            : t(UI.achNone);
         box.innerHTML =
           `<h2>${t(UI.achievementsTitle)}</h2>` +
-          `<p class="ach-sub">${sub} \u00b7 ${t(UI.achProgress)}: ${unlocked.length} / ${ACHIEVEMENTS.length}</p>` +
+          `<p class="ach-sub">${sub ? sub + " \u00b7 " : ""}${t(UI.achProgress)}: ${unlocked.length} / ${ACHIEVEMENTS.length}</p>` +
           items;
+      }
+
+      // Inline home block: render unlocked achievements only, or hide if none.
+      function renderHomeAchievements() {
+        const box = $("home-achievements");
+        if (!box) return;
+        if (loadAchievements().length === 0) {
+          box.classList.add("hidden");
+          box.innerHTML = "";
+          return;
+        }
+        box.classList.remove("hidden");
+        renderAchievements([], {
+          targetId: "home-achievements",
+          standalone: true,
+          unlockedOnly: true,
+        });
       }
 
       function renderEnd() {
