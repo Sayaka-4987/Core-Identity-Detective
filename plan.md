@@ -32,7 +32,7 @@ A round should be fast: under 1 minute.
 
 - Game shell in index.html.
 - Case content in cases.js (global cases array).
-- 60 finished cases (case-001 to case-060).
+- 100 finished cases (case-001 to case-060).
 - 20-case runs (one "Fiscal Year" per run).
 - Randomized, non-repeating runs in one browser until case bank is exhausted.
 - Confidence-based scoring (wrong + confident hurts most).
