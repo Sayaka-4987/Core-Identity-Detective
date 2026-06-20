@@ -4,14 +4,16 @@
 >
 > 有限信息，无限脑补。
 
-A deadpan workplace detective game about identity data, bad assumptions, and confident mistakes.
+A workplace detective game where confidence is a liability.
 
 ## Why play
 
-- 1-minute rounds, fast and sharp
+- 1-minute rounds
 - Dry corporate humor
-- The more confident you are, the harder you crash
-- Some cases are intentionally unanswerable
+- Confidence kills
+- Some cases have no answer
+- English & 中文
+- Works on any screen
 
 ## Play
 
@@ -23,15 +25,14 @@ A deadpan workplace detective game about identity data, bad assumptions, and con
 - Correct: 50 + confidence / 2
 - Wrong: -confidence
 
-100-case pool, 20 random cases per run, no repeats in the same browser until the pool is exhausted.
+100 cases. 20 per run. No repeats until you've seen them all.
 
 ## Notes
 
-License: GNU General Public License v3.0
-
-All content is fictional. No real employee data is used. 
-
-In this project, AI helped write JavaScript code, translate text, and polish prose. The humor, questionable life choices, and emotional damage were all handcrafted by a human being.
+- License: GNU General Public License v3.0
+- All content is fictional. No real employee data is used. 
+- In this project, AI helped write JavaScript code, translate text, and polish prose.
+- The humor, questionable life choices, and emotional damage were all handcrafted by a human being.
 
 ## Screenshots
 
