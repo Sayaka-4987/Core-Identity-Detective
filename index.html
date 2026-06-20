@@ -715,7 +715,7 @@
         },
         homeHowTo: {
           en: "How it works: each round runs 20 scenarios. For every case, first pick what you think happened, then drag the confidence lever to bet on your call. Higher confidence scores more when you are right, but costs more when you are wrong. There are enough cases on file to play 5 rounds without repeats.",
-          zh: "玩法说明：每回合 20 个场景。每个案件先选出你认为发生了什么，再拉动信心拉杆为自己的判断下注。越自信、判断正确得分越高；自信却判断错了，扣分也越狠。目前的案件量够你玩 5 轮不重样。",
+          zh: "玩法说明：每回合 20 个场景。每个案件先选出你认为发生了什么，再拉动信心拉杆为自己的判断下注。越自信、判断正确、得分越高；越自信、判断错了，扣分也越狠。目前的案件量够你玩 5 轮不重样。",
         },
         start: { en: "Start Investigation", zh: "开始调查" },
         telemetry: { en: "Identity Telemetry", zh: "身份档案" },
@@ -771,7 +771,7 @@
         },
         shareLine: {
           en: "\"Telemetry doesn’t lie. People do.\"",
-          zh: "“我沿着身份线索一路追到底。”",
+          zh: "“人是会说谎的动物，员工目录不是。”",
         },
         continueWord: { en: "Continue", zh: "继续上一局" },
         homeLangTitleToZh: "想看中文？马上切换。",
@@ -830,7 +830,7 @@
           zh: "本局没有解锁新成就。",
         },
         achProgress: { en: "Unlocked", zh: "已解锁" },
-        achHidden: { en: "??? (Hidden)", zh: "？？？（隐藏）" },
+        achHidden: { en: "??? (Hidden)", zh: "？？？" },
         achHiddenDesc: {
           en: "Hidden achievement. Keep messing up; you'll get there.",
           zh: "隐藏成就，请继续翻车，你迟早会撞上的。",
@@ -1367,7 +1367,7 @@
           name: { en: "Occult Incident Analyst", zh: "玄学事故大师" },
           hidden: true,
           desc: {
-            en: "Blame an incident on aliens, ghosts, a parallel universe, or Mercury retrograde. The postmortem writes itself.",
+            en: "Blame an incident on aliens, ghosts, a parallel universe, or Mercury retrograde. The postmortem writes itself, right?",
             zh: "把一次事故甩锅给外星人、幽灵、平行宇宙或水星逆行。RCA 这就写好了吗？",
           },
           cond: (ctx) => ctx.log.some((e) => guessedMagical(ctx, e)),
