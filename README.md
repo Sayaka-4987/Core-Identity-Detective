@@ -31,7 +31,7 @@ License: GNU General Public License v3.0
 
 All content is fictional. No real employee data is used. 
 
-In this project, AI helped write JavaScript code, translate text, and polish prose. The humor, questionable life choices, and emotional damage were all handcrafted by human.
+In this project, AI helped write JavaScript code, translate text, and polish prose. The humor, questionable life choices, and emotional damage were all handcrafted by a human being.
 
 ## Screenshots
 
